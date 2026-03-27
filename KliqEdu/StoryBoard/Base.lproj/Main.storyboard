@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D2a-Fc-qqd">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Urbanist-SemiBold.ttf">
+            <string>Urbanist-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--LaunchVC-->
+        <scene sceneID="ldq-dr-Pfq">
+            <objects>
+                <viewController storyboardIdentifier="LaunchVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NFB-ge-IOh" customClass="LaunchVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Gr-J7-SsB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-sJ-srh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LbM-pe-xI8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="e2v-sJ-srh" firstAttribute="top" secondItem="0Gr-J7-SsB" secondAttribute="top" id="2rF-ZQ-GGo"/>
+                            <constraint firstItem="e2v-sJ-srh" firstAttribute="trailing" secondItem="LbM-pe-xI8" secondAttribute="trailing" id="DAP-tK-0Ze"/>
+                            <constraint firstAttribute="bottom" secondItem="e2v-sJ-srh" secondAttribute="bottom" id="ief-SD-lyy"/>
+                            <constraint firstItem="e2v-sJ-srh" firstAttribute="leading" secondItem="LbM-pe-xI8" secondAttribute="leading" id="vgI-uC-N2t"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rJT-bf-qa9"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WxI-0I-tDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="281" y="-3370"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="24x-xs-XfL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D2a-Fc-qqd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mg7-SB-Owu">
+                        <rect key="frame" x="0.0" y="100" width="375" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NFB-ge-IOh" kind="relationship" relationship="rootViewController" id="wGW-fJ-t9O"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d2v-RO-fj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="-4105"/>
+        </scene>
+        <!--Bubble Tab Bar Controller-->
+        <scene sceneID="esn-d8-IzW">
+            <objects>
+                <tabBarController storyboardIdentifier="BubbleTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7g6-iW-MUh" customClass="BubbleTabBarController" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="7Q0-F5-35u"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="OyS-Hf-3Rl">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="ThemeDarkGreen"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" name="ThemeColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" name="ThemeColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BLS-gu-FBZ" kind="relationship" relationship="viewControllers" id="gmU-Mg-yZu"/>
+                        <segue destination="2B2-NQ-C05" kind="relationship" relationship="viewControllers" id="vyS-dn-ohC"/>
+                        <segue destination="90d-f2-rxe" kind="relationship" relationship="viewControllers" id="jqG-Zw-hE6"/>
+                        <segue destination="bsM-t5-vpb" kind="relationship" relationship="viewControllers" id="jd6-xq-F0B"/>
+                        <segue destination="FcS-A0-jfR" kind="relationship" relationship="viewControllers" id="xHp-ba-CKw"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGc-6G-hMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="286" y="-2642"/>
+        </scene>
+        <!--DashboardVC-->
+        <scene sceneID="IL9-hB-mR9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="DashboardVC" id="Y4b-Ga-Dfr" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lcL-Ba-SBq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cWR-Ea-4WP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1546" y="-1347"/>
+        </scene>
+        <!--DashboardVC-->
+        <scene sceneID="ZHE-XS-36g">
+            <objects>
+                <viewController storyboardIdentifier="DashboardVC" id="3jv-68-5ze" customClass="DashboardVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X0o-W7-Tnx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dashboard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMB-bW-Eim">
+                                <rect key="frame" x="16" y="70" width="343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="JCj-45-4Zi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="25"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gMO-g7-Q9C"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gMO-g7-Q9C" firstAttribute="trailing" secondItem="cMB-bW-Eim" secondAttribute="trailing" constant="16" id="SbP-J9-sah"/>
+                            <constraint firstItem="cMB-bW-Eim" firstAttribute="leading" secondItem="gMO-g7-Q9C" secondAttribute="leading" constant="16" id="cdG-Op-cKe"/>
+                            <constraint firstItem="cMB-bW-Eim" firstAttribute="top" secondItem="X0o-W7-Tnx" secondAttribute="top" constant="70" id="i65-jK-XoO"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RuQ-Rc-Xz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1530" y="-961"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="8Vk-Gu-wtb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BLS-gu-FBZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="FZx-0v-Pir" customClass="CBTabBarItem" customModule="KliqEdu" customModuleProvider="target">
+                        <inset key="largeContentSizeImageInsets" minX="200" minY="22" maxX="0.0" maxY="0.0"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2p4-m8-2z1">
+                        <rect key="frame" x="0.0" y="100" width="375" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y4b-Ga-Dfr" kind="relationship" relationship="rootViewController" id="BYa-Kn-Ozg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WPI-IK-ioR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1546" y="-1806"/>
+        </scene>
+        <!--Class-->
+        <scene sceneID="Pdh-dC-98y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2B2-NQ-C05" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Class" image="graduationcap.fill" catalog="system" id="YVh-5O-gzF" customClass="CBTabBarItem" customModule="KliqEdu" customModuleProvider="target">
+                        <inset key="largeContentSizeImageInsets" minX="195" minY="11" maxX="0.0" maxY="0.0"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OPs-ag-mRG">
+                        <rect key="frame" x="0.0" y="100" width="375" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WjQ-SU-G6R" kind="relationship" relationship="rootViewController" id="D5g-u1-Wtj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="geJ-1Y-zdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-542" y="-1806"/>
+        </scene>
+        <!--StudentsVC-->
+        <scene sceneID="Qf8-92-ugP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="StudentsVC" id="WjQ-SU-G6R" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="suz-vW-gK5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rY0-0D-Kze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-539" y="-1347"/>
+        </scene>
+        <!--Tasks-->
+        <scene sceneID="cLg-Ad-kru">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="90d-f2-rxe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Tasks" image="book.fill" catalog="system" id="oXH-LU-NLE" customClass="CBTabBarItem" customModule="KliqEdu" customModuleProvider="target">
+                        <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5FC-lp-IPh">
+                        <rect key="frame" x="0.0" y="100" width="375" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ixQ-AT-JRK" kind="relationship" relationship="rootViewController" id="e7O-sc-89t"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LCF-Sg-9nn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="286" y="-1806"/>
+        </scene>
+        <!--AcademicsVC-->
+        <scene sceneID="HQd-pS-caY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="AcademicsVC" id="ixQ-AT-JRK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="yRr-YF-84d"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zjs-uE-mBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="283" y="-1359"/>
+        </scene>
+        <!--Alerts-->
+        <scene sceneID="ceu-9j-EbQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bsM-t5-vpb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Alerts" image="bell.square.fill" catalog="system" id="mpJ-QA-w97" customClass="CBTabBarItem" customModule="KliqEdu" customModuleProvider="target">
+                        <color key="badgeColor" red="0.78039215689999997" green="0.56470588239999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z39-PS-1of">
+                        <rect key="frame" x="0.0" y="100" width="375" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zD7-JC-kWs" kind="relationship" relationship="rootViewController" id="tb6-BK-YDo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HtG-ay-Ngd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="-1806"/>
+        </scene>
+        <!--ActivitiesVC-->
+        <scene sceneID="UNd-wp-qAi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="ActivitiesVC" id="zD7-JC-kWs" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="rqm-8Q-fZI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1EU-CX-PW0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="-1360"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="o29-6i-xUW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FcS-A0-jfR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.badge.ellipsis.fill" catalog="system" id="F3S-n0-0L0" customClass="CBTabBarItem" customModule="Indcrypt" customModuleProvider="target">
+                        <color key="badgeColor" red="0.78039215689999997" green="0.56470588239999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dE0-aY-Bf4">
+                        <rect key="frame" x="0.0" y="100" width="375" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vWY-qM-q3o" kind="relationship" relationship="rootViewController" id="KUP-34-kfs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TEA-8N-TBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1930" y="-1806"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="to8-Jg-fDg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="ProfileVC" id="vWY-qM-q3o" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Hi9-mf-5dH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IN5-5e-oSl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1927" y="-1360"/>
+        </scene>
+        <!--StudentsVC-->
+        <scene sceneID="zR4-TT-Y28">
+            <objects>
+                <viewController storyboardIdentifier="StudentsVC" id="Md6-US-J5d" customClass="StudentsVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="80O-k3-2FW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Students" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiF-p0-isu">
+                                <rect key="frame" x="16" y="70" width="343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="PAY-Z0-fGH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="25"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1L6-YS-jEt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LiF-p0-isu" secondAttribute="trailing" constant="16" id="2HF-qM-YIF"/>
+                            <constraint firstItem="LiF-p0-isu" firstAttribute="leading" secondItem="80O-k3-2FW" secondAttribute="leading" constant="16" id="AgJ-Oe-m5W"/>
+                            <constraint firstItem="LiF-p0-isu" firstAttribute="top" secondItem="80O-k3-2FW" secondAttribute="top" constant="70" id="Fjl-2J-B6F"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zwg-Jj-RCd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-543" y="-961"/>
+        </scene>
+        <!--AcademicsVC-->
+        <scene sceneID="slz-jq-va7">
+            <objects>
+                <viewController storyboardIdentifier="AcademicsVC" id="ieg-GJ-ThQ" customClass="AcademicsVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="riE-gD-u8S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Academics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXF-28-gAn">
+                                <rect key="frame" x="16" y="70" width="343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="qX3-iw-LGm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="25"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fZl-H4-MpB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tXF-28-gAn" firstAttribute="leading" secondItem="riE-gD-u8S" secondAttribute="leading" constant="16" id="BME-np-nvh"/>
+                            <constraint firstItem="tXF-28-gAn" firstAttribute="top" secondItem="riE-gD-u8S" secondAttribute="top" constant="70" id="Qat-XV-3uf"/>
+                            <constraint firstAttribute="trailing" secondItem="tXF-28-gAn" secondAttribute="trailing" constant="16" id="W82-7C-ZDf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pC2-5U-7Sb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="286" y="-961"/>
+        </scene>
+        <!--ActivitiesVC-->
+        <scene sceneID="i1W-jj-Q98">
+            <objects>
+                <viewController storyboardIdentifier="ActivitiesVC" id="1BM-ex-io5" customClass="ActivitiesVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8GE-Xs-UXQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activities" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTi-ON-sWd">
+                                <rect key="frame" x="16" y="70" width="343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="QR7-Yz-nlc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="25"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Jwq-jT-bt3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bTi-ON-sWd" firstAttribute="leading" secondItem="Jwq-jT-bt3" secondAttribute="leading" constant="16" id="4VY-gJ-O5x"/>
+                            <constraint firstItem="bTi-ON-sWd" firstAttribute="top" secondItem="8GE-Xs-UXQ" secondAttribute="top" constant="70" id="OaL-Nx-nrN"/>
+                            <constraint firstAttribute="trailing" secondItem="bTi-ON-sWd" secondAttribute="trailing" constant="16" id="p0B-OR-lMb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cHT-C4-ILB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="-961"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="BEh-y9-WQY">
+            <objects>
+                <viewController storyboardIdentifier="ProfileVC" id="irw-Pf-qxc" customClass="ProfileVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d0o-pJ-XN7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-hy-qKe">
+                                <rect key="frame" x="16" y="70" width="343" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="iOR-UA-EA2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="25"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UjL-Wc-HNH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hlh-hy-qKe" secondAttribute="trailing" constant="16" id="JKN-13-SpR"/>
+                            <constraint firstItem="hlh-hy-qKe" firstAttribute="leading" secondItem="d0o-pJ-XN7" secondAttribute="leading" constant="16" id="Wik-gc-4xG"/>
+                            <constraint firstItem="hlh-hy-qKe" firstAttribute="top" secondItem="d0o-pJ-XN7" secondAttribute="top" constant="70" id="eLi-jF-eIQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a01-XV-B7K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1929" y="-961"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bell.square.fill" catalog="system" width="128" height="114"/>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
+        <image name="graduationcap.fill" catalog="system" width="128" height="108"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="person.crop.circle.badge.ellipsis.fill" catalog="system" width="128" height="114"/>
+        <image name="splash" width="704" height="1520"/>
+        <namedColor name="ThemeColor">
+            <color red="0.45100000500679016" green="0.40400001406669617" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ThemeDarkGreen">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
