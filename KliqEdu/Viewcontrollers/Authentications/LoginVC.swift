@@ -75,7 +75,7 @@ class LoginVC: UIViewController {
         // Proceed if all validations pass
         if !isValid {
             let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-            if let vc = sb.instantiateViewController(withIdentifier: "BubbleTabBarController") as? BubbleTabBarController {
+            if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

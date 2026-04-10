@@ -58,8 +58,8 @@ class LaunchVC: UIViewController {
 
             DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                 
-                let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
-                if let vc = sb.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC {
+                let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }

@@ -10,18 +10,18 @@ import UIKit
 
 extension UITextView{
     
-    func setLeftPaddingPoints1(_ amount:CGFloat){
+    func setPaddingTextView(_ amount:CGFloat){
         
-        let color = Constants.CommonColors.theameGreenColor.cgColor
-
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.leftAnchor = paddingView
-//        self.leftViewMode = .always
-        self.layer.cornerRadius = 5
-        self.layer.borderWidth = 1.5
-        self.tintColor = UIColor.white
+        // Apply left padding
+        self.textContainerInset = UIEdgeInsets(top: amount,
+                                               left: amount,
+                                               bottom: amount,
+                                               right: amount)
+        // Remove default internal padding so left inset is accurate
+        self.textContainer.lineFragmentPadding = 0
         
-        layer.cornerRadius = 5
+        self.tintColor = UIColor.black
+        
         if #available(iOS 13.0, *) {
             layer.shadowColor = UIColor.systemGray5.cgColor
         } else {
@@ -31,15 +31,62 @@ extension UITextView{
         layer.shadowOffset = .zero
         layer.shadowRadius = 5
         layer.masksToBounds = false
-
-       // dropSffpfppfphadow()
+        
         if #available(iOS 13.0, *) {
-            self.layer.borderColor = UIColor.white.cgColor
+            self.layer.borderColor = UIColor.black.cgColor
         } else {
             // Fallback on earlier versions
         }
-//        //self.layer.masksToBounds = true
-//        let placeholder = self.placeholder ?? "" //There should be a placeholder set in storyboard or elsewhere string or pass empty
-//        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+
+    }
+    
+    private struct AssociatedKeys {
+        static var placeholderLabel = "placeholderLabel"
+    }
+    
+    private var placeholderLabel: UILabel? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.placeholderLabel) as? UILabel
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.placeholderLabel, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    func setPlaceholder(_ text: String, color: UIColor = .lightGray) {
+        
+        if placeholderLabel == nil {
+            let label = UILabel()
+            label.numberOfLines = 0
+            // Apply custom font if available, else fallback
+            label.font = self.font ?? UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayRegular, size: 20) ?? UIFont.systemFont(ofSize: 20)
+            label.textColor = color
+            label.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(label)
+            
+            NSLayoutConstraint.activate([
+                label.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+                label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+                label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+            ])
+            
+            placeholderLabel = label
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(textDidChange),
+                name: UITextView.textDidChangeNotification,
+                object: self
+            )
+        }
+        
+        placeholderLabel?.text = text
+        // Ensure placeholder uses same font as textView if updated later
+        placeholderLabel?.font = self.font ?? placeholderLabel?.font
+        placeholderLabel?.isHidden = !self.text.isEmpty
+    }
+    
+    @objc private func textDidChange() {
+        placeholderLabel?.isHidden = !self.text.isEmpty
     }
 }

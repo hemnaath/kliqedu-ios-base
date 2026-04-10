@@ -33,6 +33,12 @@ extension UIButton {
         }
         self.setTitleColor(.darkGray, for: .normal)
     }
+    func setTitleAndBgColor(titleColor: UIColor,bgColor: UIColor) {
+      
+        self.setTitleColor(titleColor, for: .normal)
+        self.layer.backgroundColor = bgColor.cgColor
+
+    }
     func underline() {
            guard let text = self.titleLabel?.text else { return }
            let attributedString = NSMutableAttributedString(string: text)

@@ -11,12 +11,12 @@ import UIKit
 struct GLOBAL {
     
         struct FontsIdentifier {
-        static let RedHatDisplayBold = "RedHatDisplay-Bold"
-        static let RedHatDisplayRegular = "RedHatDisplay-Regular"
-        static let RedHatDisplaySemibold  = "RedHatDisplay-SemiBold"
-        static let RedHatDisplayMedium  = "RedHatDisplay-Medium"
-        static let RedHatDisplayLight  = "RedHatDisplay-Light"
-        static let RedHatDisplayExtraBold  = "RedHatDisplay-ExtraBold"
+        static let RedHatDisplayBold = "Urbanist-Bold"
+        static let RedHatDisplayRegular = "Urbanist-Regular"
+        static let RedHatDisplaySemibold  = "Urbanist-SemiBold"
+        static let RedHatDisplayMedium  = "Urbanist-Medium"
+        static let RedHatDisplayLight  = "Urbanist-Light"
+        static let RedHatDisplayExtraBold  = "Urbanist-ExtraBold"
 
     }
 }

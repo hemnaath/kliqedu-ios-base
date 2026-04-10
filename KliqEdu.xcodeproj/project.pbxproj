@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1F4A6905983D47CF5345E340 /* Pods_KliqEdu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9A8A38608BB3BBD7E31ED /* Pods_KliqEdu.framework */; };
+		AE14178E2F7970BF00A45679 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE14178D2F7970BF00A45679 /* TabBarController.swift */; };
+		AE1417912F797F9100A45679 /* StudentListTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE1417902F797F9100A45679 /* StudentListTCell.xib */; };
+		AE1417922F797F9100A45679 /* StudentListTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE14178F2F797F9100A45679 /* StudentListTCell.swift */; };
+		AE31E52E2F8812610009EE9F /* NotificationsTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE31E52D2F8812610009EE9F /* NotificationsTCell.xib */; };
+		AE31E52F2F8812610009EE9F /* NotificationsTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31E52C2F8812610009EE9F /* NotificationsTCell.swift */; };
+		AE3C73972F83E25E00FB9D1A /* StudentInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */; };
 		AE443A832F7440BB00D97CA7 /* AlamofireHC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE443A762F7440BB00D97CA7 /* AlamofireHC.swift */; };
 		AE443A842F7440BB00D97CA7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE443A772F7440BB00D97CA7 /* Common.swift */; };
 		AE443A852F7440BB00D97CA7 /* GeneralSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE443A7C2F7440BB00D97CA7 /* GeneralSingleton.swift */; };
@@ -57,6 +63,10 @@
 		AE443AE62F74429900D97CA7 /* Urbanist-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE443AD72F74429900D97CA7 /* Urbanist-ExtraBold.ttf */; };
 		AE443AE82F74475200D97CA7 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE443AE72F74475200D97CA7 /* LoginVC.swift */; };
 		AE443AEA2F74477500D97CA7 /* WelcomeCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE443AE92F74477500D97CA7 /* WelcomeCCell.swift */; };
+		AE7A7D9B2F86B694001944DE /* ApplyLeaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7A7D9A2F86B694001944DE /* ApplyLeaveVC.swift */; };
+		AE86A9C92F842B35007A6A31 /* LeavesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86A9C82F842B35007A6A31 /* LeavesVC.swift */; };
+		AE86A9CC2F842CEA007A6A31 /* LeaveTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE86A9CB2F842CEA007A6A31 /* LeaveTCell.xib */; };
+		AE86A9CD2F842CEA007A6A31 /* LeaveTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE86A9CA2F842CEA007A6A31 /* LeaveTCell.swift */; };
 		AE892A582F75B29A00A6ECEC /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A572F75B29A00A6ECEC /* DashboardVC.swift */; };
 		AE892A5A2F75B2BA00A6ECEC /* StudentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A592F75B2BA00A6ECEC /* StudentsVC.swift */; };
 		AE892A5C2F75B2D800A6ECEC /* AcademicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A5B2F75B2D800A6ECEC /* AcademicsVC.swift */; };
@@ -73,12 +83,19 @@
 		AEB484FE2F72EBA900BD0896 /* KliqEdu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F02F72EBA900BD0896 /* KliqEdu.xcdatamodeld */; };
 		AEB484FF2F72EBA900BD0896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F52F72EBA900BD0896 /* SceneDelegate.swift */; };
 		AEB485002F72EBA900BD0896 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F62F72EBA900BD0896 /* ViewController.swift */; };
+		AEBAA56A2F857420007D18E0 /* LeaveViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		09E9A8A38608BB3BBD7E31ED /* Pods_KliqEdu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KliqEdu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A93FA74320985826532BF54 /* Pods-KliqEdu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KliqEdu.release.xcconfig"; path = "Target Support Files/Pods-KliqEdu/Pods-KliqEdu.release.xcconfig"; sourceTree = "<group>"; };
 		5F3F9ABBA9104F86FD4A15D5 /* Pods-KliqEdu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KliqEdu.debug.xcconfig"; path = "Target Support Files/Pods-KliqEdu/Pods-KliqEdu.debug.xcconfig"; sourceTree = "<group>"; };
+		AE14178D2F7970BF00A45679 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		AE14178F2F797F9100A45679 /* StudentListTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListTCell.swift; sourceTree = "<group>"; };
+		AE1417902F797F9100A45679 /* StudentListTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudentListTCell.xib; sourceTree = "<group>"; };
+		AE31E52C2F8812610009EE9F /* NotificationsTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTCell.swift; sourceTree = "<group>"; };
+		AE31E52D2F8812610009EE9F /* NotificationsTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsTCell.xib; sourceTree = "<group>"; };
+		AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoVC.swift; sourceTree = "<group>"; };
 		AE443A762F7440BB00D97CA7 /* AlamofireHC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireHC.swift; sourceTree = "<group>"; };
 		AE443A772F7440BB00D97CA7 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		AE443A782F7440BB00D97CA7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -128,6 +145,10 @@
 		AE443ADD2F74429900D97CA7 /* Urbanist-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Urbanist-Thin.ttf"; sourceTree = "<group>"; };
 		AE443AE72F74475200D97CA7 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		AE443AE92F74477500D97CA7 /* WelcomeCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCCell.swift; sourceTree = "<group>"; };
+		AE7A7D9A2F86B694001944DE /* ApplyLeaveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyLeaveVC.swift; sourceTree = "<group>"; };
+		AE86A9C82F842B35007A6A31 /* LeavesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeavesVC.swift; sourceTree = "<group>"; };
+		AE86A9CA2F842CEA007A6A31 /* LeaveTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveTCell.swift; sourceTree = "<group>"; };
+		AE86A9CB2F842CEA007A6A31 /* LeaveTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveTCell.xib; sourceTree = "<group>"; };
 		AE892A572F75B29A00A6ECEC /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		AE892A592F75B2BA00A6ECEC /* StudentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsVC.swift; sourceTree = "<group>"; };
 		AE892A5B2F75B2D800A6ECEC /* AcademicsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicsVC.swift; sourceTree = "<group>"; };
@@ -146,6 +167,7 @@
 		AEB484F52F72EBA900BD0896 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AEB484F62F72EBA900BD0896 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AEB484F82F72EBA900BD0896 /* KliqEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KliqEdu.xcdatamodel; sourceTree = "<group>"; };
+		AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveViewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,12 +202,17 @@
 		AE443A722F74403200D97CA7 /* Viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				AE14178D2F7970BF00A45679 /* TabBarController.swift */,
 				AE443AD02F74415C00D97CA7 /* Authentications */,
 				AE892A572F75B29A00A6ECEC /* DashboardVC.swift */,
 				AE892A592F75B2BA00A6ECEC /* StudentsVC.swift */,
 				AE892A5B2F75B2D800A6ECEC /* AcademicsVC.swift */,
 				AE892A5D2F75B2EA00A6ECEC /* ActivitiesVC.swift */,
 				AE892A5F2F75B2F800A6ECEC /* ProfileVC.swift */,
+				AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */,
+				AE86A9C82F842B35007A6A31 /* LeavesVC.swift */,
+				AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */,
+				AE7A7D9A2F86B694001944DE /* ApplyLeaveVC.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -211,6 +238,12 @@
 			isa = PBXGroup;
 			children = (
 				AE443AE92F74477500D97CA7 /* WelcomeCCell.swift */,
+				AE14178F2F797F9100A45679 /* StudentListTCell.swift */,
+				AE1417902F797F9100A45679 /* StudentListTCell.xib */,
+				AE86A9CA2F842CEA007A6A31 /* LeaveTCell.swift */,
+				AE86A9CB2F842CEA007A6A31 /* LeaveTCell.xib */,
+				AE31E52C2F8812610009EE9F /* NotificationsTCell.swift */,
+				AE31E52D2F8812610009EE9F /* NotificationsTCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -409,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE86A9CC2F842CEA007A6A31 /* LeaveTCell.xib in Resources */,
 				AEB484F92F72EBA900BD0896 /* Assets.xcassets in Resources */,
 				AEB484FB2F72EBA900BD0896 /* LaunchScreen.storyboard in Resources */,
 				AEB484FC2F72EBA900BD0896 /* Main.storyboard in Resources */,
@@ -420,7 +454,9 @@
 				AE443AE32F74429900D97CA7 /* Urbanist-Thin.ttf in Resources */,
 				AE443AE42F74429900D97CA7 /* Urbanist-Medium.ttf in Resources */,
 				AE443AE52F74429900D97CA7 /* Urbanist-Black.ttf in Resources */,
+				AE1417912F797F9100A45679 /* StudentListTCell.xib in Resources */,
 				AE443AE62F74429900D97CA7 /* Urbanist-ExtraBold.ttf in Resources */,
+				AE31E52E2F8812610009EE9F /* NotificationsTCell.xib in Resources */,
 				AE443AD42F74417D00D97CA7 /* Login.storyboard in Resources */,
 				AE892A692F75B39500A6ECEC /* .gitkeep in Resources */,
 			);
@@ -480,8 +516,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE892A5A2F75B2BA00A6ECEC /* StudentsVC.swift in Sources */,
+				AE14178E2F7970BF00A45679 /* TabBarController.swift in Sources */,
 				AEB484FD2F72EBA900BD0896 /* AppDelegate.swift in Sources */,
 				AEB484FE2F72EBA900BD0896 /* KliqEdu.xcdatamodeld in Sources */,
+				AEBAA56A2F857420007D18E0 /* LeaveViewVC.swift in Sources */,
 				AE443AE82F74475200D97CA7 /* LoginVC.swift in Sources */,
 				AE443AEA2F74477500D97CA7 /* WelcomeCCell.swift in Sources */,
 				AEB484FF2F72EBA900BD0896 /* SceneDelegate.swift in Sources */,
@@ -497,10 +535,12 @@
 				AE443ABF2F7440CC00D97CA7 /* UIButtton+Extension.swift in Sources */,
 				AE892A5E2F75B2EA00A6ECEC /* ActivitiesVC.swift in Sources */,
 				AE443AD22F74416800D97CA7 /* WelcomeVC.swift in Sources */,
+				AE1417922F797F9100A45679 /* StudentListTCell.swift in Sources */,
 				AE443AC02F7440CC00D97CA7 /* CALayer.swift in Sources */,
 				AE443AC12F7440CC00D97CA7 /* Extension+UITextField.swift in Sources */,
 				AE443AC22F7440CC00D97CA7 /* Extension+UIImage.swift in Sources */,
 				AE443AC32F7440CC00D97CA7 /* Extensions+String.swift in Sources */,
+				AE3C73972F83E25E00FB9D1A /* StudentInfoVC.swift in Sources */,
 				AE443ACF2F74415300D97CA7 /* LaunchVC.swift in Sources */,
 				AE443AC42F7440CC00D97CA7 /* UITextView Extention.swift in Sources */,
 				AE443AC52F7440CC00D97CA7 /* Extension+UIView.swift in Sources */,
@@ -509,6 +549,8 @@
 				AE443AC82F7440CC00D97CA7 /* UIViewController+Activity.swift in Sources */,
 				AE443AC92F7440CC00D97CA7 /* GLOBAL.swift in Sources */,
 				AE443ACA2F7440CC00D97CA7 /* ActivityIndicator.swift in Sources */,
+				AE86A9C92F842B35007A6A31 /* LeavesVC.swift in Sources */,
+				AE7A7D9B2F86B694001944DE /* ApplyLeaveVC.swift in Sources */,
 				AE443ACB2F7440CC00D97CA7 /* Extension+UIViewController.swift in Sources */,
 				AE443ACC2F7440CC00D97CA7 /* PaddingLabel.swift in Sources */,
 				AE443ACD2F7440CC00D97CA7 /* SuccessIndicator.swift in Sources */,
@@ -518,6 +560,7 @@
 				AE443A892F7440BB00D97CA7 /* Constants.swift in Sources */,
 				AE443A962F7440C200D97CA7 /* AnimatedTextfield.swift in Sources */,
 				AE443A972F7440C200D97CA7 /* AccessibilityIdentifiers.swift in Sources */,
+				AE31E52F2F8812610009EE9F /* NotificationsTCell.swift in Sources */,
 				AE892A602F75B2F800A6ECEC /* ProfileVC.swift in Sources */,
 				AE443A982F7440C200D97CA7 /* GoneVisible.swift in Sources */,
 				AE443A992F7440C200D97CA7 /* TGFlingActionButton.swift in Sources */,
@@ -527,6 +570,7 @@
 				AE443A8A2F7440BB00D97CA7 /* NetworkManager.swift in Sources */,
 				AE443A8B2F7440BB00D97CA7 /* ValidationClass.swift in Sources */,
 				AE443A8C2F7440BB00D97CA7 /* APILogger.swift in Sources */,
+				AE86A9CD2F842CEA007A6A31 /* LeaveTCell.swift in Sources */,
 				AE443A8D2F7440BB00D97CA7 /* ProfileSession.swift in Sources */,
 				AE443A8E2F7440BB00D97CA7 /* StringConstants.swift in Sources */,
 				AEB485002F72EBA900BD0896 /* ViewController.swift in Sources */,

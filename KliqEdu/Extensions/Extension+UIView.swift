@@ -55,7 +55,27 @@ extension UIView{
         self.layer.insertSublayer(gradientLayer, at: 0)
         
     }
-    
+    func applyVerticalLigtGradient() {
+        let topColor = UIColor(hex: "#E3DEFD").withAlphaComponent(0.6) // #D4EDFF
+        let bottomColor = UIColor(hex: "#FFFFFF")
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+        
+        gradientLayer.locations = [0.0, 0.8]
+        
+        // Top → Bottom
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        
+        gradientLayer.frame = self.bounds
+        
+        // Remove existing gradients
+        self.layer.sublayers?
+            .filter { $0 is CAGradientLayer }
+            .forEach { $0.removeFromSuperlayer() }
+        
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
     func roundCorners(corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let maskLayer = CAShapeLayer()
@@ -288,19 +308,15 @@ extension UIView{
      `Note:` if the 'followBackgroundColor' is true but the background color of the view is nil; then this function does nothing.
      */
     func dropShadow() {
-        layer.cornerRadius = 0
-        if #available(iOS 13.0, *) {
-            layer.shadowColor = UIColor.systemGray5.cgColor
-        } else {
-            layer.shadowColor = UIColor.darkGray.cgColor
-        }
-        layer.shadowOpacity = 1
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 3
-        layer.borderColor = UIColor.systemGray5.cgColor
-        layer.borderWidth = 1
+      //  layer.cornerRadius = 12
         
-    }   
+        layer.shadowColor = UIColor(hex: "#7367F0").cgColor
+        layer.shadowOpacity = 0.3   // ✅ correct range
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowRadius = 8
+        
+        layer.masksToBounds = false
+    }
    
     func dropShadowProfile() {
         layer.cornerRadius = 60
