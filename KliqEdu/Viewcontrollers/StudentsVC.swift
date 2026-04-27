@@ -22,7 +22,7 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
 
         self.view.applyVerticalLigtGradient()
@@ -42,12 +42,37 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //        self.tableView.showAnimatedGradientSkeleton()
         
     }
+    @IBAction func backBtnTapped(_ sender: Any) {
+    
+        self.navigationController?.popViewController(animated: true)
+    }
+
     @IBAction func filterBtnTapped(_ sender: Any) {
         self.filterOuterView.isHidden = false
     }
     
     @IBAction func filterCloseTapped(_ sender: Any) {
         self.filterOuterView.isHidden = true
+    }
+    @IBAction func homeTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC {
+            
+//            vc.bankId = dataModel.unique_id ?? ""
+//            vc.accStatus = dataModel.status_formatted ?? ""
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    @IBAction func settingsTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "SettingsVC") as? SettingsVC {
+            
+//            vc.bankId = dataModel.unique_id ?? ""
+//            vc.accStatus = dataModel.status_formatted ?? ""
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -79,7 +104,7 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //            vc.bankId = dataModel.unique_id ?? ""
 //            vc.accStatus = dataModel.status_formatted ?? ""
             vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

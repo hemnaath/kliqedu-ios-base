@@ -26,7 +26,7 @@ class LoginVC: UIViewController {
 
         self.emailWarningLbl.hide()
         self.passwordWarningLbl.hide()
-        signinBtn.setButtonLeftRightGradientBackground(cornerRadius: 10,leftColor: .themeColor,rightColor: .themeLiteColor)
+       // signinBtn.setButtonLeftRightGradientBackground(cornerRadius: 10,leftColor: .themeColor,rightColor: .themeLiteColor)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -44,6 +44,12 @@ class LoginVC: UIViewController {
     @IBAction func passwordEyeBtnTapped(_ sender: Any) {
         self.passwordShowBtn.isSelected = !self.passwordShowBtn.isSelected
         self.passwordField.isSecureTextEntry = self.passwordShowBtn.isSelected ? false : true
+    }
+    @IBAction func forgotPassswordTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "ForgotPasswordVC") as? ForgotPasswordVC {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func loginBtnTapped(_ sender: Any) {
         var isValid = true

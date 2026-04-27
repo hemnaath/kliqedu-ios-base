@@ -81,7 +81,7 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //            vc.bankId = dataModel.unique_id ?? ""
 //            vc.accStatus = dataModel.status_formatted ?? ""
             vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     @IBAction func filterBtnTapped(_ sender: Any) {
@@ -134,7 +134,7 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   //            vc.bankId = dataModel.unique_id ?? ""
   //            vc.accStatus = dataModel.status_formatted ?? ""
               vc.hidesBottomBarWhenPushed = true
-              self.navigationController?.pushViewController(vc, animated: false)
+              self.navigationController?.pushViewController(vc, animated: true)
           }
       }
   }
