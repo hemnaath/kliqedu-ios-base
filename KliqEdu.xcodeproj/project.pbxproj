@@ -20,6 +20,7 @@
 		AE2F0B892FA27C5A00AF616F /* CreateAnnouncementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F0B882FA27C5A00AF616F /* CreateAnnouncementVC.swift */; };
 		AE31E52E2F8812610009EE9F /* NotificationsTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE31E52D2F8812610009EE9F /* NotificationsTCell.xib */; };
 		AE31E52F2F8812610009EE9F /* NotificationsTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31E52C2F8812610009EE9F /* NotificationsTCell.swift */; };
+		AE35CE132FA5E6FA0094FD65 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE35CE122FA5E6FA0094FD65 /* OTPVC.swift */; };
 		AE38FE462F8FF2FD00CFF968 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38FE452F8FF2FD00CFF968 /* SettingsVC.swift */; };
 		AE3C73972F83E25E00FB9D1A /* StudentInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */; };
 		AE400B772F8961E100FB357F /* AnnouncementDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE400B762F8961E100FB357F /* AnnouncementDetailsVC.swift */; };
@@ -134,6 +135,7 @@
 		AE2F0B882FA27C5A00AF616F /* CreateAnnouncementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAnnouncementVC.swift; sourceTree = "<group>"; };
 		AE31E52C2F8812610009EE9F /* NotificationsTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTCell.swift; sourceTree = "<group>"; };
 		AE31E52D2F8812610009EE9F /* NotificationsTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsTCell.xib; sourceTree = "<group>"; };
+		AE35CE122FA5E6FA0094FD65 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
 		AE38FE452F8FF2FD00CFF968 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoVC.swift; sourceTree = "<group>"; };
 		AE400B762F8961E100FB357F /* AnnouncementDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDetailsVC.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 			children = (
 				AE443AD12F74416800D97CA7 /* WelcomeVC.swift */,
 				AE443AE72F74475200D97CA7 /* LoginVC.swift */,
+				AE35CE122FA5E6FA0094FD65 /* OTPVC.swift */,
 				AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */,
 				AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */,
 			);
@@ -696,6 +699,7 @@
 				AE443ABF2F7440CC00D97CA7 /* UIButtton+Extension.swift in Sources */,
 				AE2D34482FA4F2F100B634BF /* FilterTCell.swift in Sources */,
 				AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */,
+				AE35CE132FA5E6FA0094FD65 /* OTPVC.swift in Sources */,
 				AE4E66C42FA514B600CAEDAE /* EditStudentProfileVC.swift in Sources */,
 				AE5C0F7F2FA11D55004DEA81 /* TeacherLeaveTCell.swift in Sources */,
 				AE892A5E2F75B2EA00A6ECEC /* ActivitiesVC.swift in Sources */,
