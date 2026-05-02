@@ -9,6 +9,7 @@ import UIKit
 
 class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
+    @IBOutlet weak var createAnnouncementBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
     var titleArray = ["Mid-Term Results Published","Emergency Staff Meeting","Annual Sports Day 2026","Mid-Term Results Published","Emergency Staff Meeting","Annual Sports Day 2026","Mid-Term Results Published","Emergency Staff Meeting","Annual Sports Day 2026","Mid-Term Results Published"]
@@ -20,6 +21,8 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
         self.view.applyVerticalLigtGradient()
+        createAnnouncementBtn.dropShadow()
+
         tableView.delegate = self
         tableView.dataSource = self
         //self.emptyView.isHidden = true
@@ -30,6 +33,14 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBAction func backBtnTapped(_ sender: Any) {
     
         self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func createAnnouncementBtnTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "CreateAnnouncementVC") as? CreateAnnouncementVC {
+            
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

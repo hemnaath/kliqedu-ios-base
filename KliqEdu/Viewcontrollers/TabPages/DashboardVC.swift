@@ -56,4 +56,20 @@ class DashboardVC: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    @IBAction func teachersBtnTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "TeachersListVC") as? TeachersListVC {
+            
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    @IBAction func studentInfoBtnTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "StudentInfoVC") as? StudentInfoVC {
+            vc.comingFrom = "home"
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

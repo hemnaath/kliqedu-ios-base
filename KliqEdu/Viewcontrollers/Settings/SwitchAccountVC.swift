@@ -1,22 +1,26 @@
 //
-//  LogoutVC.swift
+//  SwitchAccountVC.swift
 //  KliqEdu
 //
-//  Created by codegama on 16/04/26.
+//  Created by codegama on 01/05/26.
 //
 
 import UIKit
 
-class LogoutVC: UIViewController {
+class SwitchAccountVC: UIViewController {
 
+    @IBOutlet weak var acc1Btn: UIButton!
+    @IBOutlet weak var acc2Btn: UIButton!
+    
     var onDismiss: (() -> Void)?
+    var onDismiss1: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
         self.view.backgroundColor = .clear
-
+        
         self.delay(bySeconds: 0.25) { [weak self] in
             guard let self = self else { return }
             
@@ -26,16 +30,27 @@ class LogoutVC: UIViewController {
         }
     }
     
-    @IBAction func logoutBtnTapped(_ sender: Any) {
-        self.performLogout(Vc: self, isForcefull: false)
+
+    @IBAction func acc1Tapped(_ sender: Any) {
+        self.acc1Btn.isSelected = true
+        self.acc2Btn.isSelected = false
+    }
+    @IBAction func acc2Tapped(_ sender: Any) {
+        self.acc1Btn.isSelected = false
+        self.acc2Btn.isSelected = true
     }
     @IBAction func closeTapped(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.onDismiss?()
+            self.onDismiss1?()
         }
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        onDismiss?()
+        onDismiss1?()
+    }
+    @IBAction func switchTapped(_ sender: Any) {
+        self.dismiss(animated: true) {
+            self.onDismiss?()
+        }
     }
 }

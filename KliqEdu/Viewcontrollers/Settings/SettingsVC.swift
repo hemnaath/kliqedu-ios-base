@@ -26,6 +26,38 @@ class SettingsVC: UIViewController {
         }
     }
     @IBAction func editProfileTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "EditProfileVC") as? EditProfileVC {
+
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    @IBAction func switchAccTapped(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = true
+
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "SwitchAccountVC") as? SwitchAccountVC {
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .coverVertical   // animation
+            vc.onDismiss = { [weak self] in
+                   self?.tabBarController?.tabBar.isHidden = false
+                let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                     vc.selectedIndex = 0
+                    vc.hidesBottomBarWhenPushed = true
+
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+               }
+            vc.onDismiss1 = { [weak self] in
+                   self?.tabBarController?.tabBar.isHidden = false
+                
+               }
+    
+            present(vc, animated: true)
+        }
     }
     @IBAction func changePasswordTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
@@ -54,12 +86,16 @@ class SettingsVC: UIViewController {
     @IBAction func termTapped(_ sender: Any) {
     }
     @IBAction func logoutTapped(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = true
+
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "LogoutVC") as? LogoutVC {
             
-            vc.modalPresentationStyle = .popover
-            vc.modalTransitionStyle = .crossDissolve
             vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .coverVertical   // animation
+            vc.onDismiss = { [weak self] in
+                   self?.tabBarController?.tabBar.isHidden = false
+               }
     
             present(vc, animated: true)
         }

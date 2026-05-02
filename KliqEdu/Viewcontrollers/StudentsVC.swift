@@ -11,7 +11,6 @@ import SkeletonView
 class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
   //  @IBOutlet weak var emptyView: UIView!
-    @IBOutlet weak var filterOuterView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterBtn: UIButton!
@@ -30,7 +29,6 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
-        self.filterOuterView.isHidden = true
         //self.emptyView.isHidden = true
         let nib = UINib(nibName: "StudentListTCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "StudentListTCell")
@@ -48,32 +46,21 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     @IBAction func filterBtnTapped(_ sender: Any) {
-        self.filterOuterView.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
+
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC {
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .coverVertical   // animation
+            vc.onDismiss = { [weak self] in
+                   self?.tabBarController?.tabBar.isHidden = false
+               }
+    
+            present(vc, animated: true)
+        }
     }
     
-    @IBAction func filterCloseTapped(_ sender: Any) {
-        self.filterOuterView.isHidden = true
-    }
-    @IBAction func homeTapped(_ sender: Any) {
-        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-        if let vc = sb.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC {
-            
-//            vc.bankId = dataModel.unique_id ?? ""
-//            vc.accStatus = dataModel.status_formatted ?? ""
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    @IBAction func settingsTapped(_ sender: Any) {
-        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-        if let vc = sb.instantiateViewController(withIdentifier: "SettingsVC") as? SettingsVC {
-            
-//            vc.bankId = dataModel.unique_id ?? ""
-//            vc.accStatus = dataModel.status_formatted ?? ""
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 10

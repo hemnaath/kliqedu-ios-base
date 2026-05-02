@@ -9,8 +9,11 @@ import UIKit
 
 class StudentInfoVC: UIViewController {
 
+    @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var gradeLbl: UILabel!
     @IBOutlet weak var idLbl: UILabel!
+    
+    var comingFrom = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,20 +24,26 @@ class StudentInfoVC: UIViewController {
         self.idLbl.layer.masksToBounds = true
         self.gradeLbl.layer.cornerRadius = 15
         self.gradeLbl.layer.masksToBounds = true
+        
+        if comingFrom == "home"{
+            self.editBtn.unhide()
+        }else{
+            self.editBtn.hide()
+
+        }
+    }
+    @IBAction func editBtnTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "EditStudentProfileVC") as? EditStudentProfileVC {
+
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func backBtnTapped(_ sender: Any) {
     
         self.navigationController?.popViewController(animated: true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

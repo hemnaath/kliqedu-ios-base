@@ -22,7 +22,7 @@ class LeaveViewVC: UIViewController {
         self.statusLbl.layer.masksToBounds = true
         
         self.statusLbl.tintColor = .systemOrange
-        self.statusLbl.backgroundColor = .systemOrange.withAlphaComponent(0.1)
+        self.statusLbl.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
     @IBAction func backBtnTapped(_ sender: Any) {
