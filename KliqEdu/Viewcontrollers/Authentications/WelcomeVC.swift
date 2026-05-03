@@ -22,7 +22,7 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
 
     var descArray = ["Connect with teachers and parents instantly.Get real-time updates and messages., and notifications in one place.","Manage fees and payments.Track transactions in one place.","Manage classes and student activities.Track progress and performance easily."]
     
-    var imageArray = ["w1","w2","w3"]
+    var imageArray = ["111","222","333"]
     lazy var sliders: [UIView] = [slider1, slider2, slider3]
     var currentIndex = 0
     
@@ -76,7 +76,7 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
                 delay: 0,
                 options: [.curveEaseInOut],
                 animations: {
-                    slider.backgroundColor = (i == index) ? .white : .lightGray
+                    slider.backgroundColor = (i == index) ? .theme : .lightGray
                     slider.transform = (i == index)
                     ? CGAffineTransform(scaleX: 1.1, y: 1)
                     : .identity })
