@@ -233,11 +233,11 @@ class ValidationClass: NSObject {
             return "Password must include upper, lower, number & special character"
         }
         
-        if trimmed.count < 12 {
-            return "Password must be at least 12 characters"
+        if trimmed.count < 8 {
+            return "Password must be at least 8 characters"
         }
         
-        let regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{12,}$"
+        let regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         
         if !predicate.evaluate(with: trimmed) {

@@ -72,13 +72,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtv-1w-g2a">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="22"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIb-6m-KWM">
-                                                <rect key="frame" x="5" y="2.9999999999999991" width="45" height="15.666666666666664"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIb-6m-KWM">
+                                                <rect key="frame" x="5" y="3" width="45" height="16"/>
                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
                                                         <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
@@ -89,6 +88,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="nsO-WZ-MnN"/>
                                             <constraint firstAttribute="trailing" secondItem="WIb-6m-KWM" secondAttribute="trailing" constant="5" id="ptO-z8-olS"/>
+                                            <constraint firstAttribute="bottom" secondItem="WIb-6m-KWM" secondAttribute="bottom" constant="3" id="rAD-z3-nIK"/>
                                             <constraint firstItem="WIb-6m-KWM" firstAttribute="leading" secondItem="dtv-1w-g2a" secondAttribute="leading" constant="5" id="yH4-sB-Pdy"/>
                                             <constraint firstItem="WIb-6m-KWM" firstAttribute="top" secondItem="dtv-1w-g2a" secondAttribute="top" constant="3" id="yHZ-ZK-Dni"/>
                                         </constraints>
@@ -98,7 +98,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoO-nF-kE8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoO-nF-kE8">
                                         <rect key="frame" x="8" y="22" width="39" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="cTF-Rv-YMv"/>
@@ -107,7 +107,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
@@ -172,9 +171,15 @@
                     <constraint firstAttribute="bottom" secondItem="15m-zb-Omk" secondAttribute="bottom" constant="8" id="leA-V9-6k4"/>
                     <constraint firstItem="15m-zb-Omk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="pqi-LB-ah2"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="dateLbl" destination="HoO-nF-kE8" id="MJA-bN-cl8"/>
                 <outlet property="dayLbl" destination="M6J-92-zed" id="W0F-f2-CE2"/>

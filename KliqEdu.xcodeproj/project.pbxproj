@@ -21,6 +21,7 @@
 		AE31E52E2F8812610009EE9F /* NotificationsTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE31E52D2F8812610009EE9F /* NotificationsTCell.xib */; };
 		AE31E52F2F8812610009EE9F /* NotificationsTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31E52C2F8812610009EE9F /* NotificationsTCell.swift */; };
 		AE35CE132FA5E6FA0094FD65 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE35CE122FA5E6FA0094FD65 /* OTPVC.swift */; };
+		AE35CE152FA6196A0094FD65 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AE35CE142FA6196A0094FD65 /* loading.json */; };
 		AE38FE462F8FF2FD00CFF968 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38FE452F8FF2FD00CFF968 /* SettingsVC.swift */; };
 		AE3C73972F83E25E00FB9D1A /* StudentInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */; };
 		AE400B772F8961E100FB357F /* AnnouncementDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE400B762F8961E100FB357F /* AnnouncementDetailsVC.swift */; };
@@ -104,6 +105,10 @@
 		AE892A672F75B39500A6ECEC /* BubbleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A632F75B39500A6ECEC /* BubbleTabBarController.swift */; };
 		AE892A682F75B39500A6ECEC /* CBTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A642F75B39500A6ECEC /* CBTabBarButton.swift */; };
 		AE892A692F75B39500A6ECEC /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = AE892A622F75B39500A6ECEC /* .gitkeep */; };
+		AE9070522FA6F1A60058FCC7 /* buttonloading.json in Resources */ = {isa = PBXBuildFile; fileRef = AE9070512FA6F1A60058FCC7 /* buttonloading.json */; };
+		AE9070542FA6F42C0058FCC7 /* HolidaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */; };
+		AE9070562FA7007B0058FCC7 /* StudentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070552FA7007B0058FCC7 /* StudentsModel.swift */; };
+		AE9070582FA74D970058FCC7 /* TeachersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070572FA74D970058FCC7 /* TeachersModel.swift */; };
 		AE9271782FA2688500561BE1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9271772FA2688500561BE1 /* EditProfileVC.swift */; };
 		AEA83D6C2FA4D24000BF4837 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */; };
 		AEB484F92F72EBA900BD0896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB484EE2F72EBA900BD0896 /* Assets.xcassets */; };
@@ -136,6 +141,8 @@
 		AE31E52C2F8812610009EE9F /* NotificationsTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTCell.swift; sourceTree = "<group>"; };
 		AE31E52D2F8812610009EE9F /* NotificationsTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsTCell.xib; sourceTree = "<group>"; };
 		AE35CE122FA5E6FA0094FD65 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
+		AE35CE142FA6196A0094FD65 /* loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		AE35CE162FA626D60094FD65 /* KliqEdu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KliqEdu.entitlements; sourceTree = "<group>"; };
 		AE38FE452F8FF2FD00CFF968 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoVC.swift; sourceTree = "<group>"; };
 		AE400B762F8961E100FB357F /* AnnouncementDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDetailsVC.swift; sourceTree = "<group>"; };
@@ -219,6 +226,10 @@
 		AE892A622F75B39500A6ECEC /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		AE892A632F75B39500A6ECEC /* BubbleTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTabBarController.swift; sourceTree = "<group>"; };
 		AE892A642F75B39500A6ECEC /* CBTabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBTabBarButton.swift; sourceTree = "<group>"; };
+		AE9070512FA6F1A60058FCC7 /* buttonloading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = buttonloading.json; sourceTree = "<group>"; };
+		AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysModel.swift; sourceTree = "<group>"; };
+		AE9070552FA7007B0058FCC7 /* StudentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsModel.swift; sourceTree = "<group>"; };
+		AE9070572FA74D970058FCC7 /* TeachersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersModel.swift; sourceTree = "<group>"; };
 		AE9271772FA2688500561BE1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		AEB484D22F72EBA100BD0896 /* KliqEdu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KliqEdu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,9 +315,9 @@
 				AE443AD02F74415C00D97CA7 /* Authentications */,
 				AE08A7FA2F914D0100B82380 /* TabPages */,
 				AE892A592F75B2BA00A6ECEC /* StudentsVC.swift */,
+				AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */,
 				AE5C0F842FA12B0B004DEA81 /* TeachersListVC.swift */,
 				AE892A5B2F75B2D800A6ECEC /* AcademicsVC.swift */,
-				AE3C73962F83E25E00FB9D1A /* StudentInfoVC.swift */,
 				AE400B782F896F7600FB357F /* HolidaysVC.swift */,
 				AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */,
 				AE2F0B872FA27C3400AF616F /* Announcements */,
@@ -321,6 +332,9 @@
 		AE443A732F74404000D97CA7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */,
+				AE9070552FA7007B0058FCC7 /* StudentsModel.swift */,
+				AE9070572FA74D970058FCC7 /* TeachersModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -384,6 +398,8 @@
 		AE443A952F7440C200D97CA7 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				AE9070512FA6F1A60058FCC7 /* buttonloading.json */,
+				AE35CE142FA6196A0094FD65 /* loading.json */,
 				AE892A652F75B39500A6ECEC /* BubbleTabbar */,
 				AE443A8F2F7440C200D97CA7 /* TGFlingActionButton.swift */,
 				AE443A902F7440C200D97CA7 /* DPOTPView.swift */,
@@ -508,6 +524,7 @@
 		AEB484F72F72EBA900BD0896 /* KliqEdu */ = {
 			isa = PBXGroup;
 			children = (
+				AE35CE162FA626D60094FD65 /* KliqEdu.entitlements */,
 				AEB484EF2F72EBA900BD0896 /* Info.plist */,
 				AEB484ED2F72EBA900BD0896 /* AppDelegate.swift */,
 				AEB484F52F72EBA900BD0896 /* SceneDelegate.swift */,
@@ -598,12 +615,14 @@
 				AE443ADF2F74429900D97CA7 /* Urbanist-SemiBold.ttf in Resources */,
 				AE443AE02F74429900D97CA7 /* Urbanist-Regular.ttf in Resources */,
 				AE443AE12F74429900D97CA7 /* Urbanist-Bold.ttf in Resources */,
+				AE35CE152FA6196A0094FD65 /* loading.json in Resources */,
 				AE443AE22F74429900D97CA7 /* Urbanist-ExtraLight.ttf in Resources */,
 				AE5C0F822FA12AF0004DEA81 /* TeachersTCell.xib in Resources */,
 				AE443AE32F74429900D97CA7 /* Urbanist-Thin.ttf in Resources */,
 				AE443AE42F74429900D97CA7 /* Urbanist-Medium.ttf in Resources */,
 				AE443AE52F74429900D97CA7 /* Urbanist-Black.ttf in Resources */,
 				AE400B7E2F89701200FB357F /* HolidaysCell.xib in Resources */,
+				AE9070522FA6F1A60058FCC7 /* buttonloading.json in Resources */,
 				AE1417912F797F9100A45679 /* StudentListTCell.xib in Resources */,
 				AE563F3F2F8C894E006B8B33 /* HomeworkTCell.xib in Resources */,
 				AE443AE62F74429900D97CA7 /* Urbanist-ExtraBold.ttf in Resources */,
@@ -691,6 +710,7 @@
 				AE443A852F7440BB00D97CA7 /* GeneralSingleton.swift in Sources */,
 				AE443ABD2F7440CC00D97CA7 /* Extensions+UIColor.swift in Sources */,
 				AE892A662F75B39500A6ECEC /* BubbleTabBar.swift in Sources */,
+				AE9070582FA74D970058FCC7 /* TeachersModel.swift in Sources */,
 				AE892A672F75B39500A6ECEC /* BubbleTabBarController.swift in Sources */,
 				AE400B7F2F89701200FB357F /* HolidaysCell.swift in Sources */,
 				AE892A682F75B39500A6ECEC /* CBTabBarButton.swift in Sources */,
@@ -700,6 +720,7 @@
 				AE2D34482FA4F2F100B634BF /* FilterTCell.swift in Sources */,
 				AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */,
 				AE35CE132FA5E6FA0094FD65 /* OTPVC.swift in Sources */,
+				AE9070562FA7007B0058FCC7 /* StudentsModel.swift in Sources */,
 				AE4E66C42FA514B600CAEDAE /* EditStudentProfileVC.swift in Sources */,
 				AE5C0F7F2FA11D55004DEA81 /* TeacherLeaveTCell.swift in Sources */,
 				AE892A5E2F75B2EA00A6ECEC /* ActivitiesVC.swift in Sources */,
@@ -743,6 +764,7 @@
 				AE443A992F7440C200D97CA7 /* TGFlingActionButton.swift in Sources */,
 				AE443A9A2F7440C200D97CA7 /* DPOTPView.swift in Sources */,
 				AE443A9B2F7440C200D97CA7 /* CustomCoachMarkBodyView.swift in Sources */,
+				AE9070542FA6F42C0058FCC7 /* HolidaysModel.swift in Sources */,
 				AE892A582F75B29A00A6ECEC /* DashboardVC.swift in Sources */,
 				AE443A8A2F7440BB00D97CA7 /* NetworkManager.swift in Sources */,
 				AE443A8B2F7440BB00D97CA7 /* ValidationClass.swift in Sources */,
@@ -785,6 +807,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KliqEdu/KliqEdu.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87FLK5QX54;
@@ -796,13 +819,14 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.rj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -820,6 +844,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KliqEdu/KliqEdu.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87FLK5QX54;
@@ -831,13 +856,14 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.rj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;

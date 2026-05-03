@@ -769,7 +769,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cng-pp-uot" customClass="DPOTPView" customModule="Indcrypt" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cng-pp-uot" customClass="DPOTPView" customModule="KliqEdu" customModuleProvider="target">
                                         <rect key="frame" x="20" y="133.66666666666669" width="335" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1090,8 +1090,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="descriptionLbl" destination="SuF-Os-b7q" id="uYS-HU-r69"/>
                         <outlet property="emailField" destination="UiD-8k-fJh" id="TMS-QX-Km1"/>
                         <outlet property="emailWarningLbl" destination="QvG-el-sWP" id="7oU-BN-w7j"/>
+                        <outlet property="submitBtn" destination="Gyu-B6-jOB" id="0Ac-yt-M0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIH-2E-Ud5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1122,7 +1124,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blT-BN-BHN">
-                                <rect key="frame" x="0.0" y="285.33333333333331" width="375" height="526.66666666666674"/>
+                                <rect key="frame" x="0.0" y="301.33333333333326" width="375" height="510.66666666666674"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpO-HE-zjg">
                                         <rect key="frame" x="20" y="25" width="335" height="40"/>
@@ -1140,7 +1142,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="mnE-g0-Sdf">
-                                        <rect key="frame" x="24" y="373.66666666666669" width="327" height="113"/>
+                                        <rect key="frame" x="24" y="357.66666666666669" width="327" height="113"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynm-hC-y6c">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="50"/>
@@ -1159,8 +1161,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="resetPasswordBtnTapped:" destination="1N3-xV-9hx" eventType="touchUpInside" id="ii5-lu-1TP"/>
-                                                    <action selector="sendBtnTapped:" destination="1N3-xV-9hx" eventType="touchUpInside" id="PcO-JO-upc"/>
+                                                    <action selector="resetPasswordBtnTapped:" destination="1N3-xV-9hx" eventType="touchUpInside" id="jUU-lc-AeF"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhz-H1-aHT">
@@ -1207,6 +1208,9 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="1N3-xV-9hx" id="VXa-jl-Qeq"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password *" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVj-ED-5Nn">
                                                 <rect key="frame" x="8" y="0.0" width="327" height="15"/>
@@ -1225,7 +1229,7 @@
                                                 <state key="normal" image="eye.slash" catalog="system"/>
                                                 <state key="selected" image="eye" catalog="system"/>
                                                 <connections>
-                                                    <action selector="passwordEyeBtnTapped:" destination="ymh-Bk-omM" eventType="touchUpInside" id="u9W-6D-wcc"/>
+                                                    <action selector="passwordShowBtnTapped:" destination="1N3-xV-9hx" eventType="touchUpInside" id="zcJ-nq-cJu"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1243,17 +1247,17 @@
                                             <constraint firstItem="PPD-iR-jhb" firstAttribute="centerY" secondItem="9aC-N5-zcM" secondAttribute="centerY" id="sfQ-m8-rSE"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTS-Bu-rX0">
-                                        <rect key="frame" x="24" y="208.66666666666669" width="335" height="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTS-Bu-rX0">
+                                        <rect key="frame" x="24" y="208.66666666666669" width="335" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="WX3-KU-Ja6"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="BNd-vH-DWW"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="14"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H8y-CF-P1U">
-                                        <rect key="frame" x="16" y="243.66666666666669" width="343" height="75"/>
+                                        <rect key="frame" x="16" y="235.66666666666669" width="343" height="75"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="77k-Ek-KXC">
                                                 <rect key="frame" x="8" y="23" width="327" height="50"/>
@@ -1274,6 +1278,9 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="1N3-xV-9hx" id="1h1-Sb-wp8"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password *" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejW-vv-zPs">
                                                 <rect key="frame" x="8" y="0.0" width="327" height="15"/>
@@ -1292,7 +1299,7 @@
                                                 <state key="normal" image="eye.slash" catalog="system"/>
                                                 <state key="selected" image="eye" catalog="system"/>
                                                 <connections>
-                                                    <action selector="passwordEyeBtnTapped:" destination="ymh-Bk-omM" eventType="touchUpInside" id="jLa-jR-avK"/>
+                                                    <action selector="passwordShowBtnTapped1:" destination="1N3-xV-9hx" eventType="touchUpInside" id="lvg-pg-qRa"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1310,12 +1317,12 @@
                                             <constraint firstAttribute="trailing" secondItem="77k-Ek-KXC" secondAttribute="trailing" constant="8" id="w6r-Nk-ckw"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6H-gC-DPH">
-                                        <rect key="frame" x="24" y="323.66666666666669" width="335" height="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6H-gC-DPH">
+                                        <rect key="frame" x="24" y="315.66666666666669" width="335" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="AfL-yC-Pwd"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="Elr-yA-XiM"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="14"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1375,8 +1382,12 @@
                     <connections>
                         <outlet property="confirmPassWarningLbl" destination="R6H-gC-DPH" id="XUw-Wb-n6Q"/>
                         <outlet property="confirmPasswordField" destination="77k-Ek-KXC" id="rec-ls-w3k"/>
+                        <outlet property="descriptionLbl" destination="vXm-mT-OzZ" id="6Bh-Un-09H"/>
                         <outlet property="newPasswordField" destination="9aC-N5-zcM" id="1tw-aN-GFd"/>
+                        <outlet property="passwordShowBtn" destination="PPD-iR-jhb" id="z64-42-DzC"/>
+                        <outlet property="passwordShowBtn1" destination="2px-79-Rdb" id="kqs-dH-1bD"/>
                         <outlet property="passwordWarningLbl" destination="GTS-Bu-rX0" id="TS9-B2-Msq"/>
+                        <outlet property="submitBtn" destination="ynm-hC-y6c" id="lDy-31-0dz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVS-HX-0Ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

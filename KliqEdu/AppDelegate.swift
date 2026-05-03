@@ -8,6 +8,9 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+
+var DEVICE_TOKEN = "123456"
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

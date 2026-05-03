@@ -16,7 +16,7 @@ var api_Key = String()
 var salt_Key = String()
 var private_key = String()
 var serviceType_Key = Int()
-var userType_Key = Int()
+var roleKey = String()
 var onboardingStep = Int()
 var kycStatus = Int()
 var tfaStatus = Int()
@@ -38,7 +38,7 @@ class LaunchVC: UIViewController {
         salt_Key = defaults.value(forKey: Constants.Keys.saltKey) as? String ?? ""
         private_key = defaults.value(forKey: Constants.Keys.private_key) as? String ?? ""
         finalSig = defaults.value(forKey: Constants.Keys.finalSignature) as? String ?? ""
-        userType_Key = defaults.value(forKey: Constants.Keys.user_typeKey) as? Int ?? 0
+        roleKey = defaults.value(forKey: Constants.Keys.roleKey) as? String ?? ""
 
         kycStatus = defaults.value(forKey: Constants.Keys.kycVerified) as? Int ?? 0
 
@@ -91,12 +91,12 @@ class LaunchVC: UIViewController {
                 }
             }else{
                     DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                        //self.performSegue(withIdentifier: Constants.SegueIds.homeVC, sender: self)
-//                        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-//                        if let vc = sb.instantiateViewController(withIdentifier: "HomeVC") as? HomeVC {
-//                            
-//                            self.navigationController?.pushViewController(vc, animated: true)
-//                        }
+
+                        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                        if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                            
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
                     }
                 }
             }else{

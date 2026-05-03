@@ -10,7 +10,156 @@ import UIKit
 import MobileCoreServices
 
 extension UIViewController{
-    func showAnimatedToast(message: String, duration: Double = 2.0) {
+    enum ToastType {
+        case success
+        case error
+        case warning
+        
+        var gradientColors: [CGColor] {
+            switch self {
+            case .success:
+                return [
+                    UIColor(hex: "#DFF5E1").cgColor, // light green
+                    UIColor(hex: "#B8E6C1").cgColor  // soft green
+                ]
+            case .error:
+                return [
+                    UIColor(hex: "#FDE2E2").cgColor, // light red
+                    UIColor(hex: "#F8CACA").cgColor  // soft red
+                ]
+            case .warning:
+                return [
+                    UIColor(hex: "#FFF4E5").cgColor, // light orange
+                    UIColor(hex: "#FFE0B2").cgColor  // soft orange
+                ]
+            }
+        }
+        
+        var textColor: UIColor {
+            switch self {
+            case .success: return UIColor(hex: "#2E7D32")
+            case .error: return UIColor(hex: "#C62828")
+            case .warning: return UIColor(hex: "#EF6C00")
+            }
+        }
+        
+        var iconName: String {
+            switch self {
+            case .success: return "checkmark.circle.fill"
+            case .error: return "xmark.circle.fill"
+            case .warning: return "exclamationmark.triangle.fill"
+            }
+        }
+    }
+    func showAnimatedToast(message: String,
+                           type: ToastType = .success,
+                           duration: Double = 2.0) {
+        
+        // Remove existing toast
+        self.view.subviews.filter { $0.tag == 9999 }.forEach { $0.removeFromSuperview() }
+        
+        let toastContainer = UIView()
+        toastContainer.tag = 9999
+        toastContainer.layer.cornerRadius = 16
+        toastContainer.clipsToBounds = true
+        
+        // Gradient Layer
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = type.gradientColors
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.cornerRadius = 16
+        toastContainer.layer.insertSublayer(gradientLayer, at: 0)
+        
+        // Border (soft)
+        toastContainer.layer.borderWidth = 1
+        toastContainer.layer.borderColor = type.textColor.withAlphaComponent(0.15).cgColor
+        
+        // Shadow (premium floating)
+        toastContainer.layer.shadowColor = UIColor.black.cgColor
+        toastContainer.layer.shadowOpacity = 0.08
+        toastContainer.layer.shadowOffset = CGSize(width: 0, height: 4)
+        toastContainer.layer.shadowRadius = 10
+        
+        // Stack (icon + label)
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.alignment = .center
+        
+        // Icon
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: type.iconName)
+        icon.tintColor = type.textColor
+        icon.contentMode = .scaleAspectFit
+        icon.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        icon.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        // Label
+        let label = UILabel()
+        label.text = message
+        label.textColor = type.textColor
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        label.numberOfLines = 0
+        
+        stack.addArrangedSubview(icon)
+        stack.addArrangedSubview(label)
+        
+        toastContainer.addSubview(stack)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: toastContainer.leadingAnchor, constant: 16),
+            stack.trailingAnchor.constraint(equalTo: toastContainer.trailingAnchor, constant: -16),
+            stack.topAnchor.constraint(equalTo: toastContainer.topAnchor, constant: 12),
+            stack.bottomAnchor.constraint(equalTo: toastContainer.bottomAnchor, constant: -12)
+        ])
+        
+        self.view.addSubview(toastContainer)
+        toastContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            toastContainer.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            toastContainer.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            toastContainer.leadingAnchor.constraint(greaterThanOrEqualTo: self.view.leadingAnchor, constant: 20),
+            toastContainer.trailingAnchor.constraint(lessThanOrEqualTo: self.view.trailingAnchor, constant: -20)
+        ])
+        
+        // Layout update for gradient
+        self.view.layoutIfNeeded()
+        gradientLayer.frame = toastContainer.bounds
+        
+        // Initial animation state
+        toastContainer.alpha = 0
+        toastContainer.transform = CGAffineTransform(translationX: 0, y: 40).scaledBy(x: 0.96, y: 0.96)
+        
+        // Light haptic
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
+        // Show animation (smooth spring)
+        UIView.animate(withDuration: 0.45,
+                       delay: 0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0.7,
+                       options: [.curveEaseOut],
+                       animations: {
+            toastContainer.alpha = 1
+            toastContainer.transform = .identity
+        }) { _ in
+            
+            // Hide animation
+            UIView.animate(withDuration: 0.35,
+                           delay: duration,
+                           options: [.curveEaseIn],
+                           animations: {
+                toastContainer.alpha = 0
+                toastContainer.transform = CGAffineTransform(translationX: 0, y: 30)
+            }) { _ in
+                toastContainer.removeFromSuperview()
+            }
+        }
+    }
+    func showAnimatedToast1(message: String, duration: Double = 2.0) {
         // Create the toast container view
         let toastContainer = UIView()
         toastContainer.backgroundColor = UIColor.black.withAlphaComponent(0.7)

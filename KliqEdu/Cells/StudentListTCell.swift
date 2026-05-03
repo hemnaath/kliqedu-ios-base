@@ -9,6 +9,7 @@ import UIKit
 
 class StudentListTCell: UITableViewCell {
 
+    @IBOutlet weak var placeHolderlbl: UILabel!
     @IBOutlet weak var studentPic: UIImageView!
     @IBOutlet weak var studentNameLbl: UILabel!
     @IBOutlet weak var idNumberLbl: UILabel!
@@ -18,6 +19,8 @@ class StudentListTCell: UITableViewCell {
         super.awakeFromNib()
         self.classLbl.layer.cornerRadius = 8
         self.classLbl.layer.masksToBounds = true
+        self.placeHolderlbl.layer.cornerRadius = 35
+        self.placeHolderlbl.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -12,7 +12,7 @@ struct Constants {
     // staging
     
 //    static let baseUrl = "https://herald-retail-api-qa.heraldex.com/api/v1/"
-    static let baseUrl = "https://herald-retail-api-dev.heraldex.com/api/v1/"
+    static let baseUrl = "https://api.kliqedu.com/api/"
 
     static let keyFile = "T+lih90otH7o/Osg5Ttdzd2/qln9WMwupgJpz8IZswc="
     static let socketUrl = "https://ljdfertyh-socket.herald.exchange/"
@@ -94,6 +94,29 @@ struct Constants {
         static let firstNameKey = "first_name"
         static let lastNameKey = "last_name"
         static let middleNameKey = "middle_name"
+        static let joinDateKey = "join_date"
+        static let dobKey = "dob"
+        static let parentIdKey = "parent_id"
+        static let gradeIdKey = "grade_id"
+        static let sectionIdKey = "section_id"
+        static let groupIdKey = "group_id"
+        static let bloodGroupKey = "blood_group"
+        static let statusKey = "status"
+        static let ageKey = "age"
+        static let orgIdKey = "org_id"
+        static let religionKey = "religion"
+        static let casteKey = "caste"
+        static let createdAtKey = "created_at"
+        static let updatedAtKey = "updated_at"
+        static let rollNumberKey = "roll_number"
+        static let dashboardPermissionKey = "dashboard_permission"
+        static let teacherPermissionKey = "teacher_permission"
+        static let feesPermissionKey = "fees_permission"
+        static let homeworkPermissionKey = "homework_permission"
+        static let leavePermissionKey = "leave_permission"
+        static let announcementsPermissionKey = "announcements_permission"
+        static let holidayPermissionKey = "holiday_permission"
+        static let settingsPermissionKey = "settings_permission"
         
         // Device Token
         static let deviceTokenKey = "device_token"
@@ -104,7 +127,7 @@ struct Constants {
         
         static let onboardingKey  = "onboarding"
         static let onboarding_completed = "onboarding_completed"
-        static let user_typeKey  = "userr_type"
+        static let roleKey  = "role_type"
         
         static let email_statusKey  = "email_status"
         
@@ -230,12 +253,11 @@ struct Constants {
     //urls for api call
     struct Urls {
         
-        static let registerUrl = "auth/register"
-        static let manualLoginUrl = "auth/session/create"
+        static let manualLoginUrl = "auth/login"
         static let categoryList = "categories_list"
         static let soacialLoginUrl = "register"
         static let deleteAccountUrl = "user/acrhive_user"
-        static let logOutUrl = "user/sign_off"
+        static let logOutUrl = "auth/logout"
         static let profileUrl = "user"
         static let editProfileUrl = "user/revise_user"
         static let loginLocationResendUrl = "login_location/resend"
@@ -247,8 +269,8 @@ struct Constants {
         static let removeProfilePicUrl = "remove_profile_picture"
         
         static let changePasswordUrl = "user/revise_authentication"
-        static let verifyEmailUrl = "auth/email/confirm"
-        static let verifyEmailResendUrl = "auth/email/resend_code"
+        static let verifyEmailUrl = "auth/verify-email"
+        static let verifyEmailResendUrl = "auth/resend-otp"
         static let staticPageUrl = "lookup/constant_pages"
         static let staticPageIndexUrl = "static_pages"
         
@@ -260,6 +282,18 @@ struct Constants {
         static let getAccessTokenUrl = "trustident/access_token"
         static let getBusinessAddressUrl = "user/get_user_tenant_details"
         static let referralCodeUrl = "user/get_referrals"
+        
+        static let teacherDashboardUrl = "teacher/dashboard/get"
+        static let parentDashboardUrl = "parent/dashboard/get"
+
+        static let teacherHolidaysUrl = "teacher/holiday/list"
+        static let parentHolidaysUrl = "parent/holiday/list"
+        
+        static let studentsUrl = "teacher/student/list"
+        static let studentInfoUrl = "teacher/student"
+
+        static let teachersListUrl = "parent/teacher/list"
+
         
         // Onboarding
         static let onboardingUrl = "initiate/individual"
@@ -291,9 +325,9 @@ struct Constants {
         
         // Forgot password
         
-        static let forgotPasswordUrl = "auth/password/request_reset"
+        static let forgotPasswordUrl = "auth/forget-password"
         static let forgotPasswordCodeUrl = "auth/password/verify_reset_code"
-        static let resetPasswordUrl = "auth/password/reset"
+        static let resetPasswordUrl = "auth/reset-password"
         
         // Two Step
         

@@ -9,6 +9,7 @@ import UIKit
 
 class TeachersTCell: UITableViewCell {
 
+    @IBOutlet weak var placeHolderNameLbl: UILabel!
     @IBOutlet weak var callBtn: UIButton!
     @IBOutlet weak var subjectLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
@@ -17,8 +18,12 @@ class TeachersTCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.placeHolderNameLbl.isHidden = true
+
         self.subjectLbl.layer.cornerRadius = 8
         self.subjectLbl.layer.masksToBounds = true
+        self.placeHolderNameLbl.layer.cornerRadius = 35
+        self.placeHolderNameLbl.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
