@@ -21,7 +21,6 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
     
     var studentsArray = [StudentsModel]()
     var timer = Timer()
-    var imageArray = ["s1","s2","s3","s4","s5","s1","s2","s3","s4","s5"]
     
     var allItemsLoaded = false
     var page = 1

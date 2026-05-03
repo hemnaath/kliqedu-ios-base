@@ -9,6 +9,8 @@ import UIKit
 
 class AnnouncementDetailsVC: UIViewController {
 
+    var announcementDetails = AnnouncementModel(dictionary: [:])
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

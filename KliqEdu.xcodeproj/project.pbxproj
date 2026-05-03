@@ -109,6 +109,7 @@
 		AE9070542FA6F42C0058FCC7 /* HolidaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */; };
 		AE9070562FA7007B0058FCC7 /* StudentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070552FA7007B0058FCC7 /* StudentsModel.swift */; };
 		AE9070582FA74D970058FCC7 /* TeachersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070572FA74D970058FCC7 /* TeachersModel.swift */; };
+		AE90705A2FA77C660058FCC7 /* AnnouncementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070592FA77C660058FCC7 /* AnnouncementModel.swift */; };
 		AE9271782FA2688500561BE1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9271772FA2688500561BE1 /* EditProfileVC.swift */; };
 		AEA83D6C2FA4D24000BF4837 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */; };
 		AEB484F92F72EBA900BD0896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB484EE2F72EBA900BD0896 /* Assets.xcassets */; };
@@ -230,6 +231,7 @@
 		AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysModel.swift; sourceTree = "<group>"; };
 		AE9070552FA7007B0058FCC7 /* StudentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsModel.swift; sourceTree = "<group>"; };
 		AE9070572FA74D970058FCC7 /* TeachersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersModel.swift; sourceTree = "<group>"; };
+		AE9070592FA77C660058FCC7 /* AnnouncementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementModel.swift; sourceTree = "<group>"; };
 		AE9271772FA2688500561BE1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		AEB484D22F72EBA100BD0896 /* KliqEdu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KliqEdu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -335,6 +337,7 @@
 				AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */,
 				AE9070552FA7007B0058FCC7 /* StudentsModel.swift */,
 				AE9070572FA74D970058FCC7 /* TeachersModel.swift */,
+				AE9070592FA77C660058FCC7 /* AnnouncementModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				AE443ACA2F7440CC00D97CA7 /* ActivityIndicator.swift in Sources */,
 				AE86A9C92F842B35007A6A31 /* LeavesVC.swift in Sources */,
 				AE7A7D9B2F86B694001944DE /* ApplyLeaveVC.swift in Sources */,
+				AE90705A2FA77C660058FCC7 /* AnnouncementModel.swift in Sources */,
 				AE443ACB2F7440CC00D97CA7 /* Extension+UIViewController.swift in Sources */,
 				AE443ACC2F7440CC00D97CA7 /* PaddingLabel.swift in Sources */,
 				AE443ACD2F7440CC00D97CA7 /* SuccessIndicator.swift in Sources */,

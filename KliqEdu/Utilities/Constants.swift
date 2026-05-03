@@ -293,6 +293,10 @@ struct Constants {
         static let studentInfoUrl = "teacher/student"
 
         static let teachersListUrl = "parent/teacher/list"
+        
+        
+        static let teacherAnnouncementListUrl = "teacher/announcement/list"
+        static let parentAnnouncementListUrl = "parent/announcement/list"
 
         
         // Onboarding
