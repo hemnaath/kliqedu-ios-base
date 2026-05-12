@@ -13,7 +13,6 @@ class TeacherLeaveTCell: UITableViewCell {
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var categoryLbl: UILabel!
-    @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryOuterView: UIView!
     
     override func awakeFromNib() {

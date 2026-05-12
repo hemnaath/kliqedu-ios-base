@@ -96,7 +96,7 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         
         timer.invalidate()
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             self.tableView.isSkeletonable = true
             self.tableView.showAnimatedGradientSkeleton()
             self.getStudentsData()
@@ -120,7 +120,7 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
             "group_id": ""
         ] as [String : Any]
         
-        let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
         
         self.callServiceMethod(service: Constants.Urls.studentsUrl, method: .post, params: param, key: "studentsUrl", headers: headers)
     }
@@ -280,7 +280,7 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
                 if !isLoadingData && !allItemsLoaded {
                     let param = ["page":page] as [String : Any]
                     
-                    let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param)
+                    let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
                     
                     self.callServiceMethod(service: Constants.Urls.studentsUrl, method: .post, params: param, key: "studentsUrl", headers: headers)
                 }

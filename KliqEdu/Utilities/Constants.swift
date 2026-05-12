@@ -258,7 +258,6 @@ struct Constants {
         static let soacialLoginUrl = "register"
         static let deleteAccountUrl = "user/acrhive_user"
         static let logOutUrl = "auth/logout"
-        static let profileUrl = "user"
         static let editProfileUrl = "user/revise_user"
         static let loginLocationResendUrl = "login_location/resend"
         static let loginLocationVerifyUrl = "auth/location/verify"
@@ -297,8 +296,49 @@ struct Constants {
         
         static let teacherAnnouncementListUrl = "teacher/announcement/list"
         static let parentAnnouncementListUrl = "parent/announcement/list"
+        
+        static let teacherChangePasswordUrl = "teacher/settings/change-password"
+        static let parentChangePasswordUrl = "parent/settings/change-password"
+        
+        static let teacherDelAccUrl = "teacher/settings/delete-account"
+        static let parentDelAccUrl = "parent/settings/delete-account"
+        
+       
+        static let gradesUrl = "teacher/lookup/grades"
+        static let sectionsUrl = "teacher/lookup/sections"
+        static let groupsUrl = "teacher/lookup/groups"
+        static let subjectsUrl = "teacher/lookup/subjects"
+        static let leaveTypesUrl = "teacher/lookup/leave-types"
 
         
+        static let createAnnouncementUrl = "teacher/announcement/create"
+        static let deleteAnnouncementUrl = "teacher/announcement/delete"
+        static let updateAnnouncementUrl = "teacher/announcement/update"
+        static let viewAnnouncementUrl = "teacher/announcement/view"
+
+        static let feesListUrl = "parent/fees/list"
+
+        static let teacherHomeworkListUrl = "teacher/homework/list"
+        static let parentHomeworkUrl = "parent/homework/list"
+
+        static let createHomeworkUrl = "teacher/homework/create"
+        static let deleteHomeworkUrl = "teacher/homework/delete"
+        static let updateHomeworkUrl = "teacher/homework/update"
+        static let viewHomeworkUrl = "teacher/homework/view"
+
+        static let teachercreateLeaveUrl = "teacher/leave/apply"
+        static let teacherdeleteLeaveUrl = "teacher/leave/delete"
+        static let teacherupdateLeaveUrl = "teacher/leave/update"
+        static let teacherleaveListUrl = "teacher/leave/list"
+        
+        static let parentcreateLeaveUrl = "parent/leave/apply"
+        static let parentdeleteLeaveUrl = "parent/leave/delete"
+        static let parentupdateLeaveUrl = "parent/leave/update"
+        static let parentleaveListUrl = "parent/leave/list"
+        
+        
+        static let profileUrl = "teacher/settings/profile"
+
         // Onboarding
         static let onboardingUrl = "initiate/individual"
         static let businessOnboardingUrl = "initiate/business"

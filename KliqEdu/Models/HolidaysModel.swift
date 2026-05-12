@@ -12,7 +12,9 @@ public class HolidaysModel {
     public var month: String?
     public var year: String?
     public var date: String?
-   
+    public var day: String?
+
+    
 
     // Init from dictionary
     required public init?(dictionary: NSDictionary) {
@@ -21,6 +23,7 @@ public class HolidaysModel {
         month = dictionary["month"] as? String
         year = dictionary["year"] as? String
         date = dictionary["date"] as? String
+        day = dictionary["day"] as? String
 
     }
 
@@ -43,6 +46,7 @@ public class HolidaysModel {
         dictionary.setValue(self.month, forKey: "month")
         dictionary.setValue(self.year, forKey: "year")
         dictionary.setValue(self.date, forKey: "date")
+        dictionary.setValue(self.day, forKey: "day")
 
         return dictionary
     }

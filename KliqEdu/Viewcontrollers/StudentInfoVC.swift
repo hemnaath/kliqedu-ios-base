@@ -100,7 +100,7 @@ class StudentInfoVC: UIViewController {
         
         let param = [:] as [String : Any]
         
-        let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(studentId)",params: param)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(studentId)",params: param, HTTPMethod: .get)
       
             self.callServiceMethod(service: "\(Constants.Urls.studentInfoUrl)/\(studentId)",method: .get, params: param, key: "studentInfoUrl", headers: headers)
     }

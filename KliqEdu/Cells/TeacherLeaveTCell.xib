@@ -47,32 +47,11 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLV-6c-ziF">
-                                <rect key="frame" x="15" y="20" width="50" height="50"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cel-Ua-Kzb">
-                                        <rect key="frame" x="13" y="13.666666666666663" width="24" height="22.666666666666671"/>
-                                        <color key="tintColor" systemColor="systemGreenColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
-                                </subviews>
+                                <rect key="frame" x="12" y="15" width="5" height="60"/>
                                 <color key="backgroundColor" red="0.062745098040000002" green="0.72549019609999998" blue="0.50588235290000005" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Cel-Ua-Kzb" firstAttribute="top" secondItem="JLV-6c-ziF" secondAttribute="top" constant="13" id="4Wr-Q8-bBB"/>
-                                    <constraint firstAttribute="width" constant="50" id="WmH-ed-dPg"/>
-                                    <constraint firstItem="Cel-Ua-Kzb" firstAttribute="leading" secondItem="JLV-6c-ziF" secondAttribute="leading" constant="13" id="hbv-wx-xz6"/>
-                                    <constraint firstAttribute="height" constant="50" id="hf6-cL-EHh"/>
-                                    <constraint firstAttribute="bottom" secondItem="Cel-Ua-Kzb" secondAttribute="bottom" constant="13" id="njZ-Hf-zz0"/>
-                                    <constraint firstAttribute="trailing" secondItem="Cel-Ua-Kzb" secondAttribute="trailing" constant="13" id="vpX-mZ-v1g"/>
+                                    <constraint firstAttribute="width" constant="5" id="WmH-ed-dPg"/>
+                                    <constraint firstAttribute="height" constant="60" id="hf6-cL-EHh"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -81,7 +60,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sick Leave" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8En-Ts-3EX">
-                                <rect key="frame" x="77" y="22" width="261" height="20.666666666666671"/>
+                                <rect key="frame" x="29" y="22" width="261" height="20.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="261" id="5Tg-xR-xj9"/>
                                 </constraints>
@@ -168,7 +147,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nW-Td-GKK">
-                                <rect key="frame" x="77" y="50" width="109.33333333333331" height="25"/>
+                                <rect key="frame" x="28.999999999999993" y="50" width="109.33333333333331" height="25"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date" translatesAutoresizingMaskIntoConstraints="NO" id="cRG-cc-bSG">
                                         <rect key="frame" x="0.0" y="4.6666666666666714" width="16" height="16"/>
@@ -230,7 +209,7 @@
                             <constraint firstItem="8En-Ts-3EX" firstAttribute="top" secondItem="nWp-nF-BzT" secondAttribute="top" constant="22" id="HUm-Va-RbS"/>
                             <constraint firstItem="o73-nx-RpC" firstAttribute="centerY" secondItem="3nW-Td-GKK" secondAttribute="centerY" id="I4a-9a-NfJ"/>
                             <constraint firstAttribute="bottom" secondItem="3nW-Td-GKK" secondAttribute="bottom" constant="15" id="MZB-DU-KiD"/>
-                            <constraint firstItem="JLV-6c-ziF" firstAttribute="leading" secondItem="nWp-nF-BzT" secondAttribute="leading" constant="15" id="SZj-wa-uTm"/>
+                            <constraint firstItem="JLV-6c-ziF" firstAttribute="leading" secondItem="nWp-nF-BzT" secondAttribute="leading" constant="12" id="SZj-wa-uTm"/>
                             <constraint firstItem="19S-w4-E7n" firstAttribute="centerY" secondItem="8En-Ts-3EX" secondAttribute="centerY" id="TN4-am-oSR"/>
                             <constraint firstItem="8En-Ts-3EX" firstAttribute="leading" secondItem="JLV-6c-ziF" secondAttribute="trailing" constant="12" id="dF4-PR-ah5"/>
                             <constraint firstItem="3nW-Td-GKK" firstAttribute="leading" secondItem="JLV-6c-ziF" secondAttribute="trailing" constant="12" id="dkp-sD-22U"/>
@@ -268,8 +247,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="categoryImage" destination="Cel-Ua-Kzb" id="HGW-wS-g4P"/>
                 <outlet property="categoryLbl" destination="8En-Ts-3EX" id="Nvs-IB-dUr"/>
                 <outlet property="categoryOuterView" destination="JLV-6c-ziF" id="el0-4n-G3a"/>
                 <outlet property="dateLbl" destination="yua-Ac-ohV" id="dQa-5n-6jS"/>
@@ -280,7 +261,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="date" width="60" height="60"/>
         <image name="gauge.with.needle" catalog="system" width="128" height="123"/>
         <image name="holidayBG" width="1024" height="322"/>
@@ -288,10 +268,7 @@
             <color red="0.45100000500679016" green="0.40400001406669617" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

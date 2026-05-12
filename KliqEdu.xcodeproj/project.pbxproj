@@ -11,9 +11,11 @@
 		AE08A7F42F914C6700B82380 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE08A7F32F914C6700B82380 /* ChangePasswordVC.swift */; };
 		AE08A7F62F914C7600B82380 /* DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE08A7F52F914C7600B82380 /* DeleteAccountVC.swift */; };
 		AE08A7F82F914C8000B82380 /* LogoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE08A7F72F914C8000B82380 /* LogoutVC.swift */; };
+		AE0C0FC02FAE5A1D003190C7 /* HomeWorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0C0FBF2FAE5A1D003190C7 /* HomeWorkModel.swift */; };
 		AE14178E2F7970BF00A45679 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE14178D2F7970BF00A45679 /* TabBarController.swift */; };
 		AE1417912F797F9100A45679 /* StudentListTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE1417902F797F9100A45679 /* StudentListTCell.xib */; };
 		AE1417922F797F9100A45679 /* StudentListTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE14178F2F797F9100A45679 /* StudentListTCell.swift */; };
+		AE25AABC2FAD083000790494 /* FeesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25AABB2FAD083000790494 /* FeesModel.swift */; };
 		AE2758D62FA5231000779503 /* SwitchAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2758D52FA5231000779503 /* SwitchAccountVC.swift */; };
 		AE2D34472FA4F2F100B634BF /* FilterTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE2D34462FA4F2F100B634BF /* FilterTCell.xib */; };
 		AE2D34482FA4F2F100B634BF /* FilterTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2D34452FA4F2F100B634BF /* FilterTCell.swift */; };
@@ -105,12 +107,16 @@
 		AE892A672F75B39500A6ECEC /* BubbleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A632F75B39500A6ECEC /* BubbleTabBarController.swift */; };
 		AE892A682F75B39500A6ECEC /* CBTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A642F75B39500A6ECEC /* CBTabBarButton.swift */; };
 		AE892A692F75B39500A6ECEC /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = AE892A622F75B39500A6ECEC /* .gitkeep */; };
+		AE8AC3CB2FB2444300FD900B /* LeaveTypeCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8AC3CA2FB2444300FD900B /* LeaveTypeCCell.swift */; };
+		AE8AC3CD2FB245E500FD900B /* LeaveTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8AC3CC2FB245E500FD900B /* LeaveTypeModel.swift */; };
+		AE8AC3CF2FB2533C00FD900B /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8AC3CE2FB2533C00FD900B /* ProfileModel.swift */; };
 		AE9070522FA6F1A60058FCC7 /* buttonloading.json in Resources */ = {isa = PBXBuildFile; fileRef = AE9070512FA6F1A60058FCC7 /* buttonloading.json */; };
 		AE9070542FA6F42C0058FCC7 /* HolidaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */; };
 		AE9070562FA7007B0058FCC7 /* StudentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070552FA7007B0058FCC7 /* StudentsModel.swift */; };
 		AE9070582FA74D970058FCC7 /* TeachersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070572FA74D970058FCC7 /* TeachersModel.swift */; };
 		AE90705A2FA77C660058FCC7 /* AnnouncementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9070592FA77C660058FCC7 /* AnnouncementModel.swift */; };
 		AE9271782FA2688500561BE1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9271772FA2688500561BE1 /* EditProfileVC.swift */; };
+		AEA0110C2FB23833005FE801 /* LeaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA0110B2FB23833005FE801 /* LeaveModel.swift */; };
 		AEA83D6C2FA4D24000BF4837 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */; };
 		AEB484F92F72EBA900BD0896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB484EE2F72EBA900BD0896 /* Assets.xcassets */; };
 		AEB484FB2F72EBA900BD0896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEB484F22F72EBA900BD0896 /* LaunchScreen.storyboard */; };
@@ -132,9 +138,11 @@
 		AE08A7F32F914C6700B82380 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		AE08A7F52F914C7600B82380 /* DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountVC.swift; sourceTree = "<group>"; };
 		AE08A7F72F914C8000B82380 /* LogoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutVC.swift; sourceTree = "<group>"; };
+		AE0C0FBF2FAE5A1D003190C7 /* HomeWorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkModel.swift; sourceTree = "<group>"; };
 		AE14178D2F7970BF00A45679 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AE14178F2F797F9100A45679 /* StudentListTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListTCell.swift; sourceTree = "<group>"; };
 		AE1417902F797F9100A45679 /* StudentListTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudentListTCell.xib; sourceTree = "<group>"; };
+		AE25AABB2FAD083000790494 /* FeesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeesModel.swift; sourceTree = "<group>"; };
 		AE2758D52FA5231000779503 /* SwitchAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchAccountVC.swift; sourceTree = "<group>"; };
 		AE2D34452FA4F2F100B634BF /* FilterTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTCell.swift; sourceTree = "<group>"; };
 		AE2D34462FA4F2F100B634BF /* FilterTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterTCell.xib; sourceTree = "<group>"; };
@@ -227,12 +235,16 @@
 		AE892A622F75B39500A6ECEC /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		AE892A632F75B39500A6ECEC /* BubbleTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTabBarController.swift; sourceTree = "<group>"; };
 		AE892A642F75B39500A6ECEC /* CBTabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBTabBarButton.swift; sourceTree = "<group>"; };
+		AE8AC3CA2FB2444300FD900B /* LeaveTypeCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveTypeCCell.swift; sourceTree = "<group>"; };
+		AE8AC3CC2FB245E500FD900B /* LeaveTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveTypeModel.swift; sourceTree = "<group>"; };
+		AE8AC3CE2FB2533C00FD900B /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		AE9070512FA6F1A60058FCC7 /* buttonloading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = buttonloading.json; sourceTree = "<group>"; };
 		AE9070532FA6F42C0058FCC7 /* HolidaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysModel.swift; sourceTree = "<group>"; };
 		AE9070552FA7007B0058FCC7 /* StudentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsModel.swift; sourceTree = "<group>"; };
 		AE9070572FA74D970058FCC7 /* TeachersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersModel.swift; sourceTree = "<group>"; };
 		AE9070592FA77C660058FCC7 /* AnnouncementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementModel.swift; sourceTree = "<group>"; };
 		AE9271772FA2688500561BE1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		AEA0110B2FB23833005FE801 /* LeaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveModel.swift; sourceTree = "<group>"; };
 		AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		AEB484D22F72EBA100BD0896 /* KliqEdu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KliqEdu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB484ED2F72EBA900BD0896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -338,6 +350,11 @@
 				AE9070552FA7007B0058FCC7 /* StudentsModel.swift */,
 				AE9070572FA74D970058FCC7 /* TeachersModel.swift */,
 				AE9070592FA77C660058FCC7 /* AnnouncementModel.swift */,
+				AE25AABB2FAD083000790494 /* FeesModel.swift */,
+				AE0C0FBF2FAE5A1D003190C7 /* HomeWorkModel.swift */,
+				AEA0110B2FB23833005FE801 /* LeaveModel.swift */,
+				AE8AC3CC2FB245E500FD900B /* LeaveTypeModel.swift */,
+				AE8AC3CE2FB2533C00FD900B /* ProfileModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -375,6 +392,7 @@
 				AE5C0F812FA12AF0004DEA81 /* TeachersTCell.xib */,
 				AE2D34452FA4F2F100B634BF /* FilterTCell.swift */,
 				AE2D34462FA4F2F100B634BF /* FilterTCell.xib */,
+				AE8AC3CA2FB2444300FD900B /* LeaveTypeCCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -694,6 +712,7 @@
 				AE892A5A2F75B2BA00A6ECEC /* StudentsVC.swift in Sources */,
 				AE14178E2F7970BF00A45679 /* TabBarController.swift in Sources */,
 				AEB484FD2F72EBA900BD0896 /* AppDelegate.swift in Sources */,
+				AE0C0FC02FAE5A1D003190C7 /* HomeWorkModel.swift in Sources */,
 				AE584D0B2F9546290034C4D0 /* FeesDetailsVC.swift in Sources */,
 				AEB484FE2F72EBA900BD0896 /* KliqEdu.xcdatamodeld in Sources */,
 				AE563F442F8C897F006B8B33 /* HomeworkViewVC.swift in Sources */,
@@ -715,14 +734,17 @@
 				AE892A662F75B39500A6ECEC /* BubbleTabBar.swift in Sources */,
 				AE9070582FA74D970058FCC7 /* TeachersModel.swift in Sources */,
 				AE892A672F75B39500A6ECEC /* BubbleTabBarController.swift in Sources */,
+				AE25AABC2FAD083000790494 /* FeesModel.swift in Sources */,
 				AE400B7F2F89701200FB357F /* HolidaysCell.swift in Sources */,
 				AE892A682F75B39500A6ECEC /* CBTabBarButton.swift in Sources */,
 				AE443ABE2F7440CC00D97CA7 /* PaddedLabel.swift in Sources */,
 				AE892A5C2F75B2D800A6ECEC /* AcademicsVC.swift in Sources */,
 				AE443ABF2F7440CC00D97CA7 /* UIButtton+Extension.swift in Sources */,
+				AE8AC3CB2FB2444300FD900B /* LeaveTypeCCell.swift in Sources */,
 				AE2D34482FA4F2F100B634BF /* FilterTCell.swift in Sources */,
 				AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */,
 				AE35CE132FA5E6FA0094FD65 /* OTPVC.swift in Sources */,
+				AE8AC3CD2FB245E500FD900B /* LeaveTypeModel.swift in Sources */,
 				AE9070562FA7007B0058FCC7 /* StudentsModel.swift in Sources */,
 				AE4E66C42FA514B600CAEDAE /* EditStudentProfileVC.swift in Sources */,
 				AE5C0F7F2FA11D55004DEA81 /* TeacherLeaveTCell.swift in Sources */,
@@ -738,6 +760,7 @@
 				AE443ACF2F74415300D97CA7 /* LaunchVC.swift in Sources */,
 				AE443AC42F7440CC00D97CA7 /* UITextView Extention.swift in Sources */,
 				AE443AC52F7440CC00D97CA7 /* Extension+UIView.swift in Sources */,
+				AEA0110C2FB23833005FE801 /* LeaveModel.swift in Sources */,
 				AE443AC62F7440CC00D97CA7 /* LoadingIndicator.swift in Sources */,
 				AE443AC72F7440CC00D97CA7 /* Extension+UILabel.swift in Sources */,
 				AE443AC82F7440CC00D97CA7 /* UIViewController+Activity.swift in Sources */,
@@ -766,6 +789,7 @@
 				AE08A7F42F914C6700B82380 /* ChangePasswordVC.swift in Sources */,
 				AE443A982F7440C200D97CA7 /* GoneVisible.swift in Sources */,
 				AE443A992F7440C200D97CA7 /* TGFlingActionButton.swift in Sources */,
+				AE8AC3CF2FB2533C00FD900B /* ProfileModel.swift in Sources */,
 				AE443A9A2F7440C200D97CA7 /* DPOTPView.swift in Sources */,
 				AE443A9B2F7440C200D97CA7 /* CustomCoachMarkBodyView.swift in Sources */,
 				AE9070542FA6F42C0058FCC7 /* HolidaysModel.swift in Sources */,

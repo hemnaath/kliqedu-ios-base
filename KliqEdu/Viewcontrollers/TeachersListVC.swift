@@ -77,7 +77,7 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let param = [:] as [String : Any]
         
-        let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .get)
         
         self.callServiceMethod(service: Constants.Urls.teachersListUrl,method: .get, params: param, key: "teachersListUrl", headers: headers)
     }

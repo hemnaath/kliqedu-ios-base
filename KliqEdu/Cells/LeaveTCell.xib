@@ -249,6 +249,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="datesLbl" destination="VfU-16-vgL" id="9Yk-MZ-Xch"/>
                 <outlet property="durationLbl" destination="Iaj-0j-dKa" id="Yij-s8-Idf"/>

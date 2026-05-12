@@ -11,7 +11,9 @@ struct StringConstants {
     
     //Common
     static let sureToclearNorification = "Do you want to clear all notifications?"
-    static let sureToDeleteTheAddress = "Are you sure to delete this address?"
+    static let sureToDeleteTheAnnouncement = "Are you sure to delete this announcement?"
+    static let sureToDeleteTheHomework = "Are you sure to delete this assignment?"
+
     static let sureToDeleteTheAccount = "Are you sure to delete this account details?"
     static let password = "Password"
     static let pleaseTryAgain = "Please try Again"

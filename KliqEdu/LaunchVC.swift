@@ -58,10 +58,12 @@ class LaunchVC: UIViewController {
 
             DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                 
-                let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-                if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
+                if let vc = sb.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC {
+                    
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
+
             }
         }else{
             self.checkIfLoggedIn()

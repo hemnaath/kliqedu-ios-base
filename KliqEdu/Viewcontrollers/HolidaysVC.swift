@@ -69,7 +69,7 @@ class HolidaysVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         
         timer.invalidate()
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             self.tableView.isSkeletonable = true
             self.tableView.showAnimatedGradientSkeleton()
             self.holidaysApi()
@@ -79,7 +79,7 @@ class HolidaysVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         
         let param = ["search": (self.searchBar.text ?? "").trimString()] as [String : Any]
         
-        let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
         
         if roleKey == "teacher"{
             self.callServiceMethod(service: Constants.Urls.teacherHolidaysUrl,method: .post, params: param, key: "holidaysUrl", headers: headers)
@@ -182,7 +182,7 @@ class HolidaysVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
             cell.dateLbl.text = dataModel.date
             cell.monthLbl.text = String(dataModel.month?.prefix(3) ?? "")
             cell.titleLbl.text = dataModel.name
-            cell.dayLbl.text = dataModel.year
+            cell.dayLbl.text = dataModel.day
 
             cell.selectionStyle = .none
             cell.clipsToBounds = true

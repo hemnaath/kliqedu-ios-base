@@ -87,7 +87,7 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let param = ["page":page] as [String : Any]
         
-        let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
         
         if roleKey == "teacher"{
             
@@ -193,7 +193,7 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell.titleLbl.text = dataModel.title
             cell.descriptionLbl.text = dataModel.descriptionValue
             cell.dateLbl.text = "  \(dataModel.created_at ?? "")  "
-            cell.descriptionLbl.addInterlineSpacing(spacingValue: 5, alignment: .center)
+            cell.descriptionLbl.addInterlineSpacing(spacingValue: 5, alignment: .left)
 
             cell.selectionStyle = .none
             cell.clipsToBounds = true
@@ -230,7 +230,7 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 if !isLoadingData && !allItemsLoaded {
                     let param = ["page":page] as [String : Any]
                     
-                    let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param)
+                    let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
                     
                     self.callServiceMethod(service: Constants.Urls.studentsUrl, method: .post, params: param, key: "studentsUrl", headers: headers)
                 }

@@ -34,8 +34,8 @@ class DashboardVC: UIViewController {
         dashboardApi()
     }
     func startViewAnimation()  {
-        quoteLbl.showSkeleton(cornerRadius: 10)
-        quoteAuthorLbl.showSkeleton(cornerRadius: 10)
+        quoteLbl.showSkeleton(cornerRadius: 0)
+        quoteAuthorLbl.showSkeleton(cornerRadius: 0)
 
     }
     func stopViewAnimation()  {
@@ -46,7 +46,8 @@ class DashboardVC: UIViewController {
         
         let param = [:] as [String : Any]
         
-        let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/get",params: param)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/get",params: param,HTTPMethod: .get)
+        
         if roleKey == "teacher"{
             self.callServiceMethod(service: Constants.Urls.teacherDashboardUrl,method: .get, params: param, key: "dashboardUrl", headers: headers)
 

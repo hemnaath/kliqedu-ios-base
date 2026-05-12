@@ -26,6 +26,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        defaults.set(true, forKey: "isLaunched")
 
         self.emailField.setLeftPaddingPoints(12)
         self.passwordField.setLeftPaddingPoints(12)

@@ -50,7 +50,7 @@ class AlamofireHC: NSObject {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Add body for POST and PUT, Delete
-        if method == .post || method == .put || method == .delete {
+        if method == .post || method == .put || method == .patch || method == .delete {
             if let rawJSONString = rawJSONString {
                 urlRequest.httpBody = rawJSONString.data(using: .utf8)
                 print("Ordered Raw JSON Parameters:\n\(rawJSONString)")

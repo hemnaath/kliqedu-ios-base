@@ -35,7 +35,7 @@ class LogoutVC: UIViewController {
 
         let param = ["email":defaults.value(forKey: Constants.Keys.emailIdKey) ?? ""] as [String : Any]
         
-        let (headers, _, _) = APIHelper.createHeadersAndSignature(endpoint: "/logout",params: param)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/logout",params: param, HTTPMethod: .post)
 
         self.callServiceMethod(service: Constants.Urls.logOutUrl,method: .post, params: param, key: "logout", headers: headers)
     }
