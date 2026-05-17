@@ -17,7 +17,9 @@ target 'KliqEdu' do
   pod 'CRRefresh'
   pod 'SwiftyRSA'
   pod 'CryptoSwift'
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  
   # Pods for KliqEdu
 
 end

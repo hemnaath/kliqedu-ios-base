@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class HomeworkViewVC: UIViewController {
 
+    @IBOutlet weak var deleteEditView: UIStackView!
     @IBOutlet weak var subjectLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
@@ -59,8 +60,15 @@ class HomeworkViewVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startViewAnimation()
-        getHomeworkInfoApi()
+        
+        if roleKey == "parent"{
+            self.deleteEditView.hide()
+        }else{
+            self.deleteEditView.unhide()
+            
+            startViewAnimation()
+            getHomeworkInfoApi()
+        }
     }
     func getHomeworkInfoApi(){
         
@@ -69,6 +77,7 @@ class HomeworkViewVC: UIViewController {
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(homeworkDetails?.unique_id ?? "")",params: param, HTTPMethod: .get)
             
         self.callServiceMethod(service: "\(Constants.Urls.viewHomeworkUrl)/\(homeworkDetails?.unique_id ?? "")",method: .get, params: param, key: "viewHomeworkUrl", headers: headers)
+
     }
     func startViewAnimation()  {
         titleLbl.showSkeleton(cornerRadius: 10)

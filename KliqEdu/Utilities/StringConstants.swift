@@ -13,6 +13,9 @@ struct StringConstants {
     static let sureToclearNorification = "Do you want to clear all notifications?"
     static let sureToDeleteTheAnnouncement = "Are you sure to delete this announcement?"
     static let sureToDeleteTheHomework = "Are you sure to delete this assignment?"
+    static let sureToDeleteTheleave = "Are you sure to delete this leave?"
+    static let sureToApproveTheleave = "Are you sure to approve this leave?"
+    static let sureToRejectTheleave = "Are you sure to reject this leave?"
 
     static let sureToDeleteTheAccount = "Are you sure to delete this account details?"
     static let password = "Password"
@@ -23,7 +26,7 @@ struct StringConstants {
     static let noInternetConnectionFound = "No internet connection found. Please try again"
     static let somethingWentWrong = "Something went wrong"
     static let pleaseInputYourEmail = "Please input your email:"
-    static let passwordCharacterCountError = "Password should be 12+ characters, include uppercase, lowercase, number, and special character"
+    static let passwordCharacterCountError = "Password should be 8+ characters, include uppercase, lowercase, number, and special character"
     static let pleaseGiveAValidEmailAddress = "Please enter a valid email address"
     static let sessionExpired = "Oops! Your session has expired. Please log in again."
     static let validMobile = "Please provide valid mobile number"

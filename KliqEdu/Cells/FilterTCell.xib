@@ -27,7 +27,7 @@
                         <rect key="frame" x="10" y="5" width="319" height="51"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InE-mw-s7z">
-                                <rect key="frame" x="8" y="13.333333333333334" width="6" height="24.333333333333329"/>
+                                <rect key="frame" x="8" y="13.333333333333334" width="7.3333333333333321" height="24.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,8 +71,14 @@
                     <constraint firstAttribute="bottom" secondItem="kDQ-hi-FYE" secondAttribute="bottom" constant="5" id="tps-Ww-Vow"/>
                     <constraint firstAttribute="trailing" secondItem="kDQ-hi-FYE" secondAttribute="trailing" constant="10" id="zfd-dQ-9vr"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="checkBoxBtn" destination="swZ-oT-sPA" id="2OP-b5-lSb"/>
                 <outlet property="titleLbl" destination="InE-mw-s7z" id="kMX-j2-XQ7"/>

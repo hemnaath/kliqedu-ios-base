@@ -25,8 +25,19 @@ class AnnouncementDetailsVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startViewAnimation()
-        getAnnouncementInfoApi()
+        
+        if roleKey == "parent"{
+            self.titleLbl.text = self.announcementDetails?.title
+            self.descriptionLbl.text = self.announcementDetails?.descriptionValue
+            self.dateLbl.text = "Created on \(self.announcementDetails?.created_at ?? "")"
+
+            self.editBtn.isHidden = !(self.announcementDetails?.is_editable ?? false)
+            self.deleteBtn.isHidden = !(self.announcementDetails?.is_deletable ?? false)
+
+        }else{
+            startViewAnimation()
+            getAnnouncementInfoApi()
+        }
     }
     func getAnnouncementInfoApi(){
         
@@ -107,7 +118,7 @@ class AnnouncementDetailsVC: UIViewController {
 
                             self.titleLbl.text = self.announcementDetails?.title
                             self.descriptionLbl.text = self.announcementDetails?.descriptionValue
-                            self.dateLbl.text = self.announcementDetails?.created_at
+                            self.dateLbl.text = "Created on \(self.announcementDetails?.created_at ?? "")"
 
                             self.editBtn.isHidden = !(self.announcementDetails?.is_editable ?? false)
                             self.deleteBtn.isHidden = !(self.announcementDetails?.is_deletable ?? false)

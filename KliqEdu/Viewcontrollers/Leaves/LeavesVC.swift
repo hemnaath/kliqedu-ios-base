@@ -14,44 +14,32 @@ import SwiftyJSON
 import SDWebImage
 
 class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-      @IBOutlet weak var emptyView: UIView!
-      @IBOutlet weak var tableView: UITableView!
-      @IBOutlet weak var filterBtn: UIButton!
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filterBtn: UIButton!
     
     @IBOutlet weak var addLeaveBtn: UIButton!
     @IBOutlet weak var myLeavesBtn: UIButton!
     @IBOutlet weak var studentLeaveBtn: UIButton!
-        
+    
     // 🟠 Pending, 🟢 Approved, 🔴 Rejected
     var statusTitleColor = [
-        UIColor.systemOrange, UIColor.systemGreen, UIColor.systemRed,
-        UIColor.systemOrange, UIColor.systemGreen, UIColor.systemRed,
-        UIColor.systemOrange, UIColor.systemGreen, UIColor.systemRed,
-        UIColor.systemGreen]
+        UIColor.systemOrange, UIColor.systemGreen, UIColor.systemRed]
     
     // Light background versions
     var statusBgcolor = [
         UIColor.systemOrange.withAlphaComponent(0.1),
         UIColor.systemGreen.withAlphaComponent(0.1),
-        UIColor.systemRed.withAlphaComponent(0.1),
-        
-        UIColor.systemOrange.withAlphaComponent(0.1),
-        UIColor.systemGreen.withAlphaComponent(0.1),
-        UIColor.systemRed.withAlphaComponent(0.1),
-        
-        UIColor.systemOrange.withAlphaComponent(0.1),
-        UIColor.systemGreen.withAlphaComponent(0.1),
-        UIColor.systemRed.withAlphaComponent(0.1),
-        
-        UIColor.systemGreen.withAlphaComponent(0.1)]
+        UIColor.systemRed.withAlphaComponent(0.1)]
     
     
     var leaveSection = ""
     
     var teacherLeaveArray = [LeaveModel]()
     var studentLeaveArray = [LeaveModel]()
-
+    
     var teacherallItemsLoaded = false
     var teacherpage = 1
     var teacherisLoadingData = false
@@ -60,80 +48,94 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var studentpage = 1
     var studentisLoadingData = false
     
-      override func viewDidLoad() {
-          super.viewDidLoad()
-          self.tabBarController?.tabBar.isHidden = false
-          self.navigationController?.isNavigationBarHidden = true
-
-          self.view.applyVerticalLigtGradient()
-          addLeaveBtn.dropShadow()
-          leaveSection = "student"
-
-          tableView.delegate = self
-          tableView.dataSource = self
-
-          //self.emptyView.isHidden = true
-          let nib = UINib(nibName: "LeaveTCell", bundle: nil)
-          tableView.register(nib, forCellReuseIdentifier: "LeaveTCell")
-          
-          let nib1 = UINib(nibName: "TeacherLeaveTCell", bundle: nil)
-          tableView.register(nib1, forCellReuseIdentifier: "TeacherLeaveTCell")
-          
-          studentLeaveBtn.setTitleAndBgColor(titleColor: .white, bgColor: .theme)
-          myLeavesBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
-          
-          tableView.register(nib, forCellReuseIdentifier: "HomeworkTCell")
-          
-          /// Pull to refresh
-          tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
-              // start refresh
-              
-              print("refresh")
-              if self?.leaveSection == "student" {
-                  
-                  self?.getStudentLeaveData()
-              }else{
-                  self?.getTeacherLeaveData()
-
-              }
-              DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                  
-                  self?.tableView.cr.endHeaderRefresh()
-              })
-          }
-          
-      }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = true
+        
+        self.view.applyVerticalLigtGradient()
+        addLeaveBtn.dropShadow()
+        leaveSection = "student"
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        //self.emptyView.isHidden = true
+        let nib = UINib(nibName: "LeaveTCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "LeaveTCell")
+        
+        let nib1 = UINib(nibName: "TeacherLeaveTCell", bundle: nil)
+        tableView.register(nib1, forCellReuseIdentifier: "TeacherLeaveTCell")
+        
+        studentLeaveBtn.setTitleAndBgColor(titleColor: .white, bgColor: .theme)
+        myLeavesBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
+        
+        /// Pull to refresh
+        tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
+            // start refresh
+            
+            print("refresh")
+            if self?.leaveSection == "student" {
+                
+                self?.getStudentLeaveData()
+            }else{
+                self?.getTeacherLeaveData()
+                
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                
+                self?.tableView.cr.endHeaderRefresh()
+            })
+        }
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
-        getStudentLeaveData()
-
+        
         self.emptyView.isHidden = true
+        self.tableView.isHidden = false
+        
+        if roleKey == "parent"{
+            self.topView.hide()
+            studentallItemsLoaded = false
+            studentpage = 1
+            getStudentLeaveData()
+            
+        }else{
+            studentallItemsLoaded = false
+            studentpage = 1
+            teacherallItemsLoaded = false
+            teacherpage = 1
+            self.topView.unhide()
+            self.getTeacherStudentLeaveData()
+            self.getTeacherLeaveData()
+        }
     }
     @IBAction func applyLeaveBtnTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "ApplyLeaveVC") as? ApplyLeaveVC {
             
-//            vc.bankId = dataModel.unique_id ?? ""
-//            vc.accStatus = dataModel.status_formatted ?? ""
+            //            vc.bankId = dataModel.unique_id ?? ""
+            //            vc.accStatus = dataModel.status_formatted ?? ""
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     @IBAction func filterBtnTapped(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = true
-
+        
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC {
             
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .coverVertical   // animation
             vc.onDismiss = { [weak self] in
-                   self?.tabBarController?.tabBar.isHidden = false
-               }
-    
+                self?.tabBarController?.tabBar.isHidden = false
+            }
+            
             present(vc, animated: true)
         }
     }
@@ -142,45 +144,59 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         studentLeaveBtn.setTitleAndBgColor(titleColor: .white, bgColor: .theme)
         myLeavesBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
         leaveSection = "student"
-        
+        self.emptyView.isHidden = true
+        self.tableView.isHidden = false
         tableView.reloadData()
-        getStudentLeaveData()
+        studentallItemsLoaded = false
+        studentpage = 1
+        self.getTeacherStudentLeaveData()
+        
     }
     @IBAction func myLeaveBtnTapped(_ sender: Any) {
         studentLeaveBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
         myLeavesBtn.setTitleAndBgColor(titleColor: .white, bgColor: .theme)
         leaveSection = "teacher"
+        self.emptyView.isHidden = true
+        self.tableView.isHidden = false
         tableView.reloadData()
-        getTeacherLeaveData()
-    }
-    func getTeacherLeaveData() {
-        
         teacherallItemsLoaded = false
         teacherpage = 1
+        self.getTeacherLeaveData()
+    }
+    func getTeacherLeaveData() {
+       
+        tableView.isSkeletonable = true
+        self.tableView.showAnimatedGradientSkeleton()
+        
+        let param = ["page":teacherpage] as [String : Any]
+        
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
+        
+        self.callServiceMethod(service: Constants.Urls.teacherleaveListUrl, method: .post, params: param, key: "teacherleaveListUrl", headers: headers)
+        
+    }
+    func getTeacherStudentLeaveData() {
         
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
-        let param = [:] as [String : Any]
+        let param = ["page":studentpage] as [String : Any]
         
-        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .get)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
         
-        self.callServiceMethod(service: Constants.Urls.teacherleaveListUrl, method: .get, params: param, key: "teacherleaveListUrl", headers: headers)
+        self.callServiceMethod1(service: Constants.Urls.teacherStudentleaveListUrl, method: .post, params: param, key: "studentleaveListUrl", headers: headers)
         
     }
     func getStudentLeaveData() {
         
-        studentallItemsLoaded = false
-        studentpage = 1
-        
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
-        let param = [:] as [String : Any]
+        let param = ["page":studentpage] as [String : Any]
         
-        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .get)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
         
-        self.callServiceMethod1(service: Constants.Urls.parentleaveListUrl, method: .get, params: param, key: "studentleaveListUrl", headers: headers)
+        self.callServiceMethod1(service: Constants.Urls.parentleaveListUrl, method: .post, params: param, key: "studentleaveListUrl", headers: headers)
         
     }
     //API calls
@@ -199,12 +215,12 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if key == "teacherleaveListUrl"{
                         self.teacherisLoadingData = false
                         
-                      //  let resDataDic = result?["data"] as? NSDictionary
+                        let resDataDic = result?["data"] as? NSDictionary
                         
                         self.tableView.hideSkeleton()
                         
-                        let listArray = result?["data"] as? Array<Dictionary<String,Any>> ?? []
-
+                        let listArray = resDataDic?["leaves"] as? Array<Dictionary<String,Any>> ?? []
+                        
                         // Only clear the array if `skip` is 0, otherwise append
                         if self.teacherpage == 1 {
                             self.teacherLeaveArray.removeAll()
@@ -216,18 +232,13 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         }
                         
                         DispatchQueue.main.async {
-                            if self.teacherLeaveArray.count > 0 {
-                                self.tableView.isHidden = false
-                                self.emptyView.isHidden = true
 
-                            } else {
-                                
-                                self.tableView.isHidden = true
-                                self.emptyView.isHidden = false
-                               
+                            if self.leaveSection == "teacher" {
+                                self.emptyView.isHidden = self.teacherLeaveArray.count > 0
+                                self.tableView.isHidden = self.teacherLeaveArray.count == 0
                             }
+
                             self.tableView.reloadData()
-                              
                         }
                         // Increment skip value for the next batch of data
                         if listArray.count == 0 {
@@ -249,15 +260,15 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
                 }
-               if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
+                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
                     
                     self.performLogout(Vc: self)
                 } else {
                     
                     self.showAnimatedToast(message: msg,type: .warning)
-
+                    
                 }
-
+                
             }
         }) { (error) in
             self.teacherisLoadingData = false
@@ -282,11 +293,11 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if key == "studentleaveListUrl"{
                         self.studentisLoadingData = false
                         
-                      //  let resDataDic = result?["data"] as? NSDictionary
+                        let resDataDic = result?["data"] as? NSDictionary
                         
                         self.tableView.hideSkeleton()
                         
-                        let listArray = result?["data"] as? Array<Dictionary<String,Any>> ?? []
+                        let listArray = resDataDic?["leaves"] as? Array<Dictionary<String,Any>> ?? []
 
                         // Only clear the array if `skip` is 0, otherwise append
                         if self.studentpage == 1 {
@@ -299,18 +310,13 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         }
                         
                         DispatchQueue.main.async {
-                            if self.studentLeaveArray.count > 0 {
-                                self.tableView.isHidden = false
-                                self.emptyView.isHidden = true
 
-                            } else {
-                                
-                                self.tableView.isHidden = true
-                                self.emptyView.isHidden = false
-                               
+                            if self.leaveSection == "student" {
+                                self.emptyView.isHidden = self.studentLeaveArray.count > 0
+                                self.tableView.isHidden = self.studentLeaveArray.count == 0
                             }
+
                             self.tableView.reloadData()
-                              
                         }
                         // Increment skip value for the next batch of data
                         if listArray.count == 0 {
@@ -332,13 +338,13 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
                 }
-               if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
+                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
                     
                     self.performLogout(Vc: self)
                 } else {
                     
                     self.showAnimatedToast(message: msg,type: .warning)
-
+                    
                 }
             }
         }) { (error) in
@@ -356,65 +362,173 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             count = teacherLeaveArray.count
         }
-          return count
-      }
-     
+        return count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dataModel = studentLeaveArray[indexPath.row]
         
         if leaveSection == "student" {
+            let dataModel = studentLeaveArray[indexPath.row]
+
             if let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveTCell", for: indexPath as IndexPath) as? LeaveTCell {
-                cell.leaveImg.sd_setImage(with: URL(string: dataModel.student_picture ?? ""), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
+                let imageURL = (dataModel.student_picture ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if !imageURL.isEmpty {
+                    cell.placeHolderlbl.isHidden = true
+                    cell.leaveImg.isHidden = false
+                    cell.leaveImg.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
+                } else {
+                    cell.leaveImg.image = nil
+                    cell.leaveImg.isHidden = true
+                    cell.placeHolderlbl.isHidden = false
+                    let fullName = (dataModel.student_name ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                    let words = fullName.split(separator: " ")
+                    let firstInitial = words.first?.first.map { String($0).uppercased() } ?? ""
+                    let secondInitial = words.dropFirst().first?.first.map { String($0).uppercased() } ?? ""
+                    cell.placeHolderlbl.text = secondInitial.isEmpty ? firstInitial : "\(firstInitial) \(secondInitial)"
+                }
                 
                 cell.statusLbl.text = dataModel.status ?? ""
-                cell.datesLbl.text = "\(dataModel.start_date ?? "") \(dataModel.start_date ?? "")"
+                cell.datesLbl.text = "\(dataModel.start_date ?? "") - \(dataModel.end_date ?? "")"
                 cell.durationLbl.text = "\(dataModel.total_days ?? 0) days"
                 cell.nameLbl.text = dataModel.student_name ?? ""
                 cell.gradeLbl.text = dataModel.student_grade ?? ""
                 cell.idNumberLbl.text = dataModel.student_unique_id ?? ""
-                cell.statusLbl.backgroundColor = statusBgcolor[indexPath.row]
-                cell.statusLbl.textColor = statusTitleColor[indexPath.row]
+
+                let status = (dataModel.status ?? "").lowercased()
+
+                var titleColor: UIColor = .systemOrange
+                var bgColor: UIColor = UIColor.systemOrange.withAlphaComponent(0.1)
+
+                switch status {
+                case "Approved":
+                    titleColor = .systemGreen
+                    bgColor = UIColor.systemGreen.withAlphaComponent(0.1)
+                case "Rejected":
+                    titleColor = .systemRed
+                    bgColor = UIColor.systemRed.withAlphaComponent(0.1)
+                default:
+                    titleColor = .systemOrange
+                    bgColor = UIColor.systemOrange.withAlphaComponent(0.1)
+                }
+
+                cell.statusLbl.backgroundColor = bgColor
+                cell.statusLbl.textColor = titleColor
                 cell.selectionStyle = .none
                 cell.clipsToBounds = true
                 return cell
-                
+
             } else {
-                
                 return UITableViewCell()
             }
-        }else{
+        } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherLeaveTCell", for: indexPath as IndexPath) as? TeacherLeaveTCell {
-                
-                cell.categoryOuterView.backgroundColor = statusTitleColor[indexPath.row]
+                let dataModel = teacherLeaveArray[indexPath.row]
+
+                let status = (dataModel.status ?? "").lowercased()
+
+                var titleColor: UIColor = .systemOrange
+                var bgColor: UIColor = UIColor.systemOrange.withAlphaComponent(0.1)
+
+                switch status {
+                case "Approved":
+                    titleColor = .systemGreen
+                    bgColor = UIColor.systemGreen.withAlphaComponent(0.1)
+                case "Rejected":
+                    titleColor = .systemRed
+                    bgColor = UIColor.systemRed.withAlphaComponent(0.1)
+                default:
+                    titleColor = .systemOrange
+                    bgColor = UIColor.systemOrange.withAlphaComponent(0.1)
+                }
+
+                cell.categoryOuterView.backgroundColor = titleColor
                 cell.statusLbl.text = dataModel.status
-                cell.statusLbl.backgroundColor = statusBgcolor[indexPath.row]
-                cell.statusLbl.textColor = statusTitleColor[indexPath.row]
+                cell.statusLbl.backgroundColor = bgColor
+                cell.statusLbl.textColor = titleColor
                 cell.categoryLbl.text = dataModel.leave_type
-                cell.dateLbl.text = "\(dataModel.start_date ?? "") \(dataModel.end_date ?? "")"
-                cell.durationLbl.text = "\(dataModel.total_days ?? 0) days"
-                
+                cell.dateLbl.text = "\(dataModel.start_date ?? "") - \(dataModel.end_date ?? "")"
+                cell.durationLbl.text = "\(dataModel.total_days ?? 0.0) days"
+
                 cell.selectionStyle = .none
                 cell.clipsToBounds = true
                 return cell
-                
+
             } else {
-                
                 return UITableViewCell()
             }
         }
         
     }
-      
-      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  //        let dataModel = bankArray[indexPath.row]
-  //
-          let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-          if let vc = sb.instantiateViewController(withIdentifier: "LeaveViewVC") as? LeaveViewVC {
-              
-  //            vc.bankId = dataModel.unique_id ?? ""
-  //            vc.accStatus = dataModel.status_formatted ?? ""
-              vc.hidesBottomBarWhenPushed = true
-              self.navigationController?.pushViewController(vc, animated: true)
-          }
-      }
-  }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "LeaveViewVC") as? LeaveViewVC {
+            if leaveSection == "student" {
+                
+                let dataModel = studentLeaveArray[indexPath.row]
+                vc.uniqeId = dataModel.unique_id ?? ""
+                vc.comingFrom = "parent"
+                vc.leaveDetails = dataModel
+                
+            }else{
+                let dataModel = teacherLeaveArray[indexPath.row]
+                vc.uniqeId = dataModel.unique_id ?? ""
+                vc.comingFrom = "teacher"
+            }
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        // Check if we should load more data
+        if offsetY > contentHeight - height * 2 {
+            if leaveSection == "student" {
+                
+                if !studentisLoadingData && !studentallItemsLoaded {
+                    let param = ["page":studentpage] as [String : Any]
+                    
+                    let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
+                    
+                    if roleKey == "parent" {
+                        self.callServiceMethod1(service: Constants.Urls.parentleaveListUrl, method: .post, params: param, key: "studentleaveListUrl", headers: headers)
+                    } else {
+                        self.callServiceMethod1(service: Constants.Urls.teacherStudentleaveListUrl, method: .post, params: param, key: "studentleaveListUrl", headers: headers)
+                    }
+                }
+            }else{
+                if !teacherisLoadingData && !teacherallItemsLoaded {
+                    let param = ["page":teacherpage] as [String : Any]
+                    
+                    let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
+                    
+                    self.callServiceMethod(service: Constants.Urls.teacherleaveListUrl, method: .post, params: param, key: "teacherleaveListUrl", headers: headers)
+                }
+            }
+        }
+    }
+}
+// MARK: - UITableViewDataSource
+extension LeavesVC: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        var cellName = ""
+        
+        if leaveSection == "student" {
+            cellName = "LeaveTCell"
+        } else {
+            cellName = "TeacherLeaveTCell"
+        }
+          return cellName
+        
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 10
+    }
+}

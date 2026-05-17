@@ -13,6 +13,8 @@ import SwiftyJSON
 import SDWebImage
 class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
 
+    @IBOutlet weak var addBtn: UIButton!
+    
     @IBOutlet weak var createHomeworkBtn: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterBtn: UIButton!
@@ -74,7 +76,11 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         getHomeworkData()
-
+        if roleKey == "parent"{
+            self.addBtn.isHidden = true
+        }else{
+            self.addBtn.isHidden = false
+        }
         self.emptyView.isHidden = true
     }
 
@@ -259,4 +265,16 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
         }
     }
 
+}
+// MARK: - UITableViewDataSource
+extension HomeworkListVC: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+            
+        return "HomeworkTCell"
+        
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 10
+    }
 }

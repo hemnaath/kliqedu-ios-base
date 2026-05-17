@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Urbanist-ExtraBold.ttf">
+            <string>Urbanist-ExtraBold</string>
+        </array>
         <array key="Urbanist-Regular.ttf">
             <string>Urbanist-Regular</string>
         </array>
@@ -92,8 +95,22 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeM-vG-jro">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.91372549020000005" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Urbanist-ExtraBold" family="Urbanist" pointSize="21"/>
+                                        <color key="textColor" name="ThemeColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="ThemeLite1"/>
                                 <constraints>
@@ -101,6 +118,10 @@
                                     <constraint firstItem="SfA-dI-4Ls" firstAttribute="top" secondItem="LkH-lB-vwS" secondAttribute="top" constant="2" id="36L-ZH-94O"/>
                                     <constraint firstAttribute="width" constant="50" id="7cI-kx-nhH"/>
                                     <constraint firstAttribute="trailing" secondItem="SfA-dI-4Ls" secondAttribute="trailing" constant="2" id="Fj5-ju-BTc"/>
+                                    <constraint firstAttribute="trailing" secondItem="KeM-vG-jro" secondAttribute="trailing" id="NDW-Nf-ad2"/>
+                                    <constraint firstItem="KeM-vG-jro" firstAttribute="top" secondItem="LkH-lB-vwS" secondAttribute="top" id="W2R-vl-brr"/>
+                                    <constraint firstItem="KeM-vG-jro" firstAttribute="leading" secondItem="LkH-lB-vwS" secondAttribute="leading" id="eD0-Jk-e2e"/>
+                                    <constraint firstAttribute="bottom" secondItem="KeM-vG-jro" secondAttribute="bottom" id="qjf-hK-f5e"/>
                                     <constraint firstAttribute="height" constant="50" id="v83-n9-QNy"/>
                                     <constraint firstAttribute="bottom" secondItem="SfA-dI-4Ls" secondAttribute="bottom" constant="2" id="ykM-Za-pg6"/>
                                 </constraints>
@@ -108,6 +129,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1j-WV-LQa">
@@ -184,6 +206,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1e-ZY-zfP">
@@ -259,6 +282,7 @@
                 <outlet property="idNumberLbl" destination="UC8-N3-OkV" id="S21-Xs-2J2"/>
                 <outlet property="leaveImg" destination="SfA-dI-4Ls" id="VMD-IR-Kdl"/>
                 <outlet property="nameLbl" destination="VCk-bR-n4U" id="47t-aS-sbt"/>
+                <outlet property="placeHolderlbl" destination="KeM-vG-jro" id="1so-UG-wFJ"/>
                 <outlet property="statusLbl" destination="W1e-ZY-zfP" id="ANs-Pe-J0G"/>
             </connections>
             <point key="canvasLocation" x="29.007633587786259" y="113.02816901408451"/>
@@ -273,7 +297,7 @@
             <color red="0.88999998569488525" green="0.87099999189376831" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

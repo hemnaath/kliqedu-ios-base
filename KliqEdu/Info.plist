@@ -23,5 +23,7 @@
 	</dict>
 	<key>UIDesignRequiresCompatibility</key>
 	<false/>
+	<key>NSFaceIDUsageDescription</key>
+	<string>We use Face ID/Touch ID to ease authentication of Passcode</string>
 </dict>
 </plist>

@@ -8,7 +8,7 @@
 import Foundation
 
 public class LeaveTypeModel {
-    public var full_name: String?
+    public var name: String?
     public var unique_id: String?
     public var studentClass: String?
     public var student_picture: String?
@@ -17,7 +17,7 @@ public class LeaveTypeModel {
     // Init from dictionary
     required public init?(dictionary: NSDictionary) {
        
-        full_name = dictionary["full_name"] as? String
+        name = dictionary["name"] as? String
         unique_id = dictionary["unique_id"] as? String
         studentClass = dictionary["class"] as? String
         student_picture = dictionary["student_picture"] as? String
@@ -28,7 +28,7 @@ public class LeaveTypeModel {
     public func dictionaryRepresentation() -> NSDictionary {
         let dictionary = NSMutableDictionary()
         
-        dictionary.setValue(self.full_name, forKey: "full_name")
+        dictionary.setValue(self.name, forKey: "name")
         dictionary.setValue(self.unique_id, forKey: "unique_id")
         dictionary.setValue(self.studentClass, forKey: "class")
         dictionary.setValue(self.student_picture, forKey: "student_picture")

@@ -58,6 +58,9 @@ class AddHomeworkVC: UIViewController {
         groupWarningLbl.hide()
         subjectWarningLbl.hide()
         descriptionWarningLbl.hide()
+        
+        attachmentOuterview.hide()
+
         titleField.delegate = self
         descriptionTextview.delegate = self
     }
@@ -285,13 +288,11 @@ class AddHomeworkVC: UIViewController {
         }
 
         if selectedGradeId.isEmpty {
-            gradeWarningLbl.text = "Please select grade"
             gradeWarningLbl.unhide()
             isValid = false
         }
 
         if selectedSectionId.isEmpty {
-            sectionWarningLbl.text = "Please select section"
             sectionWarningLbl.unhide()
             isValid = false
         }

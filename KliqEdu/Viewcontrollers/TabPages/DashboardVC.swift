@@ -16,6 +16,15 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var quoteLbl: UILabel!
     @IBOutlet weak var quoteAuthorLbl: UILabel!
     
+    @IBOutlet weak var studentsCard: UIView!
+    @IBOutlet weak var noticesCard: UIView!
+    @IBOutlet weak var holidaysCard: UIView!
+    @IBOutlet weak var feesCard: UIView!
+    @IBOutlet weak var teachersCard: UIView!
+    @IBOutlet weak var studentInfoCard: UIView!
+
+    var profileDetails: ProfileModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
@@ -32,11 +41,25 @@ class DashboardVC: UIViewController {
 
         startViewAnimation()
         dashboardApi()
+        profileApi()
+        
+        if roleKey == "parent"{
+            self.studentsCard.isHidden = true
+            self.noticesCard.isHidden = false
+            self.holidaysCard.isHidden = false
+            self.feesCard.isHidden = false
+            self.teachersCard.isHidden = false
+        }else{
+            self.studentsCard.isHidden = false
+            self.noticesCard.isHidden = false
+            self.holidaysCard.isHidden = false
+            self.feesCard.isHidden = true
+            self.teachersCard.isHidden = true
+        }
     }
     func startViewAnimation()  {
         quoteLbl.showSkeleton(cornerRadius: 0)
         quoteAuthorLbl.showSkeleton(cornerRadius: 0)
-
     }
     func stopViewAnimation()  {
         quoteLbl.hideSkeleton()
@@ -54,6 +77,14 @@ class DashboardVC: UIViewController {
         }else{
             self.callServiceMethod(service: Constants.Urls.parentDashboardUrl,method: .get, params: param, key: "dashboardUrl", headers: headers)
         }
+    }
+    func profileApi(){
+        
+        let param = [:] as [String : Any]
+        
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/profile",params: param,HTTPMethod: .get)
+        
+        self.callServiceMethod(service: Constants.Urls.profileUrl,method: .get, params: param, key: "profileUrl", headers: headers)
     }
     @IBAction func profileBtnTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
@@ -133,7 +164,14 @@ class DashboardVC: UIViewController {
                             self.nameLbl.text = dataList.value(forKey: "full_name") as? String
 
                         }
-                    }
+                    }else if key == "profileUrl"{
+                        self.stopViewAnimation()
+                        if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
+                            
+                            self.profileDetails = ProfileModel(dictionary: dataList)
+                            
+                        }
+                        }
                 } else {
                     self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
                 }

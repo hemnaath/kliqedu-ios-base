@@ -96,7 +96,7 @@ class ValidationClass: NSObject {
     //    One Special Character in Password.
     
     class func isValidPassword(password: String) -> Bool {
-        let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{12,}$"
+        let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}$"
         let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return passwordTest.evaluate(with: password)
     }
@@ -203,7 +203,6 @@ class ValidationClass: NSObject {
         return nil   // ✅ Valid
     }
     class func validateMobileNumber(_ value: String) -> String? {
-        
         let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if trimmed.isEmpty {
@@ -224,6 +223,86 @@ class ValidationClass: NSObject {
         }
         
         return nil   // ✅ Valid
+    }
+
+    class func validateQualification(_ value: String) -> String? {
+        
+        let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if trimmed.isEmpty {
+            return "Qualification cannot be empty"
+        }
+        
+        if trimmed.count < 2 {
+            return "Qualification must be at least 2 characters"
+        }
+        
+        if trimmed.count > 50 {
+            return "Qualification cannot exceed 50 characters"
+        }
+        
+        // Allows letters, numbers, spaces, dots, commas, hyphen and slash
+        let regex = "^[A-Za-z0-9 .,&()\\-/]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        
+        if !predicate.evaluate(with: trimmed) {
+            return "Qualification contains invalid characters"
+        }
+        
+        return nil
+    }
+
+    class func validateReligion(_ value: String) -> String? {
+        
+        let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if trimmed.isEmpty {
+            return "Religion cannot be empty"
+        }
+        
+        if trimmed.count < 2 {
+            return "Religion must be at least 2 characters"
+        }
+        
+        if trimmed.count > 30 {
+            return "Religion cannot exceed 30 characters"
+        }
+        
+        // Allows letters, spaces, apostrophe, hyphen and dots
+        let regex = "^[\\p{L} .'-]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        
+        if !predicate.evaluate(with: trimmed) {
+            return "Religion contains invalid characters"
+        }
+        
+        return nil
+    }
+    class func validateCaste(_ value: String) -> String? {
+        
+        let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if trimmed.isEmpty {
+            return "Caste cannot be empty"
+        }
+        
+        if trimmed.count < 2 {
+            return "Caste must be at least 2 characters"
+        }
+        
+        if trimmed.count > 30 {
+            return "Caste cannot exceed 30 characters"
+        }
+        
+        // Allows letters, spaces, apostrophe, hyphen and dots
+        let regex = "^[\\p{L} .'-]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        
+        if !predicate.evaluate(with: trimmed) {
+            return "Caste contains invalid characters"
+        }
+        
+        return nil
     }
     class func validatePassword(_ value: String) -> String? {
         
@@ -506,7 +585,22 @@ class ValidationClass: NSObject {
         let pattern = "^(0x[a-fA-F0-9]{40}|(bnb|tbnb)[a-z0-9]{39})$"
         return matches(pattern: pattern, in: value)
     }
-
+    class func convertDateFormatToAPIDate(_ dateString: String) -> String {
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "dd MMM yyyy"
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "yyyy-MM-dd"
+        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        if let date = inputFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        }
+        
+        return dateString
+    }
 //    static func getMaxLength(forCountryCode countryCode: String) -> Int? {
 //        let phoneUtil = NBPhoneNumberUtil.sharedInstance()
 //        

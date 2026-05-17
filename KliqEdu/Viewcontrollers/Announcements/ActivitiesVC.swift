@@ -14,6 +14,7 @@ import SDWebImage
 
 class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
+    @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var createAnnouncementBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyView: UIView!
@@ -57,7 +58,11 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         getAnnouncementsData()
-
+        if roleKey == "parent"{
+            self.addBtn.hide()
+        }else{
+            self.addBtn.unhide()
+        }
         self.emptyView.isHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {

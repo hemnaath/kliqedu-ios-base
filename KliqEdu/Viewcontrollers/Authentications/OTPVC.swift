@@ -131,8 +131,13 @@ class OTPVC: UIViewController,UITextFieldDelegate {
                     
                     let msg = result!["message"] as? String ?? ""
                     self.showAnimatedToast(message: msg)
-                    self.navigationController?.popViewController(animated: true)
+                    //self.navigationController?.popViewController(animated: true)
+                    let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                    if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                        self.defaults.set(true, forKey: Constants.Keys.isLoggedIn)
 
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             }
             else{

@@ -263,7 +263,6 @@ struct Constants {
         static let loginLocationVerifyUrl = "auth/location/verify"
         static let forceResetPasswordUrl = "auth/password/force_reset"
         static let usdDocUploadUrl = "usd_documents/store"
-        static let editProfilePicUrl = "upload_profile_picture"
         
         static let removeProfilePicUrl = "remove_profile_picture"
         
@@ -282,6 +281,8 @@ struct Constants {
         static let getBusinessAddressUrl = "user/get_user_tenant_details"
         static let referralCodeUrl = "user/get_referrals"
         
+        static let editProfilePicUrl = "teacher/upload/file"
+
         static let teacherDashboardUrl = "teacher/dashboard/get"
         static let parentDashboardUrl = "parent/dashboard/get"
 
@@ -308,7 +309,10 @@ struct Constants {
         static let sectionsUrl = "teacher/lookup/sections"
         static let groupsUrl = "teacher/lookup/groups"
         static let subjectsUrl = "teacher/lookup/subjects"
-        static let leaveTypesUrl = "teacher/lookup/leave-types"
+        
+        static let teacherleaveTypesUrl = "teacher/lookup/leave-types"
+
+        static let parentleaveTypesUrl = "parent/lookup/leave-types"
 
         
         static let createAnnouncementUrl = "teacher/announcement/create"
@@ -330,42 +334,25 @@ struct Constants {
         static let teacherdeleteLeaveUrl = "teacher/leave/delete"
         static let teacherupdateLeaveUrl = "teacher/leave/update"
         static let teacherleaveListUrl = "teacher/leave/list"
-        
+        static let teacherleaveViewUrl = "teacher/leave/view"
+        static let teacherleaveStutusUrl = "teacher/leave/status"
+
+        static let teacherStudentleaveListUrl = "teacher/leave/student/list"
+
+    
         static let parentcreateLeaveUrl = "parent/leave/apply"
         static let parentdeleteLeaveUrl = "parent/leave/delete"
         static let parentupdateLeaveUrl = "parent/leave/update"
         static let parentleaveListUrl = "parent/leave/list"
-        
+        static let parentleaveViewUrl = "parent/leave/view"
+
         
         static let profileUrl = "teacher/settings/profile"
 
-        // Onboarding
-        static let onboardingUrl = "initiate/individual"
-        static let businessOnboardingUrl = "initiate/business"
-        static let sectorsUrl = "lookup/sectors_list"
+        static let studentProfileUrl = "parent/settings/student-profile"
+        static let parentProfileUrl = "parent/settings/parent-profile"
 
-        // KYC/KYB
-        
-        static let supportedDocsUrl = "user/supported_docs_list"
-        static let verificationDetailsUrl = "user/verification_details"
-        static let verifyKycUrl = "user/verify_kyc"
-        static let verifyKybUrl = "user/kyb_verify"
-
-        
-        static let getAdminAccount  = "supervisor/bank_account"
-        static let getAdminWallet  = "supervisor/wallets"
-        static let getUserAddress = "user/get_user_premises"
-        
-        // Activate EUR / USD
-        static let activateIndiEur  = "enable_eur/individual"
-        static let activateBusiEur  = "enable_eur/business"
-        
-        static let activateIndiUsd  = "individual/activate_usd"
-        static let activateBusiUsd  = "business/activate_usd"
-        
-        // Backup codes
-        static let viewBackupCodesUrl = "user/view_recovery_codes"
-        static let regenerateBackupCodesUrl = "user/regenerate_recovery_codes"
+     
         
         // Forgot password
         
@@ -373,144 +360,7 @@ struct Constants {
         static let forgotPasswordCodeUrl = "auth/password/verify_reset_code"
         static let resetPasswordUrl = "auth/reset-password"
         
-        // Two Step
-        
-        static let twoStepVerifyUrl = "two_step_auth_update"
-        static let twoStepVerifyResendUrl = "resend_two_step_auth_code"
-        static let twoStepVerificationUrl = "two_step_auth_login"
-        static let check2FACodeUrl = "user/check_auth_code"
-                
-        // WishList
-        
-        static let whiteListUrl = "trusted_wallet_addresses"
-        static let whiteListDeleteUrl = "trusted_wallet_addresses/delete"
-        static let whiteListStoreUrl = "trusted_wallet_address/store"
-        
-        // WithinPay user
-        
-        static let withinpayUserListUrl = "withinpay_users"
-        static let withinpayUserDeleteUrl = "withinpay_users/delete"
-        static let withinpayUserStoreUrl = "withinpay_users/store"
-        static let withinpayUserSendMoneyUrl = "internal_transfer"
-        
-        //transaction List
-        
-        static let transactionHistory  = "m_transactions"
-        static let transactionStore  = "m_transactions/store"
-        static let transactionShow  = "m_transactions/show"
-        
-        //wallet
-        
-        static let walletsUrl = "vaults"
-        static let walletsView  = "vault_view"
-        static let walletsPayments  = "vault_payments"
-        static let walletsPaymentsView  = "wallet_payments/view"
-        
-        
-        // Export
-        static let walletsPaymentsExport  = "vault_payments/export"
-        static let withdrawExport  = "user_payouts/export"
-        static let swapExport  = "payments/swap_export"
-        static let depositExport  = "payments/deposit_export"
-        static let buyExport  = "payments/buy_export"
-        static let sellExport  = "payments/sell_export"
-        static let exchangeExport  = "payments/exchange_export"
-        static let tradeExport  = "payments/trade_export"
-        
-        //withdraw
-        
-        static let downloadInvoiceWithdraw  = "user_payout/invoice"
-        
-        //transaction List
-        
-        static let buyTransactionHistory  = "payments/buy"
-        static let sellTransactionHistory  = "payments/sell"
-        static let depositTransactionHistory  = "payments/deposit"
-        static let swapTransactionHistory  = "payments/swap"
-        static let exchangeTransactionHistory  = "payments/exchange"
-        static let tradeTransactionHistory  = "payments/trade"
-        static let withdrawHistory  = "payments/withdraw"
 
-        static let buyTransactionView  = "buy_payments/view"
-        static let sellTransactionView  = "sell_payments/view"
-        static let depositTransactionView  = "deposit_payments/view"
-        static let swapTransactionView  = "swap_payments/view"
-        static let withdrawTransactionView  = "payouts/view"
-        static let exchangeShowUrl  = "conversion/show"
-
-        // Accounts
-        
-        static let serviceCountriesList  = "service_countries"
-        static let serviceBankList  = "service_banks"
-        static let mobileCountryCodesList  = "mobile_country_codes"
-        static let clearingCodesList  = "branch_codes"
-        
-        // Countries
-        static let mobileCountryCodes  = "lookup/country_dial_codes"
-        static let nationalitiesCodes  = "lookup/origins"
-        static let countriesCodes  = "lookup/countries"
-        
-        // Buy
-        static let buyBankUrl  = "buy/bank"
-        static let buyWalletUrl  = "buy/wallet"
-        
-        // Sell
-        static let sellCryptoUrl  = "liquidate/tokens/by/hash"
-        static let sellWalletUrl  = "liquidate/tokens/by/wallet"
-        
-        // Exchange
-        
-        static let exchangeTokensUrl  = "conversion/add"
-        
-        // Trade
-        
-        static let tradeTokenUrl  = "efi/trade_tokens"
-        static let currencyPairsUrl  = "get_tenders"
-        static let tradeShowUrl  = "efi/trade_tokens_view"
-        
-        
-        // Deposit
-        
-        static let depositBankUrl  = "topup/fiat"
-        static let depositCryptoUrl  = "topup/crypto"
-        
-        //Bank details
-        
-        static let addBankDetails = "payee/create_account"
-        static let bankAccList = "payee/get_accounts"
-        static let viewBankDetails = "payee/get_account"
-        static let beneficiaryDelete  = "payee/delete_account"
-        static let beneficiaryStatus  = "beneficiary_accounts/status"
-        static let purposeofPayments  = "purpose_of_payments"
-        
-        // Withdraw
-        
-        static let withdrawUrl  = "disbursement/fiat"
-        static let withdrawCryptoUrl  = "disbursement/crypto"
-        static let withdrawEficyentUrl  = "virtual_accounts/fund_transfer"
-        static let bvnkFeesUrl  = "lookup/solid_vault_fees"
-        
-        // Swap
-        
-        static let getSwapWallets  = "transform/get_wallets"
-        static let getCurrencies  = "get_legal_tenders"
-        static let commissionRanges  = "fee_tiers"
-        
-        static let ccSwapTokens  = "transform/tokens"
-        static let ffSwapTokens  = "transform/fiats"
-        static let cfSwapTokens  = "transform/crypto_fiat"
-        static let fcSwapTokens  = "transform/fiat_crypto"
-        
-        // Accounts
-        static let accounts  = "digital_accounts"
-        static let virtualAccountShowUrl  = "digital_account"
-
-        static let activateEur  = "activate_eur"
-        
-        static let activateUsd  = "activate_usd"
-        static let getActivatEURUSD = "activated_usd_eur_details"
-        
-        static let exchangeRateUrl = "exchange_rates"
 
     }
 }

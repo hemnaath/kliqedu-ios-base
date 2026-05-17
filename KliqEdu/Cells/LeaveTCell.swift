@@ -9,6 +9,7 @@ import UIKit
 
 class LeaveTCell: UITableViewCell {
 
+    @IBOutlet weak var placeHolderlbl: UILabel!
     @IBOutlet weak var datesLbl: UILabel!
     @IBOutlet weak var durationLbl: UILabel!
     @IBOutlet weak var idNumberLbl: UILabel!
@@ -23,6 +24,9 @@ class LeaveTCell: UITableViewCell {
         self.statusLbl.layer.masksToBounds = true
         self.gradeLbl.layer.cornerRadius = 8
         self.gradeLbl.layer.masksToBounds = true
+        self.placeHolderlbl.layer.cornerRadius = 10
+        self.placeHolderlbl.layer.masksToBounds = true
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

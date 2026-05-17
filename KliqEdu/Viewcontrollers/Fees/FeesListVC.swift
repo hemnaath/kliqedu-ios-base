@@ -244,7 +244,7 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
 extension FeesListVC: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
             
-            return "FeesTCell"
+        return "FeesTCell"
         
     }
     

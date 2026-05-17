@@ -35,8 +35,8 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         self.emailWarningLbl.hide()
         self.passwordWarningLbl.hide()
         
-        self.emailField.text = "iosdev2306+2@gmail.com"
-        self.passwordField.text = "Kar@1234567890"
+//        self.emailField.text = "iosdev2306+2@gmail.com"
+//        self.passwordField.text = "Kar@1234567890"
        // signinBtn.setButtonLeftRightGradientBackground(cornerRadius: 10,leftColor: .themeColor,rightColor: .themeLiteColor)
     }
     override func viewDidLayoutSubviews() {
@@ -104,7 +104,8 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     
         let paramDic: [String: Any] = [
             "email": (emailField.text ?? "").trimString(),
-            "password": (passwordField.text ?? "").trimString()]
+            "password": (passwordField.text ?? "").trimString(),
+            "device_token": DEVICE_TOKEN]
 
         print("ParamDic====\(paramDic)")
        

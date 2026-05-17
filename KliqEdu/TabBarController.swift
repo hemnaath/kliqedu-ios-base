@@ -33,6 +33,10 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
         token = defaults.value(forKey: Constants.Keys.accessTokenKey) as? String ?? ""
         self.navigationController?.isNavigationBarHidden = true
         tabBar.isTranslucent = false
+        tabBar.backgroundColor = .clear
+        tabBar.barTintColor = .clear
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
       
         // Create a top border view
           let topLine = UIView(frame: CGRect(x: 0, y: -15, width: tabBar.frame.width, height: 1))

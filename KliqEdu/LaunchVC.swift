@@ -71,7 +71,6 @@ class LaunchVC: UIViewController {
     }
     fileprivate func checkIfLoggedIn() {
         let seconds = 1.5
-       //print("UserDefaults.standard.bool(forKey: Constants.Keys.isLoggedIn)",UserDefaults.standard.bool(forKey: Constants.Keys.isLoggedIn))
         if UserDefaults.standard.bool(forKey: Constants.Keys.isLoggedIn) {
             if UserDefaults.standard.bool(forKey: Constants.Keys.faceID) == true{
                 
@@ -80,10 +79,11 @@ class LaunchVC: UIViewController {
                         if success {
                             print("Face ID Authentication successful.")
                             // Proceed to the main app
-//                            let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-//                            if let vc = sb.instantiateViewController(withIdentifier: "HomeVC") as? HomeVC{
-//                                self?.navigationController?.pushViewController(vc, animated: true)
-//                            }
+                            let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                            if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
+                                
+                                self?.navigationController?.pushViewController(vc, animated: true)
+                            }
                         } else {
                             print("Face ID Authentication failed.")
                             // Handle failure (e.g., show an alert or lock the app)

@@ -126,7 +126,6 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 
                             }
                             self.tableView.reloadData()
-                              
                         }
                     }
                 } else {
@@ -147,9 +146,7 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } else {
                     
                     self.showAnimatedToast(message: msg,type: .warning)
-
                 }
-
             }
         }) { (error) in
             
@@ -160,7 +157,7 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return  teachersArray.count
+        return teachersArray.count
     }
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
