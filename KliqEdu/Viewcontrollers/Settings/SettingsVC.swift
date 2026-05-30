@@ -6,26 +6,27 @@
 //
 
 import UIKit
-import LocalAuthentication
 
 class SettingsVC: UIViewController {
 
     @IBOutlet weak var editProfileView: UIView!
     @IBOutlet weak var switchStudentView: UIView!
-    @IBOutlet weak var faceIDSwitch: UISwitch!
+    var childrensArr: [ChildrensModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = true
-        faceIDSwitch.isEnabled = isFaceIDAvailable()
-        faceIDSwitch.isOn = UserDefaults.standard.bool(forKey: Constants.Keys.faceID)
-        // Do any additional setup after loading the view.
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if roleKey == "parent"{
-            self.switchStudentView.unhide()
+            if childrensArr.count > 1{
+                self.switchStudentView.unhide()
+            }else{
+                self.switchStudentView.hide()
+            }
             self.editProfileView.hide()
         }else{
             self.switchStudentView.hide()
@@ -33,14 +34,7 @@ class SettingsVC: UIViewController {
 
         }
     }
-    @IBAction func faceIDSwitchToggled(_ sender: UISwitch) {
-        if sender.isOn {
-            enableFaceID()
-        } else {
-            disableFaceID()
-        }
-    }
-       
+  
     @IBAction func profileInfoTapped(_ sender: Any) {
         if roleKey == "parent"{
             let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
@@ -101,6 +95,14 @@ class SettingsVC: UIViewController {
             present(vc, animated: true)
         }
     }
+    @IBAction func configurationBtnTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "ConfigurationsVC") as? ConfigurationsVC {
+            
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     @IBAction func changePasswordTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "ChangePasswordVC") as? ChangePasswordVC {
@@ -126,6 +128,14 @@ class SettingsVC: UIViewController {
     @IBAction func contactTapped(_ sender: Any) {
     }
     @IBAction func termTapped(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: Constants.StoryboardIds.settingsSB, bundle: nil)
+        if let vc = storyBoard.instantiateViewController(withIdentifier: "StaticPagesVC") as? StaticPagesVC {
+            vc.heading = "Terms & Conditions"
+            vc.pageType = "terms-and-conditions"
+            vc.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func logoutTapped(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = true
@@ -142,45 +152,5 @@ class SettingsVC: UIViewController {
             present(vc, animated: true)
         }
     }
-    func isFaceIDAvailable() -> Bool {
-        let context = LAContext()
-        var error: NSError?
-        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-    }
     
-    func enableFaceID() {
-        if !isFaceIDAvailable() {
-            faceIDSwitch.setOn(false, animated: true)
-            showAnimatedToast(message: "Biometric authentication is not available", type: .warning)
-            return
-        }
-        let context = LAContext()
-        context.localizedCancelTitle = "Cancel"
-        print("face")
-        // Check if the device supports Face ID and if so, try to enable it
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Enable Face ID to secure your account") { success, error in
-                DispatchQueue.main.async {
-                    if success {
-                        // Face ID enabled successfully
-                        // Handle successful enablement (e.g., save the state to UserDefaults)
-                        UserDefaults.standard.set(true, forKey: Constants.Keys.faceID)
-                    } else {
-                        // Face ID could not be enabled
-                        // Handle error (e.g., show an alert)
-                        self.faceIDSwitch.setOn(false, animated: true)
-                        self.showAnimatedToast(message: "Face ID authentication failed", type: .error)
-                    }
-                }
-            }
-        } else {
-            // Device does not support Face ID
-            // Handle this case (e.g., show an alert)
-            faceIDSwitch.setOn(false, animated: true)
-        }
-    }
-
-    func disableFaceID() {
-        UserDefaults.standard.set(false, forKey: Constants.Keys.faceID)
-    }
 }

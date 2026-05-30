@@ -111,8 +111,8 @@ class AlamofireHC: NSObject {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                         
-                        let errorMessage = json?["error"] as? String
-                        let errorCode = json?["error_code"] as? Int
+                        let errorMessage = json?["message"] as? String
+                        let errorCode = json?["status_code"] as? Int
                         
                         print("🔥 Backend Error Message:", errorMessage ?? "Unknown error")
                         print("🔥 Backend Error Code:", errorCode ?? 0)
@@ -339,8 +339,8 @@ class AlamofireHC: NSObject {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
 
-                        let errorMessage = json?["error"] as? String
-                        let errorCode = json?["error_code"] as? Int
+                        let errorMessage = json?["message"] as? String
+                        let errorCode = json?["status_code"] as? Int
 
                         print("🔥 Backend Error Message:", errorMessage ?? "Unknown error")
                         print("🔥 Backend Error Code:", errorCode ?? 0)

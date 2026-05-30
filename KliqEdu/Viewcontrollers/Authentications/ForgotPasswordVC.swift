@@ -97,7 +97,7 @@ class ForgotPasswordVC: UIViewController,UITextFieldDelegate {
     
     func callService(service: String, params: [String: Any], key: String, hudStauts : Bool = true) {
         
-        AlamofireHC.requestPOST(service, params : params, headers: Constants.mobile_headers, shouldShowHUD: hudStauts, success: { (response) in
+        AlamofireHC.requestPOST(service, params : params, headers: nil, shouldShowHUD: hudStauts, success: { (response) in
             
             let  result = response.dictionaryObject
             let resultcheck = result?["success"] as? Bool ?? false
@@ -127,8 +127,8 @@ class ForgotPasswordVC: UIViewController,UITextFieldDelegate {
             } else {
                 self.submitBtn?.hideButtonLoading()
 
-                let errorCode: Int = result?["error_code"] as? Int ?? 0
-                let msg = result?["error"] as? String ?? ""
+                let errorCode: Int = result?["status_code"] as? Int ?? 0
+                let msg = result?["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
                     

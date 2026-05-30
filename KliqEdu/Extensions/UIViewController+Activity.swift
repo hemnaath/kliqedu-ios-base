@@ -31,7 +31,7 @@ func showTopBanner(message: String) {
     ))
 
     banner.backgroundColor = UIColor(red: 220/255, green: 53/255, blue: 69/255, alpha: 1)
-    let font = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayBold, size: 14)!
+    let font = UIFont(name: GLOBAL.FontsIdentifier.FontBold, size: 14)!
 
     let label = UILabel(frame: CGRect(
         x: 16,
@@ -101,7 +101,7 @@ func showBottomToast(message: String) {
     let label = UILabel(frame: toast.bounds.insetBy(dx: 12, dy: 8))
     label.text = message
     label.textColor = .white
-    label.font = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayRegular, size: 13) ?? .systemFont(ofSize: 13)
+    label.font = UIFont(name: GLOBAL.FontsIdentifier.FontRegular, size: 13) ?? .systemFont(ofSize: 13)
     label.numberOfLines = 2
     label.textAlignment = .center
 

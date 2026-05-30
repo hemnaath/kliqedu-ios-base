@@ -58,6 +58,11 @@ class HolidaysVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
 
         self.emptyView.isHidden = true
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
@@ -146,8 +151,8 @@ class HolidaysVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false

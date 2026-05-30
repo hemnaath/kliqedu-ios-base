@@ -11,23 +11,37 @@ import CRRefresh
 import Alamofire
 import SwiftyJSON
 import SDWebImage
-class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
 
+struct DateModel {
+    
+    var dayName: String
+    var date: String
+    var fullDate: Date
+    var isSelected: Bool
+}
+class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
+    
     @IBOutlet weak var addBtn: UIButton!
     
     @IBOutlet weak var createHomeworkBtn: UIButton!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyView: UIView!
-
+    
+    @IBOutlet weak var monthLbl: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    //@IBOutlet weak var bgView: UIView!
+    
+    // MARK: - Variables
+    
+    var dateArray = [DateModel]()
+    
     var homeworkArray = [HomeWorkModel]()
     var timer = Timer()
-    
-    var allItemsLoaded = false
-    var page = 1
-    var isLoadingData = false
-    
+    var selectedDate = Date()
+    var filters: [String: Any] = [:]
+
     let subjectColorMap: [String: UIColor] = [
         "Mathematics": UIColor(hex: "#1976D2"),     // Blue
         "English": UIColor(hex: "#388E3C"),         // Green
@@ -44,12 +58,12 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        searchBar.applyDefaultStyle(placeholder: "Search")
+        
         createHomeworkBtn.dropShadow()
-
+        
         self.view.applyVerticalLigtGradient()
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,6 +83,9 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
                 self?.tableView.cr.endHeaderRefresh()
             })
         }
+        setupUI()
+        
+        generateCurrentMonthDates()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,16 +95,15 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
         getHomeworkData()
         if roleKey == "parent"{
             self.addBtn.isHidden = true
+            self.filterBtn.isHidden = true
         }else{
             self.addBtn.isHidden = false
+            self.filterBtn.isHidden = false
+
         }
         self.emptyView.isHidden = true
     }
-
-//    @IBAction func backBtnTapped(_ sender: Any) {
-//    
-//        self.navigationController?.popViewController(animated: true)
-//    }
+    
     @IBAction func createHomeworkTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "AddHomeworkVC") as? AddHomeworkVC {
@@ -96,49 +112,54 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    @IBAction func filterBtnTapped(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = true
+
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC {
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .coverVertical   // animation
+            vc.comingFor = "Homework"
+            vc.appliedFilters = self.filters
+            vc.onDismiss = { [weak self] in
+                   self?.tabBarController?.tabBar.isHidden = false
+               }
+            vc.onApplyFilter = { filters in
+                
+                print(filters)
         
-        tableView.isSkeletonable = true
-        self.tableView.showAnimatedGradientSkeleton()
-        getHomeworkData()
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        timer.invalidate()
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.tableView.isSkeletonable = true
-            self.tableView.showAnimatedGradientSkeleton()
-            self.getHomeworkData()
+                self.filters = filters
+                
+                self.getHomeworkData()
+
+            }
+            present(vc, animated: true)
         }
     }
-    
     func getHomeworkData() {
-        
-        allItemsLoaded = false
-        
-        page = 1
-        
-        tableView.isSkeletonable = true
-        self.tableView.showAnimatedGradientSkeleton()
-        
-        let param = [:] as [String : Any]
-        
-        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
-        
+       
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        let selectedDateString = formatter.string(from: selectedDate)
+
         if roleKey == "teacher"{
-            
+            let param = ["date": selectedDateString,"grade_id": filters["grade_id"] ?? ""] as [String : Any]
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
+
             self.callServiceMethod(service: Constants.Urls.teacherHomeworkListUrl, method: .post, params: param, key: "HomeworkUrl", headers: headers)
         }else{
+            let param = ["date": selectedDateString] as [String : Any]
+            
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
             self.callServiceMethod(service: Constants.Urls.parentHomeworkUrl, method: .post, params: param, key: "HomeworkUrl", headers: headers)
-
+            
         }
     }
     //API calls
     func callServiceMethod(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
-        guard !self.isLoadingData && !self.allItemsLoaded else { return } // Prevent duplicate requests or requests when all data is loaded
-        self.isLoadingData = true
+      
         AlamofireHC.request(service, method: method, params: params, headers: headers, shouldShowHUD: false, success: { (response) in
             
             let  result = response.dictionaryObject
@@ -149,18 +170,16 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "HomeworkUrl"{
-                        self.isLoadingData = false
                         
-                      //  let resDataDic = result?["data"] as? NSDictionary
+                        //  let resDataDic = result?["data"] as? NSDictionary
                         
                         self.tableView.hideSkeleton()
                         
                         let listArray = result?["data"] as? Array<Dictionary<String,Any>> ?? []
-
+                        
                         // Only clear the array if `skip` is 0, otherwise append
-                        if self.page == 1 {
                             self.homeworkArray.removeAll()
-                        }
+                        
                         for item in listArray {
                             if let model = HomeWorkModel(dictionary: item as NSDictionary) {
                                 self.homeworkArray.append(model)
@@ -171,28 +190,17 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
                             if self.homeworkArray.count > 0 {
                                 self.tableView.isHidden = false
                                 self.emptyView.isHidden = true
-                                self.searchBar.isHidden = false
-
+                                
                             } else {
                                 
                                 self.tableView.isHidden = true
                                 self.emptyView.isHidden = false
-                                if let text = self.searchBar.text, !text.trimmingCharacters(in: .whitespaces).isEmpty {
-                                    self.searchBar.isHidden = false
-                                }else{
-                                    self.searchBar.isHidden = true
-                                }
+                                
                             }
                             self.tableView.reloadData()
-                              
+                            
                         }
-                        // Increment skip value for the next batch of data
-                        if listArray.count == 0 {
-                            self.allItemsLoaded = true
-                            print("All items loaded. No more API calls will be made.")
-                        } else {
-                            self.page += 1   // go to next page
-                        }
+                        
                     }
                 } else {
                     self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
@@ -200,25 +208,22 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
-                    self.searchBar.isHidden = true
                 }
-               if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
+                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
                     
                     self.performLogout(Vc: self)
                 } else {
                     
                     self.showAnimatedToast(message: msg,type: .warning)
-
+                    
                 }
-
             }
         }) { (error) in
-            self.isLoadingData = false
             
             self.showAnimatedToast(message: StringConstants.pleaseTryAgain,type: .error)
             debugPrint(error)
@@ -228,7 +233,7 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
         
         return  homeworkArray.count
     }
-   
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let dataModel = homeworkArray[indexPath.row]
@@ -241,7 +246,8 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
             let color = subjectColorMap[subject] ?? .black
             cell.subjectLbl.textColor = color
             cell.subjectLbl.backgroundColor = subjectBgColorMap[subject]
-            cell.gradelbl.text = "  Grade \(dataModel.grade ?? "")  "
+            cell.gradelbl.text = "  Grade \(dataModel.grade ?? "") \(dataModel.section ?? "")  "
+            cell.dateLbl.text = dataModel.created_at
             
             cell.selectionStyle = .none
             cell.clipsToBounds = true
@@ -255,7 +261,7 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataModel = homeworkArray[indexPath.row]
-//
+        //
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "HomeworkViewVC") as? HomeworkViewVC {
             
@@ -264,12 +270,11 @@ class HomeworkListVC: UIViewController , UITableViewDelegate, UITableViewDataSou
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-
 }
 // MARK: - UITableViewDataSource
 extension HomeworkListVC: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-            
+        
         return "HomeworkTCell"
         
     }
@@ -277,4 +282,132 @@ extension HomeworkListVC: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 10
     }
+}
+// MARK: - UICollectionView Delegate
+
+extension HomeworkListVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    // MARK: - Setup UI
+    
+    func setupUI() {
+        
+        //  bgView.layer.cornerRadius = 20
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+        }
+        
+        collectionView.showsHorizontalScrollIndicator = false
+        let formatter = DateFormatter()
+
+        formatter.dateFormat = "MMMM yyyy"
+
+        monthLbl.text = formatter.string(from: Date())
+    }
+    // MARK: - Generate Dates
+        
+    func generateCurrentMonthDates() {
+
+        dateArray.removeAll()
+        let calendar = Calendar.current
+        let today = Date()
+
+        guard let range = calendar.range(of: .day, in: .month, for: today),
+              let monthInterval = calendar.dateInterval(of: .month, for: today) else {
+            return
+        }
+
+        let startDate = monthInterval.start
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateFormat = "E"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d"
+
+        for day in range {
+
+            if let date = calendar.date(byAdding: .day,value: day - 1,to: startDate) {
+
+                let dayName = String(dayFormatter.string(from: date).prefix(1))
+                let dateString = dateFormatter.string(from: date)
+                let isToday = calendar.isDate(date, inSameDayAs: today)
+                let model = DateModel(
+                    dayName: dayName,
+                    date: dateString,
+                    fullDate: date,
+                    isSelected: isToday
+                )
+                dateArray.append(model)
+            }
+        }
+
+        collectionView.reloadData()
+
+        if let todayIndex = dateArray.firstIndex(where: { $0.isSelected }) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.collectionView.scrollToItem(
+                    at: IndexPath(item: todayIndex, section: 0),
+                    at: .centeredHorizontally,animated: true
+                )
+            }
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView,numberOfItemsInSection section: Int) -> Int {
+        
+        return dateArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCCell",for: indexPath) as! DateCCell
+        
+        let dataModel = dateArray[indexPath.row]
+
+        cell.dayLbl.text = dataModel.dayName
+        cell.dateLbl.text = dataModel.date
+        
+        if dataModel.isSelected {
+            
+            cell.bgView.backgroundColor = .themeColor
+            cell.dayLbl.textColor = .white
+            cell.dateLbl.textColor = .white
+            
+        } else {
+            
+            cell.bgView.backgroundColor = .clear
+            cell.dayLbl.textColor = .darkGray
+            cell.dateLbl.textColor = .black
+            
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,didSelectItemAt indexPath: IndexPath) {
+        
+        for index in 0..<dateArray.count {
+            
+            dateArray[index].isSelected = false
+        }
+        
+        dateArray[indexPath.row].isSelected = true
+
+        self.selectedDate = dateArray[indexPath.row].fullDate
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+
+        monthLbl.text = formatter.string(from: self.selectedDate)
+
+        collectionView.reloadData()
+        tableView.reloadData()
+        self.emptyView.isHidden = true
+
+        tableView.isSkeletonable = true
+        self.tableView.showAnimatedGradientSkeleton()
+        getHomeworkData()
+    }
+    
 }

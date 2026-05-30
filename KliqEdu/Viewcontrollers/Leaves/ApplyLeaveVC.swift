@@ -10,21 +10,21 @@ import Alamofire
 import SwiftyJSON
 import SkeletonView
 import CRRefresh
+import DropDown
 
-class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ApplyLeaveVC: UIViewController {
 
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dateWarningLbl: UILabel!
     @IBOutlet weak var leaveModeWarningLbl: UILabel!
     @IBOutlet weak var leaveTypeWarningLbl: UILabel!
     @IBOutlet weak var descWarningLbl: UILabel!
-    
+    @IBOutlet weak var leaveTypeView: UIView!
+    @IBOutlet weak var leaveTypeLbl: UILabel!
+
     @IBOutlet weak var halfdayBtn: UIButton!
     @IBOutlet weak var fulldayBtn: UIButton!
     @IBOutlet weak var submitBtn: UIButton!
-    @IBOutlet weak var durationView: UIView!
-    @IBOutlet weak var durationLbl: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var reasonTextView: UITextView!
     @IBOutlet weak var toDateField: UITextField!
     @IBOutlet weak var fromDateField: UITextField!
@@ -36,28 +36,29 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
     var selectedLeaveTypeId = String()
     var comingFrom = ""
     var leaveDetails = LeaveModel(dictionary: [:])
+    let leaveTypesDropDown = DropDown()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         reasonTextView.setPlaceholder("  Provide a brief reason for your request")
         reasonTextView.setPaddingTextView(12)
-        collectionView.delegate = self
-        collectionView.dataSource = self
         reasonTextView.delegate = self
         fromDateField.delegate = self
         toDateField.delegate = self
-
+        configureLeaveTypesDropDown(types: [])
         dateWarningLbl.hide()
         leaveModeWarningLbl.hide()
         leaveTypeWarningLbl.hide()
         descWarningLbl.hide()
-        durationView.hide()
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.isSkeletonable = true
-        self.collectionView.showAnimatedGradientSkeleton()
         leaveTypesApi()
         fromDateField.inputView = fromDatePicker
         fromDatePicker.addTarget(self, action: #selector(handleFromDatePicker(sender:)), for: .valueChanged)
@@ -87,12 +88,8 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 
             self.reasonTextView.text = leaveDetails?.reason
             self.reasonTextView.setPlaceholder("")
-
-            if let leaveTypeName = leaveDetails?.leave_type {
-                if let matchedLeaveType = self.leaveTypeArray.first(where: { ($0.name ?? "") == leaveTypeName }) {
-                    self.selectedLeaveTypeId = matchedLeaveType.unique_id ?? ""
-                }
-            }
+            self.leaveTypeLbl.text = leaveDetails?.leave_type
+            self.selectedLeaveTypeId = leaveDetails?.unique_id ?? ""
 
             let inputFormatter = DateFormatter()
             inputFormatter.dateFormat = "dd MMM yyyy"
@@ -132,8 +129,7 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
                 self.todatePicker.date = toDate
             }
 
-            self.collectionView.reloadData()
-            self.calculateLeaveDuration()
+       //     self.calculateLeaveDuration()
         }else{
 
             self.titleLbl.text = "Apply Leave"
@@ -155,7 +151,7 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
         fromDateField.text = ValidationClass.convertDateFormat(from: dateFormatter.string(from: sender.date))
         fromDateData = dateFormatter.string(from: sender.date)
         dateWarningLbl.hide()
-        calculateLeaveDuration()
+      //  calculateLeaveDuration()
 
      }
     
@@ -174,7 +170,7 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
         toDateField.text = ValidationClass.convertDateFormat(from: dateFormatter.string(from: sender.date))
         toDateData = dateFormatter.string(from: sender.date)
         dateWarningLbl.hide()
-        calculateLeaveDuration()
+      //  calculateLeaveDuration()
 
      }
     @objc func doneToDatePicker() {
@@ -191,7 +187,7 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
             dateWarningLbl.hide()
         }
 
-        calculateLeaveDuration()
+       // calculateLeaveDuration()
 
         toDateField.resignFirstResponder() // Dismiss the picker
     }
@@ -210,7 +206,7 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
             dateWarningLbl.hide()
         }
 
-        calculateLeaveDuration()
+      //  calculateLeaveDuration()
 
         fromDateField.resignFirstResponder() // Dismiss the picker
     }
@@ -234,19 +230,22 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
     
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction func leaveTypeBtnTapped(_ sender: Any) {
+        leaveTypesDropDown.show()
+    }
     @IBAction func halfDay(_ sender: Any) {
         halfDay = 1
         self.halfdayBtn.isSelected = true
         self.fulldayBtn.isSelected = false
         leaveModeWarningLbl.hide()
-        calculateLeaveDuration()
+       // calculateLeaveDuration()
     }
     @IBAction func fullDay(_ sender: Any) {
         halfDay = 0
         self.halfdayBtn.isSelected = false
         self.fulldayBtn.isSelected = true
         leaveModeWarningLbl.hide()
-        calculateLeaveDuration()
+     //   calculateLeaveDuration()
     }
     @IBAction func submitBtnTapped(_ sender: Any) {
      
@@ -355,32 +354,37 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
 
         return isValid
     }
-    func calculateLeaveDuration() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-
-        guard let fromDate = dateFormatter.date(from: fromDateData),
-              let toDate = dateFormatter.date(from: toDateData) else {
-            durationView.hide()
-            durationLbl.text = "0 Days"
-            return
+    
+    func configureLeaveTypesDropDown(types: [[String: Any]]) {
+        
+        leaveTypesDropDown.anchorView = leaveTypeView
+        leaveTypesDropDown.bottomOffset = CGPoint(x: 0, y: leaveTypeView.bounds.height)
+        leaveTypesDropDown.direction = .any
+        leaveTypesDropDown.backgroundColor = .white
+        leaveTypesDropDown.cellHeight = 48
+        leaveTypesDropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 15)!
+        leaveTypesDropDown.selectionBackgroundColor = .themeLite1
+        leaveTypesDropDown.separatorColor = UIColor.systemGray5
+        
+        // Extract labels for dropdown
+        let dropdownValues = types.map {
+            $0["name"] as? String ?? "-"
         }
-
-        durationView.unhide()
-
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: fromDate, to: toDate)
-        let totalDays = (components.day ?? 0) + 1
-
-        if totalDays > 0 {
-            if (halfDay != 0) {
-                durationLbl.text = "\(Double(totalDays) - 0.5) Day"
-            } else {
-                durationLbl.text = totalDays == 1 ? "1 Day" : "\(totalDays) Days"
-            }
-        } else {
-            durationView.hide()
-            durationLbl.text = "0 Days"
+        
+        leaveTypesDropDown.dataSource = dropdownValues
+        leaveTypesDropDown.reloadAllComponents()
+        
+        leaveTypesDropDown.selectionAction = { [weak self] index, item in
+            guard let self = self else { return }
+            
+            let selectedGradeData = types[index]
+            let label = selectedGradeData["name"] as? String ?? "-"
+            let value = selectedGradeData["unique_id"] as? String ?? ""
+            
+            self.leaveTypeLbl.text = label
+            self.leaveTypeWarningLbl.hide()
+            self.selectedLeaveTypeId = value
+            print("Selected grade:", label, value)
         }
     }
     //API calls
@@ -398,9 +402,7 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
                     if key == "leaveTypesUrl"{
                         
                         let resDataDic = result?["data"] as? NSDictionary
-                        
-                        self.collectionView.hideSkeleton()
-                        
+                                                
                         let listArray = resDataDic?["leave_types"] as? Array<Dictionary<String,Any>> ?? []
                         
                         // Only clear the array if `skip` is 0, otherwise append
@@ -410,14 +412,23 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
                                 self.leaveTypeArray.append(model)
                             }
                         }
+                        let leaveTypesDictArray = self.leaveTypeArray.map {
+                            [
+                                "name": $0.name ?? "",
+                                "unique_id": $0.unique_id ?? ""
+                            ]
+                        }
+
+                        self.configureLeaveTypesDropDown(types: leaveTypesDictArray)
+
                         if self.comingFrom == "edit" {
                             if let leaveTypeName = self.leaveDetails?.leave_type {
                                 if let matchedLeaveType = self.leaveTypeArray.first(where: { ($0.name ?? "") == leaveTypeName }) {
                                     self.selectedLeaveTypeId = matchedLeaveType.unique_id ?? ""
+                                    self.leaveTypeLbl.text = matchedLeaveType.name
                                 }
                             }
                         }
-                        self.collectionView.reloadData()
                     }else if key == "createLeaveUrl"{
                         
                         self.submitBtn?.hideButtonLoading()
@@ -433,8 +444,8 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
             }  else {
                 self.submitBtn?.hideButtonLoading()
 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
                     
@@ -453,51 +464,7 @@ class ApplyLeaveVC: UIViewController,UICollectionViewDelegate, UICollectionViewD
             debugPrint(error)
         }
     }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return leaveTypeArray.count
-    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 110, height: 100)
-//    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LeaveTypeCCell", for: indexPath) as? LeaveTypeCCell {
-            let dataModel = leaveTypeArray[indexPath.row]
-            
-            cell.setBorderProperties(borderColor: .systemGray5, borderWidth: 0.8, cornerRadius: 10.0, masksToBounds: true)
-            cell.backgroundColor = .white
-            cell.typeLbl.textColor = .label
-            cell.typeLbl.text = dataModel.name
-
-            if dataModel.unique_id == selectedLeaveTypeId {
-                cell.setBorderProperties(borderColor: .theme, borderWidth: 1.5, cornerRadius: 10.0, masksToBounds: true)
-                cell.backgroundColor = UIColor.theme.withAlphaComponent(0.1)
-                cell.typeLbl.textColor = .theme
-            }
-            
-            return cell
-        } else {
-            
-            return UICollectionViewCell()
-        }
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let dataModel = leaveTypeArray[indexPath.row]
-        selectedLeaveTypeId = dataModel.unique_id ?? ""
-
-        leaveTypeWarningLbl.hide()
-        collectionView.reloadData()
-    }
+   
 }
 extension ApplyLeaveVC: UITextViewDelegate, UITextFieldDelegate {
 
@@ -535,15 +502,5 @@ extension ApplyLeaveVC: UITextViewDelegate, UITextFieldDelegate {
             return updatedText.count <= 500
         }
         return true
-    }
-}
-extension ApplyLeaveVC: SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        
-            return "LeaveTypeCCell"
-        
-    }
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
     }
 }

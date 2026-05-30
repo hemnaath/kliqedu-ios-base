@@ -25,6 +25,9 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
     var allItemsLoaded = false
     var page = 1
     var isLoadingData = false
+
+    var filters: [String: Any] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
@@ -71,17 +74,23 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
     }
 
     @IBAction func filterBtnTapped(_ sender: Any) {
-        self.tabBarController?.tabBar.isHidden = true
 
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC {
             
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .coverVertical   // animation
-            vc.onDismiss = { [weak self] in
-                   self?.tabBarController?.tabBar.isHidden = false
-               }
-    
+            vc.comingFor = "StudentList"
+            vc.appliedFilters = self.filters
+            
+            vc.onApplyFilter = { filters in
+                
+                print(filters)
+        
+                self.filters = filters
+                
+                self.getStudentsData()
+            }
             present(vc, animated: true)
         }
     }
@@ -115,9 +124,9 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         let param = [
             "page": page,
             "search": (self.searchBar.text ?? "").trimString(),
-            "grade_id": "",
-            "section_id": "",
-            "group_id": ""
+            "grade_id": filters["grade_id"] ?? "",
+            "section_id": filters["section_id"] ?? "",
+            "group_id": filters["group_id"] ?? ""
         ] as [String : Any]
         
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
@@ -157,23 +166,48 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
                         }
                         
                         DispatchQueue.main.async {
+                            
                             if self.studentsArray.count > 0 {
+                                
                                 self.tableView.isHidden = false
                                 self.emptyView.isHidden = true
                                 self.searchBar.isHidden = false
-
+                                self.filterBtn.isHidden = false
+                                
                             } else {
                                 
                                 self.tableView.isHidden = true
                                 self.emptyView.isHidden = false
-                                if let text = self.searchBar.text, !text.trimmingCharacters(in: .whitespaces).isEmpty {
+                                
+                                let hasFilter =
+                                !(self.filters["grade_id"] as? String ?? "").isEmpty ||
+                                !(self.filters["section_id"] as? String ?? "").isEmpty ||
+                                !(self.filters["group_id"] as? String ?? "").isEmpty
+                                
+                                if hasFilter {
+                                    
+                                    // show filter button when filtered result is empty
+                                    self.filterBtn.isHidden = false
                                     self.searchBar.isHidden = false
-                                }else{
-                                    self.searchBar.isHidden = true
+                                    
+                                } else {
+                                    
+                                    // first time no data
+                                    self.filterBtn.isHidden = true
+                                    
+                                    if let text = self.searchBar.text,
+                                       !text.trimmingCharacters(in: .whitespaces).isEmpty {
+                                        
+                                        self.searchBar.isHidden = false
+                                        
+                                    } else {
+                                        
+                                        self.searchBar.isHidden = true
+                                    }
                                 }
                             }
+                            
                             self.tableView.reloadData()
-                              
                         }
                         // Increment skip value for the next batch of data
                         if listArray.count == 0 {
@@ -189,8 +223,8 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
@@ -223,7 +257,7 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         let dataModel = studentsArray[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "StudentListTCell", for: indexPath as IndexPath) as? StudentListTCell {
            // cell.studentPic.image = UIImage(named: imageArray[indexPath.row])
-            cell.studentNameLbl.text = dataModel.full_name
+            cell.studentNameLbl.text = (dataModel.full_name)?.firstUppercased
             cell.classLbl.text = dataModel.studentClass
             cell.idNumberLbl.text = dataModel.unique_id
             
@@ -278,7 +312,13 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
             if offsetY > contentHeight - height * 2 {
                 
                 if !isLoadingData && !allItemsLoaded {
-                    let param = ["page":page] as [String : Any]
+                    let param = [
+                        "page": page,
+                        "search": (self.searchBar.text ?? "").trimString(),
+                        "grade_id": filters["grade_id"] ?? "",
+                        "section_id": filters["section_id"] ?? "",
+                        "group_id": filters["group_id"] ?? ""
+                    ] as [String : Any]
                     
                     let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
                     

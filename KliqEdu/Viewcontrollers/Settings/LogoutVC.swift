@@ -75,7 +75,7 @@ class LogoutVC: UIViewController {
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 self.logoutBtn?.hideButtonLoading()
 

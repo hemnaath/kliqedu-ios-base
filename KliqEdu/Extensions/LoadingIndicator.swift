@@ -14,43 +14,42 @@ class LoadingIndicator:NSObject{
     static var close: (() -> Void)? = {}
     static var backgroundView:UIView = {
         let sView = UIView()
+        sView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        return sView
+    }()
+    
+    static var contentView:LottieAnimationView = {
+        let sView = LottieAnimationView(name: "loading")
+        sView.loopMode = .loop
+        sView.translatesAutoresizingMaskIntoConstraints = false
         sView.backgroundColor = UIColor.clear
         return sView
     }()
     
-//    static var contentView:LottieAnimationView = {
-//        let sView = LottieAnimationView(name: "loading")
-//        sView.loopMode = .loop
-//        sView.translatesAutoresizingMaskIntoConstraints = false
-//        sView.backgroundColor = UIColor.clear
-//        return sView
-//    }()
-    
-//    static func frameSetup(){
-//        let window = UIApplication.shared.windows.first { $0.isKeyWindow }
-//        contentView.widthAnchor.constraint(equalTo: window!.widthAnchor, multiplier: 0.4).isActive = true
-//        contentView.heightAnchor.constraint(greaterThanOrEqualTo: window!.widthAnchor, multiplier: 0.4).isActive = true
-//        contentView.centerYAnchor.constraint(equalTo: window!.centerYAnchor).isActive = true
-//        contentView.centerXAnchor.constraint(equalTo: window!.centerXAnchor).isActive = true
-//    }
+    static func frameSetup(){
+        let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+        contentView.widthAnchor.constraint(equalTo: window!.widthAnchor, multiplier: 0.4).isActive = true
+        contentView.heightAnchor.constraint(greaterThanOrEqualTo: window!.widthAnchor, multiplier: 0.4).isActive = true
+        contentView.centerYAnchor.constraint(equalTo: window!.centerYAnchor).isActive = true
+        contentView.centerXAnchor.constraint(equalTo: window!.centerXAnchor).isActive = true
+    }
     
     static func show() {
         DispatchQueue.main.async {
             let window = UIApplication.shared.windows.first { $0.isKeyWindow }
-          //  contentView.play()
+            contentView.play()
             backgroundView.frame = window!.bounds
-          //  backgroundView.addSubview(contentView)
+            backgroundView.addSubview(contentView)
             window!.addSubview(backgroundView)
-           // frameSetup()
+            frameSetup()
         }
     }
     
     static func hide() {
         DispatchQueue.main.async {
-//            contentView.stop()
-//            contentView.removeFromSuperview()
+            contentView.stop()
+            contentView.removeFromSuperview()
             backgroundView.removeFromSuperview()
         }
     }
 }
-

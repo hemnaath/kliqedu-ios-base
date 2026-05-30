@@ -21,7 +21,7 @@ class OTPVC: UIViewController,UITextFieldDelegate {
     
     var dictLocal = Dictionary<String, Any>()
     let defaults = UserDefaults.standard
-    var emailId = ""
+    var emailId = String()
     var dict : [String : AnyObject]!
     var secondsRemaining = 15
     var comingFrom = ""
@@ -58,6 +58,11 @@ class OTPVC: UIViewController,UITextFieldDelegate {
         self.submitBtn.isEnabled = false
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // if you already applied gradient before, make sure it matches final size
@@ -68,8 +73,7 @@ class OTPVC: UIViewController,UITextFieldDelegate {
     }
     @IBAction func resendOTPTapped(_ sender: Any) {
         
-        let param = ["email": defaults.value(forKey: Constants.Keys.emailIdKey) ?? "",
-                     "role": defaults.value(forKey: Constants.Keys.roleKey) ?? ""] as [String : Any]
+        let param = ["email": emailId] as [String : Any]
         self.callServiceMethod(service: Constants.Urls.verifyEmailResendUrl,method: .post, params: param, key: "verifyEmailResendUrl", headers: [:])
         
     }
@@ -86,9 +90,8 @@ class OTPVC: UIViewController,UITextFieldDelegate {
             self.submitBtn.isEnabled = true
 
             let param =
-            ["email" : defaults.value(forKey: Constants.Keys.emailIdKey) ?? "",
-             "otp" : txtDPOTPView.text ?? "",
-             "role": defaults.value(forKey: Constants.Keys.roleKey) ?? ""] as [String : Any]
+            ["email" : emailId,
+             "otp" : txtDPOTPView.text ?? ""] as [String : Any]
             
             self.callServiceMethod(service: Constants.Urls.verifyEmailUrl,method: .post, params: param, key: "verifyEmailUrl", headers: [:])
             
@@ -125,12 +128,113 @@ class OTPVC: UIViewController,UITextFieldDelegate {
                     }
                 } else if key == "verifyEmailUrl" {
                     
-                    self.dict = result!["data"] as? Dictionary
-                    
+                    let data = result?["data"] as? [String: Any] ?? [:]
+
                     self.submitBtn?.hideButtonLoading()
                     
                     let msg = result!["message"] as? String ?? ""
                     self.showAnimatedToast(message: msg)
+                    
+                    let defaults = UserDefaults.standard
+
+                    // MARK: - Main User Data
+
+                    let token = data["access_token"] as? String ?? ""
+                    let apiKey = data["api_key"] as? String ?? ""
+                    let saltKey = data["salt_key"] as? String ?? ""
+                    let privateKey = data["private_key"] as? String ?? ""
+
+                    let email = data["email"] as? String ?? ""
+                    let role = data["role"] as? String ?? ""
+                    let emailStatus = data["email_status"] as? Int ?? 0
+
+                    // MARK: - Permissions
+
+                    let permissions = data["permissions"] as? [String: Any] ?? [:]
+                    let dashboardPermission = permissions["dashboard"] as? Bool ?? false
+                    let teacherPermission = permissions["teacher"] as? Bool ?? false
+                    let feesPermission = permissions["fees"] as? Bool ?? false
+                    let homeworkPermission = permissions["homework"] as? Bool ?? false
+                    let leavePermission = permissions["leave"] as? Bool ?? false
+                    let announcementsPermission = permissions["announcements"] as? Bool ?? false
+                    let holidayPermission = permissions["holiday"] as? Bool ?? false
+                    let settingsPermission = permissions["settings"] as? Bool ?? false
+
+                    // MARK: - Children Data
+
+                    let children = data["children"] as? [[String: Any]] ?? []
+                    // Store complete children array
+                    if let childrenData = try? JSONSerialization.data(withJSONObject: children, options: []) {
+                        defaults.set(childrenData, forKey: Constants.Keys.childrenArrayKey)
+                    }
+                    let firstChild = children.first ?? [:]
+                    let firstName = firstChild["firstname"] as? String ?? ""
+                    let lastName = firstChild["lastname"] as? String ?? ""
+                    let joinDate = firstChild["join_date"] as? String ?? ""
+                    let dob = firstChild["dob"] as? String ?? ""
+                    let gender = firstChild["gender"] as? Int ?? 0
+                    let parentId = firstChild["parent_id"] as? String ?? ""
+                    let gradeId = firstChild["grade_id"] as? String ?? ""
+                    let sectionId = firstChild["section_id"] as? String ?? ""
+                    let groupId = firstChild["group_id"] as? String ?? ""
+                    let bloodGroup = firstChild["blood_group"] as? String ?? ""
+                    let status = firstChild["status"] as? Int ?? 0
+                    let age = firstChild["age"] as? Int ?? 0
+                    let picture = firstChild["picture"] as? String ?? ""
+                    let orgId = firstChild["org_id"] as? String ?? ""
+                    let religion = firstChild["religion"] as? String ?? ""
+                    let caste = firstChild["caste"] as? String ?? ""
+                    let createdAt = firstChild["createdAt"] as? String ?? ""
+                    let updatedAt = firstChild["updatedAt"] as? String ?? ""
+                    let uniqueId = firstChild["unique_id"] as? String ?? ""
+                    let rollNumber = firstChild["roll_number"] as? String ?? ""
+
+                    // MARK: - Save to UserDefaults
+
+                    defaults.set(token, forKey: Constants.Keys.accessTokenKey)
+                    defaults.set(apiKey, forKey: Constants.Keys.apiKey)
+                    defaults.set(saltKey, forKey: Constants.Keys.saltKey)
+                    defaults.set(privateKey, forKey: Constants.Keys.private_key)
+
+                    defaults.set(email, forKey: Constants.Keys.emailIdKey)
+                    defaults.set(role, forKey: Constants.Keys.roleKey)
+                    defaults.set(emailStatus, forKey: Constants.Keys.email_statusKey)
+
+                    defaults.set(firstName, forKey: Constants.Keys.firstNameKey)
+                    defaults.set(lastName, forKey: Constants.Keys.lastNameKey)
+                    defaults.set(joinDate, forKey: Constants.Keys.joinDateKey)
+                    defaults.set(dob, forKey: Constants.Keys.dobKey)
+                    defaults.set(gender, forKey: Constants.Keys.gender)
+                    defaults.set(parentId, forKey: Constants.Keys.parentIdKey)
+                    defaults.set(gradeId, forKey: Constants.Keys.gradeIdKey)
+                    defaults.set(sectionId, forKey: Constants.Keys.sectionIdKey)
+                    defaults.set(groupId, forKey: Constants.Keys.groupIdKey)
+                    defaults.set(bloodGroup, forKey: Constants.Keys.bloodGroupKey)
+                    defaults.set(status, forKey: Constants.Keys.statusKey)
+                    defaults.set(age, forKey: Constants.Keys.ageKey)
+                    defaults.set(picture, forKey: Constants.Keys.userPicKey)
+                    defaults.set(orgId, forKey: Constants.Keys.orgIdKey)
+                    defaults.set(religion, forKey: Constants.Keys.religionKey)
+                    defaults.set(caste, forKey: Constants.Keys.casteKey)
+                    defaults.set(createdAt, forKey: Constants.Keys.createdAtKey)
+                    defaults.set(updatedAt, forKey: Constants.Keys.updatedAtKey)
+                    defaults.set(uniqueId, forKey: Constants.Keys.userUniqueIdKey)
+                    defaults.set(rollNumber, forKey: Constants.Keys.rollNumberKey)
+
+                    defaults.set(dashboardPermission, forKey: Constants.Keys.dashboardPermissionKey)
+                    defaults.set(teacherPermission, forKey: Constants.Keys.teacherPermissionKey)
+                    defaults.set(feesPermission, forKey: Constants.Keys.feesPermissionKey)
+                    defaults.set(homeworkPermission, forKey: Constants.Keys.homeworkPermissionKey)
+                    defaults.set(leavePermission, forKey: Constants.Keys.leavePermissionKey)
+                    defaults.set(announcementsPermission, forKey: Constants.Keys.announcementsPermissionKey)
+                    defaults.set(holidayPermission, forKey: Constants.Keys.holidayPermissionKey)
+                    defaults.set(settingsPermission, forKey: Constants.Keys.settingsPermissionKey)
+
+                    print("RJemail: \(defaults.string(forKey: Constants.Keys.emailIdKey) ?? ""),role: \(defaults.string(forKey: Constants.Keys.roleKey) ?? ""),userId: \(defaults.string(forKey: Constants.Keys.userIdKey) ?? "")")
+                    
+                    // Save children count
+                    defaults.set(children.count, forKey: Constants.Keys.childrenCountKey)
+                    defaults.synchronize()
                     //self.navigationController?.popViewController(animated: true)
                     let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
                     if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
@@ -143,8 +247,8 @@ class OTPVC: UIViewController,UITextFieldDelegate {
             else{
                 self.submitBtn?.hideButtonLoading()
                 
-                let msg = result!["error"] as? String ?? ""
-                if result!["error_code"] as? Int ?? 0 == 101 {
+                let msg = result!["message"] as? String ?? ""
+                if result!["status_code"] as? Int ?? 0 == 101 {
                     self.showAnimatedToast(message: msg)
                     
                 }else{

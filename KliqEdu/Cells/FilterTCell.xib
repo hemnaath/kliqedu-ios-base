@@ -27,7 +27,7 @@
                         <rect key="frame" x="10" y="5" width="319" height="51"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InE-mw-s7z">
-                                <rect key="frame" x="8" y="13.333333333333334" width="7.3333333333333321" height="24.333333333333329"/>
+                                <rect key="frame" x="8" y="13.333333333333334" width="260" height="24.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,6 +50,9 @@
                                 <state key="selected" image="circle.inset.filled" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -58,6 +61,7 @@
                             <constraint firstAttribute="bottom" secondItem="InE-mw-s7z" secondAttribute="bottom" constant="13.33" id="8U3-LT-LP7"/>
                             <constraint firstAttribute="trailing" secondItem="swZ-oT-sPA" secondAttribute="trailing" constant="16" id="NDd-cr-kmE"/>
                             <constraint firstItem="InE-mw-s7z" firstAttribute="leading" secondItem="kDQ-hi-FYE" secondAttribute="leading" constant="8" id="dZU-pd-kup"/>
+                            <constraint firstItem="swZ-oT-sPA" firstAttribute="leading" secondItem="InE-mw-s7z" secondAttribute="trailing" constant="10" id="ma7-Gt-uwf"/>
                             <constraint firstItem="InE-mw-s7z" firstAttribute="centerY" secondItem="kDQ-hi-FYE" secondAttribute="centerY" id="oW2-QA-45v"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

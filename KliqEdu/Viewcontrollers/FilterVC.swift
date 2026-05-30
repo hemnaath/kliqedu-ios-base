@@ -57,8 +57,13 @@ class FilterVC: UIViewController {
     var selectedGradeId = ""
     var selectedSectionId = ""
     var selectedGroupId = ""
-    var onDismiss: (() -> Void)?
     
+var comingFor = ""
+
+var onDismiss: (() -> Void)?
+
+var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
+    var appliedFilters: [String: Any] = [:]
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -69,10 +74,11 @@ class FilterVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.view.backgroundColor = .clear
-        emptyView.isHidden = true
+
         tableView.isHidden = false
         dateOuterView.isHidden = true
-
+        handleFilterVisibility()
+        setPreviousSelectedFilters()
         self.delay(bySeconds: 0.25) { [weak self] in
             guard let self = self else { return }
             
@@ -80,15 +86,27 @@ class FilterVC: UIViewController {
                 self.view.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.5)
             }
         }
-        gradesApi()
-        sectionsApi()
-        groupsApi()
+       
+        if roleKey == "parent"{
+            
+        }else{
+            tableView.isSkeletonable = true
+            self.tableView.showAnimatedGradientSkeleton()
+            gradesApi()
+            sectionsApi()
+            groupsApi()
+        }
+       
         tableView.separatorStyle = .none
         let nib = UINib(nibName: "FilterTCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FilterTCell")
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        emptyView.isHidden = true
+
+    }
     func gradesApi(){
         
         let param = [:] as [String : Any]
@@ -129,6 +147,7 @@ class FilterVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "gradesUrl" {
+                        self.tableView.hideSkeleton()
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary,
                            let grades = dataList.value(forKey: "grades") as? [[String: Any]] {
@@ -138,6 +157,9 @@ class FilterVC: UIViewController {
                             for item in grades {
                                 let model = GradeSectionModel(dictionary: item as NSDictionary)
                                 self.gradeArray.append(model!)
+                                if model?.unique_id == self.selectedGradeId {
+                                    self.selectedGrade = model?.name ?? ""
+                                }
                             }
 
                             DispatchQueue.main.async {
@@ -149,6 +171,7 @@ class FilterVC: UIViewController {
                         }
 
                     } else if key == "sectionsUrl" {
+                        self.tableView.hideSkeleton()
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary,
                            let sections = dataList.value(forKey: "sections") as? [[String: Any]] {
@@ -158,6 +181,9 @@ class FilterVC: UIViewController {
                             for item in sections {
                                 let model = GradeSectionModel(dictionary: item as NSDictionary)
                                 self.sectionListArray.append(model!)
+                                if model?.unique_id == self.selectedSectionId {
+                                    self.selectedSection = model?.name ?? ""
+                                }
                             }
 
                             DispatchQueue.main.async {
@@ -169,6 +195,7 @@ class FilterVC: UIViewController {
                         }
 
                     } else if key == "groupsUrl" {
+                        self.tableView.hideSkeleton()
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary,
                            let groups = dataList.value(forKey: "groups") as? [[String: Any]] {
@@ -178,6 +205,9 @@ class FilterVC: UIViewController {
                             for item in groups {
                                 let model = GradeSectionModel(dictionary: item as NSDictionary)
                                 self.groupListArray.append(model!)
+                                if model?.unique_id == self.selectedGroupId {
+                                    self.selectedGroup = model?.name ?? ""
+                                }
                             }
 
                             DispatchQueue.main.async {
@@ -194,7 +224,7 @@ class FilterVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
@@ -221,7 +251,71 @@ class FilterVC: UIViewController {
         updateButtons()
         
     }
-    
+
+    func handleFilterVisibility() {
+        
+        gradeView.isHidden = true
+        sectionView.isHidden = true
+        groupView.isHidden = true
+        statusView.isHidden = true
+        dateView.isHidden = true
+        
+        switch comingFor {
+            
+        case "Homework":
+            gradeView.isHidden = false
+            selectedType = "Grade"
+            
+        case "Fees", "Leaves":
+            statusView.isHidden = false
+            selectedType = "Status"
+            
+        case "StudentList":
+            gradeView.isHidden = false
+            sectionView.isHidden = false
+            groupView.isHidden = false
+            selectedType = "Grade"
+            
+        default:
+            gradeView.isHidden = false
+            selectedType = "Grade"
+        }
+        
+        updateButtons()
+        updateEmptyView()
+    }
+    func setPreviousSelectedFilters() {
+        
+        if let gradeId = appliedFilters["grade_id"] as? String {
+            selectedGradeId = gradeId
+        }
+        
+        if let sectionId = appliedFilters["section_id"] as? String {
+            selectedSectionId = sectionId
+        }
+        
+        if let groupId = appliedFilters["group_id"] as? String {
+            selectedGroupId = groupId
+        }
+        
+        if let status = appliedFilters["status"] as? Int {
+            
+            switch status {
+                
+            case 0:
+                selectedStatus = "Pending"
+                
+            case 1:
+                selectedStatus = "Approved"
+                
+            case 2:
+                selectedStatus = "Failed"
+                
+            default:
+                break
+            }
+        }
+    }
     // MARK: - Update Button UI
     
     func updateButtons() {
@@ -235,6 +329,11 @@ class FilterVC: UIViewController {
         
         buttonBgView.forEach {
             $0?.backgroundColor = .themeLite
+        }
+
+        buttonBgView.forEach {
+            $0?.layer.borderWidth = 0
+            $0?.layer.borderColor = UIColor.clear.cgColor
         }
 
         // Hide all badges first
@@ -347,7 +446,11 @@ class FilterVC: UIViewController {
         selectedGradeId = ""
         selectedSectionId = ""
         selectedGroupId = ""
-        
+
+        onApplyFilter?([:])
+        self.dismiss(animated: true) {
+            self.onDismiss?()
+        }
         tableView.reloadData()
     }
     
@@ -358,6 +461,40 @@ class FilterVC: UIViewController {
         print("Selected Group:", selectedGroup)
         print("Selected Group Id:", selectedGroupId)
         print("Selected Status:", selectedStatus)
+        
+        var filters: [String: Any] = [:]
+        
+        if !selectedGradeId.isEmpty {
+            filters["grade_id"] = selectedGradeId
+        }
+        
+        if !selectedSectionId.isEmpty {
+            filters["section_id"] = selectedSectionId
+        }
+        
+        if !selectedGroupId.isEmpty {
+            filters["group_id"] = selectedGroupId
+        }
+        
+        if !selectedStatus.isEmpty {
+            
+            switch selectedStatus.lowercased() {
+                
+            case "pending":
+                filters["status"] = 0
+                
+            case "approved", "success":
+                filters["status"] = 1
+                
+            case "failed", "rejected":
+                filters["status"] = 2
+                
+            default:
+                break
+            }
+        }
+        
+        onApplyFilter?(filters)
         
         dismiss(animated: true)
     }
@@ -523,6 +660,6 @@ extension FilterVC: SkeletonTableViewDataSource {
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 5
+        return 3
     }
 }

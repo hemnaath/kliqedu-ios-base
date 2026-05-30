@@ -63,6 +63,11 @@ class StudentInfoVC: UIViewController {
         startViewAnimation()
         getStudentInfoApi()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     func startViewAnimation()  {
         studentPicture.showSkeleton(cornerRadius: 10)
         nameLbl.hideSkeleton()
@@ -174,7 +179,7 @@ class StudentInfoVC: UIViewController {
                                let lastName = dataList["lastname"] as? String ?? ""
                                let fullName = "\(firstName) \(lastName)"
 
-                               self.nameLbl.text = fullName
+                                self.nameLbl.text = (fullName).firstUppercased
                                self.gradeLbl.text = dataList["grade_formatted"] as? String ?? "-"
                                self.gradeLbl1.text = dataList["grade_formatted"] as? String ?? "-"
                                self.idLbl.text = dataList["unique_id"] as? String ?? "-"
@@ -186,8 +191,8 @@ class StudentInfoVC: UIViewController {
                                self.bgLbl.text = dataList["blood_group"] as? String ?? "-"
                                self.religionLbl.text = dataList["religion"] as? String ?? "-"
                                self.addressLbl.text = dataList["parent_address"] as? String ?? "-"
-                               self.fatherNameLbl.text = dataList["father_name"] as? String ?? "-"
-                               self.motherNameLbl.text = dataList["mother_name"] as? String ?? "-"
+                               self.fatherNameLbl.text = (dataList["father_name"] as? String ?? "-")?.firstUppercased
+                               self.motherNameLbl.text = (dataList["mother_name"] as? String ?? "-")?.firstUppercased
                                self.fatherMobile = dataList["father_mobile"] as? String ?? ""
                                self.motherMobile = dataList["mother_mobile"] as? String ?? ""
                                 self.fatherOccupationLbl.text = "Father / \(dataList["father_occupation"] as? String ?? "-")"
@@ -226,7 +231,7 @@ class StudentInfoVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

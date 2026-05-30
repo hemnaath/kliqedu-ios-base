@@ -50,4 +50,46 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
             }
         }
     }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+
+        guard let index = viewControllers?.firstIndex(of: viewController) else {
+            return true
+        }
+
+        switch index {
+
+        case 1:
+            // Homework
+            let homeworkPermission = defaults.value(forKey: Constants.Keys.homeworkPermissionKey) as? Bool ?? false
+
+            if !homeworkPermission {
+                self.showAnimatedToast(message: "You don't have permission to access this page", type: .warning)
+                return false
+            }
+
+        case 2:
+            // Leave
+            let leavePermission = defaults.value(forKey: Constants.Keys.leavePermissionKey) as? Bool ?? false
+
+            if !leavePermission {
+                self.showAnimatedToast(message: "You don't have permission to access this page", type: .warning)
+                return false
+            }
+
+        case 3:
+            // Settings
+            let settingsPermission = defaults.value(forKey: Constants.Keys.settingsPermissionKey) as? Bool ?? false
+
+            if !settingsPermission {
+                self.showAnimatedToast(message: "You don't have permission to access this page", type: .warning)
+                return false
+            }
+
+        default:
+            break
+        }
+
+        return true
+    }
 }

@@ -59,7 +59,7 @@ extension UITextView{
             let label = UILabel()
             label.numberOfLines = 0
             // Apply custom font if available, else fallback
-            label.font = self.font ?? UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayRegular, size: 20) ?? UIFont.systemFont(ofSize: 20)
+            label.font = self.font ?? UIFont(name: GLOBAL.FontsIdentifier.FontRegular, size: 20) ?? UIFont.systemFont(ofSize: 20)
             label.textColor = color
             label.translatesAutoresizingMaskIntoConstraints = false
             addSubview(label)

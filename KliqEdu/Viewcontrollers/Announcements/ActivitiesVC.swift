@@ -162,8 +162,8 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false

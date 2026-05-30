@@ -12,6 +12,7 @@ import SwiftyJSON
 
 class ProfileVC: UIViewController {
 
+    @IBOutlet weak var placeHolderNameLbl: UILabel!
     @IBOutlet weak var empIdLbl: UILabel!
     @IBOutlet weak var deptLbl: UILabel!
     @IBOutlet weak var joinedDateLbl: UILabel!
@@ -37,6 +38,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var empDetailsBtn: UIButton!
     @IBOutlet weak var personalDetailsBtn: UIButton!
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profileContainerView: UIView!
     
     var profileDetails: ProfileModel?
     var selectedImage1 = UIImage()
@@ -48,14 +50,17 @@ class ProfileVC: UIViewController {
         
         self.positionLbl.layer.cornerRadius = 17.5
         self.positionLbl.layer.masksToBounds = true
+        self.placeHolderNameLbl.layer.cornerRadius = 25
+        self.placeHolderNameLbl.layer.masksToBounds = true
         
         empDetailsBtn.setTitleAndBgColor(titleColor: .theme, bgColor: .white)
         personalDetailsBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
         self.personalView.isHidden = true
         self.empView.isHidden = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(labelAction(gesture:)))
-        profilePicture.isUserInteractionEnabled = true
-        profilePicture.addGestureRecognizer(tap)
+        profileContainerView.isUserInteractionEnabled = true
+        profileContainerView.addGestureRecognizer(tap)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,6 +68,11 @@ class ProfileVC: UIViewController {
         startViewAnimation()
         profileApi()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     @IBAction func backBtnTapped(_ sender: Any) {
     
         self.navigationController?.popViewController(animated: true)
@@ -81,9 +91,9 @@ class ProfileVC: UIViewController {
     }
     func startViewAnimation()  {
         profilePicture.showSkeleton(cornerRadius: 25)
-        positionLbl.showSkeleton(cornerRadius: 17.5)
+        placeHolderNameLbl.showSkeleton(cornerRadius: 25)
         empIdLbl.showSkeleton(cornerRadius: 0)
-        nameLbl.showSkeleton(cornerRadius: 0)
+       // nameLbl.showSkeleton(cornerRadius: 0)
         deptLbl.showSkeleton(cornerRadius: 0)
         joinedDateLbl.showSkeleton(cornerRadius: 0)
         totalExpLbl.showSkeleton(cornerRadius: 0)
@@ -92,8 +102,8 @@ class ProfileVC: UIViewController {
     }
     func stopViewAnimation()  {
         profilePicture.hideSkeleton()
-        positionLbl.hideSkeleton()
-        nameLbl.hideSkeleton()
+        placeHolderNameLbl.hideSkeleton()
+       // nameLbl.hideSkeleton()
         empIdLbl.hideSkeleton()
         deptLbl.hideSkeleton()
         joinedDateLbl.hideSkeleton()
@@ -190,11 +200,13 @@ class ProfileVC: UIViewController {
         }
     }
     func removeProfilePic() {
-        let param = [:] as [String : Any]
+        let param = ["module":"teacher_profile",
+                     "unique_id": profileDetails?.unique_id ?? "",
+                     "action":"delete"] as [String : Any]
         
-        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/profile",params: param,HTTPMethod: .get)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/file",params: param,HTTPMethod: .post)
 
-        self.callServiceMethod(service: Constants.Urls.removeProfilePicUrl,method: .delete, params: param, key: "removeProfilePicUrl", headers: headers)
+        self.callServiceMethod(service: Constants.Urls.teacherUploadFileUrl,method: .post, params: param, key: "removeProfilePicUrl", headers: headers)
 
     }
     func imagePickerController(_ picker: UIImagePickerController,
@@ -218,8 +230,7 @@ class ProfileVC: UIViewController {
         let orderedParams: [(String, Any)] = [
             ("module", "teacher_profile"),
             ("unique_id", profileDetails?.unique_id ?? ""),
-            ("action", "update")
-        ]
+            ("action", "update")]
 
         // Convert tuple array to dictionary for signature
         let params = Dictionary(uniqueKeysWithValues: orderedParams)
@@ -227,16 +238,16 @@ class ProfileVC: UIViewController {
         let (headers, _) = APIHelper.createHeadersAndSignature(
             endpoint: "/file",
             params: params,
-            HTTPMethod: .put
+            HTTPMethod: .post
         )
 
         AlamofireHC.requestUploadWithImage(
-            Constants.Urls.editProfilePicUrl,
+            Constants.Urls.teacherUploadFileUrl,
             image: image,
             orderedParams: orderedParams,
             imageParam: "file",
             headers: headers,
-            method: .put,
+            method: .post,
             success: { response in
 
                 let result = response.dictionaryObject
@@ -252,8 +263,8 @@ class ProfileVC: UIViewController {
 
                 } else {
 
-                    let errorCode: Int = result?["error_code"] as? Int ?? 0
-                    let msg = result?["error"] as? String ?? ""
+                    let errorCode: Int = result?["status_code"] as? Int ?? 0
+                    let msg = result?["message"] as? String ?? ""
 
                     if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
 
@@ -297,7 +308,7 @@ class ProfileVC: UIViewController {
                             let firstName = self.profileDetails?.firstname ?? ""
                             let lastName = self.profileDetails?.lastname ?? ""
                             
-                            self.nameLbl.text = "\(firstName) \(lastName)"
+                            self.nameLbl.text = "\((firstName).firstUppercased) \((lastName).firstUppercased)"
                             self.positionLbl.text = self.profileDetails?.position
                             
                             self.qualificationLbl.text = self.profileDetails?.qualification ?? "-"
@@ -314,20 +325,41 @@ class ProfileVC: UIViewController {
                             self.mobileLbl.text = self.profileDetails?.mobile ?? "-"
                             self.emgNumLbl.text = self.profileDetails?.emergency_contact ?? "-"
                             self.emailLbl.text = self.profileDetails?.email ?? "-"
-                            self.fatherNameLbl.text = self.profileDetails?.father_name ?? "-"
+                            self.fatherNameLbl.text = (self.profileDetails?.father_name ?? "-")?.firstUppercased
                             self.addressLbl.text = self.profileDetails?.address ?? "-"
                             
                             if let imageStr = self.profileDetails?.picture {
                                 self.profilePicture.sd_setImage(with: URL(string: imageStr), placeholderImage: UIImage(named: "profile_placeholder"))
                             }
+                            let imageUrl = self.profileDetails?.picture ?? ""
+                            let fullName1 = "\(firstName) \(lastName)"
+
+                            if !imageUrl.isEmpty {
+                                self.placeHolderNameLbl.isHidden = true
+                                self.profilePicture.isHidden = false
+                                self.profilePicture.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
+                            } else {
+                                self.profilePicture.image = nil
+                                self.profilePicture.isHidden = true
+                                self.placeHolderNameLbl.isHidden = false
+                                let fullName = (fullName1).trimmingCharacters(in: .whitespacesAndNewlines)
+                                let words = fullName.split(separator: " ")
+                                let firstInitial = words.first?.first.map { String($0).uppercased() } ?? ""
+                                let secondInitial = words.dropFirst().first?.first.map { String($0).uppercased() } ?? ""
+                                self.placeHolderNameLbl.text = secondInitial.isEmpty ? firstInitial : "\(firstInitial) \(secondInitial)"
+                            }
+
                         }
+                    }else if key == "removeProfilePicUrl"{
+                        
+                        self.profileApi()
                     }
                 } else {
                     self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

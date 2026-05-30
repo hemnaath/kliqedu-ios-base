@@ -400,43 +400,40 @@ extension UIView{
     // skeleto view hide and show
     
     func showSkeleton(
-            cornerRadius: CGFloat = 8,
-            baseColor: UIColor = .clouds,
-            secondaryColor: UIColor = UIColor.clouds.withAlphaComponent(0.6)
-        ) {
+        cornerRadius: CGFloat = 12,
+        baseColor: UIColor = UIColor.systemGray5,
+        secondaryColor: UIColor = UIColor.systemGray4
+    ) {
 
-            // Ensure layout is ready
-            self.layoutIfNeeded()
+        self.layoutIfNeeded()
 
-            // Skeleton config
-            self.isSkeletonable = true
-            self.layer.cornerRadius = cornerRadius
-            self.clipsToBounds = true
+        self.isSkeletonable = true
+        self.layer.cornerRadius = cornerRadius
+        self.clipsToBounds = true
 
-            // Gradient + animation
-            let gradient = SkeletonGradient(
-                baseColor: baseColor,
-                secondaryColor: secondaryColor
-            )
+        let gradient = SkeletonGradient(
+            baseColor: baseColor,
+            secondaryColor: secondaryColor
+        )
 
-            let animation = SkeletonAnimationBuilder()
-                .makeSlidingAnimation(
-                    withDirection: .leftRight,
-                    duration: 1.2
-                )
+        let animation = GradientDirection.leftRight.slidingAnimation(
+            duration: 1.1
+        )
 
-            self.showAnimatedGradientSkeleton(
-                usingGradient: gradient,
-                animation: animation
-            )
-        }
+        self.showAnimatedGradientSkeleton(
+            usingGradient: gradient,
+            animation: animation,
+            transition: .crossDissolve(0.15)
+        )
+    }
 
-        func hideSkeleton() {
-            self.hideSkeleton(
-                reloadDataAfter: true,
-                transition: .crossDissolve(0.25)
-            )
-        }
+    func hideSkeleton() {
+
+        self.hideSkeleton(
+            reloadDataAfter: true,
+            transition: .crossDissolve(0.25)
+        )
+    }
 }
 extension UIView {
     func fadeIn(duration: TimeInterval = 0.5, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in }) {

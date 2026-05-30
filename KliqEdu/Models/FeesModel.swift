@@ -12,12 +12,15 @@ public class FeesModel {
     public var student_name: String?
     public var student_grade: String?
     public var student_section: String?
+    public var student_picture: String?
+
     public var fee_type: String?
     public var due_date: String?
     public var status: String?
     public var paid_amount: String?
     public var remaining_amount: String?
     public var unique_id: String?
+    public var payment_picture: String?
 
 
     // Init from dictionary
@@ -28,6 +31,8 @@ public class FeesModel {
             student_name = student["name"] as? String
             student_grade = student["grade"] as? String
             student_section = student["section"] as? String
+            student_picture = student["picture"] as? String
+
         }
 
         fee_type = dictionary["fee_type"] as? String
@@ -36,6 +41,7 @@ public class FeesModel {
         paid_amount = dictionary["paid_amount"] as? String
         remaining_amount = dictionary["remaining_amount"] as? String
         unique_id = dictionary["unique_id"] as? String
+        payment_picture = dictionary["payment_picture"] as? String
 
     }
 
@@ -48,6 +54,7 @@ public class FeesModel {
         studentDict.setValue(self.student_name, forKey: "name")
         studentDict.setValue(self.student_grade, forKey: "grade")
         studentDict.setValue(self.student_section, forKey: "section")
+        studentDict.setValue(self.student_picture, forKey: "picture")
 
         dictionary.setValue(studentDict, forKey: "student")
         dictionary.setValue(self.fee_type, forKey: "fee_type")
@@ -56,6 +63,7 @@ public class FeesModel {
         dictionary.setValue(self.paid_amount, forKey: "paid_amount")
         dictionary.setValue(self.remaining_amount, forKey: "remaining_amount")
         dictionary.setValue(self.unique_id, forKey: "unique_id")
+        dictionary.setValue(self.payment_picture, forKey: "payment_picture")
 
         return dictionary
     }

@@ -47,7 +47,8 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var studentallItemsLoaded = false
     var studentpage = 1
     var studentisLoadingData = false
-    
+    var filters: [String: Any] = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
@@ -102,16 +103,29 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.topView.hide()
             studentallItemsLoaded = false
             studentpage = 1
+            self.studentisLoadingData = false
+            self.studentLeaveArray.removeAll()
+
             getStudentLeaveData()
             
         }else{
             studentallItemsLoaded = false
             studentpage = 1
+            self.studentisLoadingData = false
+            self.studentLeaveArray.removeAll()
+
             teacherallItemsLoaded = false
             teacherpage = 1
+            self.teacherisLoadingData = false
+            self.teacherLeaveArray.removeAll()
+
             self.topView.unhide()
-            self.getTeacherStudentLeaveData()
-            self.getTeacherLeaveData()
+
+            if leaveSection == "student" {
+                self.getTeacherStudentLeaveData()
+            } else {
+                self.getTeacherLeaveData()
+            }
         }
     }
     @IBAction func applyLeaveBtnTapped(_ sender: Any) {
@@ -132,10 +146,38 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .coverVertical   // animation
+            vc.comingFor = "Leaves"
+            vc.appliedFilters = self.filters
             vc.onDismiss = { [weak self] in
                 self?.tabBarController?.tabBar.isHidden = false
             }
-            
+            vc.onApplyFilter = { filters in
+                
+                print(filters)
+
+                self.filters = filters
+
+                self.studentallItemsLoaded = false
+                self.studentpage = 1
+                self.studentisLoadingData = false
+                self.studentLeaveArray.removeAll()
+
+                self.teacherallItemsLoaded = false
+                self.teacherpage = 1
+                self.teacherisLoadingData = false
+                self.teacherLeaveArray.removeAll()
+
+                if self.leaveSection == "student" {
+                    if roleKey == "parent"{
+                        self.getStudentLeaveData()
+                    }else{
+                        self.getTeacherStudentLeaveData()
+                    }
+                } else {
+                    self.getTeacherLeaveData()
+                }
+
+            }
             present(vc, animated: true)
         }
     }
@@ -149,6 +191,8 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
         studentallItemsLoaded = false
         studentpage = 1
+        self.studentisLoadingData = false
+
         self.getTeacherStudentLeaveData()
         
     }
@@ -161,6 +205,8 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
         teacherallItemsLoaded = false
         teacherpage = 1
+        self.teacherisLoadingData = false
+
         self.getTeacherLeaveData()
     }
     func getTeacherLeaveData() {
@@ -168,7 +214,12 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
-        let param = ["page":teacherpage] as [String : Any]
+        var param: [String: Any] = [
+            "page": teacherpage
+        ]
+        if let status = filters["status"] {
+            param["status"] = Int("\(status)") ?? 0
+        }
         
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
         
@@ -180,7 +231,12 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
-        let param = ["page":studentpage] as [String : Any]
+        var param: [String: Any] = [
+            "page": studentpage
+        ]
+        if let status = filters["status"] {
+            param["status"] = Int("\(status)") ?? 0
+        }
         
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
         
@@ -192,7 +248,12 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
-        let param = ["page":studentpage] as [String : Any]
+        var param: [String: Any] = [
+            "page": studentpage
+        ]
+        if let status = filters["status"] {
+            param["status"] = Int("\(status)") ?? 0
+        }
         
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
         
@@ -254,8 +315,8 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
@@ -332,8 +393,8 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
@@ -390,12 +451,19 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 cell.statusLbl.text = dataModel.status ?? ""
                 cell.datesLbl.text = "\(dataModel.start_date ?? "") - \(dataModel.end_date ?? "")"
-                cell.durationLbl.text = "\(dataModel.total_days ?? 0) days"
-                cell.nameLbl.text = dataModel.student_name ?? ""
+                cell.nameLbl.text = (dataModel.student_name ?? "")?.firstUppercased
                 cell.gradeLbl.text = dataModel.student_grade ?? ""
                 cell.idNumberLbl.text = dataModel.student_unique_id ?? ""
-
-                let status = (dataModel.status ?? "").lowercased()
+                
+                let totalDays = dataModel.total_days ?? 0.0
+                if totalDays == 1 {
+                    cell.durationLbl.text = "1 day"
+                } else if totalDays.truncatingRemainder(dividingBy: 1) == 0 {
+                    cell.durationLbl.text = "\(Int(totalDays)) days"
+                } else {
+                    cell.durationLbl.text = "\(totalDays) days"
+                }
+                let status = dataModel.status ?? ""
 
                 var titleColor: UIColor = .systemOrange
                 var bgColor: UIColor = UIColor.systemOrange.withAlphaComponent(0.1)
@@ -425,7 +493,7 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "TeacherLeaveTCell", for: indexPath as IndexPath) as? TeacherLeaveTCell {
                 let dataModel = teacherLeaveArray[indexPath.row]
 
-                let status = (dataModel.status ?? "").lowercased()
+                let status = dataModel.status ?? ""
 
                 var titleColor: UIColor = .systemOrange
                 var bgColor: UIColor = UIColor.systemOrange.withAlphaComponent(0.1)
@@ -448,7 +516,14 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 cell.statusLbl.textColor = titleColor
                 cell.categoryLbl.text = dataModel.leave_type
                 cell.dateLbl.text = "\(dataModel.start_date ?? "") - \(dataModel.end_date ?? "")"
-                cell.durationLbl.text = "\(dataModel.total_days ?? 0.0) days"
+                let totalDays = dataModel.total_days ?? 0.0
+                if totalDays == 1 {
+                    cell.durationLbl.text = "1 day"
+                } else if totalDays.truncatingRemainder(dividingBy: 1) == 0 {
+                    cell.durationLbl.text = "\(Int(totalDays)) days"
+                } else {
+                    cell.durationLbl.text = "\(totalDays) days"
+                }
 
                 cell.selectionStyle = .none
                 cell.clipsToBounds = true
@@ -492,7 +567,12 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if leaveSection == "student" {
                 
                 if !studentisLoadingData && !studentallItemsLoaded {
-                    let param = ["page":studentpage] as [String : Any]
+                    var param: [String: Any] = [
+                        "page": studentpage
+                    ]
+                    if let status = filters["status"] {
+                        param["status"] = Int("\(status)") ?? 0
+                    }
                     
                     let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
                     
@@ -504,7 +584,12 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }else{
                 if !teacherisLoadingData && !teacherallItemsLoaded {
-                    let param = ["page":teacherpage] as [String : Any]
+                    var param: [String: Any] = [
+                        "page": teacherpage
+                    ]
+                    if let status = filters["status"] {
+                        param["status"] = Int("\(status)") ?? 0
+                    }
                     
                     let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
                     

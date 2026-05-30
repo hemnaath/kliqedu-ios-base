@@ -39,6 +39,11 @@ class AnnouncementDetailsVC: UIViewController {
             getAnnouncementInfoApi()
         }
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     func getAnnouncementInfoApi(){
         
         let param = [:] as [String : Any]
@@ -131,7 +136,7 @@ class AnnouncementDetailsVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

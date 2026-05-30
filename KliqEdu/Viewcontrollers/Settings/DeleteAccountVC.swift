@@ -27,7 +27,11 @@ class DeleteAccountVC: UIViewController ,UITextFieldDelegate{
         self.confrimBtn.backgroundColor = .lightGray
         self.confrimBtn.setTitleColor(.white, for: .normal)
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     @IBAction func backBtnTapped(_ sender: Any) {
     
         self.navigationController?.popViewController(animated: true)
@@ -88,8 +92,8 @@ class DeleteAccountVC: UIViewController ,UITextFieldDelegate{
             }  else {
                 self.confrimBtn?.hideButtonLoading()
 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
                     

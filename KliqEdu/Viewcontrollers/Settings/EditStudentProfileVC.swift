@@ -51,6 +51,7 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
     var profileDetails: ProfileModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        LoadingIndicator.show()
 
         self.firstNameWarningLbl.hide()
         self.lastNameWarningLbl.hide()
@@ -86,7 +87,7 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
         bgdropDown.backgroundColor = .white
         bgdropDown.layer.cornerRadius = 12
         bgdropDown.cellHeight = 48
-        bgdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayMedium, size: 15)!
+        bgdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 15)!
         bgdropDown.selectionBackgroundColor = .themeLite1
         bgdropDown.separatorColor = UIColor.systemGray5
         
@@ -111,7 +112,7 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
         genderdropDown.backgroundColor = .white
         genderdropDown.layer.cornerRadius = 12
         genderdropDown.cellHeight = 48
-        genderdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayMedium, size: 15)!
+        genderdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 15)!
         genderdropDown.selectionBackgroundColor = .themeLite1
         genderdropDown.separatorColor = UIColor.systemGray5
         
@@ -178,6 +179,11 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
 
         dobField.resignFirstResponder() // Dismiss the picker
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     func setupTextFieldDelegates() {
 
         firstNameField.delegate = self
@@ -195,6 +201,8 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        LoadingIndicator.show()
+
         profileApi()
     }
 
@@ -344,7 +352,8 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
                     if key == "profileUrl"{
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
-                            
+                            LoadingIndicator.hide()
+
                             self.profileDetails = ProfileModel(dictionary: dataList)
                             
                             DispatchQueue.main.async {
@@ -360,7 +369,7 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

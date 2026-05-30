@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>upi</string>
+		<string>phonepe</string>
+		<string>paytmmp</string>
+		<string>bhim</string>
+		<string>gpay</string>
+		<string>amazonpay</string>
+		<string>whatsapp</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -25,5 +35,11 @@
 	<false/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>We use Face ID/Touch ID to ease authentication of Passcode</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This photo will be used as your profile picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This photo will be used as your profile picture</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera will be used as your profile picture</string>
 </dict>
 </plist>

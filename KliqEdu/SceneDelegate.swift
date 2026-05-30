@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let vc = sb.instantiateViewController(withIdentifier: "ResetPasswordVC") as? ResetPasswordVC {
             vc.token = token
             //     vc.email = email
-            
+            vc.comingFrom = "resetlink"
             let nav = UINavigationController(rootViewController: vc)
             UIApplication.shared.windows.first?.rootViewController = nav
             UIApplication.shared.windows.first?.makeKeyAndVisible()

@@ -72,7 +72,11 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         self.emptyView.isHidden = true
     }
-   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     func getTeachersListApi(){
         
         let param = [:] as [String : Any]
@@ -134,8 +138,8 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
@@ -164,7 +168,7 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let dataModel = teachersArray[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TeachersTCell", for: indexPath as IndexPath) as? TeachersTCell {
-            cell.nameLbl.text = dataModel.full_name
+            cell.nameLbl.text = (dataModel.full_name)?.firstUppercased
             cell.subjectLbl.text = "  \(dataModel.subject ?? "")  "
             cell.emailLbl.text = dataModel.email
             let subjects = Array(subjectColorMap.keys).sorted()

@@ -103,7 +103,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         bgdropDown.backgroundColor = .white
         bgdropDown.layer.cornerRadius = 12
         bgdropDown.cellHeight = 48
-        bgdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayMedium, size: 15)!
+        bgdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 15)!
         bgdropDown.selectionBackgroundColor = .themeLite1
         bgdropDown.separatorColor = UIColor.systemGray5
         
@@ -128,7 +128,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         genderdropDown.backgroundColor = .white
         genderdropDown.layer.cornerRadius = 12
         genderdropDown.cellHeight = 48
-        genderdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayMedium, size: 15)!
+        genderdropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 15)!
         genderdropDown.selectionBackgroundColor = .themeLite1
         genderdropDown.separatorColor = UIColor.systemGray5
         
@@ -169,6 +169,11 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         }
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker(frame: .zero)
         datePicker.datePickerMode = .date
@@ -217,6 +222,8 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        LoadingIndicator.show()
+
         profileApi()
     }
 
@@ -405,7 +412,8 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
                     if key == "profileUrl"{
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
-                            
+                            LoadingIndicator.hide()
+
                             self.profileDetails = ProfileModel(dictionary: dataList)
                             
                             DispatchQueue.main.async {
@@ -421,7 +429,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

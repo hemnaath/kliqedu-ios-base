@@ -11,60 +11,17 @@ struct Constants {
 
     // staging
     
-//    static let baseUrl = "https://herald-retail-api-qa.heraldex.com/api/v1/"
     static let baseUrl = "https://api.kliqedu.com/api/"
 
     static let keyFile = "T+lih90otH7o/Osg5Ttdzd2/qln9WMwupgJpz8IZswc="
-    static let socketUrl = "https://ljdfertyh-socket.herald.exchange/"
 
-    
-    static let ethApiKey = "B34RQKNPZUV8IM6866DQ58WCS2Q6SWAP8V"
-    static let bnbApiKey = "QFBTFQS48VSF8VF9JVSCJTUWXCZC22DUJF"
-    static let polApiKey = "KYV61TJQU5RDMTGY1D95J8R61HWCR9T7KT"
-    
-    static let ethchaninid =  11155111
-    static let bnbchaninid =  97
-    static let polchaninid =  80002
-    
-    static let EthUrl = "https://api.etherscan.io/v2/api"
-    static let BNBUrl = "https://api.etherscan.io/v2/api"
-    static let SolUrl = "https://api.testnet.solana.com/"
-    static let btcUrl = "https://efi-exchange.blockstall.com:9001/api/user/bitcoin/start_watch_wallet"
-    static let tronUrl = "https://api.shasta.trongrid.io/v1/accounts/"
-    static let polUrl = "https://api.etherscan.io/v2/api"
-    
-    
-    // production
-    
-  //  static let baseUrl = "https://grdpdxkx.herald.exchange/api/v1/"
-//    static let keyFile = "ntIhVzH2Ay3J645N4czDlquPHKaR5R+yb7f3IwcYXys="
-//    static let socketUrl = "https://massive-heraldex-socket.rare-able.com:1873/"
-//   // static let socketUrl = "https://e8c4ac586252.ngrok-free.app/"
-//
-//    static let ethApiKey = "QFBTFQS48VSF8VF9JVSCJTUWXCZC22DUJF"
-//    static let bnbApiKey = "K3VYMP8J3TZNWQENMQM8M8D745HHV5Y9A3"
-//    static let polApiKey = "QFBTFQS48VSF8VF9JVSCJTUWXCZC22DUJF"
-//    
-//    static let ethchaninid =  1
-//    static let bnbchaninid =  56
-//    static let polchaninid =  137
-//    
-//    static let EthUrl = "https://api.etherscan.io/v2/api"
-//    static let BNBUrl = "https://api.etherscan.io/v2/api"
-//    static let SolUrl = "https://api.mainnet-beta.solana.com/"
-//    static let btcUrl = "https://woowga-node.herald.exchange:9001/api/user/bitcoin/start_watch_wallet"
-//    static let tronUrl = "https://api.trongrid.io/v1/accounts/"
-//    static let polUrl = "https://api.etherscan.io/v2/api"
-//    
+    static let encryptionKey = "q83Jf9K2mYkzYF7v0T1LwH8xZpQeR5aC6nB2dXyUo9E="
+
+   
     static let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
     
     static let currencyCode = "USD"
     static let language = "Language"
-    
-    static let mobile_headers = [
-        "genesis": "grdpdxkx.herald.exchange",
-        "x-mobile-secret": "8ebc7fde7a65d00b118eaaf1d9f9c7b0684204e70c52e87ff6266bc8b583800c"
-    ]
     
     struct Keys {
         
@@ -117,6 +74,10 @@ struct Constants {
         static let announcementsPermissionKey = "announcements_permission"
         static let holidayPermissionKey = "holiday_permission"
         static let settingsPermissionKey = "settings_permission"
+        static let studentPermissionKey = "student_permission"
+
+        static let childrenArrayKey = "childrenArrayKey"
+        static let childrenCountKey = "childrenCountKey"
         
         // Device Token
         static let deviceTokenKey = "device_token"
@@ -254,6 +215,8 @@ struct Constants {
     struct Urls {
         
         static let manualLoginUrl = "auth/login"
+        static let loginValidationUrl = "auth/validate-user"
+
         static let categoryList = "categories_list"
         static let soacialLoginUrl = "register"
         static let deleteAccountUrl = "user/acrhive_user"
@@ -269,7 +232,7 @@ struct Constants {
         static let changePasswordUrl = "user/revise_authentication"
         static let verifyEmailUrl = "auth/verify-email"
         static let verifyEmailResendUrl = "auth/resend-otp"
-        static let staticPageUrl = "lookup/constant_pages"
+        static let staticPageUrl = "parent/lookup"
         static let staticPageIndexUrl = "static_pages"
         
         static let updateAddressUrl = "user/revise_premises"
@@ -281,7 +244,8 @@ struct Constants {
         static let getBusinessAddressUrl = "user/get_user_tenant_details"
         static let referralCodeUrl = "user/get_referrals"
         
-        static let editProfilePicUrl = "teacher/upload/file"
+        static let teacherUploadFileUrl = "teacher/upload/file"
+        static let parentUploadFileUrl = "parent/upload/file"
 
         static let teacherDashboardUrl = "teacher/dashboard/get"
         static let parentDashboardUrl = "parent/dashboard/get"
@@ -321,7 +285,9 @@ struct Constants {
         static let viewAnnouncementUrl = "teacher/announcement/view"
 
         static let feesListUrl = "parent/fees/list"
+        static let feesDetailsUrl = "parent/fees/details"
 
+       
         static let teacherHomeworkListUrl = "teacher/homework/list"
         static let parentHomeworkUrl = "parent/homework/list"
 
@@ -348,7 +314,12 @@ struct Constants {
 
         
         static let profileUrl = "teacher/settings/profile"
+        static let parentconfigurationsUrl = "parent/settings/configurations"
+        static let teacherconfigurationsUrl = "teacher/settings/configurations"
 
+        static let upiIntentUrl = "parent/fees/intent"
+
+        
         static let studentProfileUrl = "parent/settings/student-profile"
         static let parentProfileUrl = "parent/settings/parent-profile"
 
@@ -360,7 +331,7 @@ struct Constants {
         static let forgotPasswordCodeUrl = "auth/password/verify_reset_code"
         static let resetPasswordUrl = "auth/reset-password"
         
-
+        static let setPasswordUrl = "auth/set-password"
 
     }
 }

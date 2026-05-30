@@ -82,8 +82,15 @@ class EditParentProfileVc: UIViewController,UITextFieldDelegate {
         addressField.tag = 7
 
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        LoadingIndicator.show()
+
         profileApi()
     }
     @IBAction func backBtnTapped(_ sender: Any) {
@@ -205,7 +212,8 @@ class EditParentProfileVc: UIViewController,UITextFieldDelegate {
                     if key == "profileUrl"{
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
-                            
+                            LoadingIndicator.hide()
+
                             self.profileDetails = ProfileModel(dictionary: dataList)
                             
                             DispatchQueue.main.async {
@@ -221,7 +229,7 @@ class EditParentProfileVc: UIViewController,UITextFieldDelegate {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

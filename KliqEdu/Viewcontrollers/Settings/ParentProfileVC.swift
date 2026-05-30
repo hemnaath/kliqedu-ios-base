@@ -9,10 +9,12 @@ import UIKit
 import Alamofire
 import SDWebImage
 import SwiftyJSON
+import SkeletonView
 
 class ParentProfileVC: UIViewController {
 
     // Parent
+
     @IBOutlet weak var fathernameLbl: UILabel!
     @IBOutlet weak var mothernameLbl: UILabel!
     @IBOutlet weak var fatheroccupationLbl: UILabel!
@@ -32,6 +34,8 @@ class ParentProfileVC: UIViewController {
     
     @IBOutlet weak var gradeLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var placeHolderNameLbl: UILabel!
+    @IBOutlet weak var profileContainerView: UIView!
 
     @IBOutlet weak var studentView: UIView!
     @IBOutlet weak var parentView: UIView!
@@ -40,9 +44,12 @@ class ParentProfileVC: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var editBtn: UIButton!
     
-    var profileDetails: ParentProfileModel?
-    var selectedTab = String()
+    var studentProfileDetails: ParentProfileModel?
+    var parentProfileDetails: ParentProfileModel?
     
+    var selectedTab = String()
+    var selectedImage1 = UIImage()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
@@ -50,6 +57,8 @@ class ParentProfileVC: UIViewController {
         
         self.gradeLbl.layer.cornerRadius = 17.5
         self.gradeLbl.layer.masksToBounds = true
+        self.placeHolderNameLbl.layer.cornerRadius = 25
+        self.placeHolderNameLbl.layer.masksToBounds = true
         
         studentBtn.setTitleAndBgColor(titleColor: .theme, bgColor: .white)
         parentBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
@@ -57,7 +66,9 @@ class ParentProfileVC: UIViewController {
         self.studentView.isHidden = false
         
         self.selectedTab = "student"
-        // Do any additional setup after loading the view.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(labelAction(gesture:)))
+        profileContainerView.isUserInteractionEnabled = true
+        profileContainerView.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,6 +78,11 @@ class ParentProfileVC: UIViewController {
         parentprofileApi()
 
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     @IBAction func backBtnTapped(_ sender: Any) {
     
         self.navigationController?.popViewController(animated: true)
@@ -80,6 +96,8 @@ class ParentProfileVC: UIViewController {
         self.studentView.isHidden = false
         self.nameLbl.unhide()
         self.gradeLbl.unhide()
+        self.studentSetup()
+
     }
     @IBAction func parentBtnTapped(_ sender: Any) {
         self.selectedTab = "parent"
@@ -91,6 +109,7 @@ class ParentProfileVC: UIViewController {
         
         self.nameLbl.hide()
         self.gradeLbl.hide()
+        self.parentSetup()
     }
     @IBAction func editProfileTapped(_ sender: Any) {
         if selectedTab == "student"{
@@ -111,13 +130,26 @@ class ParentProfileVC: UIViewController {
     }
     func startViewAnimation()  {
         profilePicture.showSkeleton(cornerRadius: 25)
-        gradeLbl.showSkeleton(cornerRadius: 17.5)
-        nameLbl.showSkeleton(cornerRadius: 0)
+        placeHolderNameLbl.showSkeleton(cornerRadius: 25)
+        dobLbl.showSkeleton(cornerRadius: 10)
+        genderLbl.showSkeleton(cornerRadius: 10)
+        bgLbl.showSkeleton(cornerRadius: 10)
+        religionLbl.showSkeleton(cornerRadius: 10)
+        rollNoLbl.showSkeleton(cornerRadius: 10)
+        casteLbl.showSkeleton(cornerRadius: 10)
+
+//        nameLbl.showSkeleton(cornerRadius: 0)
     }
     func stopViewAnimation()  {
         profilePicture.hideSkeleton()
-        gradeLbl.hideSkeleton()
-        nameLbl.hideSkeleton()
+        placeHolderNameLbl.hideSkeleton()
+        dobLbl.hideSkeleton()
+        genderLbl.hideSkeleton()
+        bgLbl.hideSkeleton()
+        religionLbl.hideSkeleton()
+        rollNoLbl.hideSkeleton()
+        casteLbl.hideSkeleton()
+//        nameLbl.hideSkeleton()
     }
 
     func studentprofileApi(){
@@ -136,6 +168,281 @@ class ParentProfileVC: UIViewController {
         
         self.callServiceMethod(service: Constants.Urls.parentProfileUrl,method: .get, params: param, key: "parentProfileUrl", headers: headers)
     }
+    
+    func studentSetup(){
+        let firstName = self.studentProfileDetails?.firstname ?? ""
+        let lastName = self.studentProfileDetails?.lastname ?? ""
+        
+        self.nameLbl.text = "\((firstName).firstUppercased) \((lastName).firstUppercased)"
+        self.gradeLbl.text = "Grade \(self.studentProfileDetails?.grade ?? "")"
+        
+        
+        self.dobLbl.text = self.studentProfileDetails?.dob ?? "-"
+        self.genderLbl.text = self.studentProfileDetails?.gender ?? "-"
+        self.bgLbl.text = self.studentProfileDetails?.blood_group ?? "-"
+        self.religionLbl.text = self.studentProfileDetails?.religion ?? "-"
+        self.casteLbl.text = self.studentProfileDetails?.caste ?? "-"
+        self.rollNoLbl.text = self.studentProfileDetails?.roll_number ?? "-"
+        
+        if let imageStr = self.studentProfileDetails?.picture {
+            self.profilePicture.sd_setImage(with: URL(string: imageStr), placeholderImage: UIImage(named: "profile_placeholder"))
+        }
+        
+        let imageUrl = self.studentProfileDetails?.picture ?? ""
+        let fullName1 = "\((firstName).firstUppercased) \((lastName).firstUppercased)"
+        
+        if !imageUrl.isEmpty {
+            self.placeHolderNameLbl.isHidden = true
+            self.profilePicture.isHidden = false
+            self.profilePicture.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
+        } else {
+            self.profilePicture.image = nil
+            self.profilePicture.isHidden = true
+            self.placeHolderNameLbl.isHidden = false
+            let fullName = (fullName1).trimmingCharacters(in: .whitespacesAndNewlines)
+            let words = fullName.split(separator: " ")
+            let firstInitial = words.first?.first.map { String($0).uppercased() } ?? ""
+            let secondInitial = words.dropFirst().first?.first.map { String($0).uppercased() } ?? ""
+            self.placeHolderNameLbl.text = secondInitial.isEmpty ? firstInitial : "\(firstInitial) \(secondInitial)"
+        }
+        
+    }
+    func parentSetup(){
+        
+        self.fathernameLbl.text = (self.parentProfileDetails?.father_name ?? "N/A").firstUppercased
+        self.mothernameLbl.text = (self.parentProfileDetails?.mother_name ?? "N/A").firstUppercased
+
+        let fatherOccupation = (self.parentProfileDetails?.father_occupation ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let motherOccupation = (self.parentProfileDetails?.mother_occupation ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+        self.fatheroccupationLbl.text = fatherOccupation.isEmpty ? "N/A" : fatherOccupation
+        self.motheroccupationLbl.text = motherOccupation.isEmpty ? "N/A" : motherOccupation
+
+        self.fatherMobileLbl.text = self.parentProfileDetails?.father_mobile ?? "N/A"
+        self.motherMobileLbl.text = self.parentProfileDetails?.mother_mobile ?? "N/A"
+
+        self.emailLbl.text = self.parentProfileDetails?.email ?? "N/A"
+        self.addressLbl.text = self.parentProfileDetails?.address ?? "N/A"
+        
+        
+        if let imageStr = self.parentProfileDetails?.picture {
+            self.profilePicture.sd_setImage(
+                with: URL(string: imageStr),
+                placeholderImage: UIImage(named: "profile_placeholder")
+            )
+        }
+        let imageUrl = self.parentProfileDetails?.picture ?? ""
+        let fullName1 = "\(self.parentProfileDetails?.father_name ?? "")"
+        
+        if !imageUrl.isEmpty {
+            self.placeHolderNameLbl.isHidden = true
+            self.profilePicture.isHidden = false
+            self.profilePicture.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
+        } else {
+            self.profilePicture.image = nil
+            self.profilePicture.isHidden = true
+            self.placeHolderNameLbl.isHidden = false
+            let fullName = (fullName1).trimmingCharacters(in: .whitespacesAndNewlines)
+            let words = fullName.split(separator: " ")
+            let firstInitial = words.first?.first.map { String($0).uppercased() } ?? ""
+            let secondInitial = words.dropFirst().first?.first.map { String($0).uppercased() } ?? ""
+            self.placeHolderNameLbl.text = secondInitial.isEmpty ? firstInitial : "\(firstInitial) \(secondInitial)"
+        }
+        
+    }
+    @objc func labelAction(gesture: UITapGestureRecognizer){
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let cameraAction = UIAlertAction(title: "   Change Profile Photo", style: .default) { _ in
+            self.choosePictureType()
+        }
+        cameraAction.setValue(UIImage(systemName: "camera.fill"), forKey: "image") // Add SF Symbol image
+        cameraAction.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+
+        let galleryAction = UIAlertAction(title: "   Remove Profile Photo", style: .default) { _ in
+            self.removeProfilePic()
+        }
+        galleryAction.setValue(UIImage(systemName: "xmark.bin.fill"), forKey: "image") // Add SF Symbol image
+        galleryAction.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+
+        let cancelAction = UIAlertAction(title: StringConstants.cancel, style: .cancel, handler: nil)
+        
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
+        alert.addAction(cancelAction)
+
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    func choosePictureType() {
+        let alert = UIAlertController(title: StringConstants.chooseImage, message: nil, preferredStyle: .actionSheet)
+
+        let cameraAction = UIAlertAction(title: StringConstants.camera, style: .default) { _ in
+            self.openCamera()
+        }
+        cameraAction.setValue(UIImage(systemName: "camera"), forKey: "image") // Add SF Symbol image
+
+        let galleryAction = UIAlertAction(title: StringConstants.gallery, style: .default) { _ in
+            self.openGallery()
+        }
+        galleryAction.setValue(UIImage(systemName: "photo.on.rectangle"), forKey: "image") // Add SF Symbol image
+
+        let cancelAction = UIAlertAction(title: StringConstants.cancel, style: .cancel, handler: nil)
+
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
+        alert.addAction(cancelAction)
+
+        self.present(alert, animated: true, completion: nil)
+    }
+    func openCamera() {
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        } else {
+            
+            let alert  = UIAlertController(title: StringConstants.warning, message: StringConstants.youDontHaveCamera, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: StringConstants.ok, style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openGallery() {
+        
+    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        } else {
+            
+            let alert  = UIAlertController(title: StringConstants.warning, message: StringConstants.youDontHavePerissionToAccessGallery, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: StringConstants.ok, style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func removeProfilePic() {
+        
+        if selectedTab == "student"{
+            
+            let param = ["module":"student_profile",
+                         "unique_id": defaults.value(forKey: Constants.Keys.userUniqueIdKey) ?? "",
+                         "action":"delete"] as [String : Any]
+            
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/file",params: param,HTTPMethod: .post)
+            
+            self.callServiceMethod(service: Constants.Urls.parentUploadFileUrl,method: .post, params: param, key: "removeProfilePicUrl", headers: headers)
+        }else{
+            let param = ["module":"parent_profile",
+                         "unique_id": parentProfileDetails?.unique_id ?? "",
+                         "action":"delete"] as [String : Any]
+            
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/file",params: param,HTTPMethod: .post)
+            
+            self.callServiceMethod(service: Constants.Urls.parentUploadFileUrl,method: .post, params: param, key: "removeProfilePicUrl", headers: headers)
+            
+        }
+
+    }
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        guard let selectedImage = info[.editedImage] as? UIImage else {
+            print("Error: \(info)")
+            return
+        }
+
+        self.profilePicture.image = selectedImage
+        self.selectedImage1 = selectedImage
+
+        self.uploadProfileImage(image: selectedImage)
+
+        self.dismiss(animated: true, completion: nil)
+        self.view.endEditing(true)
+    }
+    func uploadProfileImage(image: UIImage) {
+
+        let orderedParams: [(String, Any)]
+        if selectedTab == "student"{
+            
+            orderedParams  = [
+                ("module", "student_profile"),
+                ("unique_id", defaults.value(forKey: Constants.Keys.userUniqueIdKey) ?? ""),
+                ("action", "update")]
+            
+        }else{
+            orderedParams  = [
+                ("module", "parent_profile"),
+                ("unique_id", parentProfileDetails?.unique_id ?? ""),
+                ("action", "update")]
+        }
+        // Convert tuple array to dictionary for signature
+        let params = Dictionary(uniqueKeysWithValues: orderedParams)
+
+        let (headers, _) = APIHelper.createHeadersAndSignature(
+            endpoint: "/file",
+            params: params,
+            HTTPMethod: .post
+        )
+
+        AlamofireHC.requestUploadWithImage(
+            Constants.Urls.parentUploadFileUrl,
+            image: image,
+            orderedParams: orderedParams,
+            imageParam: "file",
+            headers: headers,
+            method: .post,
+            success: { response in
+
+                let result = response.dictionaryObject
+                let resultcheck = result?["success"] as? Bool ?? false
+
+                if resultcheck {
+
+                    if let responseDict = result as NSDictionary?,
+                       let _ = responseDict.value(forKey: "data") as? NSDictionary {
+
+                        if self.selectedTab == "student"{
+                            self.studentprofileApi()
+                        }else{
+                            self.parentprofileApi()
+
+                        }
+                    }
+
+                } else {
+
+                    let errorCode: Int = result?["status_code"] as? Int ?? 0
+                    let msg = result?["message"] as? String ?? ""
+
+                    if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
+
+                        self.performLogout(Vc: self)
+
+                    } else {
+
+                        self.showAnimatedToast(message: msg, type: .warning)
+                    }
+                }
+
+            },
+            failure: { error in
+
+                self.showAnimatedToast(
+                    message: StringConstants.pleaseTryAgain,
+                    type: .error
+                )
+            }
+        )
+    }
     //API calls
     func callServiceMethod(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
         
@@ -152,26 +459,9 @@ class ParentProfileVC: UIViewController {
                         self.stopViewAnimation()
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
                             
-                            self.profileDetails = ParentProfileModel(dictionary: dataList)
+                            self.studentProfileDetails = ParentProfileModel(dictionary: dataList)
                             
-                            let firstName = self.profileDetails?.firstname ?? ""
-                            let lastName = self.profileDetails?.lastname ?? ""
-                            
-                            self.nameLbl.text = "\(firstName) \(lastName)"
-                            self.gradeLbl.text = "Grade \(self.profileDetails?.grade ?? "")"
-                            
-                            
-                            self.dobLbl.text = self.profileDetails?.dob ?? "-"
-                            self.genderLbl.text = self.profileDetails?.gender ?? "-"
-                            self.bgLbl.text = self.profileDetails?.blood_group ?? "-"
-                            self.religionLbl.text = self.profileDetails?.religion ?? "-"
-                            self.casteLbl.text = self.profileDetails?.caste ?? "-"
-                            self.rollNoLbl.text = self.profileDetails?.roll_number ?? "-"
-
-                            
-                            if let imageStr = self.profileDetails?.picture {
-                                self.profilePicture.sd_setImage(with: URL(string: imageStr), placeholderImage: UIImage(named: "profile_placeholder"))
-                            }
+                            self.studentSetup()
                         }
                     }else if key == "parentProfileUrl" {
                         
@@ -179,26 +469,17 @@ class ParentProfileVC: UIViewController {
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
 
-                            self.profileDetails = ParentProfileModel(dictionary: dataList)
+                            self.parentProfileDetails = ParentProfileModel(dictionary: dataList)
 
-                            self.fathernameLbl.text = self.profileDetails?.father_name ?? "N/A"
-                            self.mothernameLbl.text = self.profileDetails?.mother_name ?? "N/A"
+                         //   self.parentSetup()
 
-                            self.fatheroccupationLbl.text = self.profileDetails?.father_occupation ?? "N/A"
-                            self.motheroccupationLbl.text = self.profileDetails?.mother_occupation ?? "N/A"
+                        }
+                    }else if key == "removeProfilePicUrl" {
+                        if self.selectedTab == "student"{
+                            self.studentprofileApi()
+                        }else{
+                            self.parentprofileApi()
 
-                            self.fatherMobileLbl.text = self.profileDetails?.father_mobile ?? "N/A"
-                            self.motherMobileLbl.text = self.profileDetails?.mother_mobile ?? "N/A"
-
-                            self.emailLbl.text = self.profileDetails?.email ?? "N/A"
-                            self.addressLbl.text = self.profileDetails?.address ?? "N/A"
-
-                            if let imageStr = self.profileDetails?.picture {
-                                self.profilePicture.sd_setImage(
-                                    with: URL(string: imageStr),
-                                    placeholderImage: UIImage(named: "profile_placeholder")
-                                )
-                            }
                         }
                     }
                 } else {
@@ -206,7 +487,7 @@ class ParentProfileVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

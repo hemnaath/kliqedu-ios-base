@@ -54,6 +54,11 @@ class LeaveViewVC: UIViewController {
         self.statusLbl.backgroundColor = .white
 
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         switch roleKey {
@@ -77,9 +82,9 @@ class LeaveViewVC: UIViewController {
                 getLeaveInfoApi()
             }else{
                 self.approveRejectView.unhide()
-                self.editDeleteBtnView.hide()
+                self.editDeleteBtnView.unhide()
 
-                self.nameLbl.text = self.leaveDetails?.student_name ?? ""
+                self.nameLbl.text = (self.leaveDetails?.student_name ?? "")?.firstUppercased
                 self.idNumberLbl.text = self.leaveDetails?.student_unique_id ?? ""
                 self.gradeLbl.text = self.leaveDetails?.student_grade ?? ""
                 
@@ -260,7 +265,7 @@ class LeaveViewVC: UIViewController {
                             self.leaveDetails = LeaveModel(dictionary: dataList)
 
                             if roleKey == "teacher" {
-                                self.nameLbl.text = self.leaveDetails?.teacher_name ?? ""
+                                self.nameLbl.text = (self.leaveDetails?.teacher_name ?? "")?.firstUppercased
                                 self.idNumberLbl.text = self.leaveDetails?.teacher_unique_id ?? ""
                                 self.gradeLbl.text = self.leaveDetails?.teacher_department ?? ""
                                 
@@ -281,7 +286,7 @@ class LeaveViewVC: UIViewController {
                                     self.placeHolderNameLbl.text = secondInitial.isEmpty ? firstInitial : "\(firstInitial) \(secondInitial)"
                                 }
                             } else {
-                                self.nameLbl.text = self.leaveDetails?.student_name ?? ""
+                                self.nameLbl.text = (self.leaveDetails?.student_name ?? "")?.firstUppercased
                                 self.idNumberLbl.text = self.leaveDetails?.student_unique_id ?? ""
                                 self.gradeLbl.text = self.leaveDetails?.student_grade ?? ""
 
@@ -335,7 +340,7 @@ class LeaveViewVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {

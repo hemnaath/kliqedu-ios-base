@@ -7,9 +7,12 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class ResetPasswordVC: UIViewController ,UITextFieldDelegate{
 
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var topImage: UIImageView!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     @IBOutlet weak var passwordWarningLbl: UILabel!
@@ -27,6 +30,7 @@ class ResetPasswordVC: UIViewController ,UITextFieldDelegate{
         1: 25, // Password field
         2: 25  // Confirm password field
     ]
+    var comingFrom = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +44,28 @@ class ResetPasswordVC: UIViewController ,UITextFieldDelegate{
         self.passwordWarningLbl.hide()
         self.confirmPassWarningLbl.hide()
 
+        if self.comingFrom == "login"{
+            self.submitBtn.setTitle("Set Password", for: .normal)
+            self.titleLbl.text = "Set Password"
+            self.topImage.image = UIImage(named: "setPassword")
+        }else{
+            self.submitBtn.setTitle("Reset Password", for: .normal)
+            self.titleLbl.text = "Reset Password"
+            self.topImage.image = UIImage(named: "resetPass")
+        }
     }
-    @IBAction func backBtnTapped(_ sender: Any) {
     
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func backBtnTapped(_ sender: Any) {
+        if comingFrom == "resetlink"{
+            let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
+            if let vc = sb.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }else{
+            
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     @IBAction func passwordShowBtnTapped(_ sender: Any) {
         self.passwordShowBtn.isSelected = !self.passwordShowBtn.isSelected
@@ -77,47 +99,73 @@ class ResetPasswordVC: UIViewController ,UITextFieldDelegate{
         if isValid {
             self.submitBtn?.showButtonLoading()
 
-            self.resetPasswordApi()
+            if self.comingFrom == "login"{
+                self.setPasswordApi()
+            }else{
+                self.resetPasswordApi()
+            }
         }
     }
     func resetPasswordApi(){
-    
-        let paramDic = ["token" : token,
-                        "password" : (newPasswordField.text ?? "").trimString()] as [String : Any]
         
-        AlamofireHC.requestPOST(Constants.Urls.resetPasswordUrl, params: paramDic, headers: Constants.mobile_headers, success: { (response) in
+        let param = ["token" : token,
+                     "password" : (newPasswordField.text ?? "").trimString()] as [String : Any]
+        
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/reset-password",params: param,HTTPMethod: .post)
+        
+        self.callServiceMethod(service: Constants.Urls.resetPasswordUrl,method: .post, params: param, key: "resetPasswordUrl", headers: headers)
+    }
+    
+    func setPasswordApi(){
+        
+        let param = ["email" : email,
+                     "password" : (newPasswordField.text ?? "").trimString()] as [String : Any]
+        
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/set-password",params: param,HTTPMethod: .post)
+        
+        self.callServiceMethod(service: Constants.Urls.setPasswordUrl,method: .post, params: param, key: "resetPasswordUrl", headers: headers)
+    }
+
+    //API calls
+    func callServiceMethod(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
+        
+        AlamofireHC.request(service, method: method, params: params, headers: headers, shouldShowHUD: false, success: { response in
             
             let  result = response.dictionaryObject
-            
             let resultcheck = result?["success"] as? Bool ?? false
-            
-            if(resultcheck){
+
+            if(resultcheck) {
+                
+                if let responseDict = result as NSDictionary? {
+                    
+                    if key == "resetPasswordUrl"{
+                        self.submitBtn?.hideButtonLoading()
+
+                        self.delay(bySeconds: 0.0) {
+                            
+                            let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
+                            if let vc = sb.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
+                                
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
+                        }
+                    }
+                } else {
+                    self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
+                }
+            } else {
                 self.submitBtn?.hideButtonLoading()
 
-                DispatchQueue.main.async {
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
+                
+               if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
                     
-                    //self.showAnimatedToast(message: msg)
-                }
-                self.delay(bySeconds: 0.0) {
+                    self.performLogout(Vc: self)
+                } else {
                     
-                    let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
-                    if let vc = sb.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
-                        
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-            }
-            else{
-                self.submitBtn?.hideButtonLoading()
+                    self.showAnimatedToast(message: msg,type: .warning)
 
-                let msg = result!["error"] as? String ?? ""
-                if result!["error_code"] as? Int ?? 0 == 101 {
-                    self.showAnimatedToast(message: msg,type: .error)
-                    
-                }else{
-                    DispatchQueue.main.async {
-                        self.showAnimatedToast(message: msg,type: .error)
-                    }
                 }
             }
         }) { (error) in
@@ -125,7 +173,7 @@ class ResetPasswordVC: UIViewController ,UITextFieldDelegate{
 
             self.showAnimatedToast(message: StringConstants.pleaseTryAgain,type: .error)
             
-            print(error)
+            debugPrint(error)
         }
     }
 }

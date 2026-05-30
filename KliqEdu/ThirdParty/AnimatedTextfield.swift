@@ -40,7 +40,7 @@ import UIKit
         }
     }
     
-    var titleFont:UIFont = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayRegular, size: 13)! {
+    var titleFont:UIFont = UIFont(name: GLOBAL.FontsIdentifier.FontRegular, size: 13)! {
         didSet {
             title.font = titleFont
             title.sizeToFit()

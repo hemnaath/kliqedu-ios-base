@@ -19,7 +19,8 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     @IBOutlet weak var emptyView: UIView!
 
     var feesArray = [FeesModel]()
-    
+    var filters: [String: Any] = [:]
+
     var allItemsLoaded = false
     var page = 1
     var isLoadingData = false
@@ -87,8 +88,12 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
-        let param = ["page":page] as [String : Any]
-        
+        var param: [String: Any] = [
+            "page": page
+        ]
+        if let status = filters["status"] {
+            param["status"] = Int("\(status)") ?? 0
+        }
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
         
         self.callServiceMethod(service: Constants.Urls.feesListUrl, method: .post, params: param, key: "feesListUrl", headers: headers)
@@ -100,8 +105,26 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func filterBtnTapped(_ sender: Any) {
-     //   self.filterView.isHidden = false
+        
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC {
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .coverVertical   // animation
+            vc.comingFor = "Fees"
+            vc.appliedFilters = self.filters
+            
+            vc.onApplyFilter = { filters in
+                
+                print(filters)
+        
+                self.filters = filters
+                
+                self.getFeesData()
 
+            }
+            present(vc, animated: true)
+        }
     }
     //API calls
     func callServiceMethod(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
@@ -163,8 +186,8 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
                 
             }  else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
-                let msg = result!["error"] as? String ?? ""
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
                 if errorCode == 217{
                     self.tableView.isHidden = true
                     self.emptyView.isHidden = false
@@ -200,21 +223,30 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
             cell.statusLbl.text = "  \(dataModel.status ?? "")  "
             cell.dateLbl.text = dataModel.due_date
             cell.amtLbl.text = dataModel.remaining_amount
-            cell.statusView.backgroundColor = statusBgcolor[indexPath.row]
             
             if dataModel.status == "Pending" {
                 cell.statusImage.image = UIImage(systemName: "xmark.circle.fill")
-                cell.statusImage.tintColor = .systemRed.withAlphaComponent(0.7)
+                cell.statusImage.tintColor = .systemOrange
                 cell.dueLbl.text = "Due on:"
-                cell.statusLbl.backgroundColor = .systemRed.withAlphaComponent(0.1)
-                cell.statusLbl.textColor = .systemRed.withAlphaComponent(0.7)
-                
-            } else {
+                cell.statusLbl.backgroundColor = .systemOrange.withAlphaComponent(0.1)
+                cell.statusLbl.textColor = .systemOrange
+                cell.statusView.backgroundColor = UIColor.systemOrange.withAlphaComponent(0.1)
+            } else if dataModel.status == "Paid" {
                 cell.statusImage.image = UIImage(systemName: "checkmark.circle.fill")
                 cell.statusImage.tintColor = .systemGreen
                 cell.dueLbl.text = "Paid on:"
                 cell.statusLbl.backgroundColor = .systemGreen.withAlphaComponent(0.1)
-                cell.statusLbl.textColor = .systemGreen.withAlphaComponent(0.7)
+                cell.statusLbl.textColor = .systemGreen
+                cell.statusView.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1)
+
+            }else if dataModel.status == "Failed" {
+                cell.statusImage.image = UIImage(systemName: "xmark.circle.fill")
+                cell.statusImage.tintColor = .systemRed
+                cell.dueLbl.text = "Due on:"
+                cell.statusLbl.backgroundColor = .systemRed.withAlphaComponent(0.1)
+                cell.statusLbl.textColor = .systemRed
+                cell.statusView.backgroundColor = UIColor.systemRed.withAlphaComponent(0.1)
+
             }
             cell.selectionStyle = .none
             cell.clipsToBounds = true

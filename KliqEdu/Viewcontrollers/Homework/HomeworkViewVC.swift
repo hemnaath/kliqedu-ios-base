@@ -8,6 +8,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SafariServices
+import SDWebImage
 
 class HomeworkViewVC: UIViewController {
 
@@ -42,7 +44,7 @@ class HomeworkViewVC: UIViewController {
         self.titleLbl.text = homeworkDetails?.title
         self.descriptionLbl.text = homeworkDetails?.descriptionValue
         self.subjectLbl.text = homeworkDetails?.subject
-        self.dateLbl.text = homeworkDetails?.date
+        self.dateLbl.text = "Created on \(homeworkDetails?.date ?? "")"
         self.gradeLbl.text = "Grade \(homeworkDetails?.grade ?? "") \(homeworkDetails?.section ?? "")"
       //  self.sectionLbl.text = homeworkDetails?.section ?? "All"
      //   self.createdByLbl.text = homeworkDetails?.created_by
@@ -50,7 +52,7 @@ class HomeworkViewVC: UIViewController {
         if let file = homeworkDetails?.file, !file.isEmpty {
             self.attachmentView.isHidden = false
             self.attachmentNameLbl.text = (file as NSString).lastPathComponent
-            self.attachmentImg.image = UIImage(systemName: "doc.fill")
+            self.attachmentImg.sd_setImage(with: URL(string: homeworkDetails?.file ?? ""), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
         } else {
             self.attachmentView.isHidden = true
         }
@@ -70,6 +72,11 @@ class HomeworkViewVC: UIViewController {
             getHomeworkInfoApi()
         }
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     func getHomeworkInfoApi(){
         
         let param = [:] as [String : Any]
@@ -128,6 +135,9 @@ class HomeworkViewVC: UIViewController {
 
     @IBAction func attachmentBtnTapped(_ sender: Any) {
         print("Open Attachment")
+        
+        showDocumentOptions(homeworkDetails?.file ?? "")
+
     }
 
     //API calls
@@ -165,7 +175,7 @@ class HomeworkViewVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
@@ -182,5 +192,139 @@ class HomeworkViewVC: UIViewController {
             
             debugPrint(error)
         }
+    }
+    
+    func showDocumentOptions(_ urlString: String) {
+
+        let alert = UIAlertController(
+            title: "Attachment",
+            message: "Choose an option",
+            preferredStyle: .actionSheet
+        )
+
+        // Background color
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+
+        // Separator color
+        alert.view.tintColor = UIColor(hex: "#7367F0")
+
+        alert.addAction(UIAlertAction(title: "View", style: .default) { _ in
+            self.openDocument(urlString)
+        })
+
+        alert.addAction(UIAlertAction(title: "Download", style: .default) { _ in
+            self.downloadFile(urlString)
+        })
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = self.view
+            popover.sourceRect = CGRect(
+                x: self.view.bounds.midX,
+                y: self.view.bounds.midY,
+                width: 0,
+                height: 0
+            )
+            popover.permittedArrowDirections = []
+        }
+
+        present(alert, animated: true)
+    }
+    func openDocument(_ urlString: String) {
+        let fixed = urlString.replacingOccurrences(of: "\\/", with: "/")
+        
+        guard let url = URL(string: fixed) else { return }
+
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredBarTintColor = .white
+        safariVC.preferredControlTintColor = .systemBlue
+
+        self.present(safariVC, animated: true)
+    }
+    func saveImage(_ fileURL: URL) {
+
+        guard let data = try? Data(contentsOf: fileURL),
+              let image = UIImage(data: data) else { return }
+          showAnimatedToast(message: "Downloded")
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    }
+    func saveToFiles(_ fileURL: URL) {
+
+        let activityVC = UIActivityViewController(
+            activityItems: [fileURL],
+            applicationActivities: nil
+        )
+
+        if let popover = activityVC.popoverPresentationController {
+            popover.sourceView = self.view
+            popover.sourceRect = CGRect(
+                x: self.view.bounds.midX,
+                y: self.view.bounds.midY,
+                width: 0,
+                height: 0
+            )
+            popover.permittedArrowDirections = []
+        }
+
+        present(activityVC, animated: true)
+    }
+    func cleanURL(_ urlString: String) -> URL? {
+        let fixed = urlString
+            .replacingOccurrences(of: "\\/", with: "/")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return URL(string: fixed)
+    }
+    func downloadFile(_ urlString: String) {
+
+        guard let url = cleanURL(urlString) else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+
+        URLSession.shared.downloadTask(with: request) { tempURL, response, error in
+
+            if let error = error {
+                print("Download error:", error)
+                return
+            }
+
+            guard let tempURL = tempURL else {
+                print("No file received")
+                return
+            }
+
+            let mimeType = response?.mimeType ?? ""
+
+            DispatchQueue.main.async {
+                if mimeType.contains("image") {
+                    self.saveImage(tempURL)
+                } else {
+                    
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        
+                        let fileManager = FileManager.default
+                        let docsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        
+                        let fileName = url.lastPathComponent
+                        let finalURL = docsURL.appendingPathComponent(fileName)
+                        
+                        try? fileManager.removeItem(at: finalURL)
+                        try? fileManager.moveItem(at: tempURL, to: finalURL)
+                        
+                        // ✅ ONLY UI ON MAIN THREAD
+                        DispatchQueue.main.async {
+                            self.saveToFiles(finalURL)
+                        }
+                    }
+                }
+            }
+
+        }.resume()
     }
 }

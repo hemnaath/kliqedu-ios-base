@@ -73,6 +73,11 @@ class CreateAnnouncementVC: UIViewController {
 
         }
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        enableBackGesture()
+    }
+  
     func gradesApi(){
         
         let param = [:] as [String : Any]
@@ -98,7 +103,7 @@ class CreateAnnouncementVC: UIViewController {
         gradesDropDown.direction = .any
         gradesDropDown.backgroundColor = .white
         gradesDropDown.cellHeight = 48
-        gradesDropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayMedium, size: 15)!
+        gradesDropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 15)!
         gradesDropDown.selectionBackgroundColor = .themeLite1
         gradesDropDown.separatorColor = UIColor.systemGray5
         
@@ -130,7 +135,7 @@ class CreateAnnouncementVC: UIViewController {
         sectionDropDown.direction = .any
         sectionDropDown.backgroundColor = .white
         sectionDropDown.cellHeight = 48
-        sectionDropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.RedHatDisplayMedium, size: 15)!
+        sectionDropDown.textFont = UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 15)!
         sectionDropDown.selectionBackgroundColor = .themeLite1
         sectionDropDown.separatorColor = UIColor.systemGray5
         
@@ -245,7 +250,7 @@ class CreateAnnouncementVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 self.createBtn?.hideButtonLoading()
 
@@ -272,10 +277,18 @@ class CreateAnnouncementVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func gradeBtnTapped(_ sender: Any) {
+        if gradesDropDown.dataSource.isEmpty {
+            self.showAnimatedToast(message: "No grade found", type: .warning)
+            return
+        }
         gradesDropDown.show()
-
+        
     }
     @IBAction func sectionBtnTapped(_ sender: Any) {
+        if sectionDropDown.dataSource.isEmpty {
+            self.showAnimatedToast(message: "No section found", type: .warning)
+            return
+           }
         sectionDropDown.show()
 
     }

@@ -78,7 +78,7 @@ class ChangePasswordVC: UIViewController {
         var isValid = true
         
         // Validate current password format
-        if !ValidationClass.isValidPassword(password: oldpasswordField.text ?? "") {
+        if !ValidationClass.isValidPassword1(password: oldpasswordField.text ?? "") {
             currentpasswordWarningLbl.unhide()
             currentpasswordWarningLbl.text = StringConstants.passwordIsRequired
             isValid = false
@@ -122,7 +122,7 @@ class ChangePasswordVC: UIViewController {
             self.callServiceMethod(service: Constants.Urls.teacherChangePasswordUrl,method: .patch, params: param, key: "ChangePasswordUrl", headers: headers)
             
         }else{
-            self.callServiceMethod(service: Constants.Urls.parentChangePasswordUrl,method: .get, params: param, key: "ChangePasswordUrl", headers: headers)
+            self.callServiceMethod(service: Constants.Urls.parentChangePasswordUrl,method: .patch, params: param, key: "ChangePasswordUrl", headers: headers)
         }
     }
     func callServiceMethod(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
@@ -155,7 +155,7 @@ class ChangePasswordVC: UIViewController {
                 }
             } else {
                 
-                let errorCode: Int = result!["error_code"] as? Int ?? 0
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 self.saveBtn?.hideButtonLoading()
 

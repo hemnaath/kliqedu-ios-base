@@ -335,7 +335,7 @@
         <scene sceneID="2B2-9B-TaD">
             <objects>
                 <viewController storyboardIdentifier="LoginVC" id="ymh-Bk-omM" customClass="LoginVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="maV-ZR-Gqk">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="maV-ZR-Gqk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -570,9 +570,11 @@
                     <connections>
                         <outlet property="emailField" destination="ddg-gK-pJ0" id="PPG-iR-gQw"/>
                         <outlet property="emailWarningLbl" destination="YlT-qF-Y0M" id="iM4-n7-cDg"/>
+                        <outlet property="forgotPasswordBtn" destination="7og-O7-kyW" id="Jrm-0M-ZFF"/>
                         <outlet property="loginView" destination="RQU-vV-WND" id="lPw-Vz-zVF"/>
                         <outlet property="passwordField" destination="qz9-tu-fDA" id="u0L-8p-Vbx"/>
                         <outlet property="passwordShowBtn" destination="97S-KL-xWb" id="QVo-71-iEK"/>
+                        <outlet property="passwordView" destination="Ch1-Zw-2h9" id="XwV-dF-m55"/>
                         <outlet property="passwordWarningLbl" destination="4sW-mX-zSj" id="fpm-Jz-wah"/>
                         <outlet property="signinBtn" destination="Zf0-WR-Vzp" id="3NI-ss-QCc"/>
                     </connections>
@@ -1306,6 +1308,8 @@
                         <outlet property="passwordShowBtn1" destination="2px-79-Rdb" id="kqs-dH-1bD"/>
                         <outlet property="passwordWarningLbl" destination="GTS-Bu-rX0" id="TS9-B2-Msq"/>
                         <outlet property="submitBtn" destination="ynm-hC-y6c" id="lDy-31-0dz"/>
+                        <outlet property="titleLbl" destination="UpO-HE-zjg" id="Gf1-Ed-82t"/>
+                        <outlet property="topImage" destination="SM9-PR-Arw" id="wta-Go-WfG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVS-HX-0Ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1732,19 +1736,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.21960784310000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

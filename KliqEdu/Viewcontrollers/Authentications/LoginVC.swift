@@ -8,9 +8,12 @@
 import UIKit
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class LoginVC: UIViewController,UITextFieldDelegate {
     
+    @IBOutlet weak var forgotPasswordBtn: UIButton!
+    @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -22,6 +25,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     
     var dict : [String : AnyObject]!
     let defaults = UserDefaults.standard
+    var validationDone = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +39,11 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         self.emailWarningLbl.hide()
         self.passwordWarningLbl.hide()
         
+        self.passwordView.hide()
+        self.forgotPasswordBtn.hide()
+        
 //        self.emailField.text = "iosdev2306+2@gmail.com"
-//        self.passwordField.text = "Kar@1234567890"
+//        self.passwordField.text = "Kar@12345"
        // signinBtn.setButtonLeftRightGradientBackground(cornerRadius: 10,leftColor: .themeColor,rightColor: .themeLiteColor)
     }
     override func viewDidLayoutSubviews() {
@@ -76,31 +83,45 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             emailWarningLbl.hide()
         }
         
-        // Check for empty password
-        if passwordField.text ?? "" == "" {
-            passwordWarningLbl.unhide()
-            passwordWarningLbl.text = StringConstants.pleaseEnterAValidPassword
-            isValid = false
-        } else if !ValidationClass.isValidPassword1(password: (passwordField.text ?? "").trimString()) {
-            passwordWarningLbl.unhide()
-            passwordWarningLbl.text = StringConstants.pleaseEnterAValidPassword
-            isValid = false
-        } else {
-            passwordWarningLbl.hide()
-        }
-        
-        // Proceed if all validations pass
-        if isValid {
-            signinBtn?.showButtonLoading()
+        if validationDone == false{
+            // Proceed if all validations pass
+            if isValid {
+                signinBtn?.showButtonLoading()
+                
+                loginValidationCheckApi()
+            }
+        }else{
+            // Check for empty password
+            if passwordField.text ?? "" == "" {
+                passwordWarningLbl.unhide()
+                passwordWarningLbl.text = StringConstants.pleaseEnterAValidPassword
+                isValid = false
+            } else if !ValidationClass.isValidPassword1(password: (passwordField.text ?? "").trimString()) {
+                passwordWarningLbl.unhide()
+                passwordWarningLbl.text = StringConstants.pleaseEnterAValidPassword
+                isValid = false
+            } else {
+                passwordWarningLbl.hide()
+            }
             
-            validation()
+            // Proceed if all validations pass
+            if isValid {
+                signinBtn?.showButtonLoading()
+                
+                validation()
+            }
         }
-
+    }
+    func loginValidationCheckApi(){
+        
+        let param = ["email":emailField.text ?? ""] as [String : Any]
+        
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/validate-user",params: param,HTTPMethod: .post)
+        
+        self.callServiceMethod(service: Constants.Urls.loginValidationUrl,method: .post, params: param, key: "loginValidationUrl", headers: headers)
     }
     func validation() {
         self.view.endEditing(true)
-
-        var timeZone = TimeZone.current.identifier
     
         let paramDic: [String: Any] = [
             "email": (emailField.text ?? "").trimString(),
@@ -109,7 +130,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
 
         print("ParamDic====\(paramDic)")
        
-        AlamofireHC.requestPOST(Constants.Urls.manualLoginUrl, params: paramDic, headers: Constants.mobile_headers, success: { response in
+        AlamofireHC.request(Constants.Urls.manualLoginUrl, method: .post, params: paramDic, headers: nil, shouldShowHUD: false, success: { response in
 
             guard let result = response.dictionaryObject,
                   let isSuccess = result["success"] as? Bool else {
@@ -150,10 +171,15 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                 let announcementsPermission = permissions["announcements"] as? Bool ?? false
                 let holidayPermission = permissions["holiday"] as? Bool ?? false
                 let settingsPermission = permissions["settings"] as? Bool ?? false
+                let studentPermission = permissions["student"] as? Bool ?? false
 
                 // MARK: - Children Data
 
                 let children = data["children"] as? [[String: Any]] ?? []
+                // Store complete children array
+                if let childrenData = try? JSONSerialization.data(withJSONObject: children, options: []) {
+                    defaults.set(childrenData, forKey: Constants.Keys.childrenArrayKey)
+                }
                 let firstChild = children.first ?? [:]
                 let firstName = firstChild["firstname"] as? String ?? ""
                 let lastName = firstChild["lastname"] as? String ?? ""
@@ -216,7 +242,10 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                 defaults.set(announcementsPermission, forKey: Constants.Keys.announcementsPermissionKey)
                 defaults.set(holidayPermission, forKey: Constants.Keys.holidayPermissionKey)
                 defaults.set(settingsPermission, forKey: Constants.Keys.settingsPermissionKey)
+                defaults.set(studentPermission, forKey: Constants.Keys.studentPermissionKey)
 
+                // Save children count
+                defaults.set(children.count, forKey: Constants.Keys.childrenCountKey)
                 defaults.synchronize()
 
                 let message = result["message"] as? String ?? ""
@@ -227,7 +256,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
 
                     if emailStatus == 0 {
                         if let vc = sb.instantiateViewController(withIdentifier: "OTPVC") as? OTPVC {
-                            vc.emailId = email
+                            vc.emailId = self.emailField.text ?? ""
                             vc.comingFrom = "login"
 
                             self.navigationController?.pushViewController(vc, animated: true)
@@ -240,39 +269,6 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                             self.navigationController?.pushViewController(vc, animated: true)
                         }
                     }
-
-//                    case 3057: // 149
-//                        if let vc = sb.instantiateViewController(withIdentifier: "RegisterTfaVC") as? RegisterTfaVC {
-//                            vc.qrCode = qrCode
-//                            vc.password = self.passwordField.text ?? ""
-//                            vc.secretKeyData = google2fa_secret
-//                            self.navigationController?.pushViewController(vc, animated: true)
-//                        }
-//
-//                    case 3056: // 150
-//                        if let vc = sb.instantiateViewController(withIdentifier: "LoginTwoStepVC") as? LoginTwoStepVC {
-//                            vc.emailId = emailId
-//                            vc.password = self.passwordField.text ?? ""
-//                            self.navigationController?.pushViewController(vc, animated: true)
-//                        }
-//                    case 3017: // 11012
-//
-//                        if let vc = sb.instantiateViewController(withIdentifier: "NewOTPVC") as? NewOTPVC {
-//                            vc.emailId = emailId
-//                            vc.otptoken = tokenOtp
-//                            vc.qrCode = qrCode1
-//                            vc.secretKeyData = google2fa_secret1
-//                            self.navigationController?.pushViewController(vc, animated: true)
-//                        }
-//                    default:
-//                        let mainSB = UIStoryboard(name: Constants.StoryboardIds.mainSb, bundle: nil)
-//                        if let vc = mainSB.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
-//                            self.defaults.set(true, forKey: Constants.Keys.isLoggedIn)
-//
-//                            self.navigationController?.pushViewController(vc, animated: true)
-//                        }
-//                    }
-
                     self.showAnimatedToast(message: message)
                 }
 
@@ -292,8 +288,105 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             print(error)
         }
     }
+    
+    //API calls
+    func callServiceMethod(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
+        
+        AlamofireHC.request(service, method: method, params: params, headers: headers, shouldShowHUD: false, success: { response in
+            
+            let  result = response.dictionaryObject
+            let resultcheck = result?["success"] as? Bool ?? false
+
+            if(resultcheck) {
+                
+                if let responseDict = result as NSDictionary? {
+                    
+                    if key == "loginValidationUrl"{
+                        self.signinBtn?.hideButtonLoading()
+
+                        if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
+                            let passwordUser = dataList.value(forKey: "password_reset_required") as? Bool
+                            
+                            if passwordUser == false {
+                                self.showPasswordViewAnimation()
+                                self.validationDone = true
+                            }else{
+                                let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
+                                if let vc = sb.instantiateViewController(withIdentifier: "ResetPasswordVC") as? ResetPasswordVC {
+                                 
+                                    vc.comingFrom = "login"
+                                    vc.email = self.emailField.text ?? ""
+                                    vc.hidesBottomBarWhenPushed = true
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
+                }
+            } else {
+                self.signinBtn?.hideButtonLoading()
+
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
+                
+               if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
+                    
+                    self.performLogout(Vc: self)
+                } else {
+                    
+                    self.showAnimatedToast(message: msg,type: .warning)
+
+                }
+            }
+        }) { (error) in
+            self.signinBtn?.hideButtonLoading()
+
+            self.showAnimatedToast(message: StringConstants.pleaseTryAgain,type: .error)
+            
+            debugPrint(error)
+        }
+    }
 }
 extension LoginVC {
+    
+    func showPasswordViewAnimation() {
+        self.passwordView.alpha = 0
+        self.forgotPasswordBtn.alpha = 0
+
+        self.passwordView.transform = CGAffineTransform(translationX: 0, y: -40)
+        self.forgotPasswordBtn.transform = CGAffineTransform(translationX: 0, y: -20)
+
+        self.passwordView.unhide()
+        self.forgotPasswordBtn.unhide()
+
+        UIView.animate(withDuration: 0.55,
+                       delay: 0,
+                       usingSpringWithDamping: 0.88,
+                       initialSpringVelocity: 0.4,
+                       options: [.curveEaseInOut],
+                       animations: {
+            self.passwordView.alpha = 1
+            self.forgotPasswordBtn.alpha = 1
+
+            self.passwordView.transform = .identity
+            self.forgotPasswordBtn.transform = .identity
+
+            self.view.layoutIfNeeded()
+        })
+
+        UIView.animate(withDuration: 0.18,
+                       delay: 0,
+                       options: [.autoreverse],
+                       animations: {
+            self.signinBtn.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+        }, completion: { _ in
+            self.signinBtn.transform = .identity
+        })
+
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+    }
     
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
