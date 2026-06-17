@@ -11,7 +11,10 @@ import SDWebImage
 
 class SwitchAccountVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var outerView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var outerViewHeightConstraint: NSLayoutConstraint!
     
     var onDismiss: (() -> Void)?
     var onDismiss1: (() -> Void)?
@@ -25,10 +28,13 @@ class SwitchAccountVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.view.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
-        loadChildrenData()
-        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 90
+
         let nib = UINib(nibName: "ChildrensTCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ChildrensTCell")
+
+        loadChildrenData()
         
         self.delay(bySeconds: 0.25) { [weak self] in
             guard let self = self else { return }
@@ -52,6 +58,16 @@ class SwitchAccountVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
 
             tableView.reloadData()
+
+            self.tableView.layoutIfNeeded()
+
+            let tableHeight = self.tableView.contentSize.height
+            self.tableViewHeightConstraint.constant = tableHeight
+            self.outerViewHeightConstraint.constant = tableHeight + 120
+
+            UIView.animate(withDuration: 0.2) {
+                self.view.layoutIfNeeded()
+            }
         }
     }
 
@@ -59,17 +75,19 @@ class SwitchAccountVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return childrensArr.count
     }
 
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 90
-//    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChildrensTCell", for: indexPath) as! ChildrensTCell
         
         let dataModel = childrensArr[indexPath.row]
         
         cell.nameLbl.text = "\((dataModel.firstname ?? "").firstUppercased) \((dataModel.lastname ?? "").firstUppercased)"
-        cell.gradeLbl.text = "Grade: \(dataModel.roll_number ?? "")"
+        
+        let section = (dataModel.section ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        if section.isEmpty {
+            cell.gradeLbl.text = "Grade: \(dataModel.grade ?? "")"
+        } else {
+            cell.gradeLbl.text = "Grade: \(dataModel.grade ?? "") - \(section)"
+        }
         let imageURL = (dataModel.picture ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
         if !imageURL.isEmpty {
@@ -90,6 +108,8 @@ class SwitchAccountVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         let imageName = selectedIndex == indexPath.row ? "largecircle.fill.circle" : "circle"
         cell.radioBtn.setImage(UIImage(systemName: imageName), for: .normal)
+        cell.selectionStyle = .none
+        cell.clipsToBounds = true
         
         return cell
     }

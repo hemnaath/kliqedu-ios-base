@@ -286,6 +286,7 @@ struct Constants {
 
         static let feesListUrl = "parent/fees/list"
         static let feesDetailsUrl = "parent/fees/details"
+        static let feesInvoiceDownloadUrl = "parent/fees/download"
 
        
         static let teacherHomeworkListUrl = "teacher/homework/list"

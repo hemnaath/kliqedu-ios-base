@@ -235,24 +235,42 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 //            //defaults?.set(count, forKey: "count")
 //            if let dictionaryMessage = GeneralSingleton.shared.convertToDictionary(text: dataValue) {
                 
-                let notificationType = userInfo["notification_type"] as? String
+                let notificationType = userInfo["type"] as? String
                 let contentUniqueId = userInfo["content_unique_id"] as? String ?? ""
-                let contentId = userInfo["content_id"] as? String
 
                 print("fcmBody1: \(notificationType ?? "")")
                 
-              //  if notificationType == "Wallet"{
+                if notificationType == "ANNOUNCEMENT"{
                    
-//                    let storyboard = UIStoryboard(name: Constants.StoryboardIds.mainSb, bundle: nil)
-//                    let vc = storyboard.instantiateViewController(withIdentifier: "TransactionDetailsVC") as! TransactionDetailsVC
-//                    vc.tokenId = contentUniqueId
-//                    vc.comingFrom = notificationType ?? ""
-//                    vc.key = "token_unique_id"
-//                    if let topVC = UIApplication.getTopViewController() {
-//                        topVC.navigationController?.navigationBar.isHidden = false
-//                        topVC.navigationController?.pushViewController(vc, animated: false)
-//                    }
-              //  }
+                    let storyboard = UIStoryboard(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "AnnouncementDetailsVC") as! AnnouncementDetailsVC
+                    vc.uniqueId = contentUniqueId
+
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.navigationController?.navigationBar.isHidden = false
+                        topVC.navigationController?.pushViewController(vc, animated: false)
+                    }
+                }else if notificationType == "LEAVE_UPDATE"{
+                    
+                    let storyboard = UIStoryboard(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "LeaveViewVC") as! LeaveViewVC
+                    vc.uniqeId = contentUniqueId
+
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.navigationController?.navigationBar.isHidden = false
+                        topVC.navigationController?.pushViewController(vc, animated: false)
+                    }
+                }else if notificationType == "FEES"{
+                    
+                    let storyboard = UIStoryboard(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "FeesDetailsVC") as! FeesDetailsVC
+                    vc.uniqueId = contentUniqueId
+
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.navigationController?.navigationBar.isHidden = false
+                        topVC.navigationController?.pushViewController(vc, animated: false)
+                    }
+                }
         completionHandler()
     }
 }

@@ -32,22 +32,29 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
         userID = defaults.value(forKey: Constants.Keys.userIdKey) as? Int ?? 0
         token = defaults.value(forKey: Constants.Keys.accessTokenKey) as? String ?? ""
         self.navigationController?.isNavigationBarHidden = true
-        tabBar.isTranslucent = false
-        tabBar.backgroundColor = .clear
-        tabBar.barTintColor = .clear
-        tabBar.backgroundImage = UIImage()
-        tabBar.shadowImage = UIImage()
-      
-        // Create a top border view
-          let topLine = UIView(frame: CGRect(x: 0, y: -15, width: tabBar.frame.width, height: 1))
-    
-          // Add it to the tabBar
-          tabBar.addSubview(topLine)
-        
-        if let items = tabBarController?.tabBar.items {
-            for item in items {
-                item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)
-            }
+//        tabBar.isTranslucent = false
+//        tabBar.backgroundColor = .clear
+//        tabBar.barTintColor = .clear
+//        tabBar.backgroundImage = UIImage()
+//        tabBar.shadowImage = UIImage()
+//      
+//        // Create a top border view
+//          let topLine = UIView(frame: CGRect(x: 0, y: -15, width: tabBar.frame.width, height: 1))
+//    
+//          // Add it to the tabBar
+//          tabBar.addSubview(topLine)
+//        
+//        if let items = tabBarController?.tabBar.items {
+//            for item in items {
+//                item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)
+//            }
+//        }
+        tabBar.tintColor = .theme
+        tabBar.unselectedItemTintColor = .gray
+        if #available(iOS 19.0, *){
+            tabBar.backgroundColor = .clear
+        }else{
+            tabBar.backgroundColor = .white
         }
     }
     

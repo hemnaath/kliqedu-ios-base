@@ -25,8 +25,10 @@ class PaymentVC: UIViewController {
     var isFileAdded = Bool()
     var decryptedupiUrl1 = String()
     
+    var comingFrom = String()
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
         self.imageClearBtn.isHidden = true
         self.qrCodeOuterView.isHidden = true
         self.amountLbl.text = "\(self.feeDetails?.remaining_amount ?? "")"
@@ -56,14 +58,53 @@ class PaymentVC: UIViewController {
             if let outputImage = filter.outputImage {
                 let transform = CGAffineTransform(scaleX: 10, y: 10)
                 let scaledImage = outputImage.transformed(by: transform)
-                
-                return UIImage(ciImage: scaledImage)
+
+                let qrImage = UIImage(ciImage: scaledImage)
+
+                return addLogoToQRCode(qrImage)
             }
         }
         
         return nil
     }
+    func addLogoToQRCode(_ qrImage: UIImage) -> UIImage? {
 
+        guard let logo = UIImage(named: "kliqedu logo") else {
+            return qrImage
+        }
+
+        let size = qrImage.size
+
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+
+        qrImage.draw(in: CGRect(origin: .zero, size: size))
+
+        let logoSize = size.width * 0.22
+
+        let logoRect = CGRect(
+            x: (size.width - logoSize) / 2,
+            y: (size.height - logoSize) / 2,
+            width: logoSize,
+            height: logoSize
+        )
+
+        let bgRect = logoRect.insetBy(dx: -8, dy: -8)
+
+        let bgPath = UIBezierPath(
+            roundedRect: bgRect,
+            cornerRadius: 15
+        )
+
+        UIColor.white.setFill()
+        bgPath.fill()
+
+        logo.draw(in: logoRect)
+
+        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return finalImage
+    }
     @IBAction func backBtnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -83,10 +124,13 @@ class PaymentVC: UIViewController {
         
     }
     @IBAction func submitBtnTapped(_ sender: Any) {
-        submitBtn?.showButtonLoading()
-
-        self.uploadProfileImage(image: self.selectedImage1)
-
+        if isFileAdded == true{
+            submitBtn?.showButtonLoading()
+            
+            self.uploadProfileImage(image: self.selectedImage1)
+        }else{
+            showAnimatedToast(message: "Please upload a payment screenshot",type: .warning)
+        }
     }
     //API calls
     func callServiceMethod(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
@@ -231,11 +275,18 @@ class PaymentVC: UIViewController {
     }
     func uploadProfileImage(image: UIImage) {
 
-        let orderedParams: [(String, Any)] = [
-            ("module", "fees"),
-            ("unique_id", feeDetails?.unique_id ?? ""),
-            ("action", "add")]
-
+        let orderedParams: [(String, Any)]
+        if feeDetails?.status == "Failed" {
+            orderedParams = [
+                ("module", "fees"),
+                ("unique_id", feeDetails?.unique_id ?? ""),
+                ("action", "update")]
+        }else{
+            orderedParams = [
+                ("module", "fees"),
+                ("unique_id", feeDetails?.unique_id ?? ""),
+                ("action", "add")]
+        }
         // Convert tuple array to dictionary for signature
         let params = Dictionary(uniqueKeysWithValues: orderedParams)
 

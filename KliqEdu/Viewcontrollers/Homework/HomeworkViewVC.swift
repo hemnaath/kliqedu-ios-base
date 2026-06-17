@@ -10,9 +10,11 @@ import Alamofire
 import SwiftyJSON
 import SafariServices
 import SDWebImage
+import SkeletonView
 
 class HomeworkViewVC: UIViewController {
 
+    @IBOutlet weak var fileSizeLbl: UILabel!
     @IBOutlet weak var deleteEditView: UIStackView!
     @IBOutlet weak var subjectLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
@@ -50,11 +52,15 @@ class HomeworkViewVC: UIViewController {
      //   self.createdByLbl.text = homeworkDetails?.created_by
 
         if let file = homeworkDetails?.file, !file.isEmpty {
-            self.attachmentView.isHidden = false
-            self.attachmentNameLbl.text = (file as NSString).lastPathComponent
+            self.attachmentView.unhide()
+            if let url = URL(string: file) {
+                self.attachmentNameLbl.text = url.lastPathComponent
+            } else {
+                self.attachmentNameLbl.text = (file as NSString).lastPathComponent
+            }
             self.attachmentImg.sd_setImage(with: URL(string: homeworkDetails?.file ?? ""), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
         } else {
-            self.attachmentView.isHidden = true
+            self.attachmentView.hide()
         }
 
         self.editBtn.isHidden = !(homeworkDetails?.is_editable ?? false)
@@ -68,7 +74,7 @@ class HomeworkViewVC: UIViewController {
         }else{
             self.deleteEditView.unhide()
             
-            startViewAnimation()
+            self.view.showAnimatedGradientSkeleton()
             getHomeworkInfoApi()
         }
     }
@@ -84,22 +90,6 @@ class HomeworkViewVC: UIViewController {
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(homeworkDetails?.unique_id ?? "")",params: param, HTTPMethod: .get)
             
         self.callServiceMethod(service: "\(Constants.Urls.viewHomeworkUrl)/\(homeworkDetails?.unique_id ?? "")",method: .get, params: param, key: "viewHomeworkUrl", headers: headers)
-
-    }
-    func startViewAnimation()  {
-        titleLbl.showSkeleton(cornerRadius: 10)
-        descriptionLbl.showSkeleton(cornerRadius: 10)
-        dateLbl.showSkeleton(cornerRadius: 10)
-        deleteBtn.showSkeleton(cornerRadius: 10)
-        editBtn.showSkeleton(cornerRadius: 10)
-
-    }
-    func stopViewAnimation()  {
-        titleLbl.hideSkeleton()
-        descriptionLbl.hideSkeleton()
-        dateLbl.hideSkeleton()
-        deleteBtn.hideSkeleton()
-        editBtn.hideSkeleton()
 
     }
 
@@ -120,7 +110,8 @@ class HomeworkViewVC: UIViewController {
         let alert = UIAlertController(title: Constants.appName, message: StringConstants.sureToDeleteTheHomework, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: StringConstants.yes, style: UIAlertAction.Style.destructive, handler: { action in
-            
+            LoadingIndicator.show()
+
             let param = [:] as [String : Any]
             
             let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.homeworkDetails?.unique_id ?? "")",params: param, HTTPMethod: .delete)
@@ -153,12 +144,13 @@ class HomeworkViewVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "deleteHomeworkUrl"{
+                        LoadingIndicator.hide()
 
                         DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                         }
                     }else if key == "viewHomeworkUrl"{
-                        self.stopViewAnimation()
+                        self.view.hideSkeleton()
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
 
                             self.homeworkDetails = HomeWorkModel(dictionary: dataList)
@@ -198,25 +190,49 @@ class HomeworkViewVC: UIViewController {
 
         let alert = UIAlertController(
             title: "Attachment",
-            message: "Choose an option",
+            message: nil,
             preferredStyle: .actionSheet
         )
 
-        // Background color
-        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
-
-        // Separator color
-        alert.view.tintColor = UIColor(hex: "#7367F0")
-
-        alert.addAction(UIAlertAction(title: "View", style: .default) { _ in
+        let viewAction = UIAlertAction(title: "View", style: .default) { _ in
             self.openDocument(urlString)
-        })
+        }
+        viewAction.setValue(UIImage(systemName: "eye"), forKey: "image")
 
-        alert.addAction(UIAlertAction(title: "Download", style: .default) { _ in
+        let downloadAction = UIAlertAction(title: "Download", style: .default) { _ in
             self.downloadFile(urlString)
-        })
+        }
+        downloadAction.setValue(UIImage(systemName: "arrow.down.circle"), forKey: "image")
 
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            guard let url = self.cleanURL(urlString) else { return }
+
+            let activityVC = UIActivityViewController(
+                activityItems: [url],
+                applicationActivities: nil
+            )
+
+            if let popover = activityVC.popoverPresentationController {
+                popover.sourceView = self.view
+                popover.sourceRect = CGRect(
+                    x: self.view.bounds.midX,
+                    y: self.view.bounds.midY,
+                    width: 0,
+                    height: 0
+                )
+                popover.permittedArrowDirections = []
+            }
+
+            self.present(activityVC, animated: true)
+        }
+        shareAction.setValue(UIImage(systemName: "square.and.arrow.up"), forKey: "image")
+
+        alert.addAction(viewAction)
+        alert.addAction(downloadAction)
+        alert.addAction(shareAction)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        alert.view.tintColor = UIColor(hex: "#7367F0")
 
         if let popover = alert.popoverPresentationController {
             popover.sourceView = self.view
@@ -232,15 +248,24 @@ class HomeworkViewVC: UIViewController {
         present(alert, animated: true)
     }
     func openDocument(_ urlString: String) {
-        let fixed = urlString.replacingOccurrences(of: "\\/", with: "/")
+        //        let fixed = urlString.replacingOccurrences(of: "\\/", with: "/")
+        //
+        //        guard let url = URL(string: fixed) else { return }
+        //
+        //        let safariVC = SFSafariViewController(url: url)
+        //        safariVC.preferredBarTintColor = .white
+        //        safariVC.preferredControlTintColor = .systemBlue
+        //
+        //        self.present(safariVC, animated: true)
         
-        guard let url = URL(string: fixed) else { return }
-
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.preferredBarTintColor = .white
-        safariVC.preferredControlTintColor = .systemBlue
-
-        self.present(safariVC, animated: true)
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "ImageVC") as? ImageVC {
+            vc.pic = urlString
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .coverVertical   // animation
+            
+            present(vc, animated: true)
+        }
     }
     func saveImage(_ fileURL: URL) {
 

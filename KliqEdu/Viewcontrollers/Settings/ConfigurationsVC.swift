@@ -20,22 +20,13 @@ class ConfigurationsVC: UIViewController {
         super.viewDidLoad()
         faceIDSwitch.isEnabled = isFaceIDAvailable()
         faceIDSwitch.isOn = UserDefaults.standard.bool(forKey: Constants.Keys.faceID)
-        self.startViewAnimation()
+
+        self.view.showSkeleton(cornerRadius: 10)
         self.configurationsApi()
         // Do any additional setup after loading the view.
     }
     @IBAction func backBtnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-    }
-    func startViewAnimation()  {
-        faceIDSwitch.showSkeleton(cornerRadius: 10)
-        pushSwitch.showSkeleton(cornerRadius: 10)
-        emailSwitch.showSkeleton(cornerRadius: 10)
-    }
-    func stopViewAnimation()  {
-        faceIDSwitch.hideSkeleton()
-        pushSwitch.hideSkeleton()
-        emailSwitch.hideSkeleton()
     }
     
     func configurationsApi(){
@@ -99,8 +90,8 @@ class ConfigurationsVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "configurationsUrl"{
-                        self.stopViewAnimation()
-                        
+                        self.view.hideSkeleton()
+
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
                             
                             let pushNotificationsAllowed = dataList.value(forKey: "push_notifications_allowed") as? Int ?? 0

@@ -289,68 +289,77 @@ extension HomeworkListVC: UICollectionViewDelegate,UICollectionViewDataSource,UI
     // MARK: - Setup UI
     
     func setupUI() {
-        
         //  bgView.layer.cornerRadius = 20
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
         }
-        
         collectionView.showsHorizontalScrollIndicator = false
-        let formatter = DateFormatter()
-
-        formatter.dateFormat = "MMMM yyyy"
-
-        monthLbl.text = formatter.string(from: Date())
+        // Removed monthLbl.text setting; now handled in generateCurrentMonthDates()
     }
     // MARK: - Generate Dates
-        
     func generateCurrentMonthDates() {
 
         dateArray.removeAll()
-        let calendar = Calendar.current
-        let today = Date()
 
-        guard let range = calendar.range(of: .day, in: .month, for: today),
-              let monthInterval = calendar.dateInterval(of: .month, for: today) else {
+        let calendar = Calendar.current
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        guard let startDate = formatter.date(from: "2026-06-01"),
+              let endDate = formatter.date(from: "2027-04-30") else {
             return
         }
 
-        let startDate = monthInterval.start
         let dayFormatter = DateFormatter()
         dayFormatter.dateFormat = "E"
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
 
-        for day in range {
+        var currentDate = startDate
+        let today = Date()
 
-            if let date = calendar.date(byAdding: .day,value: day - 1,to: startDate) {
+        while currentDate <= endDate {
 
-                let dayName = String(dayFormatter.string(from: date).prefix(1))
-                let dateString = dateFormatter.string(from: date)
-                let isToday = calendar.isDate(date, inSameDayAs: today)
-                let model = DateModel(
-                    dayName: dayName,
-                    date: dateString,
-                    fullDate: date,
-                    isSelected: isToday
-                )
-                dateArray.append(model)
-            }
+            let dayName = String(dayFormatter.string(from: currentDate).prefix(1))
+            let dateString = dateFormatter.string(from: currentDate)
+
+            let isToday = calendar.isDate(currentDate, inSameDayAs: today)
+
+            dateArray.append(DateModel(
+                dayName: dayName,
+                date: dateString,
+                fullDate: currentDate,
+                isSelected: isToday
+            ))
+
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
         }
+
+        if let todayIndex = dateArray.firstIndex(where: { $0.isSelected }) {
+            selectedDate = dateArray[todayIndex].fullDate
+        } else if !dateArray.isEmpty {
+            dateArray[0].isSelected = true
+            selectedDate = dateArray[0].fullDate
+        }
+
+        let monthFormatter = DateFormatter()
+        monthFormatter.dateFormat = "MMMM yyyy"
+        monthLbl.text = monthFormatter.string(from: selectedDate)
 
         collectionView.reloadData()
 
-        if let todayIndex = dateArray.firstIndex(where: { $0.isSelected }) {
+        if let selectedIndex = dateArray.firstIndex(where: { $0.isSelected }) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.collectionView.scrollToItem(
-                    at: IndexPath(item: todayIndex, section: 0),
-                    at: .centeredHorizontally,animated: true
+                    at: IndexPath(item: selectedIndex, section: 0),
+                    at: .centeredHorizontally,
+                    animated: false
                 )
             }
         }
@@ -386,28 +395,53 @@ extension HomeworkListVC: UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView,didSelectItemAt indexPath: IndexPath) {
-        
         for index in 0..<dateArray.count {
-            
             dateArray[index].isSelected = false
         }
-        
         dateArray[indexPath.row].isSelected = true
 
         self.selectedDate = dateArray[indexPath.row].fullDate
 
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"
-
         monthLbl.text = formatter.string(from: self.selectedDate)
 
         collectionView.reloadData()
-        tableView.reloadData()
-        self.emptyView.isHidden = true
 
-        tableView.isSkeletonable = true
+        self.emptyView.isHidden = true
+        self.tableView.isHidden = false
+
+        // Clear old data so skeleton is visible
+        self.homeworkArray.removeAll()
+        self.tableView.reloadData()
+
+        self.tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
-        getHomeworkData()
+
+        DispatchQueue.main.async {
+            self.getHomeworkData()
+        }
     }
-    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateMonthLabel()
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            updateMonthLabel()
+        }
+    }
+
+    private func updateMonthLabel() {
+        let visibleItems = collectionView.indexPathsForVisibleItems.sorted { $0.item < $1.item }
+        let middlePosition = visibleItems.count / 2
+        guard visibleItems.indices.contains(middlePosition) else { return }
+        let middleIndex = visibleItems[middlePosition]
+        let visibleDate = dateArray[middleIndex.item].fullDate
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        monthLbl.text = formatter.string(from: visibleDate)
+    }
 }
+
+   

@@ -35,7 +35,7 @@ class FeesDetailsVC: UIViewController {
     @IBOutlet weak var paymentFileView: UIView!
     
     var feeDetails = FeesModel(dictionary: [:])
-
+    var uniqueId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,41 +47,19 @@ class FeesDetailsVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.startViewAnimation()
+
+        self.view.showSkeleton(cornerRadius: 0)
         getFeesInfoApi()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         enableBackGesture()
     }
-    func startViewAnimation()  {
-        feesTypeLbl.showSkeleton(cornerRadius: 10)
-     //   staudentNameLbl.showSkeleton(cornerRadius: 10)
-        gradeLbl.showSkeleton(cornerRadius: 10)
-        invoiceIdLbl.showSkeleton(cornerRadius: 10)
-        dateLbl.showSkeleton(cornerRadius: 10)
-       // amountLbl.showSkeleton(cornerRadius: 10)
-        statusLbl.showSkeleton(cornerRadius: 10)
-        placeHolderNameLbl.showSkeleton(cornerRadius: 10)
-
-    }
-    func stopViewAnimation()  {
-
-        feesTypeLbl.hideSkeleton()
-      //  staudentNameLbl.hideSkeleton()
-        gradeLbl.hideSkeleton()
-        invoiceIdLbl.hideSkeleton()
-        dateLbl.hideSkeleton()
-      //  amountLbl.hideSkeleton()
-        statusLbl.hideSkeleton()
-        placeHolderNameLbl.hideSkeleton()
-
-    }
-
+    
     func setupUi(){
         self.feesTypeLbl.text = self.feeDetails?.fee_type
         self.staudentNameLbl.text = (self.feeDetails?.student_name)?.firstUppercased
-        self.gradeLbl.text = "Grade \(self.feeDetails?.student_grade ?? "")"
+        self.gradeLbl.text = "Grade \(self.feeDetails?.student_grade ?? "") \(self.feeDetails?.student_section ?? "")"
         self.invoiceIdLbl.text = self.feeDetails?.unique_id ?? ""
         self.dateLbl.text = self.feeDetails?.due_date
         self.amountLbl.text = "\(self.feeDetails?.remaining_amount ?? "")"
@@ -121,16 +99,18 @@ class FeesDetailsVC: UIViewController {
         self.paymentFileNameLbl.text = "\(random(digits: 15)).png"
 
         let status = self.feeDetails?.status ?? ""
+        let customYellow = UIColor(red: 255/255, green: 179/255, blue: 0/255, alpha: 1.0) // #FFB300
         
         switch status.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() {
             
         case "pending":
             statusImg.image = UIImage(systemName: "clock.fill")
-            statusView.backgroundColor = .systemOrange.withAlphaComponent(0.15)
-            statusLbl.textColor = .systemOrange
-            statusImg.tintColor = .systemOrange
+            statusView.backgroundColor = customYellow.withAlphaComponent(0.15)
+            statusLbl.textColor = customYellow
+            statusImg.tintColor = customYellow
             self.amountLbl.text = "\(self.feeDetails?.remaining_amount ?? "")"
             self.dateTitleLbl.text = "Due Date"
+            self.continueBtn.setTitle("Continue", for: .normal)
             
         case "success", "paid":
             statusImg.image = UIImage(systemName: "checkmark.circle.fill")
@@ -139,25 +119,43 @@ class FeesDetailsVC: UIViewController {
             statusImg.tintColor = .systemGreen
             self.amountLbl.text = "\(self.feeDetails?.paid_amount ?? "")"
             self.dateTitleLbl.text = "Paid Date"
-            self.continueBtn.hide()
+            self.continueBtn.setTitle("Download Invoice", for: .normal)
+
+            //self.continueBtn.hide()
         case "failed":
             statusImg.image = UIImage(systemName: "xmark.circle.fill")
             statusView.backgroundColor = .systemRed.withAlphaComponent(0.15)
             statusLbl.textColor = .systemRed
             statusImg.tintColor = .systemRed
-            
+            self.amountLbl.text = "\(self.feeDetails?.paid_amount ?? "")"
+            self.dateTitleLbl.text = "Paid Date"
+            self.continueBtn.setTitle("Retry", for: .normal)
         case "overdue":
             statusImg.image = UIImage(systemName: "exclamationmark.triangle.fill")
-            statusView.backgroundColor = .systemPurple.withAlphaComponent(0.15)
-            statusLbl.textColor = .systemPurple
-            statusImg.tintColor = .systemPurple
-            
+            statusView.backgroundColor = .systemOrange.withAlphaComponent(0.15)
+            statusLbl.textColor = .systemOrange
+            statusImg.tintColor = .systemOrange
+            self.dateTitleLbl.text = "Due Date"
+            self.continueBtn.setTitle("Continue", for: .normal)
+
+        case "processing":
+            statusImg.image = UIImage(systemName: "arrow.triangle.2.circlepath.circle.fill")
+            statusView.backgroundColor = .theme.withAlphaComponent(0.15)
+            statusLbl.textColor = .theme
+            statusImg.tintColor = .theme
+            self.amountLbl.text = "\(self.feeDetails?.remaining_amount ?? "")"
+            self.dateTitleLbl.text = "Paid Date"
+            self.continueBtn.setTitle("Update", for: .normal)
+
         case "partial":
             statusImg.image = UIImage(systemName: "minus.circle.fill")
             statusView.backgroundColor = .systemBlue.withAlphaComponent(0.15)
             statusLbl.textColor = .systemBlue
             statusImg.tintColor = .systemBlue
-            
+            self.amountLbl.text = "\(self.feeDetails?.remaining_amount ?? "")"
+            self.dateTitleLbl.text = "Partially Paid"
+            self.continueBtn.setTitle("Continue", for: .normal)
+
         default:
             statusImg.image = UIImage(systemName: "clock.fill")
         }
@@ -168,7 +166,7 @@ class FeesDetailsVC: UIViewController {
         
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(feeDetails?.unique_id ?? "")",params: param, HTTPMethod: .get)
             
-        self.callServiceMethod(service: "\(Constants.Urls.feesDetailsUrl)/\(feeDetails?.unique_id ?? "")",method: .get, params: param, key: "feesDetailsUrl", headers: headers)
+        self.callServiceMethod(service: "\(Constants.Urls.feesDetailsUrl)/\(uniqueId)",method: .get, params: param, key: "feesDetailsUrl", headers: headers)
 
     }
     func random(digits:Int) -> String {
@@ -179,11 +177,47 @@ class FeesDetailsVC: UIViewController {
            return number
        }
     @IBAction func continueTapped(_ sender: Any) {
-        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-        if let vc = sb.instantiateViewController(withIdentifier: "PaymentVC") as? PaymentVC {
-            vc.feeDetails = feeDetails
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+        if self.feeDetails?.status ?? "" == "Paid" {
+            continueBtn?.showButtonLoading()
+
+            let param = [:] as [String : Any]
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(feeDetails?.unique_id ?? "")",params: param, HTTPMethod: .get)
+
+            let url = Constants.baseUrl + "\(Constants.Urls.feesInvoiceDownloadUrl)/\(uniqueId)"
+
+            var request = URLRequest(url: URL(string: url)!)
+            request.httpMethod = "GET"
+            request.allHTTPHeaderFields = headers
+
+            AF.request(request).responseData { response in
+
+                self.continueBtn?.hideButtonLoading()
+
+                guard let pdfData = response.data else {
+                    print("❌ No PDF data received")
+                    return
+                }
+
+                let fileURL = FileManager.default.temporaryDirectory
+                    .appendingPathComponent("Invoice_\(self.feeDetails?.fee_type ?? "")_\(self.uniqueId).pdf")
+
+                do {
+                    try pdfData.write(to: fileURL)
+
+                    DispatchQueue.main.async {
+                        UIApplication.shared.open(fileURL)
+                    }
+                } catch {
+                    print("❌ File save error:", error)
+                }
+            }
+        } else {
+            let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+            if let vc = sb.instantiateViewController(withIdentifier: "PaymentVC") as? PaymentVC {
+                vc.feeDetails = feeDetails
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     
@@ -196,13 +230,21 @@ class FeesDetailsVC: UIViewController {
         self.showAnimatedToast(message: "Invoice ID Copied")
     }
     @IBAction func paymentFileTapped(_ sender: Any) {
+//        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+//        if let vc = sb.instantiateViewController(withIdentifier: "ImageVC") as? ImageVC {
+//            vc.pic = feeDetails?.payment_picture ?? ""
+//            vc.modalPresentationStyle = .overCurrentContext
+//            vc.modalTransitionStyle = .coverVertical   // animation
+//
+//            present(vc, animated: true)
+//        }
+        
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-        if let vc = sb.instantiateViewController(withIdentifier: "ImageVC") as? ImageVC {
-            vc.pic = feeDetails?.payment_picture ?? ""
-            vc.modalPresentationStyle = .overCurrentContext
-            vc.modalTransitionStyle = .coverVertical   // animation
-    
-            present(vc, animated: true)
+        if let vc = sb.instantiateViewController(withIdentifier: "WebviewVC") as? WebviewVC {
+            vc.docFile = feeDetails?.payment_picture ?? ""
+            
+            vc.titel = "Payment picture"
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     //API calls
@@ -218,19 +260,18 @@ class FeesDetailsVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "feesDetailsUrl"{
-                        self.stopViewAnimation()
+                        self.view.hideSkeleton()
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
-
+                            
                             self.feeDetails = FeesModel(dictionary: dataList)
                             self.setupUi()
-
+                            
                         }
                     }
-                } else {
-                    self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
                 }
             } else {
-                
+                self.continueBtn?.hideButtonLoading()
+
                 let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
@@ -244,11 +285,11 @@ class FeesDetailsVC: UIViewController {
                 }
             }
         }) { (error) in
+            self.continueBtn?.hideButtonLoading()
+
             self.showAnimatedToast(message: StringConstants.pleaseTryAgain,type: .error)
             
             debugPrint(error)
         }
     }
 }
-
-

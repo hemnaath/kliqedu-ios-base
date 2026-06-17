@@ -58,6 +58,9 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
             // start refresh
             
             print("refresh")
+            self?.allItemsLoaded = false
+            
+            self?.page = 1
             self?.getFeesData()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
@@ -218,35 +221,72 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
         
         let dataModel = feesArray[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeesTCell", for: indexPath as IndexPath) as? FeesTCell {
-            // cell.studentPic.image = UIImage(named: imageArray[indexPath.row])
+
             cell.titleLbl.text = dataModel.fee_type
-            cell.statusLbl.text = "  \(dataModel.status ?? "")  "
+            cell.statusLbl.text = "   \(dataModel.status ?? "")   "
             cell.dateLbl.text = dataModel.due_date
             cell.amtLbl.text = dataModel.remaining_amount
-            
+
+            let customYellow = UIColor(red: 255/255, green: 179/255, blue: 0/255, alpha: 1.0) // #FFB300
+
             if dataModel.status == "Pending" {
-                cell.statusImage.image = UIImage(systemName: "xmark.circle.fill")
-                cell.statusImage.tintColor = .systemOrange
+
+                cell.statusImage.image = UIImage(systemName: "clock.fill")
+                cell.statusImage.tintColor = customYellow
                 cell.dueLbl.text = "Due on:"
-                cell.statusLbl.backgroundColor = .systemOrange.withAlphaComponent(0.1)
-                cell.statusLbl.textColor = .systemOrange
-                cell.statusView.backgroundColor = UIColor.systemOrange.withAlphaComponent(0.1)
-            } else if dataModel.status == "Paid" {
+                cell.statusLbl.backgroundColor = customYellow.withAlphaComponent(0.15)
+                cell.statusLbl.textColor = customYellow
+                cell.statusView.backgroundColor = customYellow.withAlphaComponent(0.15)
+                cell.amtLbl.text = dataModel.remaining_amount
+            }else if dataModel.status == "Paid" {
+                
                 cell.statusImage.image = UIImage(systemName: "checkmark.circle.fill")
                 cell.statusImage.tintColor = .systemGreen
                 cell.dueLbl.text = "Paid on:"
                 cell.statusLbl.backgroundColor = .systemGreen.withAlphaComponent(0.1)
                 cell.statusLbl.textColor = .systemGreen
-                cell.statusView.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1)
+                cell.statusView.backgroundColor = .systemGreen.withAlphaComponent(0.1)
+                cell.amtLbl.text = dataModel.paid_amount
 
-            }else if dataModel.status == "Failed" {
+            } else if dataModel.status == "Failed" {
+                
                 cell.statusImage.image = UIImage(systemName: "xmark.circle.fill")
                 cell.statusImage.tintColor = .systemRed
                 cell.dueLbl.text = "Due on:"
                 cell.statusLbl.backgroundColor = .systemRed.withAlphaComponent(0.1)
                 cell.statusLbl.textColor = .systemRed
-                cell.statusView.backgroundColor = UIColor.systemRed.withAlphaComponent(0.1)
+                cell.statusView.backgroundColor = .systemRed.withAlphaComponent(0.1)
+                cell.amtLbl.text = dataModel.remaining_amount
 
+            } else if dataModel.status == "Overdue" {
+                
+                cell.statusImage.image = UIImage(systemName: "exclamationmark.triangle.fill")
+                cell.statusImage.tintColor = .systemOrange
+                cell.dueLbl.text = "Overdue:"
+                cell.statusLbl.backgroundColor = .systemOrange.withAlphaComponent(0.1)
+                cell.statusLbl.textColor = .systemOrange
+                cell.statusView.backgroundColor = .systemOrange.withAlphaComponent(0.1)
+                cell.amtLbl.text = dataModel.remaining_amount
+
+            } else if dataModel.status == "Processing" {
+                
+                cell.statusImage.image = UIImage(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                cell.statusImage.tintColor = .theme
+                cell.dueLbl.text = "Paid on:"
+                cell.statusLbl.backgroundColor = .theme.withAlphaComponent(0.1)
+                cell.statusLbl.textColor = .theme
+                cell.statusView.backgroundColor = .theme.withAlphaComponent(0.1)
+                cell.amtLbl.text = dataModel.remaining_amount
+
+            } else if dataModel.status == "Partial" {
+                
+                cell.statusImage.image = UIImage(systemName: "circle.lefthalf.filled")
+                cell.statusImage.tintColor = .systemBlue
+                cell.dueLbl.text = "Partially Paid:"
+                cell.statusLbl.backgroundColor = .systemBlue.withAlphaComponent(0.1)
+                cell.statusLbl.textColor = .systemBlue
+                cell.statusView.backgroundColor = .systemBlue.withAlphaComponent(0.1)
+                cell.amtLbl.text = dataModel.remaining_amount
             }
             cell.selectionStyle = .none
             cell.clipsToBounds = true
@@ -259,17 +299,39 @@ class FeesListVC: UIViewController , UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let dataModel = feesArray[indexPath.row]
-//
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
         if let vc = sb.instantiateViewController(withIdentifier: "FeesDetailsVC") as? FeesDetailsVC {
             
             vc.feeDetails = dataModel
-//            vc.accStatus = dataModel.status_formatted ?? ""
+            vc.uniqueId  = dataModel.unique_id ?? ""
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = scrollView.contentSize.height
+            let height = scrollView.frame.size.height
+            
+            // Check if we should load more data
+            if offsetY > contentHeight - height * 2 {
+                
+                if !isLoadingData && !allItemsLoaded {
+                    var param: [String: Any] = [
+                        "page": page
+                    ]
+                    if let status = filters["status"] {
+                        param["status"] = Int("\(status)") ?? 0
+                    }
+                    let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
+                    
+                    self.callServiceMethod(service: Constants.Urls.feesListUrl, method: .post, params: param, key: "feesListUrl", headers: headers)
+                }
+            }
+        }
 
 }
 // MARK: - UITableViewDataSource

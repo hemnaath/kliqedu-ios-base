@@ -149,11 +149,15 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                               
                         }
                         // Increment skip value for the next batch of data
-                        if listArray.count == 0 {
-                            self.allItemsLoaded = true
-                            print("All items loaded. No more API calls will be made.")
-                        } else {
-                            self.page += 1   // go to next page
+                        let pagination = resDataDic?["pagination"] as? NSDictionary
+
+                        let currentPage = pagination?["current_page"] as? Int ?? 1
+                        let totalPages = pagination?["total_pages"] as? Int ?? 1
+
+                        self.allItemsLoaded = currentPage >= totalPages
+
+                        if !self.allItemsLoaded {
+                            self.page = currentPage + 1
                         }
                     }
                 } else {
@@ -218,6 +222,7 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if let vc = sb.instantiateViewController(withIdentifier: "AnnouncementDetailsVC") as? AnnouncementDetailsVC {
             
             vc.announcementDetails = dataModel
+            vc.uniqueId = dataModel.unique_id ?? ""
 //            vc.accStatus = dataModel.status_formatted ?? ""
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)

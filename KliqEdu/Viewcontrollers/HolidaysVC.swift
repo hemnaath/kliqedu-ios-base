@@ -186,7 +186,7 @@ class HolidaysVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         if let cell = tableView.dequeueReusableCell(withIdentifier: "HolidaysCell", for: indexPath as IndexPath) as? HolidaysCell {
             cell.dateLbl.text = dataModel.date
             cell.monthLbl.text = String(dataModel.month?.prefix(3) ?? "")
-            cell.titleLbl.text = dataModel.name
+            cell.titleLbl.text = dataModel.name?.firstUppercased
             cell.dayLbl.text = dataModel.day
 
             cell.selectionStyle = .none

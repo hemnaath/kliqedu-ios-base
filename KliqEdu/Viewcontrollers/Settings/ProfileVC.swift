@@ -65,7 +65,8 @@ class ProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        startViewAnimation()
+        self.view.showSkeleton(cornerRadius: 25)
+
         profileApi()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -88,28 +89,6 @@ class ProfileVC: UIViewController {
         personalDetailsBtn.setTitleAndBgColor(titleColor: .theme, bgColor: .white)
         self.personalView.isHidden = false
         self.empView.isHidden = true
-    }
-    func startViewAnimation()  {
-        profilePicture.showSkeleton(cornerRadius: 25)
-        placeHolderNameLbl.showSkeleton(cornerRadius: 25)
-        empIdLbl.showSkeleton(cornerRadius: 0)
-       // nameLbl.showSkeleton(cornerRadius: 0)
-        deptLbl.showSkeleton(cornerRadius: 0)
-        joinedDateLbl.showSkeleton(cornerRadius: 0)
-        totalExpLbl.showSkeleton(cornerRadius: 0)
-        qualificationLbl.showSkeleton(cornerRadius: 0)
-
-    }
-    func stopViewAnimation()  {
-        profilePicture.hideSkeleton()
-        placeHolderNameLbl.hideSkeleton()
-       // nameLbl.hideSkeleton()
-        empIdLbl.hideSkeleton()
-        deptLbl.hideSkeleton()
-        joinedDateLbl.hideSkeleton()
-        totalExpLbl.hideSkeleton()
-        qualificationLbl.hideSkeleton()
-
     }
 
     func profileApi(){
@@ -300,7 +279,9 @@ class ProfileVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "profileUrl"{
-                        self.stopViewAnimation()
+                        self.view.hideSkeleton()
+
+                     //   self.stopViewAnimation()
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
                             
                             self.profileDetails = ProfileModel(dictionary: dataList)

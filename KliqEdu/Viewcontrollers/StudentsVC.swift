@@ -45,7 +45,11 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         /// Pull to refresh
         tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
             // start refresh
-            
+            self?.allItemsLoaded = false
+
+                self?.isLoadingData = false
+
+                self?.page = 1
             print("refresh")
             self?.getStudentsData()
             
@@ -210,11 +214,33 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
                             self.tableView.reloadData()
                         }
                         // Increment skip value for the next batch of data
-                        if listArray.count == 0 {
+//                        if listArray.count == 0 {
+//                            self.allItemsLoaded = true
+//                            print("All items loaded. No more API calls will be made.")
+//                        } else {
+//                            self.page += 1   // go to next page
+//                        }
+                        let pagination = resDataDic?["pagination"] as? NSDictionary
+
+                        let currentPage = pagination?["current_page"] as? Int ?? 1
+                        let totalPages = pagination?["total_pages"] as? Int ?? 1
+                        let totalRecords = pagination?["total_records"] as? Int ?? 0
+
+                        if currentPage >= totalPages {
+                            
                             self.allItemsLoaded = true
-                            print("All items loaded. No more API calls will be made.")
+                            print("All items loaded. Reached last page.")
+                            
                         } else {
-                            self.page += 1   // go to next page
+                            
+                            self.allItemsLoaded = false
+                            self.page = currentPage + 1
+                        }
+
+                        if self.studentsArray.count >= totalRecords && totalRecords > 0 {
+                            
+                            self.allItemsLoaded = true
+                            print("All items loaded. Retrieved all records.")
                         }
                     }
                 } else {
@@ -258,7 +284,7 @@ class StudentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource,U
         if let cell = tableView.dequeueReusableCell(withIdentifier: "StudentListTCell", for: indexPath as IndexPath) as? StudentListTCell {
            // cell.studentPic.image = UIImage(named: imageArray[indexPath.row])
             cell.studentNameLbl.text = (dataModel.full_name)?.firstUppercased
-            cell.classLbl.text = dataModel.studentClass
+            cell.classLbl.text = "  Grade \(dataModel.studentClass ?? "")  "
             cell.idNumberLbl.text = dataModel.unique_id
             
             let imageURL = (dataModel.student_picture ?? "").trimmingCharacters(in: .whitespacesAndNewlines)

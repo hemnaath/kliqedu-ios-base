@@ -9,6 +9,7 @@ import UIKit
 import DropDown
 import Alamofire
 import SwiftyJSON
+import SkeletonView
 
 class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
 
@@ -51,7 +52,7 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
     var profileDetails: ProfileModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoadingIndicator.show()
+      //  LoadingIndicator.show()
 
         self.firstNameWarningLbl.hide()
         self.lastNameWarningLbl.hide()
@@ -201,8 +202,8 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        LoadingIndicator.show()
-
+     //   LoadingIndicator.show()
+        self.view.showAnimatedSkeleton()
         profileApi()
     }
 
@@ -352,8 +353,8 @@ class EditStudentProfileVC: UIViewController ,UITextFieldDelegate{
                     if key == "profileUrl"{
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
-                            LoadingIndicator.hide()
-
+                          //  LoadingIndicator.hide()
+                            self.view.hideSkeleton()
                             self.profileDetails = ProfileModel(dictionary: dataList)
                             
                             DispatchQueue.main.async {

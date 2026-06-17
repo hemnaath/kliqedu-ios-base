@@ -70,35 +70,12 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         studentLeaveBtn.setTitleAndBgColor(titleColor: .white, bgColor: .theme)
         myLeavesBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
-        
-        /// Pull to refresh
-        tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
-            // start refresh
-            
-            print("refresh")
-            if self?.leaveSection == "student" {
-                
-                self?.getStudentLeaveData()
-            }else{
-                self?.getTeacherLeaveData()
-                
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                
-                self?.tableView.cr.endHeaderRefresh()
-            })
-        }
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
         self.emptyView.isHidden = true
         self.tableView.isHidden = false
-        
+
         if roleKey == "parent"{
             self.topView.hide()
             studentallItemsLoaded = false
@@ -127,6 +104,30 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.getTeacherLeaveData()
             }
         }
+        /// Pull to refresh
+        tableView.cr.addHeadRefresh(animator: NormalHeaderAnimator()) { [weak self] in
+            // start refresh
+            
+            print("refresh")
+            if self?.leaveSection == "student" {
+                
+                self?.getStudentLeaveData()
+            }else{
+                self?.getTeacherLeaveData()
+                
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                
+                self?.tableView.cr.endHeaderRefresh()
+            })
+        }
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        
+   
     }
     @IBAction func applyLeaveBtnTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
@@ -240,7 +241,7 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param,HTTPMethod: .post)
         
-        self.callServiceMethod1(service: Constants.Urls.teacherStudentleaveListUrl, method: .post, params: param, key: "studentleaveListUrl", headers: headers)
+        self.callServiceMethod2(service: Constants.Urls.teacherStudentleaveListUrl, method: .post, params: param, key: "teacherStudentleaveListUrl", headers: headers)
         
     }
     func getStudentLeaveData() {
@@ -415,6 +416,82 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             debugPrint(error)
         }
     }
+    func callServiceMethod2(service: String,method: HTTPMethod, params: [String: Any], key: String,headers: [String: String]) {
+        guard !self.studentisLoadingData && !self.studentallItemsLoaded else { return } // Prevent duplicate requests or requests when all data is loaded
+        self.studentisLoadingData = true
+        AlamofireHC.request(service, method: method, params: params, headers: headers, shouldShowHUD: false, success: { (response) in
+            
+            let  result = response.dictionaryObject
+            let resultcheck = result?["success"] as? Bool ?? false
+            
+            if(resultcheck) {
+                
+                if let responseDict = result as NSDictionary? {
+                    
+                    if key == "teacherStudentleaveListUrl"{
+                        self.studentisLoadingData = false
+                        
+                        let resDataDic = result?["data"] as? NSDictionary
+                        
+                        self.tableView.hideSkeleton()
+                        
+                        let listArray = resDataDic?["leaves"] as? Array<Dictionary<String,Any>> ?? []
+
+                        // Only clear the array if `skip` is 0, otherwise append
+                        if self.studentpage == 1 {
+                            self.studentLeaveArray.removeAll()
+                        }
+                        for item in listArray {
+                            if let model = LeaveModel(dictionary: item as NSDictionary) {
+                                self.studentLeaveArray.append(model)
+                            }
+                        }
+                        
+                        DispatchQueue.main.async {
+
+                            if self.leaveSection == "student" {
+                                self.emptyView.isHidden = self.studentLeaveArray.count > 0
+                                self.tableView.isHidden = self.studentLeaveArray.count == 0
+                            }
+
+                            self.tableView.reloadData()
+                        }
+                        // Increment skip value for the next batch of data
+                        if listArray.count == 0 {
+                            self.studentallItemsLoaded = true
+                            print("All items loaded. No more API calls will be made.")
+                        } else {
+                            self.studentpage += 1   // go to next page
+                        }
+                    }
+                } else {
+                    self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
+                }
+                
+            }  else {
+                
+                let errorCode: Int = result!["status_code"] as? Int ?? 0
+                let msg = result!["message"] as? String ?? ""
+                if errorCode == 217{
+                    self.tableView.isHidden = true
+                    self.emptyView.isHidden = false
+                }
+                if ValidationClass.shouldForceLogoutForErrorCode(errorCode: errorCode) {
+                    
+                    self.performLogout(Vc: self)
+                } else {
+                    
+                    self.showAnimatedToast(message: msg,type: .warning)
+                    
+                }
+            }
+        }) { (error) in
+            self.studentisLoadingData = false
+            
+            self.showAnimatedToast(message: StringConstants.pleaseTryAgain,type: .error)
+            debugPrint(error)
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
         
@@ -452,7 +529,7 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 cell.statusLbl.text = dataModel.status ?? ""
                 cell.datesLbl.text = "\(dataModel.start_date ?? "") - \(dataModel.end_date ?? "")"
                 cell.nameLbl.text = (dataModel.student_name ?? "")?.firstUppercased
-                cell.gradeLbl.text = dataModel.student_grade ?? ""
+                cell.gradeLbl.text = "Grade \(dataModel.student_grade ?? "")"
                 cell.idNumberLbl.text = dataModel.student_unique_id ?? ""
                 
                 let totalDays = dataModel.total_days ?? 0.0
@@ -579,7 +656,7 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if roleKey == "parent" {
                         self.callServiceMethod1(service: Constants.Urls.parentleaveListUrl, method: .post, params: param, key: "studentleaveListUrl", headers: headers)
                     } else {
-                        self.callServiceMethod1(service: Constants.Urls.teacherStudentleaveListUrl, method: .post, params: param, key: "studentleaveListUrl", headers: headers)
+                        self.callServiceMethod2(service: Constants.Urls.teacherStudentleaveListUrl, method: .post, params: param, key: "teacherStudentleaveListUrl", headers: headers)
                     }
                 }
             }else{

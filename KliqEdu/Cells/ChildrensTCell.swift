@@ -17,7 +17,7 @@ class ChildrensTCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.placeHolderlbl.layer.cornerRadius = 35
+        self.placeHolderlbl.layer.cornerRadius = 15
         self.placeHolderlbl.layer.masksToBounds = true
     }
 

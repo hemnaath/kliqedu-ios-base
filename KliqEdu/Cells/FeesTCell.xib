@@ -49,11 +49,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d98-eL-eXd">
-                                <rect key="frame" x="368" y="49.666666666666664" width="65" height="24.999999999999993"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d98-eL-eXd">
+                                <rect key="frame" x="408" y="49.666666666666664" width="25" height="24.999999999999993"/>
                                 <color key="backgroundColor" red="0.92941176469999998" green="0.91372549020000005" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="457-cX-BoR"/>
                                     <constraint firstAttribute="height" constant="25" id="g9d-hX-qtX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="13"/>

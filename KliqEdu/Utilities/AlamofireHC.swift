@@ -542,10 +542,10 @@ class AlamofireHC: NSObject {
             return
         }
 
-        // 🔹 Show HUD
-        if shouldShowHUD {
-            LoadingIndicator.show()
-        }
+//        // 🔹 Show HUD
+//        if shouldShowHUD {
+//            LoadingIndicator.show()
+//        }
 
         // 🔹 Build URL
         let url = Constants.baseUrl + strMethod

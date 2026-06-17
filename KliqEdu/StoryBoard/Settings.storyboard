@@ -1046,6 +1046,9 @@ your account?</string>
                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="25"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-on-pkF">
                                                 <rect key="frame" x="117.66666666666669" y="194" width="140" height="35"/>
@@ -1067,7 +1070,7 @@ your account?</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkl-Ns-1Q0">
                                                 <rect key="frame" x="127.66666666666669" y="12" width="120" height="120"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher" translatesAutoresizingMaskIntoConstraints="NO" id="4lh-L4-Lo1">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4lh-L4-Lo1">
                                                         <rect key="frame" x="3.9999999999999858" y="4" width="112" height="112"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1079,6 +1082,7 @@ your account?</string>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGn-cb-6pf">
@@ -1111,6 +1115,7 @@ your account?</string>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
@@ -1133,6 +1138,7 @@ your account?</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="30"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjC-og-eLr">
@@ -1153,6 +1159,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="20"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="empDetailsBtnTapped:" destination="KWX-ud-F1B" eventType="touchUpInside" id="SHU-gg-cqz"/>
@@ -1170,12 +1177,16 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="20"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="personalDetailsBtnTapped:" destination="KWX-ud-F1B" eventType="touchUpInside" id="niL-9z-BiV"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" name="ThemeLite1"/>
@@ -1190,6 +1201,7 @@ your account?</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="25"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afu-uW-cty">
@@ -1242,6 +1254,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1257,6 +1270,9 @@ your account?</string>
                                                             <constraint firstItem="xTg-7q-Be6" firstAttribute="leading" secondItem="ZQP-p1-ndq" secondAttribute="leading" constant="8" id="foh-0p-TnM"/>
                                                             <constraint firstItem="kXg-eV-LmJ" firstAttribute="leading" secondItem="ZQP-p1-ndq" secondAttribute="leading" constant="12" id="qH9-8g-9K6"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPj-Bg-icf">
                                                         <rect key="frame" x="15" y="15" width="35" height="35"/>
@@ -1287,6 +1303,7 @@ your account?</string>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="17.5"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Employment Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcm-VP-Aef">
@@ -1348,6 +1365,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1363,6 +1381,9 @@ your account?</string>
                                                             <constraint firstItem="Zr9-Oi-sCF" firstAttribute="leading" secondItem="DvR-X3-zte" secondAttribute="leading" constant="12" id="mEC-sh-qFU"/>
                                                             <constraint firstItem="1FJ-iM-A8K" firstAttribute="centerY" secondItem="xN2-aU-Hiy" secondAttribute="centerY" id="xSR-AF-v2E"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8UH-lf-AlX">
                                                         <rect key="frame" x="8" y="131" width="140" height="70"/>
@@ -1411,6 +1432,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1426,6 +1448,9 @@ your account?</string>
                                                             <constraint firstItem="PGH-Be-ewn" firstAttribute="top" secondItem="8UH-lf-AlX" secondAttribute="top" constant="15" id="ut1-V0-PbC"/>
                                                             <constraint firstAttribute="width" constant="140" id="waP-HL-dkd"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l76-pu-LvI">
                                                         <rect key="frame" x="195" y="131" width="140" height="70"/>
@@ -1475,6 +1500,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1490,6 +1516,9 @@ your account?</string>
                                                             <constraint firstAttribute="height" constant="70" id="oS6-vt-4x7"/>
                                                             <constraint firstItem="5YC-iS-yJp" firstAttribute="centerY" secondItem="YDe-Te-vBn" secondAttribute="centerY" id="uit-5e-8gv"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ge6-N0-vW9">
                                                         <rect key="frame" x="8" y="207" width="327" height="70"/>
@@ -1539,6 +1568,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1553,6 +1583,9 @@ your account?</string>
                                                             <constraint firstAttribute="height" constant="70" id="pWB-BY-zb4"/>
                                                             <constraint firstItem="6r4-Yf-GrR" firstAttribute="leading" secondItem="Ge6-N0-vW9" secondAttribute="leading" constant="8" id="ylp-Or-pTh"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1579,6 +1612,7 @@ your account?</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEt-od-7NP">
@@ -1643,6 +1677,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1740,6 +1775,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1803,6 +1839,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1867,6 +1904,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -1931,6 +1969,7 @@ your account?</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -2061,6 +2100,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -2125,6 +2165,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -2261,6 +2302,9 @@ Park, Suite 402, New York, NY 10012</string>
                                             <constraint firstAttribute="trailing" secondItem="HjC-og-eLr" secondAttribute="trailing" constant="16" id="z3T-Oh-iYo"/>
                                             <constraint firstItem="dkl-Ns-1Q0" firstAttribute="centerX" secondItem="FOA-n5-qNA" secondAttribute="centerX" id="zb2-VN-QZ5"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2271,6 +2315,9 @@ Park, Suite 402, New York, NY 10012</string>
                                     <constraint firstItem="FOA-n5-qNA" firstAttribute="leading" secondItem="DGZ-G6-cvf" secondAttribute="leading" id="bVJ-i2-bjL"/>
                                     <constraint firstAttribute="bottom" secondItem="FOA-n5-qNA" secondAttribute="bottom" id="owG-HC-Fvo"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="KWX-ud-F1B" id="1AH-72-1le"/>
                                 </connections>
@@ -2328,6 +2375,9 @@ Park, Suite 402, New York, NY 10012</string>
                             <constraint firstAttribute="trailing" secondItem="htb-7h-cUN" secondAttribute="trailing" id="pAd-xr-F7h"/>
                             <constraint firstItem="DGZ-G6-cvf" firstAttribute="leading" secondItem="wi4-gS-rDW" secondAttribute="leading" id="qSI-zm-OWH"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
@@ -2432,6 +2482,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="17.5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZQ-Nm-GlM">
@@ -2454,6 +2505,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iWh-hg-44z">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2473,6 +2527,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="8Pv-mT-E9c"/>
@@ -2490,6 +2545,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="x5Y-QJ-M9X" firstAttribute="top" secondItem="sLA-Q5-E0s" secondAttribute="top" id="lgl-5L-oqJ"/>
                                                             <constraint firstItem="x5Y-QJ-M9X" firstAttribute="leading" secondItem="sLA-Q5-E0s" secondAttribute="leading" constant="8" id="zzF-PV-p40"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAN-mb-EWB">
                                                         <rect key="frame" x="17" y="646" width="314" height="25"/>
@@ -2508,6 +2566,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select DOB" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-7C-Kvf">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2527,6 +2588,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="cPM-pY-wEe"/>
@@ -2549,6 +2611,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -2565,6 +2628,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="bottom" secondItem="wBD-7C-Kvf" secondAttribute="bottom" constant="2" id="gLb-Mp-ulB"/>
                                                             <constraint firstAttribute="height" constant="75" id="saF-Ho-Tlk"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEq-i7-NDe">
                                                         <rect key="frame" x="17" y="761" width="314" height="25"/>
@@ -2583,6 +2649,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXz-fm-xjj">
                                                                 <rect key="frame" x="8" y="25.333333333333368" width="303" height="49.666666666666657"/>
@@ -2601,6 +2670,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                         <real key="value" value="1"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="bgBtnAction:" destination="f3M-SX-2eY" eventType="touchUpInside" id="Kni-r4-Tby"/>
@@ -2639,6 +2709,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="fJY-Jk-gjr" firstAttribute="leading" secondItem="ooU-Of-bPJ" secondAttribute="leading" constant="8" id="nS8-sp-pz9"/>
                                                             <constraint firstAttribute="trailing" secondItem="FXz-fm-xjj" secondAttribute="trailing" constant="8" id="xkZ-vV-bfO"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTz-Ln-9ne">
                                                         <rect key="frame" x="17" y="1091" width="314" height="25"/>
@@ -2657,6 +2730,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oyv-K3-rdj">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2676,6 +2752,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="sXm-2Q-FKn"/>
@@ -2693,6 +2770,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="Oyv-K3-rdj" firstAttribute="leading" secondItem="Dub-DE-fyY" secondAttribute="leading" constant="8" id="nn8-dS-OLW"/>
                                                             <constraint firstAttribute="height" constant="75" id="vMo-xX-tLS"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spb-HS-RdH">
                                                         <rect key="frame" x="17" y="1206" width="314" height="25"/>
@@ -2711,6 +2791,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hT9-SI-7Yr">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2730,6 +2813,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="UOd-rr-LOh"/>
@@ -2747,6 +2831,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="trailing" secondItem="tjR-gK-KID" secondAttribute="trailing" constant="8" id="gq6-7o-4LL"/>
                                                             <constraint firstAttribute="bottom" secondItem="hT9-SI-7Yr" secondAttribute="bottom" constant="2" id="xvr-T8-ioH"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zT-H2-9xf">
                                                         <rect key="frame" x="17" y="206" width="314" height="25"/>
@@ -2765,6 +2852,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pb5-A2-TNd">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2784,6 +2874,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="Vju-ok-h1G"/>
@@ -2801,6 +2892,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="86e-bO-MaR" firstAttribute="leading" secondItem="fWE-cI-cTR" secondAttribute="leading" constant="8" id="YvQ-7a-Gsm"/>
                                                             <constraint firstAttribute="trailing" secondItem="86e-bO-MaR" secondAttribute="trailing" constant="8" id="dmw-0y-D35"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmY-c1-rGG">
                                                         <rect key="frame" x="17" y="316" width="314" height="25"/>
@@ -2819,6 +2913,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tRG-Kh-hU1">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2838,6 +2935,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="CdI-rK-aN1"/>
@@ -2855,6 +2953,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="tRG-Kh-hU1" firstAttribute="leading" secondItem="0Fa-XE-ii7" secondAttribute="leading" constant="8" id="glP-8s-e6b"/>
                                                             <constraint firstItem="UrC-zh-3zc" firstAttribute="top" secondItem="0Fa-XE-ii7" secondAttribute="top" id="ySg-la-iDb"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eet-jx-M8K">
                                                         <rect key="frame" x="17" y="426" width="314" height="25"/>
@@ -2873,6 +2974,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter emg contact" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FYl-ZQ-Jps">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2892,6 +2996,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="wL0-8m-lL6"/>
@@ -2909,6 +3014,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="trailing" secondItem="4UD-bm-b6T" secondAttribute="trailing" constant="8" id="fHL-Qj-ydM"/>
                                                             <constraint firstItem="4UD-bm-b6T" firstAttribute="leading" secondItem="Ljn-T4-EUX" secondAttribute="leading" constant="8" id="fxJ-zF-YYh"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YY-6T-IWx">
                                                         <rect key="frame" x="17" y="536" width="314" height="25"/>
@@ -2927,6 +3035,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter qualification" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fb4-At-0QT">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -2946,6 +3057,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="GBe-0T-pJj"/>
@@ -2963,6 +3075,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="E5R-JA-b4O" firstAttribute="top" secondItem="fAr-L2-ugh" secondAttribute="top" id="dVU-rb-kJ2"/>
                                                             <constraint firstAttribute="trailing" secondItem="E5R-JA-b4O" secondAttribute="trailing" constant="8" id="yGc-p7-VqC"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqy-Bh-PQt">
                                                         <rect key="frame" x="17" y="871" width="314" height="25"/>
@@ -2981,6 +3096,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXZ-V6-TTF">
                                                                 <rect key="frame" x="8" y="25.333333333333368" width="303" height="49.666666666666657"/>
@@ -2999,6 +3117,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="10"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="genderBtnAction:" destination="f3M-SX-2eY" eventType="touchUpInside" id="uLs-MF-UAo"/>
@@ -3021,6 +3140,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -3037,6 +3157,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="trailing" secondItem="IXZ-V6-TTF" secondAttribute="trailing" constant="8" id="jtp-x2-3F9"/>
                                                             <constraint firstItem="NJ4-3W-WRS" firstAttribute="top" secondItem="Hjf-Uv-NrV" secondAttribute="top" id="lSb-jn-pwr"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bx2-Ar-17a">
                                                         <rect key="frame" x="12" y="901" width="319" height="75"/>
@@ -3046,6 +3169,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter religion*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BP8-9m-gE0">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -3065,6 +3191,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="f3M-SX-2eY" id="ZqQ-Dk-hzd"/>
@@ -3082,6 +3209,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="BP8-9m-gE0" firstAttribute="leading" secondItem="bx2-Ar-17a" secondAttribute="leading" constant="8" id="muS-g7-adm"/>
                                                             <constraint firstItem="MEf-6u-vw7" firstAttribute="leading" secondItem="bx2-Ar-17a" secondAttribute="leading" constant="8" id="yNZ-WZ-eOH"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG1-a9-FuB">
                                                         <rect key="frame" x="20" y="981" width="303" height="25"/>
@@ -3167,6 +3297,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2va-ty-MaU">
@@ -3204,6 +3335,9 @@ Park, Suite 402, New York, NY 10012</string>
                                             <constraint firstItem="gZQ-Nm-GlM" firstAttribute="top" secondItem="AOA-Vm-8JW" secondAttribute="bottom" constant="15" id="imY-7J-22x"/>
                                             <constraint firstItem="2va-ty-MaU" firstAttribute="leading" secondItem="nxX-ga-ziE" secondAttribute="leading" constant="16" id="lIS-Hs-u3B"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3214,6 +3348,9 @@ Park, Suite 402, New York, NY 10012</string>
                                     <constraint firstAttribute="trailing" secondItem="nxX-ga-ziE" secondAttribute="trailing" id="iwa-qb-HV6"/>
                                     <constraint firstItem="nxX-ga-ziE" firstAttribute="top" secondItem="e7b-KP-hI8" secondAttribute="top" id="s3u-CH-Ha5"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="f3M-SX-2eY" id="lek-7l-JdJ"/>
                                 </connections>
@@ -3271,6 +3408,9 @@ Park, Suite 402, New York, NY 10012</string>
                             <constraint firstItem="hIh-VV-gd9" firstAttribute="top" secondItem="pcG-Xg-3YR" secondAttribute="top" id="aZc-jC-o4a"/>
                             <constraint firstAttribute="bottom" secondItem="hIh-VV-gd9" secondAttribute="bottom" id="e6v-D5-kwq"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
@@ -3377,6 +3517,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="17.5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHc-Kd-NSc">
@@ -3399,6 +3540,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAb-zv-T18">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -3418,6 +3562,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="rLj-JV-sZq" id="DAZ-Rp-Zom"/>
@@ -3435,6 +3580,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="8of-iD-XjO" firstAttribute="top" secondItem="EU6-Ln-Nsp" secondAttribute="top" id="ims-8c-BcJ"/>
                                                             <constraint firstAttribute="bottom" secondItem="NAb-zv-T18" secondAttribute="bottom" constant="2" id="rMz-XT-P3T"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbp-pP-nEc">
                                                         <rect key="frame" x="17" y="316" width="314" height="25"/>
@@ -3453,6 +3601,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select DOB" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ews-yM-7pQ">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -3472,6 +3623,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="rLj-JV-sZq" id="0ad-aK-lAi"/>
@@ -3494,6 +3646,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -3510,6 +3663,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="bottom" secondItem="ews-yM-7pQ" secondAttribute="bottom" constant="2" id="u2Y-IE-l0i"/>
                                                             <constraint firstAttribute="trailing" secondItem="ews-yM-7pQ" secondAttribute="trailing" constant="8" id="uHF-Fs-unr"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFa-j7-xOp">
                                                         <rect key="frame" x="17" y="536" width="314" height="25"/>
@@ -3528,6 +3684,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IXc-x7-FdD">
                                                                 <rect key="frame" x="283" y="43.333333333333329" width="20" height="10"/>
@@ -3546,6 +3705,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfs-de-N1d">
@@ -3565,6 +3725,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                         <real key="value" value="1"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="bgBtnAction:" destination="rLj-JV-sZq" eventType="touchUpInside" id="lbD-BU-wM4"/>
@@ -3584,6 +3745,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="trailing" secondItem="IXc-x7-FdD" secondAttribute="trailing" constant="16" id="z1i-In-aUE"/>
                                                             <constraint firstItem="Bfs-de-N1d" firstAttribute="top" secondItem="I0L-qT-v7t" secondAttribute="bottom" constant="5" id="z3H-7o-JW6"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxa-HQ-DED">
                                                         <rect key="frame" x="17" y="651" width="314" height="25"/>
@@ -3602,6 +3766,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Religion" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Fv-YK-Sqz">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -3621,6 +3788,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="rLj-JV-sZq" id="B88-qY-lOm"/>
@@ -3638,6 +3806,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="height" constant="75" id="SC5-ZZ-cdy"/>
                                                             <constraint firstItem="PS4-de-tdM" firstAttribute="top" secondItem="6WQ-XG-vV8" secondAttribute="top" id="iI2-rg-y6V"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3K-eJ-tfm">
                                                         <rect key="frame" x="17" y="206" width="314" height="25"/>
@@ -3656,6 +3827,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BaP-uZ-zQL">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -3675,6 +3849,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="rLj-JV-sZq" id="LWj-IV-Tdu"/>
@@ -3692,6 +3867,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="bottom" secondItem="BaP-uZ-zQL" secondAttribute="bottom" constant="2" id="rs5-mJ-o0a"/>
                                                             <constraint firstItem="QS2-f4-dWD" firstAttribute="top" secondItem="mT1-xY-nzo" secondAttribute="top" id="sg5-ue-xO1"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnf-vj-LCP">
                                                         <rect key="frame" x="17" y="426" width="314" height="25"/>
@@ -3710,6 +3888,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UGR-HQ-q72">
                                                                 <rect key="frame" x="283" y="43.333333333333329" width="20" height="10"/>
@@ -3728,6 +3909,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aj6-Lf-IEx">
@@ -3747,6 +3929,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                         <real key="value" value="1"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="genderBtnAction:" destination="rLj-JV-sZq" eventType="touchUpInside" id="r9M-5K-QnJ"/>
@@ -3766,6 +3949,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="trailing" secondItem="J2n-ed-Ie3" secondAttribute="trailing" constant="8" id="l9I-IL-gQW"/>
                                                             <constraint firstAttribute="height" constant="75" id="pI4-QG-ELQ"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3Z-ba-nrH">
                                                         <rect key="frame" x="17" y="761" width="314" height="25"/>
@@ -3784,6 +3970,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Caste" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-AG-nTl">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -3803,6 +3992,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="rLj-JV-sZq" id="DT4-Oo-y91"/>
@@ -3820,6 +4010,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="C5I-AG-nTl" firstAttribute="leading" secondItem="1EM-y5-VAI" secondAttribute="leading" constant="8" id="nsJ-kt-bkW"/>
                                                             <constraint firstItem="nhx-JZ-vjg" firstAttribute="leading" secondItem="1EM-y5-VAI" secondAttribute="leading" constant="8" id="zOv-Ho-koO"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -3873,6 +4066,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMj-gm-SOR">
@@ -3890,6 +4084,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="25"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="submitBtnTapped:" destination="rLj-JV-sZq" eventType="touchUpInside" id="wot-Xh-Dqc"/>
@@ -3910,6 +4105,9 @@ Park, Suite 402, New York, NY 10012</string>
                                             <constraint firstItem="hSo-B1-4QL" firstAttribute="top" secondItem="yDr-ck-weu" secondAttribute="top" constant="15" id="Zwv-jy-gmo"/>
                                             <constraint firstItem="hSo-B1-4QL" firstAttribute="leading" secondItem="yDr-ck-weu" secondAttribute="leading" constant="16" id="cHc-p7-N2l"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3920,6 +4118,9 @@ Park, Suite 402, New York, NY 10012</string>
                                     <constraint firstAttribute="trailing" secondItem="yDr-ck-weu" secondAttribute="trailing" id="hNM-eQ-bDu"/>
                                     <constraint firstItem="yDr-ck-weu" firstAttribute="width" secondItem="84l-ZS-AMd" secondAttribute="width" id="rfl-VQ-K0I"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="rLj-JV-sZq" id="JHq-KF-2Tg"/>
                                 </connections>
@@ -3977,6 +4178,9 @@ Park, Suite 402, New York, NY 10012</string>
                             <constraint firstItem="JTB-TR-F7b" firstAttribute="leading" secondItem="AGI-mB-6ah" secondAttribute="leading" id="r0i-ih-MyK"/>
                             <constraint firstItem="g7r-fp-lju" firstAttribute="leading" secondItem="AKS-NX-eKw" secondAttribute="leading" id="vRa-t8-Z0y"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <size key="freeformSize" width="375" height="1100"/>
                     <connections>
@@ -4029,19 +4233,22 @@ Park, Suite 402, New York, NY 10012</string>
                                 <rect key="frame" x="0.0" y="115" width="375" height="785"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-dk-3TP">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1102"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1087"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2F-78-Hwc">
-                                                <rect key="frame" x="16" y="234" width="343" height="35"/>
+                                                <rect key="frame" x="16" y="154" width="343" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="CxD-UP-p4K"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="25"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VyI-It-NPE">
-                                                <rect key="frame" x="117.66666666666669" y="277" width="140" height="35"/>
+                                                <rect key="frame" x="117.66666666666669" y="197" width="140" height="35"/>
                                                 <color key="backgroundColor" red="0.95294117649999999" green="0.90980392160000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="ORB-dz-DlQ"/>
@@ -4058,9 +4265,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qoq-vJ-Olt">
-                                                <rect key="frame" x="127.66666666666669" y="95" width="120" height="120"/>
+                                                <rect key="frame" x="127.66666666666669" y="15" width="120" height="120"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher" translatesAutoresizingMaskIntoConstraints="NO" id="EEI-ib-MVY">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EEI-ib-MVY">
                                                         <rect key="frame" x="3.9999999999999858" y="4" width="112" height="112"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -4072,6 +4279,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4h-6f-jOz">
@@ -4104,6 +4312,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
@@ -4126,10 +4335,11 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="30"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gJ0-gV-NF9">
-                                                <rect key="frame" x="16" y="1342" width="343" height="300"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJ0-gV-NF9">
+                                                <rect key="frame" x="16" y="327" width="343" height="300"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkS-3Z-8P6">
                                                         <rect key="frame" x="60" y="22.333333333333314" width="273" height="20.666666666666671"/>
@@ -4147,7 +4357,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                         <rect key="frame" x="8" y="55" width="140" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggG-QP-3JF">
-                                                                <rect key="frame" x="30.000000000000004" y="10.666666666666629" width="58.333333333333343" height="25"/>
+                                                                <rect key="frame" x="30.000000000000004" y="10.666666666666686" width="58.333333333333343" height="25"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="Yb9-l3-Qnr"/>
                                                                 </constraints>
@@ -4190,6 +4400,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -4205,6 +4416,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="trailing" secondItem="C0g-pF-xes" secondAttribute="trailing" constant="12" id="p4c-Ta-kQp"/>
                                                             <constraint firstItem="ggG-QP-3JF" firstAttribute="centerY" secondItem="6Af-n9-nML" secondAttribute="centerY" id="uGt-hC-ifa"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Alh-OK-6ik">
                                                         <rect key="frame" x="15" y="15" width="35" height="35"/>
@@ -4222,6 +4436,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -4238,13 +4453,14 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="17.5"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyy-zB-EgD">
                                                         <rect key="frame" x="195" y="55" width="140" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mr3-Eo-mwf">
-                                                                <rect key="frame" x="30" y="10.666666666666629" width="44" height="25"/>
+                                                                <rect key="frame" x="30" y="10.666666666666686" width="44" height="25"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="UMg-vE-vvb"/>
                                                                 </constraints>
@@ -4287,6 +4503,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -4302,6 +4519,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="Mr3-Eo-mwf" firstAttribute="centerY" secondItem="2ly-7g-sJ4" secondAttribute="centerY" id="ZEF-nN-3Da"/>
                                                             <constraint firstAttribute="width" constant="140" id="qXr-LZ-Vd1"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSG-FJ-gtd">
                                                         <rect key="frame" x="8" y="131" width="140" height="70"/>
@@ -4334,7 +4554,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dSR-cU-Sf3">
-                                                                <rect key="frame" x="8" y="15.666666666666666" width="16" height="14.66666666666667"/>
+                                                                <rect key="frame" x="8" y="15.666666666666664" width="16" height="14.666666666666671"/>
                                                                 <color key="tintColor" name="ThemeColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="3AB-ML-SkB"/>
@@ -4350,6 +4570,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -4365,6 +4586,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="trailing" secondItem="QuO-kU-uAe" secondAttribute="trailing" constant="12" id="swx-nL-wQm"/>
                                                             <constraint firstItem="QuO-kU-uAe" firstAttribute="top" secondItem="cqq-mm-u9M" secondAttribute="bottom" constant="8.3300000000000001" id="zG6-Fq-9LP"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bR4-rI-YI4">
                                                         <rect key="frame" x="195" y="131" width="140" height="70"/>
@@ -4414,6 +4638,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -4429,6 +4654,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="jvm-El-NRg" firstAttribute="leading" secondItem="bR4-rI-YI4" secondAttribute="leading" constant="30" id="pL7-hO-rOw"/>
                                                             <constraint firstItem="UQw-58-qdG" firstAttribute="top" secondItem="bR4-rI-YI4" secondAttribute="top" constant="15" id="tpC-pO-yGR"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnd-7D-PwN">
                                                         <rect key="frame" x="8" y="207" width="140" height="70"/>
@@ -4478,6 +4706,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -4493,6 +4722,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="xjR-Cr-8Vz" firstAttribute="centerY" secondItem="swN-Hz-RCI" secondAttribute="centerY" id="rsG-h1-GoL"/>
                                                             <constraint firstItem="sod-bw-GCz" firstAttribute="top" secondItem="xjR-Cr-8Vz" secondAttribute="bottom" constant="8.3300000000000001" id="vgA-Yc-Uvt"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TpL-t9-1Pp">
                                                         <rect key="frame" x="195" y="207" width="140" height="70"/>
@@ -4542,6 +4774,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
@@ -4557,6 +4790,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="6lr-Eg-HyU" firstAttribute="leading" secondItem="TpL-t9-1Pp" secondAttribute="leading" constant="12" id="xXI-G3-xiE"/>
                                                             <constraint firstItem="6lr-Eg-HyU" firstAttribute="top" secondItem="m1b-kc-wX8" secondAttribute="bottom" constant="8.3300000000000001" id="z1y-ik-Xdv"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4584,10 +4820,11 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uow-1h-Iy0">
-                                                <rect key="frame" x="16" y="342" width="343" height="720"/>
+                                                <rect key="frame" x="16" y="327" width="343" height="720"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parent Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BK5-a3-g7t">
                                                         <rect key="frame" x="60" y="22.333333333333314" width="273" height="20.666666666666671"/>
@@ -5184,7 +5421,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-sw-5tH">
-                                                <rect key="frame" x="16" y="15" width="343" height="50"/>
+                                                <rect key="frame" x="16" y="257" width="343" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VoF-Jp-ghx">
                                                         <rect key="frame" x="5" y="5" width="333" height="40"/>
@@ -5224,6 +5461,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" name="ThemeLite1"/>
@@ -5238,29 +5478,33 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="25"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Lcs-sw-5tH" firstAttribute="top" secondItem="4Vf-dk-3TP" secondAttribute="top" constant="15" id="1U7-wk-Fan"/>
                                             <constraint firstAttribute="trailing" secondItem="uow-1h-Iy0" secondAttribute="trailing" constant="16" id="3EI-Em-U9g"/>
+                                            <constraint firstItem="Qoq-vJ-Olt" firstAttribute="top" secondItem="4Vf-dk-3TP" secondAttribute="top" constant="15" id="6CP-Bi-n9d"/>
                                             <constraint firstItem="Qoq-vJ-Olt" firstAttribute="centerX" secondItem="4Vf-dk-3TP" secondAttribute="centerX" id="B3V-ta-7Fc"/>
-                                            <constraint firstItem="Qoq-vJ-Olt" firstAttribute="top" secondItem="Lcs-sw-5tH" secondAttribute="bottom" constant="30" id="Cxr-ht-48B"/>
+                                            <constraint firstItem="gJ0-gV-NF9" firstAttribute="top" secondItem="Lcs-sw-5tH" secondAttribute="bottom" constant="20" id="EzA-Cv-oKT"/>
                                             <constraint firstAttribute="bottom" secondItem="uow-1h-Iy0" secondAttribute="bottom" constant="40" id="RLK-dM-zIq"/>
                                             <constraint firstItem="i2F-78-Hwc" firstAttribute="top" secondItem="Qoq-vJ-Olt" secondAttribute="bottom" constant="19" id="RTY-DR-okj"/>
-                                            <constraint firstItem="gJ0-gV-NF9" firstAttribute="top" secondItem="VyI-It-NPE" secondAttribute="bottom" constant="30" id="TQA-pU-cWX"/>
-                                            <constraint firstItem="uow-1h-Iy0" firstAttribute="top" secondItem="VyI-It-NPE" secondAttribute="bottom" constant="30" id="Ua4-7Y-Ep7"/>
                                             <constraint firstAttribute="trailing" secondItem="i2F-78-Hwc" secondAttribute="trailing" constant="16" id="Z3q-bc-Z7z"/>
                                             <constraint firstItem="VyI-It-NPE" firstAttribute="top" secondItem="i2F-78-Hwc" secondAttribute="bottom" constant="8" symbolic="YES" id="dl9-KO-2Gv"/>
                                             <constraint firstAttribute="trailing" secondItem="gJ0-gV-NF9" secondAttribute="trailing" constant="16" id="ePP-B6-1Hs"/>
                                             <constraint firstAttribute="trailing" secondItem="Lcs-sw-5tH" secondAttribute="trailing" constant="16" id="fIA-Mx-COk"/>
                                             <constraint firstItem="Lcs-sw-5tH" firstAttribute="leading" secondItem="4Vf-dk-3TP" secondAttribute="leading" constant="16" id="h06-jm-Lmj"/>
                                             <constraint firstItem="VyI-It-NPE" firstAttribute="centerX" secondItem="4Vf-dk-3TP" secondAttribute="centerX" id="kEZ-pX-UiW"/>
+                                            <constraint firstItem="Lcs-sw-5tH" firstAttribute="top" secondItem="VyI-It-NPE" secondAttribute="bottom" constant="25" id="nBU-nh-Yjw"/>
                                             <constraint firstItem="i2F-78-Hwc" firstAttribute="leading" secondItem="4Vf-dk-3TP" secondAttribute="leading" constant="16" id="p6Z-Gg-RGs"/>
                                             <constraint firstItem="uow-1h-Iy0" firstAttribute="leading" secondItem="4Vf-dk-3TP" secondAttribute="leading" constant="16" id="pSM-JN-SEc"/>
+                                            <constraint firstItem="uow-1h-Iy0" firstAttribute="top" secondItem="Lcs-sw-5tH" secondAttribute="bottom" constant="20" id="ut2-vp-ynu"/>
                                             <constraint firstItem="gJ0-gV-NF9" firstAttribute="leading" secondItem="4Vf-dk-3TP" secondAttribute="leading" constant="16" id="yZS-De-Spy"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5271,6 +5515,9 @@ Park, Suite 402, New York, NY 10012</string>
                                     <constraint firstItem="4Vf-dk-3TP" firstAttribute="width" secondItem="38v-v9-SOU" secondAttribute="width" id="o9U-kZ-ewj"/>
                                     <constraint firstItem="4Vf-dk-3TP" firstAttribute="top" secondItem="38v-v9-SOU" secondAttribute="top" id="qsS-ak-2H4"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="cd4-tT-YEa" id="hQs-vc-qSI"/>
                                 </connections>
@@ -5343,6 +5590,9 @@ Park, Suite 402, New York, NY 10012</string>
                             <constraint firstAttribute="bottom" secondItem="xRF-mO-End" secondAttribute="bottom" id="rz7-XR-Vj9"/>
                             <constraint firstItem="xRF-mO-End" firstAttribute="top" secondItem="dQ2-FY-39n" secondAttribute="top" id="zpr-zR-47Q"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
@@ -5419,6 +5669,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="25"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="submitBtnTapped:" destination="pnG-97-lkL" eventType="touchUpInside" id="e3E-Wj-ltp"/>
@@ -5468,6 +5719,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="17.5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8A-2v-pgq">
@@ -5490,6 +5742,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter father name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NGd-xg-5Dd">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -5509,6 +5764,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="pnG-97-lkL" id="E2L-Ys-Xdq"/>
@@ -5526,6 +5782,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="bottom" secondItem="NGd-xg-5Dd" secondAttribute="bottom" constant="2" id="q7t-Qc-FGO"/>
                                                             <constraint firstItem="1ia-ap-37R" firstAttribute="leading" secondItem="K47-nG-h6R" secondAttribute="leading" constant="8" id="tfY-wz-Ygx"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEV-8k-Sqq">
                                                         <rect key="frame" x="17" y="319" width="314" height="25"/>
@@ -5544,6 +5803,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-6H-cG2">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -5563,6 +5825,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="pnG-97-lkL" id="b8y-So-vHv"/>
@@ -5580,6 +5843,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstAttribute="height" constant="75" id="jQU-TL-9u5"/>
                                                             <constraint firstAttribute="trailing" secondItem="ZFw-6H-cG2" secondAttribute="trailing" constant="8" id="ojf-a4-bev"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3Q-XE-8Td">
                                                         <rect key="frame" x="17" y="206" width="314" height="25"/>
@@ -5598,6 +5864,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter mother name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l4c-MI-AqS">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -5617,6 +5886,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="pnG-97-lkL" id="Nqx-1b-JjA"/>
@@ -5634,6 +5904,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="l4c-MI-AqS" firstAttribute="top" secondItem="x1e-md-nxj" secondAttribute="bottom" constant="8" id="hKl-UQ-y53"/>
                                                             <constraint firstItem="x1e-md-nxj" firstAttribute="leading" secondItem="2Ya-hq-v8n" secondAttribute="leading" constant="8" id="sfR-lS-Lnf"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFB-g2-UBX">
                                                         <rect key="frame" x="17" y="432" width="314" height="25"/>
@@ -5652,6 +5925,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ily-Qg-5qj">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -5671,6 +5947,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="pnG-97-lkL" id="XnL-o3-bbr"/>
@@ -5688,6 +5965,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="Tex-k3-uSW" firstAttribute="leading" secondItem="GC1-jh-OyQ" secondAttribute="leading" constant="8" id="d3Z-Sg-bh9"/>
                                                             <constraint firstItem="Ily-Qg-5qj" firstAttribute="leading" secondItem="GC1-jh-OyQ" secondAttribute="leading" constant="8" id="d8R-ov-fiZ"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ld9-Mw-L2c">
                                                         <rect key="frame" x="17" y="542" width="314" height="25"/>
@@ -5706,6 +5986,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Occupation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uAm-SH-6Iz">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -5725,6 +6008,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="pnG-97-lkL" id="Omi-ea-5Tr"/>
@@ -5742,6 +6026,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="rwf-KH-49I" firstAttribute="leading" secondItem="HZO-ix-IPj" secondAttribute="leading" constant="8" id="ppW-8s-amB"/>
                                                             <constraint firstAttribute="bottom" secondItem="uAm-SH-6Iz" secondAttribute="bottom" constant="2" id="qhO-mg-VGe"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pq5-sd-59p">
                                                         <rect key="frame" x="17" y="655" width="314" height="25"/>
@@ -5814,6 +6101,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                                 <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="15"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cAL-gH-7Fz">
                                                                 <rect key="frame" x="8" y="23" width="303" height="50"/>
@@ -5833,6 +6123,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                         <color key="value" systemColor="systemGray5Color"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="pnG-97-lkL" id="bl1-eB-0iw"/>
@@ -5850,6 +6141,9 @@ Park, Suite 402, New York, NY 10012</string>
                                                             <constraint firstItem="cAL-gH-7Fz" firstAttribute="leading" secondItem="9nx-V6-Hhh" secondAttribute="leading" constant="8" id="hDs-ps-Zuu"/>
                                                             <constraint firstAttribute="height" constant="75" id="tYl-ok-JgK"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -5903,6 +6197,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
@@ -5920,6 +6215,9 @@ Park, Suite 402, New York, NY 10012</string>
                                             <constraint firstAttribute="trailing" secondItem="A8A-2v-pgq" secondAttribute="trailing" constant="16" id="ioK-nr-NaP"/>
                                             <constraint firstItem="Hae-p5-zMZ" firstAttribute="top" secondItem="Noq-IV-wiV" secondAttribute="top" constant="25" id="kiK-2b-pPz"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5930,6 +6228,9 @@ Park, Suite 402, New York, NY 10012</string>
                                     <constraint firstItem="Noq-IV-wiV" firstAttribute="width" secondItem="Hwz-M6-S0t" secondAttribute="width" id="s22-m6-3Oe"/>
                                     <constraint firstAttribute="bottom" secondItem="Noq-IV-wiV" secondAttribute="bottom" id="zsN-V1-IvD"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="pnG-97-lkL" id="z0L-SD-lzI"/>
                                 </connections>
@@ -5987,6 +6288,9 @@ Park, Suite 402, New York, NY 10012</string>
                             <constraint firstItem="73x-IC-dTJ" firstAttribute="top" secondItem="gT4-aV-kgH" secondAttribute="top" id="mw3-GQ-CsT"/>
                             <constraint firstItem="Hwz-M6-S0t" firstAttribute="top" secondItem="73x-IC-dTJ" secondAttribute="bottom" id="slh-Lo-8PX"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <size key="freeformSize" width="375" height="1100"/>
                     <connections>
@@ -6082,6 +6386,9 @@ Park, Suite 402, New York, NY 10012</string>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HKk-Yq-MSG">
                                         <rect key="frame" x="0.0" y="74" width="375" height="214"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="214" id="vkb-ea-e98"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
@@ -6130,7 +6437,10 @@ Park, Suite 402, New York, NY 10012</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="outerView" destination="65k-kv-Veq" id="Lvh-N2-25v"/>
+                        <outlet property="outerViewHeightConstraint" destination="5Ll-Ja-HTv" id="eXI-Oi-X6N"/>
                         <outlet property="tableView" destination="HKk-Yq-MSG" id="d18-GF-WxQ"/>
+                        <outlet property="tableViewHeightConstraint" destination="vkb-ea-e98" id="WES-bq-nWb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wu-8E-BPi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -6288,6 +6598,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="22.5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="yDl-8g-qDB">
@@ -6319,9 +6630,15 @@ Park, Suite 402, New York, NY 10012</string>
                                                 <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="064-hW-eGU">
                                                 <rect key="frame" x="266" y="26" width="63" height="28"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="faceIDSwitchToggled:" destination="k43-qB-iOa" eventType="valueChanged" id="3xW-45-bQ1"/>
                                                 </connections>
@@ -6360,6 +6677,9 @@ Park, Suite 402, New York, NY 10012</string>
                                         <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MgV-M4-YVT">
                                         <rect key="frame" x="0.0" y="184" width="343" height="90"/>
@@ -6397,6 +6717,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="22.5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="0Ed-ki-y4K">
@@ -6425,12 +6746,18 @@ Park, Suite 402, New York, NY 10012</string>
                                                 <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-eH-KUY">
                                                 <rect key="frame" x="266" y="31" width="63" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="61" id="Ymm-Cv-5mL"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="pushSwitchToggled:" destination="k43-qB-iOa" eventType="valueChanged" id="Pc7-dG-dwR"/>
                                                 </connections>
@@ -6470,6 +6797,9 @@ Park, Suite 402, New York, NY 10012</string>
                                         <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fun-3o-SeA">
                                         <rect key="frame" x="0.0" y="274" width="343" height="90"/>
@@ -6507,6 +6837,7 @@ Park, Suite 402, New York, NY 10012</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="22.5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="xIa-xv-L6S">
@@ -6535,12 +6866,18 @@ Park, Suite 402, New York, NY 10012</string>
                                                 <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VFf-Cj-szf">
                                                 <rect key="frame" x="266" y="31" width="63" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="61" id="4E8-bw-hHX"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="emailSwitchToggled:" destination="k43-qB-iOa" eventType="valueChanged" id="Qbo-1J-M4H"/>
                                                 </connections>
@@ -6594,6 +6931,7 @@ Park, Suite 402, New York, NY 10012</string>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XiQ-PX-y4Z">
@@ -6692,7 +7030,6 @@ Park, Suite 402, New York, NY 10012</string>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <image name="remove" width="128" height="128"/>
-        <image name="teacher" width="258" height="259"/>
         <namedColor name="ThemeColor">
             <color red="0.45100000500679016" green="0.40400001406669617" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

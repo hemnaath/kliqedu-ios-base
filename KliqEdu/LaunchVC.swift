@@ -59,7 +59,7 @@ class LaunchVC: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                 
                 let sb = UIStoryboard.init(name: Constants.StoryboardIds.loginSB, bundle: nil)
-                if let vc = sb.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC {
+                if let vc = sb.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
                     
                     self.navigationController?.pushViewController(vc, animated: true)
                 }

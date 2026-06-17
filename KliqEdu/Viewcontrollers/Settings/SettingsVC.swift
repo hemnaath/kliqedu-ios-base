@@ -21,6 +21,11 @@ class SettingsVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: Constants.Keys.childrenArrayKey),
+           let array = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+            self.childrensArr = ChildrensModel.modelsFromDictionaryArray(array: array as NSArray)
+        }
         if roleKey == "parent"{
             if childrensArr.count > 1{
                 self.switchStudentView.unhide()
@@ -122,20 +127,47 @@ class SettingsVC: UIViewController {
         }
     }
     @IBAction func helpTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "WebviewVC") as? WebviewVC {
+            
+            vc.docFile = "https://kliqedu.com/contact-us"
+            vc.titel = "Help & Support"
+            vc.hidesBottomBarWhenPushed = true
 
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func contactTapped(_ sender: Any) {
-    }
-    @IBAction func termTapped(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: Constants.StoryboardIds.settingsSB, bundle: nil)
-        if let vc = storyBoard.instantiateViewController(withIdentifier: "StaticPagesVC") as? StaticPagesVC {
-            vc.heading = "Terms & Conditions"
-            vc.pageType = "terms-and-conditions"
-            vc.hidesBottomBarWhenPushed = true
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "WebviewVC") as? WebviewVC {
             
+            vc.docFile = "https://kliqedu.com/contact-us"
+            vc.titel = "Contact Us"
+            vc.hidesBottomBarWhenPushed = true
+
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    @IBAction func termTapped(_ sender: Any) {
+//        let storyBoard = UIStoryboard(name: Constants.StoryboardIds.settingsSB, bundle: nil)
+//        if let vc = storyBoard.instantiateViewController(withIdentifier: "StaticPagesVC") as? StaticPagesVC {
+//            vc.heading = "Terms & Conditions"
+//            vc.pageType = "terms-and-conditions"
+//            vc.hidesBottomBarWhenPushed = true
+//
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "WebviewVC") as? WebviewVC {
+            
+            vc.docFile = "https://kliqedu.com/terms-of-service"
+            vc.titel = "Terms & Conditions"
+            vc.hidesBottomBarWhenPushed = true
+
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
     @IBAction func logoutTapped(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = true

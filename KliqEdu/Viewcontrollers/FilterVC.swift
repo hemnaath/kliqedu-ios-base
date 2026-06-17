@@ -48,8 +48,9 @@ class FilterVC: UIViewController {
 
     var selectedType = "Grade"
     
-    let statusArray = ["Pending", "Success", "Failed"]
-    
+    let statusArray = ["All","Pending", "Approved", "Rejected"]
+    let feesStatusArray = ["All","Pending","Processing","Paid","Partial","Overdue","Failed"]
+
     var selectedGrade = ""
     var selectedSection = ""
     var selectedGroup = ""
@@ -299,20 +300,40 @@ var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
         }
         
         if let status = appliedFilters["status"] as? Int {
-            
-            switch status {
-                
-            case 0:
-                selectedStatus = "Pending"
-                
-            case 1:
-                selectedStatus = "Approved"
-                
-            case 2:
-                selectedStatus = "Failed"
-                
-            default:
-                break
+
+            if comingFor == "Fees" {
+
+                switch status {
+
+                case 0:
+                    selectedStatus = "Pending"
+                case 1:
+                    selectedStatus = "Paid"
+                case 2:
+                    selectedStatus = "Failed"
+                case 3:
+                    selectedStatus = "Partial"
+                case 4:
+                    selectedStatus = "Overdue"
+                case 5:
+                    selectedStatus = "Processing"
+                default:
+                    break
+                }
+
+            } else {
+
+                switch status {
+
+                case 0:
+                    selectedStatus = "Pending"
+                case 1:
+                    selectedStatus = "Approved"
+                case 2:
+                    selectedStatus = "Rejected"
+                default:
+                    break
+                }
             }
         }
     }
@@ -389,7 +410,9 @@ var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
             return groupListArray
 
         case "Status":
-            return statusArray.map {
+            let statusList = (comingFor == "Fees") ? feesStatusArray : statusArray
+
+            return statusList.map {
                 let dict: NSDictionary = ["name": $0, "unique_id": $0]
                 return GradeSectionModel(dictionary: dict)!
             }
@@ -477,20 +500,52 @@ var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
         }
         
         if !selectedStatus.isEmpty {
-            
-            switch selectedStatus.lowercased() {
-                
-            case "pending":
-                filters["status"] = 0
-                
-            case "approved", "success":
-                filters["status"] = 1
-                
-            case "failed", "rejected":
-                filters["status"] = 2
-                
-            default:
-                break
+
+            if comingFor == "Fees" {
+
+                switch selectedStatus.lowercased() {
+
+                case "pending":
+                    filters["status"] = 0
+
+                case "paid":
+                    filters["status"] = 1
+
+                case "failed":
+                    filters["status"] = 2
+
+                case "partial":
+                    filters["status"] = 3
+
+                case "overdue":
+                    filters["status"] = 4
+
+                case "processing":
+                    filters["status"] = 5
+
+                case "all":
+                    break   // Don't send status filter
+
+                default:
+                    break
+                }
+
+            } else {
+
+                switch selectedStatus.lowercased() {
+
+                case "pending":
+                    filters["status"] = 0
+
+                case "approved", "success":
+                    filters["status"] = 1
+
+                case "failed", "rejected":
+                    filters["status"] = 2
+
+                default:
+                    break
+                }
             }
         }
         

@@ -73,7 +73,7 @@ class ParentProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        startViewAnimation()
+        self.view.showSkeleton(cornerRadius: 25)
         studentprofileApi()
         parentprofileApi()
 
@@ -128,29 +128,6 @@ class ParentProfileVC: UIViewController {
             }
         }
     }
-    func startViewAnimation()  {
-        profilePicture.showSkeleton(cornerRadius: 25)
-        placeHolderNameLbl.showSkeleton(cornerRadius: 25)
-        dobLbl.showSkeleton(cornerRadius: 10)
-        genderLbl.showSkeleton(cornerRadius: 10)
-        bgLbl.showSkeleton(cornerRadius: 10)
-        religionLbl.showSkeleton(cornerRadius: 10)
-        rollNoLbl.showSkeleton(cornerRadius: 10)
-        casteLbl.showSkeleton(cornerRadius: 10)
-
-//        nameLbl.showSkeleton(cornerRadius: 0)
-    }
-    func stopViewAnimation()  {
-        profilePicture.hideSkeleton()
-        placeHolderNameLbl.hideSkeleton()
-        dobLbl.hideSkeleton()
-        genderLbl.hideSkeleton()
-        bgLbl.hideSkeleton()
-        religionLbl.hideSkeleton()
-        rollNoLbl.hideSkeleton()
-        casteLbl.hideSkeleton()
-//        nameLbl.hideSkeleton()
-    }
 
     func studentprofileApi(){
         
@@ -174,8 +151,13 @@ class ParentProfileVC: UIViewController {
         let lastName = self.studentProfileDetails?.lastname ?? ""
         
         self.nameLbl.text = "\((firstName).firstUppercased) \((lastName).firstUppercased)"
-        self.gradeLbl.text = "Grade \(self.studentProfileDetails?.grade ?? "")"
-        
+
+        let section = (studentProfileDetails?.section ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        if section.isEmpty {
+            self.gradeLbl.text = "Grade: \(studentProfileDetails?.grade ?? "")"
+        } else {
+            self.gradeLbl.text = "Grade: \(studentProfileDetails?.grade ?? "") - \(section)"
+        }
         
         self.dobLbl.text = self.studentProfileDetails?.dob ?? "-"
         self.genderLbl.text = self.studentProfileDetails?.gender ?? "-"
@@ -456,7 +438,9 @@ class ParentProfileVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "studentProfileUrl"{
-                        self.stopViewAnimation()
+
+                        self.view.hideSkeleton()
+
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
                             
                             self.studentProfileDetails = ParentProfileModel(dictionary: dataList)
@@ -465,7 +449,7 @@ class ParentProfileVC: UIViewController {
                         }
                     }else if key == "parentProfileUrl" {
                         
-                        self.stopViewAnimation()
+                        self.view.hideSkeleton()
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
 

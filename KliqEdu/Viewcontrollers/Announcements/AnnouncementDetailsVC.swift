@@ -18,7 +18,8 @@ class AnnouncementDetailsVC: UIViewController {
     @IBOutlet weak var editBtn: UIButton!
     
     var announcementDetails = AnnouncementModel(dictionary: [:])
-
+    var uniqueId = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,9 +49,9 @@ class AnnouncementDetailsVC: UIViewController {
         
         let param = [:] as [String : Any]
         
-        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(announcementDetails?.unique_id ?? "")",params: param, HTTPMethod: .get)
+        let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(uniqueId)",params: param, HTTPMethod: .get)
       
-        self.callServiceMethod(service: "\(Constants.Urls.viewAnnouncementUrl)/\(announcementDetails?.unique_id ?? "")",method: .get, params: param, key: "viewAnnouncementUrl", headers: headers)
+        self.callServiceMethod(service: "\(Constants.Urls.viewAnnouncementUrl)/\(uniqueId)",method: .get, params: param, key: "viewAnnouncementUrl", headers: headers)
     }
     func startViewAnimation()  {
         titleLbl.showSkeleton(cornerRadius: 10)
@@ -82,7 +83,7 @@ class AnnouncementDetailsVC: UIViewController {
             
             let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.announcementDetails?.unique_id ?? "")",params: param, HTTPMethod: .delete)
             
-            self.callServiceMethod(service: "\(Constants.Urls.deleteAnnouncementUrl)/\(self.announcementDetails?.unique_id ?? "")",method: .delete, params: param, key: "deleteAnnouncementUrl", headers: headers)
+            self.callServiceMethod(service: "\(Constants.Urls.deleteAnnouncementUrl)/\(self.uniqueId)",method: .delete, params: param, key: "deleteAnnouncementUrl", headers: headers)
             
         }))
         alert.addAction(UIAlertAction(title: StringConstants.no, style: UIAlertAction.Style.cancel, handler: nil))

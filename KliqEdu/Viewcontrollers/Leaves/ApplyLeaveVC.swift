@@ -14,16 +14,15 @@ import DropDown
 
 class ApplyLeaveVC: UIViewController {
 
+    @IBOutlet weak var leaveModeView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dateWarningLbl: UILabel!
-    @IBOutlet weak var leaveModeWarningLbl: UILabel!
     @IBOutlet weak var leaveTypeWarningLbl: UILabel!
     @IBOutlet weak var descWarningLbl: UILabel!
     @IBOutlet weak var leaveTypeView: UIView!
     @IBOutlet weak var leaveTypeLbl: UILabel!
 
     @IBOutlet weak var halfdayBtn: UIButton!
-    @IBOutlet weak var fulldayBtn: UIButton!
     @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var reasonTextView: UITextView!
     @IBOutlet weak var toDateField: UITextField!
@@ -47,10 +46,9 @@ class ApplyLeaveVC: UIViewController {
         toDateField.delegate = self
         configureLeaveTypesDropDown(types: [])
         dateWarningLbl.hide()
-        leaveModeWarningLbl.hide()
         leaveTypeWarningLbl.hide()
         descWarningLbl.hide()
-        
+        leaveModeView.hide()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -111,11 +109,9 @@ class ApplyLeaveVC: UIViewController {
             if (leaveDetails?.is_half_day ?? 0) == 1 {
                 self.halfDay = 1
                 self.halfdayBtn.isSelected = true
-                self.fulldayBtn.isSelected = false
             } else {
                 self.halfDay = 0
                 self.halfdayBtn.isSelected = false
-                self.fulldayBtn.isSelected = true
             }
 
             let dateFormatter = DateFormatter()
@@ -183,8 +179,15 @@ class ApplyLeaveVC: UIViewController {
         if !fromDateData.isEmpty && fromDateData > toDateData {
             dateWarningLbl.text = "From date should not be greater than to date"
             dateWarningLbl.unhide()
+            leaveModeView.hide()
         } else {
             dateWarningLbl.hide()
+
+            if !fromDateData.isEmpty && fromDateData == toDateData {
+                leaveModeView.unhide()
+            } else {
+                leaveModeView.hide()
+            }
         }
 
        // calculateLeaveDuration()
@@ -202,8 +205,15 @@ class ApplyLeaveVC: UIViewController {
         if !toDateData.isEmpty && fromDateData > toDateData {
             dateWarningLbl.text = "From date should not be greater than to date"
             dateWarningLbl.unhide()
+            leaveModeView.hide()
         } else {
             dateWarningLbl.hide()
+
+            if !toDateData.isEmpty && fromDateData == toDateData {
+                leaveModeView.unhide()
+            } else {
+                leaveModeView.hide()
+            }
         }
 
       //  calculateLeaveDuration()
@@ -234,18 +244,9 @@ class ApplyLeaveVC: UIViewController {
         leaveTypesDropDown.show()
     }
     @IBAction func halfDay(_ sender: Any) {
-        halfDay = 1
-        self.halfdayBtn.isSelected = true
-        self.fulldayBtn.isSelected = false
-        leaveModeWarningLbl.hide()
+        self.halfdayBtn.isSelected.toggle()
+        halfDay = self.halfdayBtn.isSelected ? 1 : 0
        // calculateLeaveDuration()
-    }
-    @IBAction func fullDay(_ sender: Any) {
-        halfDay = 0
-        self.halfdayBtn.isSelected = false
-        self.fulldayBtn.isSelected = true
-        leaveModeWarningLbl.hide()
-     //   calculateLeaveDuration()
     }
     @IBAction func submitBtnTapped(_ sender: Any) {
      
@@ -312,7 +313,6 @@ class ApplyLeaveVC: UIViewController {
         var isValid = true
 
         dateWarningLbl.hide()
-        leaveModeWarningLbl.hide()
         leaveTypeWarningLbl.hide()
         descWarningLbl.hide()
 
@@ -325,12 +325,6 @@ class ApplyLeaveVC: UIViewController {
         if fromDateData > toDateData {
             dateWarningLbl.text = "From date should not be greater than to date"
             dateWarningLbl.unhide()
-            isValid = false
-        }
-
-        if !halfdayBtn.isSelected && !fulldayBtn.isSelected {
-            leaveModeWarningLbl.text = "Please select leave mode"
-            leaveModeWarningLbl.unhide()
             isValid = false
         }
 

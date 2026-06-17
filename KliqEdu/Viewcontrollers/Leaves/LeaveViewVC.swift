@@ -9,17 +9,18 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SDWebImage
+import SkeletonView
 
 class LeaveViewVC: UIViewController {
 
     @IBOutlet weak var placeHolderNameLbl: UILabel!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var idNumberLbl: UILabel!
     @IBOutlet weak var fromTodateLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
     
+    @IBOutlet weak var totalDaysLbl: UILabel!
     @IBOutlet weak var editDeleteBtnView: UIStackView!
     @IBOutlet weak var rejectApproveBtnView: UIStackView!
 
@@ -49,6 +50,8 @@ class LeaveViewVC: UIViewController {
         self.statusLbl.layer.masksToBounds = true
         self.placeHolderNameLbl.layer.cornerRadius = 10
         self.placeHolderNameLbl.layer.masksToBounds = true
+        self.totalDaysLbl.layer.cornerRadius = 10
+        self.totalDaysLbl.layer.masksToBounds = true
         
         self.statusLbl.tintColor = .systemOrange
         self.statusLbl.backgroundColor = .white
@@ -61,6 +64,10 @@ class LeaveViewVC: UIViewController {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.approveRejectView.hide()
+        self.editDeleteBtnView.hide()
+        
         switch roleKey {
         case "parent":
             self.approveRejectView.hide()
@@ -74,20 +81,33 @@ class LeaveViewVC: UIViewController {
         
         if comingFrom == "teacher"{
             self.approveRejectView.hide()
-            startViewAnimation()
+            self.view.showAnimatedGradientSkeleton()
             getLeaveInfoApi()
         }else{
             if roleKey == "parent"{
-                startViewAnimation()
+                self.view.showAnimatedGradientSkeleton()
                 getLeaveInfoApi()
+                if comingFrom == "teacher"{
+                    self.editDeleteBtnView.hide()
+                }else{
+                    self.editDeleteBtnView.unhide()
+                }
             }else{
                 self.approveRejectView.unhide()
                 self.editDeleteBtnView.unhide()
 
                 self.nameLbl.text = (self.leaveDetails?.student_name ?? "")?.firstUppercased
-                self.idNumberLbl.text = self.leaveDetails?.student_unique_id ?? ""
-                self.gradeLbl.text = self.leaveDetails?.student_grade ?? ""
-                
+                self.gradeLbl.text = "Grade \(self.leaveDetails?.student_grade ?? "")"
+                let totalDays = self.leaveDetails?.total_days ?? 0
+                if totalDays == 0.5 {
+                    self.totalDaysLbl.text = "  Half Day  "
+                } else if totalDays == 1 {
+                    self.totalDaysLbl.text = "  1 Day  "
+                } else if totalDays.truncatingRemainder(dividingBy: 1) == 0 {
+                    self.totalDaysLbl.text = "  \(Int(totalDays)) Days  "
+                } else {
+                    self.totalDaysLbl.text = "  \(totalDays) Days  "
+                }
                 let imageUrl = self.leaveDetails?.student_picture ?? ""
                 
                 if !imageUrl.isEmpty {
@@ -147,30 +167,7 @@ class LeaveViewVC: UIViewController {
             break
         }
     }
-    func startViewAnimation()  {
-        nameLbl.showSkeleton(cornerRadius: 10)
-        descLbl.showSkeleton(cornerRadius: 10)
-        dateLbl.showSkeleton(cornerRadius: 10)
-        fromTodateLbl.showSkeleton(cornerRadius: 10)
-        leaveTypeLbl.showSkeleton(cornerRadius: 10)
-        gradeLbl.showSkeleton(cornerRadius: 10)
-        idNumberLbl.showSkeleton(cornerRadius: 10)
-        statusLbl.showSkeleton(cornerRadius: 10)
-        placeHolderNameLbl.showSkeleton(cornerRadius: 10)
 
-    }
-    func stopViewAnimation()  {
-        nameLbl.hideSkeleton()
-        descLbl.hideSkeleton()
-        dateLbl.hideSkeleton()
-        fromTodateLbl.hideSkeleton()
-        leaveTypeLbl.hideSkeleton()
-        gradeLbl.hideSkeleton()
-        idNumberLbl.hideSkeleton()
-        statusLbl.hideSkeleton()
-        placeHolderNameLbl.hideSkeleton()
-
-    }
     @IBAction func backBtnTapped(_ sender: Any) {
     
         self.navigationController?.popViewController(animated: true)
@@ -179,12 +176,13 @@ class LeaveViewVC: UIViewController {
         let alert = UIAlertController(title: Constants.appName, message: StringConstants.sureToApproveTheleave, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: StringConstants.yes, style: UIAlertAction.Style.destructive, handler: { action in
-            
+            LoadingIndicator.show()
+
             let param = ["status":"1"] as [String : Any]
             
-            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.leaveDetails?.unique_id ?? "")",params: param, HTTPMethod: .patch)
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.uniqeId ?? "")",params: param, HTTPMethod: .patch)
             
-            self.callServiceMethod(service: "\(Constants.Urls.teacherleaveStutusUrl)/\(self.leaveDetails?.unique_id ?? "")",method: .patch, params: param, key: "statusLeaveUrl", headers: headers)
+            self.callServiceMethod(service: "\(Constants.Urls.teacherleaveStutusUrl)/\(self.uniqeId ?? "")",method: .patch, params: param, key: "statusLeaveUrl", headers: headers)
 
         }))
         alert.addAction(UIAlertAction(title: StringConstants.no, style: UIAlertAction.Style.cancel, handler: nil))
@@ -195,12 +193,13 @@ class LeaveViewVC: UIViewController {
         let alert = UIAlertController(title: Constants.appName, message: StringConstants.sureToRejectTheleave, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: StringConstants.yes, style: UIAlertAction.Style.destructive, handler: { action in
-            
+            LoadingIndicator.show()
+
             let param = ["status":"2"] as [String : Any]
             
-            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.leaveDetails?.unique_id ?? "")",params: param, HTTPMethod: .patch)
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.uniqeId ?? "")",params: param, HTTPMethod: .patch)
             
-            self.callServiceMethod(service: "\(Constants.Urls.teacherleaveStutusUrl)/\(self.leaveDetails?.unique_id ?? "")",method: .patch, params: param, key: "statusLeaveUrl", headers: headers)
+            self.callServiceMethod(service: "\(Constants.Urls.teacherleaveStutusUrl)/\(self.uniqeId ?? "")",method: .patch, params: param, key: "statusLeaveUrl", headers: headers)
             
         }))
         alert.addAction(UIAlertAction(title: StringConstants.no, style: UIAlertAction.Style.cancel, handler: nil))
@@ -211,16 +210,17 @@ class LeaveViewVC: UIViewController {
         let alert = UIAlertController(title: Constants.appName, message: StringConstants.sureToDeleteTheleave, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: StringConstants.yes, style: UIAlertAction.Style.destructive, handler: { action in
-            
+            LoadingIndicator.show()
+
             let param = [:] as [String : Any]
             
-            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.leaveDetails?.unique_id ?? "")",params: param, HTTPMethod: .delete)
+            let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/\(self.uniqeId ?? "")",params: param, HTTPMethod: .delete)
             switch roleKey {
             case "parent":
-                self.callServiceMethod(service: "\(Constants.Urls.parentdeleteLeaveUrl)/\(self.leaveDetails?.unique_id ?? "")",method: .delete, params: param, key: "statusLeaveUrl", headers: headers)
+                self.callServiceMethod(service: "\(Constants.Urls.parentdeleteLeaveUrl)/\(self.uniqeId ?? "")",method: .delete, params: param, key: "statusLeaveUrl", headers: headers)
 
             case "teacher":
-                self.callServiceMethod(service: "\(Constants.Urls.teacherdeleteLeaveUrl)/\(self.leaveDetails?.unique_id ?? "")",method: .delete, params: param, key: "statusLeaveUrl", headers: headers)
+                self.callServiceMethod(service: "\(Constants.Urls.teacherdeleteLeaveUrl)/\(self.uniqeId ?? "")",method: .delete, params: param, key: "statusLeaveUrl", headers: headers)
 
             default:
                 break
@@ -253,12 +253,13 @@ class LeaveViewVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "statusLeaveUrl"{
+                        LoadingIndicator.hide()
 
                         DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                         }
                     }else if key == "viewleaveUrl"{
-                        self.stopViewAnimation()
+                        self.view.hideSkeleton()
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
 
@@ -266,9 +267,18 @@ class LeaveViewVC: UIViewController {
 
                             if roleKey == "teacher" {
                                 self.nameLbl.text = (self.leaveDetails?.teacher_name ?? "")?.firstUppercased
-                                self.idNumberLbl.text = self.leaveDetails?.teacher_unique_id ?? ""
                                 self.gradeLbl.text = self.leaveDetails?.teacher_department ?? ""
-                                
+                                let totalDays = self.leaveDetails?.total_days ?? 0
+                                if totalDays == 0.5 {
+                                    self.totalDaysLbl.text = "  Half Day  "
+                                } else if totalDays == 1 {
+                                    self.totalDaysLbl.text = "  1 Day  "
+                                } else if totalDays.truncatingRemainder(dividingBy: 1) == 0 {
+                                    self.totalDaysLbl.text = "  \(Int(totalDays)) Days  "
+                                } else {
+                                    self.totalDaysLbl.text = "  \(totalDays) Days  "
+                                }
+
                                 let imageUrl = dataList["teacher_picture"] as? String ?? ""
 
                                 if !imageUrl.isEmpty {
@@ -287,8 +297,17 @@ class LeaveViewVC: UIViewController {
                                 }
                             } else {
                                 self.nameLbl.text = (self.leaveDetails?.student_name ?? "")?.firstUppercased
-                                self.idNumberLbl.text = self.leaveDetails?.student_unique_id ?? ""
-                                self.gradeLbl.text = self.leaveDetails?.student_grade ?? ""
+                                self.gradeLbl.text = "Grade \(self.leaveDetails?.student_grade ?? "")"
+                                let totalDays = self.leaveDetails?.total_days ?? 0
+                                if totalDays == 0.5 {
+                                    self.totalDaysLbl.text = "  Half Day  "
+                                } else if totalDays == 1 {
+                                    self.totalDaysLbl.text = "  1 Day  "
+                                } else if totalDays.truncatingRemainder(dividingBy: 1) == 0 {
+                                    self.totalDaysLbl.text = "  \(Int(totalDays)) Days  "
+                                } else {
+                                    self.totalDaysLbl.text = "  \(totalDays) Days  "
+                                }
 
                                 let imageUrl = dataList["student_picture"] as? String ?? ""
 

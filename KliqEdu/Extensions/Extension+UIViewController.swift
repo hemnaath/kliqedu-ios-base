@@ -246,7 +246,7 @@ extension UIViewController{
         var dispatchQueue: DispatchQueue {
             
             switch self {
-            
+                
             case .main:                 return DispatchQueue.main
             case .userInteractive:      return DispatchQueue.global(qos: .userInteractive)
             case .userInitiated:        return DispatchQueue.global(qos: .userInitiated)
@@ -262,34 +262,34 @@ extension UIViewController{
     }
     
     public func setStatusBarBackground(color: UIColor?) {
-//        guard let statusBar = UIApplication.shared.statusBarUIView else { return }
-//        statusBar.backgroundColor = color ?? .clear
+        //        guard let statusBar = UIApplication.shared.statusBarUIView else { return }
+        //        statusBar.backgroundColor = color ?? .clear
     }
     
     
     //isForcefull = false for normal logout
     func performLogout(msg: String = "", Vc: UIViewController, isForcefull: Bool = true) {
-
+        
         if isForcefull {
-
+            
             let message = msg.isEmpty ? StringConstants.sessionExpired : msg
-
+            
             let alert = UIAlertController(
                 title: Constants.appName,
                 message: message,
                 preferredStyle: .alert
             )
-
+            
             let okAction = UIAlertAction(title: StringConstants.ok, style: .destructive) { [weak self] _ in
                 self?.logOutDeleteData()
             }
-
+            
             alert.addAction(okAction)
-
+            
             Vc.present(alert, animated: true)
-
+            
         } else {
-
+            
             self.logOutDeleteData()
         }
     }
@@ -318,25 +318,25 @@ extension UIViewController{
         defaults.removeObject(forKey: Constants.Keys.helpTitle)
         defaults.removeObject(forKey: Constants.Keys.helpDesc)
         defaults.removeObject(forKey: Constants.Keys.passcodeKey)
-       // defaults.removeObject(forKey: Constants.Keys.faceID)
+        // defaults.removeObject(forKey: Constants.Keys.faceID)
         defaults.removeObject(forKey: Constants.Keys.saltKey)
         defaults.removeObject(forKey: Constants.Keys.apiKey)
         defaults.removeObject(forKey: Constants.Keys.finalSignature)
         defaults.removeObject(forKey: Constants.Keys.private_key)
         defaults.removeObject(forKey: Constants.Keys.is2FAEnabled)
-
+        
         defaults.set(true, forKey: "isLaunched")
         
         defaults.synchronize()
         navigateToRootVC()
-//        let storyBoard = UIStoryboard(name: Constants.StoryboardIds.loginSB, bundle: nil)
-//        if let vc = storyBoard.instantiateViewController(withIdentifier: "WelcomeFourVC") as? WelcomeFourVC {
-//            defaults.set(true, forKey: "isLaunched")
-//            defaults.synchronize()
-//            self.hidesBottomBarWhenPushed = true
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-
+        //        let storyBoard = UIStoryboard(name: Constants.StoryboardIds.loginSB, bundle: nil)
+        //        if let vc = storyBoard.instantiateViewController(withIdentifier: "WelcomeFourVC") as? WelcomeFourVC {
+        //            defaults.set(true, forKey: "isLaunched")
+        //            defaults.synchronize()
+        //            self.hidesBottomBarWhenPushed = true
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
+        
     }
     
     //to Navigate to root VC
@@ -352,8 +352,8 @@ extension UIViewController{
         self.view.window?.rootViewController = navigationController
         self.view.window?.makeKeyAndVisible()
     }
-
- 
+    
+    
     func setupNavigationBar(withTitle: String?, titleAppearance: (color: UIColor?, font: UIFont?)?, showLargeTitle: Bool, showBackBarButton: Bool, tintColor: UIColor?, barAppearance: NavigationBarAppearance?, barStyle: UIBarStyle, shadowColor: UIColor?, leftBarButtonItems: [UIBarButtonItem]?, rightBarButtonItems: [UIBarButtonItem]?) {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -499,7 +499,7 @@ extension UIViewController{
             }
         })
     }
-        
+    
     func showActionSheetWithFiveAction(title:String, actionTtitle1: String, style1: UIAlertAction.Style, firstActionMethod: @escaping () -> Void, actionTtitle2: String, style2: UIAlertAction.Style, secondActionMethod: @escaping () -> Void ,  actionTtitle3: String, style3: UIAlertAction.Style, thirdActionMethod: @escaping () -> Void ,
                                        actionTtitle4: String, style4: UIAlertAction.Style, fourthActionMethod: @escaping () -> Void ,
                                        
@@ -637,21 +637,21 @@ extension UIViewController{
 
 extension UIViewController: UIImagePickerControllerDelegate,
                             UINavigationControllerDelegate{
-//    
-//    func showActionSheetForShowingPhotoPickerType(_ completion: @escaping(_ photpPicketType: PhotoPickerType?) -> Void){
-//        let action = UIAlertController(title: "Choose photo from", message: nil, preferredStyle: .actionSheet)
-//        action.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
-//            completion(.camera)
-//        }))
-//        action.addAction(UIAlertAction(title: "Library", style: .default, handler: { (action) in
-//            completion(.library)
-//        }))
-//        action.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-//            completion(nil)
-//        }))
-//        self.present(action, animated: true, completion: nil)
-//    }
-//    
+    //
+    //    func showActionSheetForShowingPhotoPickerType(_ completion: @escaping(_ photpPicketType: PhotoPickerType?) -> Void){
+    //        let action = UIAlertController(title: "Choose photo from", message: nil, preferredStyle: .actionSheet)
+    //        action.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+    //            completion(.camera)
+    //        }))
+    //        action.addAction(UIAlertAction(title: "Library", style: .default, handler: { (action) in
+    //            completion(.library)
+    //        }))
+    //        action.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+    //            completion(nil)
+    //        }))
+    //        self.present(action, animated: true, completion: nil)
+    //    }
+    //
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -811,73 +811,60 @@ extension UIAlertController {
 private var enableBackGestureKey: UInt8 = 0
 
 extension UIViewController: UIGestureRecognizerDelegate{
-
+    
     // MARK: - Toggle Flag
     var isBackGestureEnabled: Bool {
         get { objc_getAssociatedObject(self, &enableBackGestureKey) as? Bool ?? false }
         set { objc_setAssociatedObject(self, &enableBackGestureKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
-
+    
     // MARK: - Call this from VC to enable gesture
     func enableBackGesture() {
         isBackGestureEnabled = true
-        setupBackGestureIfNeeded()
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
-     func disableBackGesture() {
-            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        }
+    func disableBackGesture() {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
     // MARK: - Enable gesture only when flag = true
     private func setupBackGestureIfNeeded() {
         guard isBackGestureEnabled else { return }
-
-        if let navController = self.navigationController {
-            navController.interactivePopGestureRecognizer?.isEnabled = true
-            navController.interactivePopGestureRecognizer?.delegate = self
-        }
-
-        let hasCustomGestures = view.gestureRecognizers?.contains(where: { $0 is UIScreenEdgePanGestureRecognizer }) ?? false
-        if !hasCustomGestures {
-            let leftEdgeSwipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleBackSwipe(_:)))
-            leftEdgeSwipe.edges = .left
-            view.addGestureRecognizer(leftEdgeSwipe)
-        }
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
-
-    @objc private func handleBackSwipe(_ gesture: UIScreenEdgePanGestureRecognizer) {
-        guard isBackGestureEnabled else { return }
-
-        if gesture.state == .recognized {
-            navigationController?.popViewController(animated: true)
-        }
-    }
-
+    
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return isBackGestureEnabled   // 🔥 Allow only when enabled
+        return isBackGestureEnabled && (navigationController?.viewControllers.count ?? 0) > 1
     }
+    
+    
     // Status bar bg color
     func setStatusBarBackgroundColor(_ color: UIColor) {
-           guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                 let window = windowScene.windows.first else { return }
-
-           let statusBarHeight = window.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-
-           let statusBarView = UIView(frame: CGRect(
-               x: 0,
-               y: 0,
-               width: window.frame.width,
-               height: statusBarHeight
-           ))
-
-           statusBarView.backgroundColor = color
-           statusBarView.tag = 999   // for removal
-           window.addSubview(statusBarView)
-       }
-
-       func removeStatusBarBackground() {
-           guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                 let window = windowScene.windows.first else { return }
-
-           window.subviews.first(where: { $0.tag == 999 })?.removeFromSuperview()
-       }
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else { return }
+        
+        let statusBarHeight = window.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        
+        let statusBarView = UIView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: window.frame.width,
+            height: statusBarHeight
+        ))
+        
+        statusBarView.backgroundColor = color
+        statusBarView.tag = 999   // for removal
+        window.addSubview(statusBarView)
+    }
+    
+    func removeStatusBarBackground() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else { return }
+        
+        window.subviews.first(where: { $0.tag == 999 })?.removeFromSuperview()
+    }
 }
 

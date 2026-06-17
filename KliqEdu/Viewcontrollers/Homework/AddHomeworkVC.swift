@@ -11,8 +11,11 @@ import SwiftyJSON
 import SkeletonView
 import DropDown
 import SDWebImage
+
 class AddHomeworkVC: UIViewController {
 
+    @IBOutlet weak var sectionOuterView: UIView!
+    @IBOutlet weak var groupOuterView: UIView!
     @IBOutlet weak var addAttachmentBtn: UIButton!
     @IBOutlet weak var attachementTitleLbl: UILabel!
     @IBOutlet weak var attachmentFile: UIImageView!
@@ -80,7 +83,8 @@ class AddHomeworkVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-       
+     //   self.view.showAnimatedGradientSkeleton()
+
         gradesApi()
         sectionsApi()
         groupsApi()
@@ -323,16 +327,16 @@ class AddHomeworkVC: UIViewController {
             isValid = false
         }
 
-        if selectedSectionId.isEmpty {
-            sectionWarningLbl.unhide()
-            isValid = false
-        }
-
-        if selectedGroupId.isEmpty {
-            groupWarningLbl.text = "Please select group"
-            groupWarningLbl.unhide()
-            isValid = false
-        }
+//        if selectedSectionId.isEmpty {
+//            sectionWarningLbl.unhide()
+//            isValid = false
+//        }
+//
+//        if selectedGroupId.isEmpty {
+//            groupWarningLbl.text = "Please select group"
+//            groupWarningLbl.unhide()
+//            isValid = false
+//        }
 
         if selectedSubjectId.isEmpty {
             subjectWarningLbl.text = "Please select subject"
@@ -365,11 +369,13 @@ class AddHomeworkVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "gradesUrl"{
+                   //     self.view.hideSkeleton()
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary,
                            let grades = dataList.value(forKey: "grades") as? [[String: Any]] {
 
                             DispatchQueue.main.async {
+                                self.groupOuterView.isHidden = !grades.isEmpty
                                 self.configureGradesDropDown(grades: grades)
                             }
                         }
@@ -379,6 +385,11 @@ class AddHomeworkVC: UIViewController {
                            let sections = dataList.value(forKey: "sections") as? [[String: Any]] {
 
                             DispatchQueue.main.async {
+                                if sections.isEmpty {
+                                    self.sectionOuterView.hide()
+                                }else{
+                                    self.sectionOuterView.unhide()
+                                }
                                 self.configureSectionDropDown(sections: sections)
                             }
                         }
@@ -388,6 +399,11 @@ class AddHomeworkVC: UIViewController {
                            let groups = dataList.value(forKey: "groups") as? [[String: Any]] {
 
                             DispatchQueue.main.async {
+                                if groups.isEmpty {
+                                    self.groupOuterView.hide()
+                                }else{
+                                    self.groupOuterView.unhide()
+                                }
                                 self.configureGroupDropDown(groups: groups)
                             }
                         }
@@ -400,7 +416,7 @@ class AddHomeworkVC: UIViewController {
                                 self.configureSubjectDropDown(subjects: subjects)
                             }
                         }
-                    }else if key == "updateHomeworkUrl"{
+                    }else if key == "createHomeworkUrl"{
                         
                         self.createBtn?.hideButtonLoading()
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
@@ -409,10 +425,24 @@ class AddHomeworkVC: UIViewController {
 
                             if self.isFileAdded == true{
                                 self.uploadProfileImage(image: self.selectedImage1, unique_id: unique_id)
+                               
                             }else{
                                 DispatchQueue.main.async {
                                     self.navigationController?.popViewController(animated: true)
                                 }
+                            }
+                        }
+                    }else if key == "updateHomeworkUrl"{
+                        
+                        self.createBtn?.hideButtonLoading()
+                        
+                        if self.isFileAdded == true{
+                            if self.comingFrom == "edit"{
+                                self.uploadProfileImage(image: self.selectedImage1, unique_id: self.homeworkDetails?.unique_id ?? "")
+                            }
+                        }else{
+                            DispatchQueue.main.async {
+                                self.navigationController?.popViewController(animated: true)
                             }
                         }
                     }
@@ -461,7 +491,7 @@ class AddHomeworkVC: UIViewController {
     }
     @IBAction func sectionBtnTapped(_ sender: Any) {
         if sectionDropDown.dataSource.isEmpty {
-            self.showAnimatedToast(message: "No grade found", type: .warning)
+            self.showAnimatedToast(message: "No section found", type: .warning)
             return
         }
         sectionDropDown.show()
@@ -518,7 +548,7 @@ class AddHomeworkVC: UIViewController {
                          "date": getCurrentDate()] as [String : Any]
             let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/create",params: param, HTTPMethod: .post)
             
-            self.callServiceMethod(service: Constants.Urls.createHomeworkUrl,method: .post, params: param, key: "updateHomeworkUrl", headers: headers)
+            self.callServiceMethod(service: Constants.Urls.createHomeworkUrl,method: .post, params: param, key: "createHomeworkUrl", headers: headers)
         }
     }
     @IBAction func fileCancelTapped(_ sender: Any) {
@@ -618,11 +648,17 @@ extension AddHomeworkVC: UITextFieldDelegate, UITextViewDelegate {
     }
     func uploadProfileImage(image: UIImage,unique_id: String? = nil) {
 
-        let orderedParams: [(String, Any)] = [
-            ("module", "homework"),
-            ("unique_id", unique_id ?? ""),
-            ("action", "add")]
-
+        var orderedParams = [(String, Any)]()
+        
+        if self.comingFrom == "edit"{
+            orderedParams = [ ("module", "homework"),
+                               ("unique_id", unique_id ?? ""),
+                               ("action", "update")]
+        }else{
+            orderedParams = [ ("module", "homework"),
+                               ("unique_id", unique_id ?? ""),
+                               ("action", "add")]
+        }
         // Convert tuple array to dictionary for signature
         let params = Dictionary(uniqueKeysWithValues: orderedParams)
 

@@ -14,7 +14,7 @@ struct AnchoredConstraints {
 }
 
 extension UIView{
- 
+    
     @discardableResult
     func applyGradient(colours: [UIColor]) -> CAGradientLayer {
         return self.applyGradient(colours: colours, locations: nil)
@@ -46,10 +46,10 @@ extension UIView{
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
         gradientLayer.frame = self.bounds
         gradientLayer.cornerRadius = 10
-//        self.layer.shadowOffset = CGSize(width: 0, height: 2)
-//        self.layer.shadowOpacity = 0.3
-//        self.layer.shadowRadius = 3.0
-//        self.layer.shadowColor = UIColor.black.cgColor
+        //        self.layer.shadowOffset = CGSize(width: 0, height: 2)
+        //        self.layer.shadowOpacity = 0.3
+        //        self.layer.shadowRadius = 3.0
+        //        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.masksToBounds = false
         
         self.layer.insertSublayer(gradientLayer, at: 0)
@@ -103,7 +103,7 @@ extension UIView{
         self.layer.shadowOffset = CGSize.zero
         self.layer.shadowRadius = 2
         self.layer.backgroundColor = backgroundColor.cgColor
-
+        
     }
     convenience init(backgroundColor: UIColor? = nil, cornerRadius: CGFloat? = nil){
         self.init()
@@ -308,7 +308,7 @@ extension UIView{
      `Note:` if the 'followBackgroundColor' is true but the background color of the view is nil; then this function does nothing.
      */
     func dropShadow() {
-      //  layer.cornerRadius = 12
+        //  layer.cornerRadius = 12
         
         layer.shadowColor = UIColor(hex: "#7367F0").cgColor
         layer.shadowOpacity = 0.3   // ✅ correct range
@@ -317,7 +317,7 @@ extension UIView{
         
         layer.masksToBounds = false
     }
-   
+    
     func dropShadowProfile() {
         layer.cornerRadius = 60
         if #available(iOS 13.0, *) {
@@ -335,7 +335,7 @@ extension UIView{
     func addDashedBorder(borderColor: UIColor?, cornerRadius: CGFloat?) {
         // Remove existing dashed border
         self.layer.sublayers?.removeAll(where: { $0.name == "DashedBorderLayer" })
-
+        
         let color = borderColor?.cgColor
         let shapeLayer = CAShapeLayer()
         
@@ -347,12 +347,12 @@ extension UIView{
         shapeLayer.lineWidth = 1
         shapeLayer.lineJoin = .round
         shapeLayer.lineDashPattern = [4,2]
-
+        
         shapeLayer.path = UIBezierPath(
             roundedRect: self.bounds,
             cornerRadius: cornerRadius ?? 0.0
         ).cgPath
-
+        
         self.layer.addSublayer(shapeLayer)
     }
     func addShadow(followBackgroundColor: Bool, shadowColor: UIColor?, shadowRadius: CGFloat?,shadowOpacity: Float?,shadowOffset: CGSize?) {
@@ -384,7 +384,7 @@ extension UIView{
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         self.layer.addSublayer(gradient)
     }
-   
+    
     
     //MARK:- Hide/Unhide Functions
     func hide() {
@@ -399,39 +399,43 @@ extension UIView{
     
     // skeleto view hide and show
     
+    
     func showSkeleton(
         cornerRadius: CGFloat = 12,
-        baseColor: UIColor = UIColor.systemGray5,
-        secondaryColor: UIColor = UIColor.systemGray4
+        baseColor: UIColor = .systemGray5,
+        secondaryColor: UIColor = .systemGray4
     ) {
-
-        self.layoutIfNeeded()
-
-        self.isSkeletonable = true
-        self.layer.cornerRadius = cornerRadius
-        self.clipsToBounds = true
-
+        
+        guard !sk.isSkeletonActive else { return }
+        
+        layoutIfNeeded()
+        
+        isSkeletonable = true
+        layer.cornerRadius = cornerRadius
+        clipsToBounds = true
+        
         let gradient = SkeletonGradient(
             baseColor: baseColor,
             secondaryColor: secondaryColor
         )
-
-        let animation = GradientDirection.leftRight.slidingAnimation(
-            duration: 1.1
-        )
-
-        self.showAnimatedGradientSkeleton(
+        
+        let animation = SkeletonAnimationBuilder()
+            .makeSlidingAnimation(withDirection: .leftRight)
+        
+        showAnimatedGradientSkeleton(
             usingGradient: gradient,
             animation: animation,
-            transition: .crossDissolve(0.15)
+            transition: .crossDissolve(0.2)
         )
     }
-
+    
     func hideSkeleton() {
-
-        self.hideSkeleton(
+        
+        guard sk.isSkeletonActive else { return }
+        
+        hideSkeleton(
             reloadDataAfter: true,
-            transition: .crossDissolve(0.25)
+            transition: .crossDissolve(0.2)
         )
     }
 }

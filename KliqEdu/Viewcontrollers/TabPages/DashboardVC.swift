@@ -9,12 +9,15 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SkeletonView
+import SDWebImage
 
 class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var placeHolderNameLbl: UILabel!
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var profileContainerView: UIView!
     @IBOutlet weak var goodMorningLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var profileBtn: UIButton!
     @IBOutlet weak var quoteLbl: UILabel!
     @IBOutlet weak var quoteAuthorLbl: UILabel!
     
@@ -34,6 +37,13 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
+        
+        self.placeHolderNameLbl.layer.cornerRadius = 21
+        self.placeHolderNameLbl.layer.masksToBounds = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(labelAction(gesture:)))
+        profileContainerView.isUserInteractionEnabled = true
+        profileContainerView.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,8 +61,9 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
         tableView.dataSource = self
         let nib = UINib(nibName: "NotificationsTCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "NotificationsTCell")
-        startViewAnimation()
-        
+        self.quoteLbl.numberOfLines = 2
+
+        self.view.showSkeleton(cornerRadius: 0)
         tableView.isSkeletonable = true
         self.tableView.showAnimatedGradientSkeleton()
         
@@ -70,41 +81,31 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
             self.bottomStackView.hide()
             
             self.profileApi()
-            
         }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        updateGreetingText()
     }
     func updateGreetingText() {
-        
+
         let hour = Calendar.current.component(.hour, from: Date())
-        
+        print("Current Hour:", hour)
+
         switch hour {
         case 5..<12:
             goodMorningLbl.text = "Good Morning"
-            
         case 12..<17:
             goodMorningLbl.text = "Good Afternoon"
-            
         case 17..<21:
             goodMorningLbl.text = "Good Evening"
-            
         default:
             goodMorningLbl.text = "Good Night"
         }
+
+        print("Greeting:", goodMorningLbl.text ?? "")
     }
-    func startViewAnimation()  {
-        nameLbl.showSkeleton(cornerRadius: 0)
-        goodMorningLbl.showSkeleton(cornerRadius: 0)
-        quoteLbl.showSkeleton(cornerRadius: 0)
-        quoteAuthorLbl.showSkeleton(cornerRadius: 0)
-    }
-    func stopViewAnimation()  {
-        nameLbl.hideSkeleton()
-        goodMorningLbl.hideSkeleton()
-        quoteLbl.hideSkeleton()
-        quoteAuthorLbl.hideSkeleton()
-    }
+   
     func dashboardApi(){
         
         let param = [:] as [String : Any]
@@ -126,7 +127,7 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
         
         self.callServiceMethod(service: Constants.Urls.profileUrl,method: .get, params: param, key: "profileUrl", headers: headers)
     }
-    @IBAction func profileBtnTapped(_ sender: Any) {
+    @objc func labelAction(gesture: UITapGestureRecognizer){
         if roleKey == "teacher"{
             
             let sb = UIStoryboard.init(name: Constants.StoryboardIds.settingsSB, bundle: nil)
@@ -245,12 +246,38 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "dashboardUrl"{
-                        self.stopViewAnimation()
+                        self.view.hideSkeleton()
+                        DispatchQueue.main.async {
+                            self.updateGreetingText()
+                        }
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
+                            self.quoteLbl.adjustsFontSizeToFitWidth = true
+                            self.quoteLbl.minimumScaleFactor = 0.8
+                            self.quoteLbl.numberOfLines = 4
+                            self.quoteLbl.lineBreakMode = .byTruncatingTail
+                            self.quoteLbl.baselineAdjustment = .alignCenters
+                            
                             self.quoteLbl.text = dataList.value(forKey: "quote") as? String
                             self.quoteAuthorLbl.text = "- \(dataList.value(forKey: "author") as? String ?? "")"
                             self.nameLbl.text = (dataList.value(forKey: "full_name") as? String)?.firstUppercased
-                            
+                            let fullName1 = "\(dataList.value(forKey: "full_name") as? String ?? "")"
+
+                            let imageUrl = dataList.value(forKey: "picture") as? String ?? ""
+
+                            if !imageUrl.isEmpty {
+                                self.placeHolderNameLbl.isHidden = true
+                                self.profilePic.isHidden = false
+                                self.profilePic.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
+                            } else {
+                                self.profilePic.image = nil
+                                self.profilePic.isHidden = true
+                                self.placeHolderNameLbl.isHidden = false
+                                let fullName = (fullName1).trimmingCharacters(in: .whitespacesAndNewlines)
+                                let words = fullName.split(separator: " ")
+                                let firstInitial = words.first?.first.map { String($0).uppercased() } ?? ""
+                                let secondInitial = words.dropFirst().first?.first.map { String($0).uppercased() } ?? ""
+                                self.placeHolderNameLbl.text = secondInitial.isEmpty ? firstInitial : "\(firstInitial) \(secondInitial)"
+                            }
                             self.tableView.hideSkeleton()
                             
                             let listArray = dataList["announcementData"] as? Array<Dictionary<String,Any>> ?? []
@@ -280,12 +307,12 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
                             }
                         }
                     }else if key == "profileUrl"{
-                        self.stopViewAnimation()
+                        self.view.hideSkeleton()
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
                             
                             self.profileDetails = ProfileModel(dictionary: dataList)
                             
-                        }
+                            }
                         }
                 } else {
                     self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
@@ -344,6 +371,7 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
         if let vc = sb.instantiateViewController(withIdentifier: "AnnouncementDetailsVC") as? AnnouncementDetailsVC {
             
             vc.announcementDetails = dataModel
+            vc.uniqueId = dataModel.unique_id ?? ""
 //            vc.accStatus = dataModel.status_formatted ?? ""
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)

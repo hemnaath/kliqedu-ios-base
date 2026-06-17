@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SkeletonView
 
 class EditParentProfileVc: UIViewController,UITextFieldDelegate {
 
@@ -89,7 +90,8 @@ class EditParentProfileVc: UIViewController,UITextFieldDelegate {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        LoadingIndicator.show()
+      //  LoadingIndicator.show()
+        self.view.showAnimatedSkeleton()
 
         profileApi()
     }
@@ -212,7 +214,8 @@ class EditParentProfileVc: UIViewController,UITextFieldDelegate {
                     if key == "profileUrl"{
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
-                            LoadingIndicator.hide()
+                          //  LoadingIndicator.hide()
+                            self.view.showAnimatedSkeleton()
 
                             self.profileDetails = ProfileModel(dictionary: dataList)
                             

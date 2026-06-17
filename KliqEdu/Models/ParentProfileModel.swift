@@ -35,6 +35,7 @@ public class ParentProfileModel {
     public var roll_number: String?
     public var grade: String?
     public var gender: String?
+    public var section: String?
 
     // Init from dictionary
     required public init?(dictionary: NSDictionary) {
@@ -65,6 +66,8 @@ public class ParentProfileModel {
         roll_number = dictionary["roll_number"] as? String
         grade = dictionary["grade"] as? String
         gender = dictionary["gender"] as? String
+        section = dictionary["section"] as? String
+
     }
 
     // Convert back to dictionary
@@ -98,6 +101,7 @@ public class ParentProfileModel {
         dictionary.setValue(self.roll_number, forKey: "roll_number")
         dictionary.setValue(self.grade, forKey: "grade")
         dictionary.setValue(self.gender, forKey: "gender")
+        dictionary.setValue(self.section, forKey: "section")
 
         return dictionary
     }
