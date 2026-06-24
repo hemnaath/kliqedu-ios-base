@@ -41,13 +41,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
 
         let token = components?.queryItems?.first(where: {$0.name == "token"})?.value ?? ""
-    //    let email = components?.queryItems?.first(where: {$0.name == "email"})?.value ?? ""
         
         let sb = UIStoryboard(name: Constants.StoryboardIds.loginSB, bundle: nil)
 
         if let vc = sb.instantiateViewController(withIdentifier: "ResetPasswordVC") as? ResetPasswordVC {
             vc.token = token
-            //     vc.email = email
             vc.comingFrom = "resetlink"
             let nav = UINavigationController(rootViewController: vc)
             UIApplication.shared.windows.first?.rootViewController = nav

@@ -139,7 +139,7 @@ class OTPVC: UIViewController,UITextFieldDelegate {
 
                     // MARK: - Main User Data
 
-                    let token = data["access_token"] as? String ?? ""
+                    var token = data["access_token"] as? String ?? ""
                     let apiKey = data["api_key"] as? String ?? ""
                     let saltKey = data["salt_key"] as? String ?? ""
                     let privateKey = data["private_key"] as? String ?? ""
@@ -235,6 +235,13 @@ class OTPVC: UIViewController,UITextFieldDelegate {
                     // Save children count
                     defaults.set(children.count, forKey: Constants.Keys.childrenCountKey)
                     defaults.synchronize()
+                    
+                    userID = defaults.value(forKey: Constants.Keys.userIdKey) as? Int ?? 0
+                    api_Key = defaults.value(forKey: Constants.Keys.apiKey) as? String ?? ""
+                    salt_Key = defaults.value(forKey: Constants.Keys.saltKey) as? String ?? ""
+                    token = defaults.value(forKey: Constants.Keys.accessTokenKey) as? String ?? ""
+                    roleKey = defaults.value(forKey: Constants.Keys.roleKey) as? String ?? ""
+                    
                     //self.navigationController?.popViewController(animated: true)
                     let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
                     if let vc = sb.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {

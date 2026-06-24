@@ -69,7 +69,7 @@ class AddHomeworkVC: UIViewController {
         subjectWarningLbl.hide()
         descriptionWarningLbl.hide()
         
-      //  attachmentOuterview.hide()
+        self.groupOuterView.hide()
 
         titleField.delegate = self
         descriptionTextview.delegate = self

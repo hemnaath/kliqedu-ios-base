@@ -84,14 +84,14 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
                 return false
             }
 
-        case 3:
-            // Settings
-            let settingsPermission = defaults.value(forKey: Constants.Keys.settingsPermissionKey) as? Bool ?? false
-
-            if !settingsPermission {
-                self.showAnimatedToast(message: "You don't have permission to access this page", type: .warning)
-                return false
-            }
+//        case 3:
+//            // Settings
+//            let settingsPermission = defaults.value(forKey: Constants.Keys.settingsPermissionKey) as? Bool ?? false
+//
+//            if !settingsPermission {
+//                self.showAnimatedToast(message: "You don't have permission to access this page", type: .warning)
+//                return false
+//            }
 
         default:
             break

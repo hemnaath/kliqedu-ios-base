@@ -140,6 +140,7 @@
 		AEB484FF2F72EBA900BD0896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F52F72EBA900BD0896 /* SceneDelegate.swift */; };
 		AEB485002F72EBA900BD0896 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F62F72EBA900BD0896 /* ViewController.swift */; };
 		AEBAA56A2F857420007D18E0 /* LeaveViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */; };
+		AEC060AF2FE9B63700F53D13 /* notification.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEC060AE2FE9B63700F53D13 /* notification.wav */; };
 		AED97E532F95074F0092C5D5 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */; };
 		AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */; };
 		AEE7F1CF2F91530300844AB6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEE7F1CE2F91530300844AB6 /* Settings.storyboard */; };
@@ -286,6 +287,7 @@
 		AEB484F62F72EBA900BD0896 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AEB484F82F72EBA900BD0896 /* KliqEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KliqEdu.xcdatamodel; sourceTree = "<group>"; };
 		AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveViewVC.swift; sourceTree = "<group>"; };
+		AEC060AE2FE9B63700F53D13 /* notification.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notification.wav; sourceTree = "<group>"; };
 		AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		AEE7F1CE2F91530300844AB6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				AEB484F62F72EBA900BD0896 /* ViewController.swift */,
 				AEB484EE2F72EBA900BD0896 /* Assets.xcassets */,
 				AE74111B2FCB1BB90023891F /* GoogleService-Info.plist */,
+				AEC060AE2FE9B63700F53D13 /* notification.wav */,
 				AE443ACE2F74415300D97CA7 /* LaunchVC.swift */,
 				AE14178D2F7970BF00A45679 /* TabBarController.swift */,
 				AE443A722F74403200D97CA7 /* Viewcontrollers */,
@@ -698,6 +701,7 @@
 				AE443AE62F74429900D97CA7 /* Urbanist-ExtraBold.ttf in Resources */,
 				AE584D072F9546040034C4D0 /* FeesTCell.xib in Resources */,
 				AE5C0F7E2FA11D55004DEA81 /* TeacherLeaveTCell.xib in Resources */,
+				AEC060AF2FE9B63700F53D13 /* notification.wav in Resources */,
 				AE31E52E2F8812610009EE9F /* NotificationsTCell.xib in Resources */,
 				AE443AD42F74417D00D97CA7 /* Login.storyboard in Resources */,
 				AE892A692F75B39500A6ECEC /* .gitkeep in Resources */,

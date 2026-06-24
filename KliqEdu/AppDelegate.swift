@@ -24,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        userID = defaults.value(forKey: Constants.Keys.userIdKey) as? Int ?? 0
+        api_Key = defaults.value(forKey: Constants.Keys.apiKey) as? String ?? ""
+        salt_Key = defaults.value(forKey: Constants.Keys.saltKey) as? String ?? ""
+        token = defaults.value(forKey: Constants.Keys.accessTokenKey) as? String ?? ""
+        roleKey = defaults.value(forKey: Constants.Keys.roleKey) as? String ?? ""
+        
         FirebaseApp.configure()
 
         UNUserNotificationCenter.current().delegate = self
@@ -192,9 +199,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // Print full message.
         print(userInfo)
         
-//        // Change this to your preferred presentation option
-        completionHandler([.alert, .sound,.badge])
-      //  completionHandler([.banner, .sound, .badge])
+        // Change this to your preferred presentation option
+        if #available(iOS 14.0, *) {
+            completionHandler([.banner, .sound, .badge, .list])
+        } else {
+            completionHandler([.alert, .sound, .badge])
+        }
 
     }
     
