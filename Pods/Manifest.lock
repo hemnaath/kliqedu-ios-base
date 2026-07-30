@@ -119,6 +119,9 @@ PODS:
     - SDWebImage/Core (= 5.21.3)
   - SDWebImage/Core (5.21.3)
   - SkeletonView (1.30.4)
+  - Socket.IO-Client-Swift (16.1.0):
+    - Starscream (~> 4.0.6)
+  - Starscream (4.0.8)
   - SVProgressHUD (2.3.1):
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
@@ -139,6 +142,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SDWebImage
   - SkeletonView
+  - Socket.IO-Client-Swift (= 16.1.0)
   - SVProgressHUD
   - SwiftyJSON
   - SwiftyRSA
@@ -166,6 +170,8 @@ SPEC REPOS:
     - ReachabilitySwift
     - SDWebImage
     - SkeletonView
+    - Socket.IO-Client-Swift
+    - Starscream
     - SVProgressHUD
     - SwiftyJSON
     - SwiftyRSA
@@ -192,10 +198,12 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   SDWebImage: 16309af6d214ba3f77a7c6f6fdda888cb313a50a
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
+  Socket.IO-Client-Swift: ee4b8f80a3db18dd7f32b266ddf273310609443c
+  Starscream: 19b5533ddb925208db698f0ac508a100b884a1b9
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
 
-PODFILE CHECKSUM: 90be1f22df1866762a31c34f2bf163bddadf6b31
+PODFILE CHECKSUM: 8953e1883738a64a87aab35236bc313d116475cf
 
 COCOAPODS: 1.16.2

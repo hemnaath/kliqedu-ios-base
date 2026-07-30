@@ -54,7 +54,6 @@ class LeavesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = true
         
-        self.view.applyVerticalLigtGradient()
         addLeaveBtn.dropShadow()
         leaveSection = "student"
         

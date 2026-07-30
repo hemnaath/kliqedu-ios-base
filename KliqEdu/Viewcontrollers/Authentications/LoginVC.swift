@@ -70,6 +70,11 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         }
     }
     @IBAction func loginBtnTapped(_ sender: Any) {
+//        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+//        if let vc = sb.instantiateViewController(withIdentifier: "ChatListVC") as? ChatListVC {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+        
         var isValid = true
         if emailField.text ?? "" == "" {
             emailWarningLbl.unhide()

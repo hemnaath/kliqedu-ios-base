@@ -239,10 +239,15 @@ class ActivitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
                 if !isLoadingData && !allItemsLoaded {
                     let param = ["page":page] as [String : Any]
-                    
                     let (headers, _) = APIHelper.createHeadersAndSignature(endpoint: "/list",params: param, HTTPMethod: .post)
-                    
-                    self.callServiceMethod(service: Constants.Urls.studentsUrl, method: .post, params: param, key: "studentsUrl", headers: headers)
+
+                    if roleKey == "teacher"{
+                        
+                        self.callServiceMethod(service: Constants.Urls.teacherAnnouncementListUrl, method: .post, params: param, key: "announcementListUrl", headers: headers)
+                    }else{
+                        self.callServiceMethod(service: Constants.Urls.parentAnnouncementListUrl, method: .post, params: param, key: "announcementListUrl", headers: headers)
+
+                    }
                 }
             }
         }

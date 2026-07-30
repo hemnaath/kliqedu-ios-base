@@ -12,6 +12,7 @@ struct Constants {
     // staging
     
     static let baseUrl = "https://api.kliqedu.com/api/"
+    static let chatUrl = "https://api.kliqedu.com/api/"
 
     static let keyFile = "T+lih90otH7o/Osg5Ttdzd2/qln9WMwupgJpz8IZswc="
 
@@ -334,6 +335,13 @@ struct Constants {
         
         static let setPasswordUrl = "auth/set-password"
 
+        // Msg list
+        
+        static let studentMsgUrl = "parent/message"
+        static let teacherMsgUrl = "teacher/message"
+        
+        static let studentMsgDeleteUrl = "parent/message"
+        static let teacherMsgDeleteUrl = "teacher/message"
     }
 }
 struct CurrencyConstants {

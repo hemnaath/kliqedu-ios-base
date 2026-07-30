@@ -312,7 +312,8 @@ class ParentProfileVC: UIViewController {
         }
     }
     func removeProfilePic() {
-        
+        LoadingIndicator.show()
+
         if selectedTab == "student"{
             
             let param = ["module":"student_profile",
@@ -351,6 +352,7 @@ class ParentProfileVC: UIViewController {
         self.view.endEditing(true)
     }
     func uploadProfileImage(image: UIImage) {
+        LoadingIndicator.show()
 
         let orderedParams: [(String, Any)]
         if selectedTab == "student"{
@@ -401,6 +403,7 @@ class ParentProfileVC: UIViewController {
                     }
 
                 } else {
+                    LoadingIndicator.hide()
 
                     let errorCode: Int = result?["status_code"] as? Int ?? 0
                     let msg = result?["message"] as? String ?? ""
@@ -417,6 +420,7 @@ class ParentProfileVC: UIViewController {
 
             },
             failure: { error in
+                LoadingIndicator.hide()
 
                 self.showAnimatedToast(
                     message: StringConstants.pleaseTryAgain,
@@ -438,6 +442,7 @@ class ParentProfileVC: UIViewController {
                 if let responseDict = result as NSDictionary? {
                     
                     if key == "studentProfileUrl"{
+                        LoadingIndicator.hide()
 
                         self.view.hideSkeleton()
 
@@ -448,7 +453,8 @@ class ParentProfileVC: UIViewController {
                             self.studentSetup()
                         }
                     }else if key == "parentProfileUrl" {
-                        
+                        LoadingIndicator.hide()
+
                         self.view.hideSkeleton()
 
                         if let dataList = responseDict.value(forKey: "data") as? NSDictionary {
@@ -459,6 +465,8 @@ class ParentProfileVC: UIViewController {
 
                         }
                     }else if key == "removeProfilePicUrl" {
+                        LoadingIndicator.hide()
+
                         if self.selectedTab == "student"{
                             self.studentprofileApi()
                         }else{
@@ -470,7 +478,8 @@ class ParentProfileVC: UIViewController {
                     self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
                 }
             } else {
-                
+                LoadingIndicator.hide()
+
                 let errorCode: Int = result!["status_code"] as? Int ?? 0
                 let msg = result!["message"] as? String ?? ""
                 
@@ -483,6 +492,8 @@ class ParentProfileVC: UIViewController {
                 }
             }
         }) { (error) in
+            LoadingIndicator.hide()
+
             self.showAnimatedToast(message: StringConstants.pleaseTryAgain,type: .error)
             
             debugPrint(error)

@@ -80,7 +80,7 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
             self.teachersCard.isHidden = true
             self.bottomStackView.hide()
             
-            self.profileApi()
+            self.teacherProfileApi()
         }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -119,7 +119,7 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
             self.callServiceMethod(service: Constants.Urls.parentDashboardUrl,method: .get, params: param, key: "dashboardUrl", headers: headers)
         }
     }
-    func profileApi(){
+    func teacherProfileApi(){
         
         let param = [:] as [String : Any]
         
@@ -143,6 +143,14 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
+        }
+    }
+    @IBAction func chatBtnTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "ChatListVC") as? ChatListVC {
+            
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -312,8 +320,11 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
                             
                             self.profileDetails = ProfileModel(dictionary: dataList)
                             
-                            }
+                            let uniqueId = dataList["unique_id"] as? String ?? ""
+                            defaults.set(uniqueId, forKey: Constants.Keys.userUniqueIdKey)
+                            defaults.synchronize()
                         }
+                    }
                 } else {
                     self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)
                 }

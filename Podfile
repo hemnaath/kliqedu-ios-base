@@ -19,7 +19,8 @@ target 'KliqEdu' do
   pod 'CryptoSwift'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
-  
+  pod 'Socket.IO-Client-Swift', '16.1.0'
+
   # Pods for KliqEdu
 
 end

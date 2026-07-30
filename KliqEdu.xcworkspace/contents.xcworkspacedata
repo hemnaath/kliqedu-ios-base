@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ChatMessage+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:ChatMessage+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:KliqEdu.xcodeproj">
    </FileRef>
    <FileRef

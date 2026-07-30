@@ -247,6 +247,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 
                 let notificationType = userInfo["type"] as? String
                 let contentUniqueId = userInfo["content_unique_id"] as? String ?? ""
+                let roomId = userInfo["room_id"] as? String ?? ""
 
                 print("fcmBody1: \(notificationType ?? "")")
                 
@@ -280,6 +281,18 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                         topVC.navigationController?.navigationBar.isHidden = false
                         topVC.navigationController?.pushViewController(vc, animated: false)
                     }
+                }else if notificationType == "chat"{
+                    
+                    let storyboard = UIStoryboard(name: Constants.StoryboardIds.mainSb, bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "ChatVC") as! ChatVC
+                    vc.chatListroomID = roomId
+                    vc.comingFrom = "chatList"
+
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.navigationController?.navigationBar.isHidden = false
+                        topVC.navigationController?.pushViewController(vc, animated: false)
+                    }
+                    
                 }
         completionHandler()
     }

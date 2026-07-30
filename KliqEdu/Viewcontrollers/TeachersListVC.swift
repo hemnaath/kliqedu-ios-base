@@ -17,7 +17,7 @@ class TeachersListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyView: UIView!
 
-    var teachersArray: [TeachersModel] = []
+    var teachersArray = [TeachersModel]()
     
     let subjectColorMap: [String: UIColor] = [
         "Mathematics": UIColor(hex: "#1976D2"),     // Blue

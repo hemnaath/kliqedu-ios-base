@@ -143,9 +143,19 @@
 		AEC060AF2FE9B63700F53D13 /* notification.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEC060AE2FE9B63700F53D13 /* notification.wav */; };
 		AED97E532F95074F0092C5D5 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */; };
 		AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */; };
+		AEDFC055300C0E260036124E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDFC054300C0E260036124E /* CoreDataManager.swift */; };
+		AEE39EBB30054B1300DB40DA /* ChatListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE39EBA30054B1300DB40DA /* ChatListVC.swift */; };
+		AEE39EBE30054F0700DB40DA /* ChatListTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE39EBC30054F0700DB40DA /* ChatListTCell.swift */; };
+		AEE39EBF30054F0700DB40DA /* ChatListTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEE39EBD30054F0700DB40DA /* ChatListTCell.xib */; };
+		AEE39EC23005628A00DB40DA /* SelectTeacherTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE39EC03005628A00DB40DA /* SelectTeacherTCell.swift */; };
+		AEE39EC33005628A00DB40DA /* SelectTeacherTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEE39EC13005628A00DB40DA /* SelectTeacherTCell.xib */; };
 		AEE7F1CF2F91530300844AB6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEE7F1CE2F91530300844AB6 /* Settings.storyboard */; };
 		AEEE57DB2FB9E5A900BC5490 /* GradeSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEE57DA2FB9E5A900BC5490 /* GradeSectionModel.swift */; };
 		AEEE57DD2FBA155700BC5490 /* DateCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEE57DC2FBA155700BC5490 /* DateCCell.swift */; };
+		AEF5AD053003AA6B00A229AF /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5AD043003AA6B00A229AF /* ChatVC.swift */; };
+		AEF5AD073003B19200A229AF /* SingleChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5AD063003B19200A229AF /* SingleChatModel.swift */; };
+		AEF5AD0A3003B21C00A229AF /* ChatSenderTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5AD093003B21B00A229AF /* ChatSenderTCell.swift */; };
+		AEF5AD0B3003B21C00A229AF /* ChatRecieverTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5AD083003B21B00A229AF /* ChatRecieverTCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -290,9 +300,19 @@
 		AEC060AE2FE9B63700F53D13 /* notification.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notification.wav; sourceTree = "<group>"; };
 		AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		AEDFC054300C0E260036124E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		AEE39EBA30054B1300DB40DA /* ChatListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListVC.swift; sourceTree = "<group>"; };
+		AEE39EBC30054F0700DB40DA /* ChatListTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTCell.swift; sourceTree = "<group>"; };
+		AEE39EBD30054F0700DB40DA /* ChatListTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatListTCell.xib; sourceTree = "<group>"; };
+		AEE39EC03005628A00DB40DA /* SelectTeacherTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeacherTCell.swift; sourceTree = "<group>"; };
+		AEE39EC13005628A00DB40DA /* SelectTeacherTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectTeacherTCell.xib; sourceTree = "<group>"; };
 		AEE7F1CE2F91530300844AB6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AEEE57DA2FB9E5A900BC5490 /* GradeSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSectionModel.swift; sourceTree = "<group>"; };
 		AEEE57DC2FBA155700BC5490 /* DateCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCCell.swift; sourceTree = "<group>"; };
+		AEF5AD043003AA6B00A229AF /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		AEF5AD063003B19200A229AF /* SingleChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleChatModel.swift; sourceTree = "<group>"; };
+		AEF5AD083003B21B00A229AF /* ChatRecieverTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRecieverTCell.swift; sourceTree = "<group>"; };
+		AEF5AD093003B21B00A229AF /* ChatSenderTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSenderTCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +369,8 @@
 			isa = PBXGroup;
 			children = (
 				AE892A572F75B29A00A6ECEC /* DashboardVC.swift */,
+				AEE39EBA30054B1300DB40DA /* ChatListVC.swift */,
+				AEF5AD043003AA6B00A229AF /* ChatVC.swift */,
 			);
 			path = TabPages;
 			sourceTree = "<group>";
@@ -399,6 +421,7 @@
 				AEEE57DA2FB9E5A900BC5490 /* GradeSectionModel.swift */,
 				AE63B86E2FBCBDD300FEC1E8 /* ChildrensModel.swift */,
 				AE4A88312FC2C3C8007F9404 /* StaticPagesModel.swift */,
+				AEF5AD063003B19200A229AF /* SingleChatModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -440,6 +463,12 @@
 				AEEE57DC2FBA155700BC5490 /* DateCCell.swift */,
 				AE63B8702FBCBEBB00FEC1E8 /* ChildrensTCell.swift */,
 				AE63B8712FBCBEBB00FEC1E8 /* ChildrensTCell.xib */,
+				AEF5AD083003B21B00A229AF /* ChatRecieverTCell.swift */,
+				AEF5AD093003B21B00A229AF /* ChatSenderTCell.swift */,
+				AEE39EBC30054F0700DB40DA /* ChatListTCell.swift */,
+				AEE39EBD30054F0700DB40DA /* ChatListTCell.xib */,
+				AEE39EC03005628A00DB40DA /* SelectTeacherTCell.swift */,
+				AEE39EC13005628A00DB40DA /* SelectTeacherTCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -601,6 +630,7 @@
 				AEB484F62F72EBA900BD0896 /* ViewController.swift */,
 				AEB484EE2F72EBA900BD0896 /* Assets.xcassets */,
 				AE74111B2FCB1BB90023891F /* GoogleService-Info.plist */,
+				AEB484F02F72EBA900BD0896 /* KliqEdu.xcdatamodeld */,
 				AEC060AE2FE9B63700F53D13 /* notification.wav */,
 				AE443ACE2F74415300D97CA7 /* LaunchVC.swift */,
 				AE14178D2F7970BF00A45679 /* TabBarController.swift */,
@@ -612,7 +642,7 @@
 				AE443A952F7440C200D97CA7 /* ThirdParty */,
 				AE443AA32F7440C600D97CA7 /* Fonts */,
 				AE443ABC2F7440CC00D97CA7 /* Extensions */,
-				AEB484F02F72EBA900BD0896 /* KliqEdu.xcdatamodeld */,
+				AEDFC054300C0E260036124E /* CoreDataManager.swift */,
 			);
 			path = KliqEdu;
 			sourceTree = "<group>";
@@ -680,6 +710,7 @@
 			files = (
 				AE86A9CC2F842CEA007A6A31 /* LeaveTCell.xib in Resources */,
 				AEB484F92F72EBA900BD0896 /* Assets.xcassets in Resources */,
+				AEE39EBF30054F0700DB40DA /* ChatListTCell.xib in Resources */,
 				AE2D34472FA4F2F100B634BF /* FilterTCell.xib in Resources */,
 				AEB257E62FB4E246008F1D83 /* loading.json in Resources */,
 				AEB484FB2F72EBA900BD0896 /* LaunchScreen.storyboard in Resources */,
@@ -694,6 +725,7 @@
 				AE443AE32F74429900D97CA7 /* Urbanist-Thin.ttf in Resources */,
 				AE443AE42F74429900D97CA7 /* Urbanist-Medium.ttf in Resources */,
 				AE443AE52F74429900D97CA7 /* Urbanist-Black.ttf in Resources */,
+				AEE39EC33005628A00DB40DA /* SelectTeacherTCell.xib in Resources */,
 				AE400B7E2F89701200FB357F /* HolidaysCell.xib in Resources */,
 				AE9070522FA6F1A60058FCC7 /* buttonloading.json in Resources */,
 				AE1417912F797F9100A45679 /* StudentListTCell.xib in Resources */,
@@ -795,18 +827,23 @@
 				AE25AABC2FAD083000790494 /* FeesModel.swift in Sources */,
 				AE7B088B2FBF781700E9C9A1 /* PaymentVC.swift in Sources */,
 				AE400B7F2F89701200FB357F /* HolidaysCell.swift in Sources */,
+				AEF5AD0A3003B21C00A229AF /* ChatSenderTCell.swift in Sources */,
+				AEDFC055300C0E260036124E /* CoreDataManager.swift in Sources */,
+				AEF5AD0B3003B21C00A229AF /* ChatRecieverTCell.swift in Sources */,
 				AE892A682F75B39500A6ECEC /* CBTabBarButton.swift in Sources */,
 				AE443ABE2F7440CC00D97CA7 /* PaddedLabel.swift in Sources */,
 				AE892A5C2F75B2D800A6ECEC /* AcademicsVC.swift in Sources */,
 				AE443ABF2F7440CC00D97CA7 /* UIButtton+Extension.swift in Sources */,
 				AE8AC3CB2FB2444300FD900B /* LeaveTypeCCell.swift in Sources */,
 				AE2D34482FA4F2F100B634BF /* FilterTCell.swift in Sources */,
+				AEE39EBB30054B1300DB40DA /* ChatListVC.swift in Sources */,
 				AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */,
 				AE35CE132FA5E6FA0094FD65 /* OTPVC.swift in Sources */,
 				AE8AC3CD2FB245E500FD900B /* LeaveTypeModel.swift in Sources */,
 				AE9070562FA7007B0058FCC7 /* StudentsModel.swift in Sources */,
 				AE4E66C42FA514B600CAEDAE /* EditStudentProfileVC.swift in Sources */,
 				AE5C0F7F2FA11D55004DEA81 /* TeacherLeaveTCell.swift in Sources */,
+				AEE39EC23005628A00DB40DA /* SelectTeacherTCell.swift in Sources */,
 				AE892A5E2F75B2EA00A6ECEC /* ActivitiesVC.swift in Sources */,
 				AE443AD22F74416800D97CA7 /* WelcomeVC.swift in Sources */,
 				AE1417922F797F9100A45679 /* StudentListTCell.swift in Sources */,
@@ -848,6 +885,7 @@
 				AE4A88302FC2C37C007F9404 /* StaticPagesVC.swift in Sources */,
 				AE400B792F896F7600FB357F /* HolidaysVC.swift in Sources */,
 				AE443A962F7440C200D97CA7 /* AnimatedTextfield.swift in Sources */,
+				AEF5AD073003B19200A229AF /* SingleChatModel.swift in Sources */,
 				AE563F422F8C8962006B8B33 /* HomeworkListVC.swift in Sources */,
 				AE443A972F7440C200D97CA7 /* AccessibilityIdentifiers.swift in Sources */,
 				AE31E52F2F8812610009EE9F /* NotificationsTCell.swift in Sources */,
@@ -857,7 +895,9 @@
 				AE443A992F7440C200D97CA7 /* TGFlingActionButton.swift in Sources */,
 				AE8AC3CF2FB2533C00FD900B /* ProfileModel.swift in Sources */,
 				AE443A9A2F7440C200D97CA7 /* DPOTPView.swift in Sources */,
+				AEF5AD053003AA6B00A229AF /* ChatVC.swift in Sources */,
 				AE443A9B2F7440C200D97CA7 /* CustomCoachMarkBodyView.swift in Sources */,
+				AEE39EBE30054F0700DB40DA /* ChatListTCell.swift in Sources */,
 				AE9070542FA6F42C0058FCC7 /* HolidaysModel.swift in Sources */,
 				AE892A582F75B29A00A6ECEC /* DashboardVC.swift in Sources */,
 				AE443A8A2F7440BB00D97CA7 /* NetworkManager.swift in Sources */,

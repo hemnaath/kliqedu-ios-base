@@ -13,6 +13,7 @@ public class TeachersModel {
     public var mobile: String?
     public var teacher_picture: String?
     public var email: String?
+    public var unique_id: String?
 
 
     // Init from dictionary
@@ -23,6 +24,7 @@ public class TeachersModel {
         mobile = dictionary["mobile"] as? String
         teacher_picture = dictionary["teacher_picture"] as? String
         email = dictionary["email"] as? String
+        unique_id = dictionary["unique_id"] as? String
 
     }
 
@@ -35,6 +37,7 @@ public class TeachersModel {
         dictionary.setValue(self.mobile, forKey: "mobile")
         dictionary.setValue(self.teacher_picture, forKey: "teacher_picture")
         dictionary.setValue(self.email, forKey: "email")
+        dictionary.setValue(self.unique_id, forKey: "unique_id")
 
         return dictionary
     }
