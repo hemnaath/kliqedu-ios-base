@@ -22,6 +22,14 @@ class DashboardVC: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    @IBAction func chatBtnTapped(_ sender: Any) {
+        let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "ChatListVC") as? ChatListVC {
+            
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     @IBAction func studentsBtnTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)

@@ -114,6 +114,14 @@
 		AEB484FF2F72EBA900BD0896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F52F72EBA900BD0896 /* SceneDelegate.swift */; };
 		AEB485002F72EBA900BD0896 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F62F72EBA900BD0896 /* ViewController.swift */; };
 		AEBAA56A2F857420007D18E0 /* LeaveViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */; };
+		AEC711BB301BCC56005FF622 /* ChatListTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEC711B8301BCC56005FF622 /* ChatListTCell.xib */; };
+		AEC711BC301BCC56005FF622 /* SelectTeacherTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEC711BA301BCC56005FF622 /* SelectTeacherTCell.xib */; };
+		AEC711BD301BCC56005FF622 /* ChatListTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC711B7301BCC56005FF622 /* ChatListTCell.swift */; };
+		AEC711BE301BCC56005FF622 /* ChatSenderTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC711B6301BCC56005FF622 /* ChatSenderTCell.swift */; };
+		AEC711BF301BCC56005FF622 /* SelectTeacherTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC711B9301BCC56005FF622 /* SelectTeacherTCell.swift */; };
+		AEC711C0301BCC56005FF622 /* ChatRecieverTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC711B5301BCC56005FF622 /* ChatRecieverTCell.swift */; };
+		AEC711C3301BCCD1005FF622 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC711C2301BCCD1005FF622 /* ChatVC.swift */; };
+		AEC711C4301BCCD1005FF622 /* ChatListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC711C1301BCCD1005FF622 /* ChatListVC.swift */; };
 		AED97E532F95074F0092C5D5 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */; };
 		AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */; };
 		AEE7F1CF2F91530300844AB6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEE7F1CE2F91530300844AB6 /* Settings.storyboard */; };
@@ -231,6 +239,14 @@
 		AEB484F62F72EBA900BD0896 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AEB484F82F72EBA900BD0896 /* KliqEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KliqEdu.xcdatamodel; sourceTree = "<group>"; };
 		AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveViewVC.swift; sourceTree = "<group>"; };
+		AEC711B5301BCC56005FF622 /* ChatRecieverTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRecieverTCell.swift; sourceTree = "<group>"; };
+		AEC711B6301BCC56005FF622 /* ChatSenderTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSenderTCell.swift; sourceTree = "<group>"; };
+		AEC711B7301BCC56005FF622 /* ChatListTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTCell.swift; sourceTree = "<group>"; };
+		AEC711B8301BCC56005FF622 /* ChatListTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatListTCell.xib; sourceTree = "<group>"; };
+		AEC711B9301BCC56005FF622 /* SelectTeacherTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeacherTCell.swift; sourceTree = "<group>"; };
+		AEC711BA301BCC56005FF622 /* SelectTeacherTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectTeacherTCell.xib; sourceTree = "<group>"; };
+		AEC711C1301BCCD1005FF622 /* ChatListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListVC.swift; sourceTree = "<group>"; };
+		AEC711C2301BCCD1005FF622 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		AEE7F1CE2F91530300844AB6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -284,6 +300,8 @@
 			isa = PBXGroup;
 			children = (
 				AE892A572F75B29A00A6ECEC /* DashboardVC.swift */,
+				AEC711C1301BCCD1005FF622 /* ChatListVC.swift */,
+				AEC711C2301BCCD1005FF622 /* ChatVC.swift */,
 			);
 			path = TabPages;
 			sourceTree = "<group>";
@@ -316,13 +334,6 @@
 				AE08A7F92F914CF200B82380 /* Settings */,
 			);
 			path = Viewcontrollers;
-			sourceTree = "<group>";
-		};
-		AE443A732F74404000D97CA7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		AE443A742F74404600D97CA7 /* StoryBoard */ = {
@@ -358,6 +369,12 @@
 				AE5C0F812FA12AF0004DEA81 /* TeachersTCell.xib */,
 				AE2D34452FA4F2F100B634BF /* FilterTCell.swift */,
 				AE2D34462FA4F2F100B634BF /* FilterTCell.xib */,
+				AEC711B5301BCC56005FF622 /* ChatRecieverTCell.swift */,
+				AEC711B6301BCC56005FF622 /* ChatSenderTCell.swift */,
+				AEC711B7301BCC56005FF622 /* ChatListTCell.swift */,
+				AEC711B8301BCC56005FF622 /* ChatListTCell.xib */,
+				AEC711B9301BCC56005FF622 /* SelectTeacherTCell.swift */,
+				AEC711BA301BCC56005FF622 /* SelectTeacherTCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -518,7 +535,6 @@
 				AE443A722F74403200D97CA7 /* Viewcontrollers */,
 				AE443A742F74404600D97CA7 /* StoryBoard */,
 				AE443A752F74406100D97CA7 /* Cells */,
-				AE443A732F74404000D97CA7 /* Models */,
 				AE443A822F7440BB00D97CA7 /* Utilities */,
 				AE443A952F7440C200D97CA7 /* ThirdParty */,
 				AE443AA32F7440C600D97CA7 /* Fonts */,
@@ -589,6 +605,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEC711BB301BCC56005FF622 /* ChatListTCell.xib in Resources */,
+				AEC711BC301BCC56005FF622 /* SelectTeacherTCell.xib in Resources */,
 				AE86A9CC2F842CEA007A6A31 /* LeaveTCell.xib in Resources */,
 				AEB484F92F72EBA900BD0896 /* Assets.xcassets in Resources */,
 				AE2D34472FA4F2F100B634BF /* FilterTCell.xib in Resources */,
@@ -705,6 +723,8 @@
 				AE892A5E2F75B2EA00A6ECEC /* ActivitiesVC.swift in Sources */,
 				AE443AD22F74416800D97CA7 /* WelcomeVC.swift in Sources */,
 				AE1417922F797F9100A45679 /* StudentListTCell.swift in Sources */,
+				AEC711C3301BCCD1005FF622 /* ChatVC.swift in Sources */,
+				AEC711C4301BCCD1005FF622 /* ChatListVC.swift in Sources */,
 				AE443AC02F7440CC00D97CA7 /* CALayer.swift in Sources */,
 				AE443AC12F7440CC00D97CA7 /* Extension+UITextField.swift in Sources */,
 				AE443AC22F7440CC00D97CA7 /* Extension+UIImage.swift in Sources */,
@@ -740,6 +760,10 @@
 				AE892A602F75B2F800A6ECEC /* ProfileVC.swift in Sources */,
 				AE08A7F42F914C6700B82380 /* ChangePasswordVC.swift in Sources */,
 				AE443A982F7440C200D97CA7 /* GoneVisible.swift in Sources */,
+				AEC711BD301BCC56005FF622 /* ChatListTCell.swift in Sources */,
+				AEC711BE301BCC56005FF622 /* ChatSenderTCell.swift in Sources */,
+				AEC711BF301BCC56005FF622 /* SelectTeacherTCell.swift in Sources */,
+				AEC711C0301BCC56005FF622 /* ChatRecieverTCell.swift in Sources */,
 				AE443A992F7440C200D97CA7 /* TGFlingActionButton.swift in Sources */,
 				AE443A9A2F7440C200D97CA7 /* DPOTPView.swift in Sources */,
 				AE443A9B2F7440C200D97CA7 /* CustomCoachMarkBodyView.swift in Sources */,
@@ -787,7 +811,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87FLK5QX54;
+				DEVELOPMENT_TEAM = TY4JJZQVWC;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KliqEdu/Info.plist;
@@ -795,8 +819,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -827,7 +852,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 87FLK5QX54;
+				DEVELOPMENT_TEAM = TY4JJZQVWC;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KliqEdu/Info.plist;
@@ -835,8 +860,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
