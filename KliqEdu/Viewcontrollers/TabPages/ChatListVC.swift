@@ -38,6 +38,9 @@ class ChatListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let nib1 = UINib(nibName: "SelectTeacherTCell", bundle: nil)
         tableView.register(nib1, forCellReuseIdentifier: "SelectTeacherTCell")
+        self.startChatBtn.hide()
+        tableViewBottom.constant = 0
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +61,8 @@ class ChatListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         chatSection = "all"
         selectedTeacherIndex = nil
         tableView.reloadData()
+        self.startChatBtn.hide()
+        tableViewBottom.constant = 0
     }
     @IBAction func othersBtnTapped(_ sender: Any) {
         allChatsBtn.setTitleAndBgColor(titleColor: .darkGray, bgColor: .clear)
@@ -65,6 +70,8 @@ class ChatListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         chatSection = "teacher"
         selectedTeacherIndex = nil
         tableView.reloadData()
+        self.startChatBtn.unhide()
+        tableViewBottom.constant = 100
     }
     @IBAction func startChatBtnTapped(_ sender: Any) {
         guard chatSection == "teacher", selectedTeacherIndex != nil else { return }

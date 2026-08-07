@@ -728,7 +728,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNd-cO-2uw">
                                                 <rect key="frame" x="30.333333333333314" y="14" width="40" height="40"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="father" translatesAutoresizingMaskIntoConstraints="NO" id="KIx-Qd-mVe">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date" translatesAutoresizingMaskIntoConstraints="NO" id="KIx-Qd-mVe">
                                                         <rect key="frame" x="10" y="10" width="20" height="20"/>
                                                         <color key="tintColor" name="ThemeColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -759,7 +759,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VV-8i-x8L">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VV-8i-x8L">
                                                 <rect key="frame" x="3" y="62" width="94.333333333333329" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="344-zr-2sz"/>
@@ -812,11 +812,11 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okr-3T-UTi">
-                                <rect key="frame" x="314" y="67" width="45" height="45"/>
+                                <rect key="frame" x="324" y="73" width="35" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="TcA-UP-Bno"/>
-                                    <constraint firstAttribute="height" constant="45" id="jTa-j2-arr"/>
+                                    <constraint firstAttribute="width" constant="35" id="TcA-UP-Bno"/>
+                                    <constraint firstAttribute="height" constant="35" id="jTa-j2-arr"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="chatIcon">
@@ -841,7 +841,7 @@
                             <constraint firstItem="gMf-Dz-Suc" firstAttribute="leading" secondItem="gMO-g7-Q9C" secondAttribute="leading" constant="16" id="4Wv-2C-ZBr"/>
                             <constraint firstItem="gMf-Dz-Suc" firstAttribute="top" secondItem="pAg-Do-BKj" secondAttribute="bottom" constant="20" id="6es-Ik-Zm4"/>
                             <constraint firstItem="Fi6-zB-WeO" firstAttribute="top" secondItem="Nlm-7A-EBB" secondAttribute="bottom" constant="25" id="7B1-PK-n37"/>
-                            <constraint firstItem="Fi6-zB-WeO" firstAttribute="top" secondItem="okr-3T-UTi" secondAttribute="bottom" constant="28" id="H69-bD-RDa"/>
+                            <constraint firstItem="Fi6-zB-WeO" firstAttribute="top" secondItem="okr-3T-UTi" secondAttribute="bottom" constant="32" id="H69-bD-RDa"/>
                             <constraint firstItem="8yR-A3-A8d" firstAttribute="top" secondItem="N6U-M4-f5x" secondAttribute="bottom" constant="3" id="Hq0-N7-Ohv"/>
                             <constraint firstItem="pAg-Do-BKj" firstAttribute="leading" secondItem="gMO-g7-Q9C" secondAttribute="leading" constant="16" id="JAd-iG-6Ca"/>
                             <constraint firstItem="Fi6-zB-WeO" firstAttribute="leading" secondItem="gMO-g7-Q9C" secondAttribute="leading" constant="16" id="NCm-oK-vuJ"/>
@@ -10496,6 +10496,209 @@ health permits.</string>
             </objects>
             <point key="canvasLocation" x="-422" y="1036"/>
         </scene>
+        <!--Time TableVC-->
+        <scene sceneID="3Lh-dv-h4I">
+            <objects>
+                <viewController storyboardIdentifier="TimeTableVC" id="RLd-y5-ZRD" customClass="TimeTableVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ivs-io-dJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgi" translatesAutoresizingMaskIntoConstraints="NO" id="Lfb-JW-Mqe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEb-OU-LHa">
+                                <rect key="frame" x="132.33333333333334" y="65" width="110.33333333333334" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="1GA-ts-NZr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U8V-Zo-aWW">
+                                <rect key="frame" x="0.0" y="182.66666666666669" width="375" height="629.33333333333326"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="RLd-y5-ZRD" id="CUA-ca-Uyk"/>
+                                    <outlet property="delegate" destination="RLd-y5-ZRD" id="sgm-nS-lw5"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFm-Yx-7xR">
+                                <rect key="frame" x="12" y="122.66666666666669" width="351" height="50"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s8K-M9-iZs">
+                                        <rect key="frame" x="5" y="5" width="341" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pqa-O8-Qeb">
+                                                <rect key="frame" x="0.0" y="0.0" width="61.666666666666664" height="40"/>
+                                                <color key="backgroundColor" name="ThemeColor"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Mon">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="RLd-y5-ZRD" eventType="touchUpInside" id="bnT-FP-h63"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCa-ej-8Nx">
+                                                <rect key="frame" x="69.666666666666671" y="0.0" width="62.000000000000014" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Tue">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="RLd-y5-ZRD" eventType="touchUpInside" id="hs2-Bg-e9Q"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdh-29-vlC">
+                                                <rect key="frame" x="139.66666666666666" y="0.0" width="61.666666666666657" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Wed">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="RLd-y5-ZRD" eventType="touchUpInside" id="ejV-Hu-gcM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13H-Xl-iyb">
+                                                <rect key="frame" x="209.33333333333334" y="0.0" width="62.000000000000028" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Thu">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="RLd-y5-ZRD" eventType="touchUpInside" id="meR-zs-bpC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adr-es-xQC">
+                                                <rect key="frame" x="279.33333333333331" y="0.0" width="61.666666666666686" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Fri">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="RLd-y5-ZRD" eventType="touchUpInside" id="9AE-g2-NyT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="s8K-M9-iZs" secondAttribute="bottom" constant="5" id="9hx-i0-hyn"/>
+                                    <constraint firstAttribute="height" constant="50" id="ab2-Qx-enc"/>
+                                    <constraint firstItem="s8K-M9-iZs" firstAttribute="leading" secondItem="ZFm-Yx-7xR" secondAttribute="leading" constant="5" id="dcS-wG-Ket"/>
+                                    <constraint firstItem="s8K-M9-iZs" firstAttribute="top" secondItem="ZFm-Yx-7xR" secondAttribute="top" constant="5" id="hu2-nS-1ZB"/>
+                                    <constraint firstAttribute="trailing" secondItem="s8K-M9-iZs" secondAttribute="trailing" constant="5" id="okQ-DG-Bnb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zK-su-SZU">
+                                <rect key="frame" x="16" y="62" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="MPe-cZ-xFT"/>
+                                    <constraint firstAttribute="height" constant="40" id="uUd-ZI-h1w"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrow.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22"/>
+                                </state>
+                                <connections>
+                                    <action selector="backBtnTapped:" destination="RLd-y5-ZRD" eventType="touchUpInside" id="TDe-zr-3lm"/>
+                                    <action selector="backBtnTapped:" destination="hGR-4q-fkp" eventType="touchUpInside" id="xhj-c3-bu6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nDN-Lb-Q07"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZFm-Yx-7xR" firstAttribute="top" secondItem="zEb-OU-LHa" secondAttribute="bottom" constant="22.670000000000002" id="1Fq-b1-fRz"/>
+                            <constraint firstItem="zEb-OU-LHa" firstAttribute="centerX" secondItem="nDN-Lb-Q07" secondAttribute="centerX" id="1ex-Te-dZP"/>
+                            <constraint firstAttribute="bottom" secondItem="U8V-Zo-aWW" secondAttribute="bottom" id="2n1-3U-FzA"/>
+                            <constraint firstItem="2zK-su-SZU" firstAttribute="leading" secondItem="ivs-io-dJ7" secondAttribute="leading" constant="16" id="CHy-7H-Tv8"/>
+                            <constraint firstItem="nDN-Lb-Q07" firstAttribute="trailing" secondItem="ZFm-Yx-7xR" secondAttribute="trailing" constant="12" id="JTL-C4-OqU"/>
+                            <constraint firstAttribute="bottom" secondItem="Lfb-JW-Mqe" secondAttribute="bottom" id="LAR-iu-SZl"/>
+                            <constraint firstItem="ZFm-Yx-7xR" firstAttribute="leading" secondItem="nDN-Lb-Q07" secondAttribute="leading" constant="12" id="Pfg-s7-J6T"/>
+                            <constraint firstItem="Lfb-JW-Mqe" firstAttribute="leading" secondItem="nDN-Lb-Q07" secondAttribute="leading" id="Ptv-ya-aA6"/>
+                            <constraint firstItem="U8V-Zo-aWW" firstAttribute="top" secondItem="ZFm-Yx-7xR" secondAttribute="bottom" constant="10" id="U1J-yc-pKg"/>
+                            <constraint firstAttribute="trailing" secondItem="Lfb-JW-Mqe" secondAttribute="trailing" id="Yos-9z-DTl"/>
+                            <constraint firstItem="U8V-Zo-aWW" firstAttribute="trailing" secondItem="nDN-Lb-Q07" secondAttribute="trailing" id="d2o-qE-f9z"/>
+                            <constraint firstItem="U8V-Zo-aWW" firstAttribute="leading" secondItem="nDN-Lb-Q07" secondAttribute="leading" id="eH5-VG-fmf"/>
+                            <constraint firstItem="zEb-OU-LHa" firstAttribute="top" secondItem="ivs-io-dJ7" secondAttribute="top" constant="65" id="g7o-Xj-eIY"/>
+                            <constraint firstItem="2zK-su-SZU" firstAttribute="top" secondItem="ivs-io-dJ7" secondAttribute="top" constant="62" id="wtY-YO-EkD"/>
+                            <constraint firstItem="Lfb-JW-Mqe" firstAttribute="top" secondItem="ivs-io-dJ7" secondAttribute="top" id="ytg-xX-cQT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fri" destination="adr-es-xQC" id="SZi-f0-fH8"/>
+                        <outlet property="monday" destination="Pqa-O8-Qeb" id="KBT-u1-deX"/>
+                        <outlet property="tableView" destination="U8V-Zo-aWW" id="YvA-4U-fy0"/>
+                        <outlet property="thu" destination="13H-Xl-iyb" id="EZo-uz-yQp"/>
+                        <outlet property="tue" destination="pCa-ej-8Nx" id="s8e-a8-Xhg"/>
+                        <outlet property="wed" destination="jdh-29-vlC" id="BeC-K2-bso"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mai-Cc-722" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2206" y="102"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="123"/>
@@ -10513,7 +10716,7 @@ health permits.</string>
         <image name="book.pages.fill" catalog="system" width="107" height="128"/>
         <image name="calendr" width="120" height="120"/>
         <image name="changePass" width="48" height="63"/>
-        <image name="chatIcon" width="980" height="1017"/>
+        <image name="chatIcon" width="128" height="128"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
@@ -10580,28 +10783,28 @@ health permits.</string>
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.55294117649999996" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.21960784310000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

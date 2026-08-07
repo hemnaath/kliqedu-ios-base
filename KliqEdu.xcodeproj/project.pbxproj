@@ -105,6 +105,9 @@
 		AE892A682F75B39500A6ECEC /* CBTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE892A642F75B39500A6ECEC /* CBTabBarButton.swift */; };
 		AE892A692F75B39500A6ECEC /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = AE892A622F75B39500A6ECEC /* .gitkeep */; };
 		AE9271782FA2688500561BE1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9271772FA2688500561BE1 /* EditProfileVC.swift */; };
+		AE9DAC503024EE8200DB1547 /* TimeTableTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE9DAC4F3024EE8200DB1547 /* TimeTableTCell.xib */; };
+		AE9DAC513024EE8200DB1547 /* TimeTableTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAC4E3024EE8200DB1547 /* TimeTableTCell.swift */; };
+		AE9DAC533024F08200DB1547 /* TimeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAC523024F08200DB1547 /* TimeTableVC.swift */; };
 		AEA83D6C2FA4D24000BF4837 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */; };
 		AEB484F92F72EBA900BD0896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB484EE2F72EBA900BD0896 /* Assets.xcassets */; };
 		AEB484FB2F72EBA900BD0896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEB484F22F72EBA900BD0896 /* LaunchScreen.storyboard */; };
@@ -228,6 +231,9 @@
 		AE892A632F75B39500A6ECEC /* BubbleTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTabBarController.swift; sourceTree = "<group>"; };
 		AE892A642F75B39500A6ECEC /* CBTabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBTabBarButton.swift; sourceTree = "<group>"; };
 		AE9271772FA2688500561BE1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		AE9DAC4E3024EE8200DB1547 /* TimeTableTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTCell.swift; sourceTree = "<group>"; };
+		AE9DAC4F3024EE8200DB1547 /* TimeTableTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTCell.xib; sourceTree = "<group>"; };
+		AE9DAC523024F08200DB1547 /* TimeTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableVC.swift; sourceTree = "<group>"; };
 		AEA83D6B2FA4D24000BF4837 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		AEB484D22F72EBA100BD0896 /* KliqEdu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KliqEdu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB484ED2F72EBA900BD0896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +308,7 @@
 				AE892A572F75B29A00A6ECEC /* DashboardVC.swift */,
 				AEC711C1301BCCD1005FF622 /* ChatListVC.swift */,
 				AEC711C2301BCCD1005FF622 /* ChatVC.swift */,
+				AE9DAC523024F08200DB1547 /* TimeTableVC.swift */,
 			);
 			path = TabPages;
 			sourceTree = "<group>";
@@ -375,6 +382,8 @@
 				AEC711B8301BCC56005FF622 /* ChatListTCell.xib */,
 				AEC711B9301BCC56005FF622 /* SelectTeacherTCell.swift */,
 				AEC711BA301BCC56005FF622 /* SelectTeacherTCell.xib */,
+				AE9DAC4E3024EE8200DB1547 /* TimeTableTCell.swift */,
+				AE9DAC4F3024EE8200DB1547 /* TimeTableTCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -627,6 +636,7 @@
 				AE443AE62F74429900D97CA7 /* Urbanist-ExtraBold.ttf in Resources */,
 				AE584D072F9546040034C4D0 /* FeesTCell.xib in Resources */,
 				AE5C0F7E2FA11D55004DEA81 /* TeacherLeaveTCell.xib in Resources */,
+				AE9DAC503024EE8200DB1547 /* TimeTableTCell.xib in Resources */,
 				AE31E52E2F8812610009EE9F /* NotificationsTCell.xib in Resources */,
 				AE443AD42F74417D00D97CA7 /* Login.storyboard in Resources */,
 				AE892A692F75B39500A6ECEC /* .gitkeep in Resources */,
@@ -745,6 +755,7 @@
 				AE7A7D9B2F86B694001944DE /* ApplyLeaveVC.swift in Sources */,
 				AE443ACB2F7440CC00D97CA7 /* Extension+UIViewController.swift in Sources */,
 				AE443ACC2F7440CC00D97CA7 /* PaddingLabel.swift in Sources */,
+				AE9DAC513024EE8200DB1547 /* TimeTableTCell.swift in Sources */,
 				AE443ACD2F7440CC00D97CA7 /* SuccessIndicator.swift in Sources */,
 				AE443A862F7440BB00D97CA7 /* Enums.swift in Sources */,
 				AE443A872F7440BB00D97CA7 /* APIHelper.swift in Sources */,
@@ -752,6 +763,7 @@
 				AEA83D6C2FA4D24000BF4837 /* FilterVC.swift in Sources */,
 				AE2758D62FA5231000779503 /* SwitchAccountVC.swift in Sources */,
 				AE443A892F7440BB00D97CA7 /* Constants.swift in Sources */,
+				AE9DAC533024F08200DB1547 /* TimeTableVC.swift in Sources */,
 				AE400B792F896F7600FB357F /* HolidaysVC.swift in Sources */,
 				AE443A962F7440C200D97CA7 /* AnimatedTextfield.swift in Sources */,
 				AE563F422F8C8962006B8B33 /* HomeworkListVC.swift in Sources */,

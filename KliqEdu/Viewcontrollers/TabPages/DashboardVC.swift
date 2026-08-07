@@ -74,8 +74,8 @@ class DashboardVC: UIViewController {
     }
     @IBAction func studentInfoBtnTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-        if let vc = sb.instantiateViewController(withIdentifier: "StudentInfoVC") as? StudentInfoVC {
-            vc.comingFrom = "home"
+        if let vc = sb.instantiateViewController(withIdentifier: "TimeTableVC") as? TimeTableVC {
+          //  vc.comingFrom = "home"
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
