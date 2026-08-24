@@ -192,74 +192,164 @@ class ChatVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableVi
         chatTextField.resignFirstResponder()
         chatTextField.text = ""
     }
-
     func sendMsgOnly() {
-        if chatTextField.text?.count != 0 {
-            let timeStamp = Int64(Date().timeIntervalSince1970 * 1000)
-            let timeStampString = String(timeStamp)
+        
+        guard let text = chatTextField.text? .trimmingCharacters(in: .whitespacesAndNewlines),  !text.isEmpty else { return }
+        
+        let timeStamp = Int64(Date().timeIntervalSince1970 * 1000)
+        
+        let timeStampString = String(timeStamp)
+        
+        let userUniqueId =  defaults.value(forKey: Constants.Keys.userUniqueIdKey) as? String ?? ""
+        
+        let message = text
+        
+        // MARK: - Main Message Dictionary
+        
+        var dict = Dictionary<String, Any>()
+        
+        dict["room_id"] = roomID
+        dict["message_id"] = timeStampString
+        dict["message"] = message
+        dict["sender_id"] = userUniqueId
+        dict["receiver_id"] = selecteduniqueId
+        dict["timestamp"] = timeStamp
+        
+        // MARK: - Receiver Model
+        
+        if roleKey == "teacher" {
             
-            var dict = Dictionary<String, Any>()
-            dict["room_id"] = roomID
-            let userUniqueId = defaults.value(forKey: Constants.Keys.userUniqueIdKey) as? String ?? ""
-            dict["sender_id"] = userUniqueId
-            dict["receiver_id"] = selecteduniqueId
-            dict["message"] = chatTextField.text ?? ""
-            dict["sent_by"] = 1
-            dict["updated"] = "Just now"
-            dict["message_id"] = timeStampString
-            dict["timestamp"] = timeStamp
+            dict["receiver_model"] = "Parent"
+            dict["sender_name"] = defaults.value(forKey: Constants.Keys.firstNameKey)
+            dict["receiver_name"] = studentsArray?.full_name ?? ""
 
-            socket?.emit("send_message", dict)
+        } else {
             
-            var dict1 = Dictionary<String, Any>()
-            dateFormatter.dateFormat = "HH:mm:ss"
-
-            dict1["room_id"] = roomID
-            dict1["sender_id"] = userUniqueId
-            dict1["receiver_id"] = selecteduniqueId
-            dict1["message"] = chatTextField.text ?? ""
-            dict1["sent_by"] = 1
-            dict1["updated"] = "Just now"
-            dict1["message_id"] = timeStampString
-            dict1["timestamp"] = timeStamp
-
-            let modal1 = SingleChatModel.init(dictionary: dict1 as NSDictionary)
-            print("Local model timestamp:", modal1?.timestamp ?? 0)
-            arrChatList.insert(modal1!, at: 0)
+            dict["receiver_model"] = "Teacher"
+            dict["sender_name"] = defaults.value(forKey: Constants.Keys.firstNameKey)
+            dict["receiver_name"] = teachersArray?.full_name ?? ""
+        }
+        
+        // MARK: - User Details
+        
+        var userDetails = Dictionary<String, Any>()
+        
+        if roleKey == "teacher" {
             
-            print("Saving LOCAL message -> roomId: \(roomID), sender: \(userUniqueId), receiver: \(selecteduniqueId), message: \(chatTextField.text ?? "")")
-            CoreDataManager.shared.saveMessage(
-                id: timeStampString,
-                room_id: roomID,
-                sender_id: userUniqueId,
-                receiver_id: selecteduniqueId,
-                senderName: "",
-                message: chatTextField.text ?? "",
-                timestamp: timeStamp
-            )
+            userDetails["firstname"] = studentsArray?.first_name ?? ""
+            userDetails["lastname"] = studentsArray?.last_name ?? ""
+            userDetails["grade"] = studentsArray?.grade ?? ""
+            userDetails["section"] = studentsArray?.section ?? ""
+            userDetails["subject"] = ""
+            userDetails["picture"] = studentsArray?.student_picture ?? ""
+            userDetails["mobile_number"] = ""
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        } else {
+            
+            userDetails["firstname"] =  teachersArray?.first_name ?? ""
+            userDetails["lastname"] = teachersArray?.last_name ?? ""
+            userDetails["grade"] = ""
+            userDetails["section"] = ""
+            userDetails["subject"] = teachersArray?.subject ?? ""
+            userDetails["picture"] = teachersArray?.teacher_picture ?? ""
+            userDetails["mobile_number"] = teachersArray?.mobile ?? ""
+        }
+        
+        dict["user_details"] = userDetails
+        
+        // MARK: - Create Model
+        
+        guard let chatModel = SingleChatModel(
+            dictionary: dict as NSDictionary
+        ) else {
+            return
+        }
+        
+        // MARK: - Socket Send
+        
+        socket?.emit("send_message",dict)
+        
+        // MARK: - Add Locally
+        
+        arrChatList.insert(chatModel,at: 0)
+        
+        // MARK: - Save Complete Message To Core Data
+        
+        CoreDataManager.shared.saveMessage(
+            
+            id: chatModel.message_id ?? timeStampString,
+            room_id: chatModel.room_id ?? roomID,
+            message_id: chatModel.message_id ?? timeStampString,
+            message: chatModel.message ?? message,
+            sender_id: chatModel.sender_id ?? userUniqueId,
+            sender_name: chatModel.sender_name ?? "Star",
+            receiver_id: chatModel.receiver_id ?? selecteduniqueId,
+            receiver_name: chatModel.receiver_name ?? "Rj",
+            timestamp: chatModel.timestamp ?? timeStamp,
+            receiver_model: chatModel.receiver_model ?? "",
+            firstname: chatModel.firstname ?? "",
+            lastname: chatModel.lastname ?? "",
+            grade: chatModel.grade ?? "",
+            section: chatModel.section ?? "",
+            subject: chatModel.subject ?? "",
+            picture: chatModel.picture ?? "",
+            mobile_number: chatModel.mobile_number ?? ""
+        )
+        
+        print("""
+        
+        ==============================
+        LOCAL CHAT SAVED
+        ==============================
+        
+        room_id       : \(chatModel.room_id ?? "")
+        message_id    : \(chatModel.message_id ?? "")
+        message       : \(chatModel.message ?? "")
+        
+        sender_id     : \(chatModel.sender_id ?? "")
+        sender_name   : \(chatModel.sender_name ?? "")
+        
+        receiver_id   : \(chatModel.receiver_id ?? "")
+        receiver_name : \(chatModel.receiver_name ?? "")
+        receiver_model: \(chatModel.receiver_model ?? "")
+        
+        firstname     : \(chatModel.firstname ?? "")
+        lastname      : \(chatModel.lastname ?? "")
+        grade         : \(chatModel.grade ?? "")
+        section       : \(chatModel.section ?? "")
+        subject       : \(chatModel.subject ?? "")
+        picture       : \(chatModel.picture ?? "")
+        mobile_number : \(chatModel.mobile_number ?? "")
+        
+        timestamp     : \(chatModel.timestamp ?? 0)
+        
+        ==============================
+        """)
+        
+        // MARK: - Reload
+        
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+            if self.arrChatList.count > 0 {
+                
+                self.tableView.scrollToRow( at: IndexPath( row: 0, section: 0 ),  at: .bottom, animated: true)
             }
         }
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        // MARK: - Text Field
+        
+        chatTextField.text = ""
         
         if chatTextField.isFirstResponder {
+            
             chatTextField.text = nil
+            
         } else {
+            
             chatTextField.becomeFirstResponder()
             chatTextField.textColor = UIColor.themeColor
-        }
-        
-        DispatchQueue.main.async {
-            self.tableView.scrollToRow(
-                at: IndexPath(row: 0, section: 0),
-                at: .bottom,
-                animated: true
-            )
         }
     }
     
@@ -336,14 +426,67 @@ class ChatVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableVi
             let model = SingleChatModel(dictionary: localDict as NSDictionary)
             
             print("Saving SOCKET message -> roomId: \(localDict["room_id"] as? String ?? ""), sender: \(localDict["sender_id"] as? String ?? ""), receiver: \(localDict["receiver_id"] as? String ?? ""), message: \(localDict["message"] as? String ?? "")")
+            
+            var firstname = ""
+            var lastname = ""
+            var grade = ""
+            var section = ""
+            var subject = ""
+            var picture = ""
+            var mobileNumber = ""
+
+            if let details = localDict["user_details"] as? [String: Any] {
+
+                firstname = details["firstname"] as? String ?? ""
+                lastname = details["lastname"] as? String ?? ""
+                grade = details["grade"] as? String ?? ""
+                section = details["section"] as? String ?? ""
+                subject = details["subject"] as? String ?? ""
+                picture = details["picture"] as? String ?? ""
+                mobileNumber = details["mobile_number"] as? String ?? ""
+            }
+
+            let messageID =
+                localDict["message_id"] as? String
+                ?? "\(localDict["id"] ?? UUID().uuidString)"
+
+            let timestamp: Int64 = {
+
+                if let value = localDict["timestamp"] as? Int64 {
+                    return value
+                }
+
+                if let value = localDict["timestamp"] as? Int {
+                    return Int64(value)
+                }
+
+                if let value = localDict["timestamp"] as? NSNumber {
+                    return value.int64Value
+                }
+
+                return 0
+            }()
+
             CoreDataManager.shared.saveMessage(
-                id: "\(localDict["id"] ?? UUID().uuidString)",
-                room_id: localDict["room_id"] as? String ?? "",
+
+                id: messageID,
+                room_id:localDict["room_id"] as? String ?? "",
+                message_id: messageID,
+                message:   localDict["message"] as? String ?? "",
                 sender_id: localDict["sender_id"] as? String ?? "",
+                sender_name:  localDict["sender_name"] as? String  ?? localDict["senderName"] as? String
+                    ?? "",
                 receiver_id: localDict["receiver_id"] as? String ?? "",
-                senderName: localDict["senderName"] as? String ?? "",
-                message: localDict["message"] as? String ?? "",
-                timestamp: Int64(localDict["timestamp"] as? Int ?? 0)
+                receiver_name: localDict["receiver_name"] as? String ?? "",
+                timestamp:  timestamp,
+                receiver_model: localDict["receiver_model"] as? String ?? "",
+                firstname:  firstname,
+                lastname:  lastname,
+                grade:   grade,
+                section:  section,
+                subject:   subject,
+                picture:picture,
+                mobile_number:  mobileNumber
             )
             self.arrChatList.insert(model!, at: 0)
 
@@ -449,13 +592,40 @@ class ChatVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableVi
                             }
 
                             CoreDataManager.shared.saveMessage(
-                                //  id: model.id ?? "",
+
+                                id: model.message_id ?? "",
+
                                 room_id: model.room_id ?? "",
-                                sender_id: model.sender_id ?? "",
-                                receiver_id: model.receiver_id ?? "",
-                                senderName: model.senderName ?? "",
+
+                                message_id: model.message_id ?? "",
+
                                 message: model.message ?? "",
-                                timestamp: model.timestamp ?? 0
+
+                                sender_id: model.sender_id ?? "",
+
+                                sender_name: model.sender_name ?? "",
+
+                                receiver_id: model.receiver_id ?? "",
+
+                                receiver_name: model.receiver_name ?? "",
+
+                                timestamp: model.timestamp ?? 0,
+
+                                receiver_model: model.receiver_model ?? "",
+
+                                firstname: model.firstname ?? "",
+
+                                lastname: model.lastname ?? "",
+
+                                grade: model.grade ?? "",
+
+                                section: model.section ?? "",
+
+                                subject: model.subject ?? "",
+
+                                picture: model.picture ?? "",
+
+                                mobile_number: model.mobile_number ?? ""
                             )
                         }
                         

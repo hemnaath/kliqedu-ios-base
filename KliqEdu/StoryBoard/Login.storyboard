@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDJ-tO-EOU">
-                                <rect key="frame" x="20" y="760" width="335" height="60"/>
+                                <rect key="frame" x="20" y="710" width="335" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcE-gM-AB4" customClass="TGFlingActionButton" customModule="KliqEdu" customModuleProvider="target">
                                         <rect key="frame" x="5" y="5" width="325" height="50"/>
@@ -93,7 +93,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpM-mN-ARM">
-                                <rect key="frame" x="162.66666666666666" y="760" width="50" height="50"/>
+                                <rect key="frame" x="162.66666666666666" y="710" width="50" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyw-BB-4tn">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -154,10 +154,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="k4H-wd-lAU">
-                                <rect key="frame" x="0.0" y="60" width="375" height="650"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="620"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="650" id="rat-R3-5gb"/>
+                                    <constraint firstAttribute="height" constant="620" id="rat-R3-5gb"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xm8-ui-fNc">
                                     <size key="itemSize" width="373" height="635"/>
@@ -167,7 +167,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="WelcomeCCell" reuseIdentifier="WelcomeCCell" id="UWI-UT-dlf" customClass="WelcomeCCell" customModule="KliqEdu" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="7.666666666666667" width="373" height="635"/>
+                                        <rect key="frame" x="0.0" y="-7.666666666666667" width="373" height="635"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="635"/>
@@ -258,7 +258,7 @@
                                 </connections>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bZ7-rf-otu">
-                                <rect key="frame" x="142.66666666666666" y="722" width="90" height="4"/>
+                                <rect key="frame" x="142.66666666666666" y="672" width="90" height="4"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1FO-yj-0jD">
                                         <rect key="frame" x="0.0" y="0.0" width="26.666666666666668" height="4"/>
@@ -314,7 +314,7 @@
                             <constraint firstItem="k4H-wd-lAU" firstAttribute="trailing" secondItem="bvz-i1-BJJ" secondAttribute="trailing" id="luL-Dw-X9A"/>
                             <constraint firstItem="qpM-mN-ARM" firstAttribute="top" secondItem="k4H-wd-lAU" secondAttribute="bottom" constant="50" id="qcv-GB-GIY"/>
                             <constraint firstItem="jDJ-tO-EOU" firstAttribute="top" secondItem="k4H-wd-lAU" secondAttribute="bottom" constant="50" id="t0v-tT-lhI"/>
-                            <constraint firstItem="k4H-wd-lAU" firstAttribute="top" secondItem="lYW-XK-i9a" secondAttribute="top" constant="60" id="x2U-l6-mtu"/>
+                            <constraint firstItem="k4H-wd-lAU" firstAttribute="top" secondItem="lYW-XK-i9a" secondAttribute="top" constant="40" id="x2U-l6-mtu"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1734,7 +1734,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="hR6-km-1mr"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="14"/>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1743,7 +1743,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="Kv0-Oz-oUd"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="Urbanist-Regular" family="Urbanist" pointSize="14"/>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1980,6 +1980,7 @@
                         <outlet property="passwordShowBtn" destination="EYT-uc-6tx" id="FlS-CM-hLu"/>
                         <outlet property="passwordView" destination="8ig-6r-ngG" id="UWn-eG-sdm"/>
                         <outlet property="passwordWarningLbl" destination="YcS-Ye-Bok" id="tOn-T2-32A"/>
+                        <outlet property="scrollView" destination="VJS-dx-FqU" id="20Y-h4-uxD"/>
                         <outlet property="signinBtn" destination="oNm-s7-DKP" id="os1-EP-b5T"/>
                     </connections>
                 </viewController>

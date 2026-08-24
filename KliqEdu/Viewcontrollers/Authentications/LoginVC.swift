@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class LoginVC: UIViewController,UITextFieldDelegate {
+class LoginVC: UIViewController,UITextFieldDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var forgotPasswordBtn: UIButton!
     @IBOutlet weak var passwordView: UIView!
@@ -18,6 +18,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailWarningLbl: UILabel!
     @IBOutlet weak var passwordWarningLbl: UILabel!
     @IBOutlet weak var signinBtn: UIButton!
@@ -31,7 +32,10 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         defaults.set(true, forKey: "isLaunched")
-
+        scrollView.delegate = self
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
         self.emailField.setLeftPaddingPoints(12)
         self.passwordField.setLeftPaddingPoints(12)
         loginView.roundTopCorners(radius: 50)
@@ -53,12 +57,8 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBarBackgroundColor(UIColor(hex: "#5343B0"))
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeStatusBarBackground()
-    }
+    
     @IBAction func passwordEyeBtnTapped(_ sender: Any) {
         self.passwordShowBtn.isSelected = !self.passwordShowBtn.isSelected
         self.passwordField.isSecureTextEntry = self.passwordShowBtn.isSelected ? false : true

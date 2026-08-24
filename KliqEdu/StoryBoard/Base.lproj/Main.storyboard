@@ -10104,10 +10104,10 @@ It plays an important role in preparing for final examinations.</string>
                                                 <rect key="frame" x="16" y="422.66666666666669" width="343" height="100.00000000000006"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51O-s1-Nnz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="161" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="100"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EbP-hb-wLb">
-                                                                <rect key="frame" x="60.666666666666671" y="14" width="40" height="40"/>
+                                                                <rect key="frame" x="30.333333333333336" y="14" width="40.000000000000007" height="40"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="creditcard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NbH-ns-3TS">
                                                                         <rect key="frame" x="10" y="11.999999999999998" width="20" height="16"/>
@@ -10143,7 +10143,7 @@ It plays an important role in preparing for final examinations.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hca-2G-rZm">
-                                                                <rect key="frame" x="6" y="62" width="149" height="20"/>
+                                                                <rect key="frame" x="6" y="62" width="88.333333333333329" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="NT1-zj-KmE"/>
                                                                 </constraints>
@@ -10158,7 +10158,7 @@ It plays an important role in preparing for final examinations.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoR-DC-u5l">
-                                                                <rect key="frame" x="0.0" y="0.0" width="161" height="100"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="100"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -10191,10 +10191,10 @@ It plays an important role in preparing for final examinations.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rob-sS-uoI">
-                                                        <rect key="frame" x="182" y="0.0" width="161" height="100"/>
+                                                        <rect key="frame" x="121.33333333333334" y="0.0" width="100.33333333333334" height="100"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDT-k8-fMg">
-                                                                <rect key="frame" x="60.666666666666686" y="14" width="40" height="40"/>
+                                                                <rect key="frame" x="30.333333333333314" y="14" width="40" height="40"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mother" translatesAutoresizingMaskIntoConstraints="NO" id="kgp-mx-t32">
                                                                         <rect key="frame" x="10" y="10" width="20" height="20"/>
@@ -10230,7 +10230,7 @@ It plays an important role in preparing for final examinations.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtX-E7-zVD">
-                                                                <rect key="frame" x="6" y="62" width="149" height="20"/>
+                                                                <rect key="frame" x="6" y="62" width="88.333333333333329" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="yRT-bg-Y2y"/>
                                                                 </constraints>
@@ -10245,7 +10245,7 @@ It plays an important role in preparing for final examinations.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99K-el-kdx">
-                                                                <rect key="frame" x="0.0" y="0.0" width="161" height="100"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="100"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -10277,13 +10277,13 @@ It plays an important role in preparing for final examinations.</string>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yb9-h1-ViW">
-                                                        <rect key="frame" x="343" y="0.0" width="6" height="100"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yb9-h1-ViW">
+                                                        <rect key="frame" x="242.66666666666671" y="0.0" width="100.33333333333334" height="100"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UR2-B9-GSm">
-                                                                <rect key="frame" x="-17" y="14" width="40" height="40"/>
+                                                                <rect key="frame" x="30.333333333333314" y="14" width="40" height="40"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="father" translatesAutoresizingMaskIntoConstraints="NO" id="4qe-H5-WbB">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date" translatesAutoresizingMaskIntoConstraints="NO" id="4qe-H5-WbB">
                                                                         <rect key="frame" x="10" y="10" width="20" height="20"/>
                                                                         <color key="tintColor" name="ThemeColor"/>
                                                                         <userDefinedRuntimeAttributes>
@@ -10296,6 +10296,7 @@ It plays an important role in preparing for final examinations.</string>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                 </subviews>
@@ -10312,10 +10313,11 @@ It plays an important role in preparing for final examinations.</string>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="10"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-aP-sQG">
-                                                                <rect key="frame" x="3" y="62" width="0.0" height="20"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-aP-sQG">
+                                                                <rect key="frame" x="3" y="62" width="94.333333333333329" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="rPY-P4-Brd"/>
                                                                 </constraints>
@@ -10330,7 +10332,7 @@ It plays an important role in preparing for final examinations.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-2w-o3C">
-                                                                <rect key="frame" x="0.0" y="0.0" width="6" height="100"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="100"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -10338,7 +10340,7 @@ It plays an important role in preparing for final examinations.</string>
                                                                 <state key="selected" image="person.fill" catalog="system"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                                 <connections>
-                                                                    <action selector="studentInfoBtnTapped:" destination="dus-Am-fEX" eventType="touchUpInside" id="G7X-YM-YUD"/>
+                                                                    <action selector="timeTableBtnTapped:" destination="dus-Am-fEX" eventType="touchUpInside" id="The-XH-cFd"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -10739,6 +10741,7 @@ It plays an important role in preparing for final examinations.</string>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsd-bo-neu">
@@ -12064,7 +12067,7 @@ It plays an important role in preparing for final examinations.</string>
                                                     <rect key="frame" x="10" y="3" width="355" height="94"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mig-WW-h1S">
-                                                            <rect key="frame" x="10" y="13" width="43.333333333333336" height="54"/>
+                                                            <rect key="frame" x="10" y="13" width="43.333333333333329" height="54"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0l-p5-5KC">
                                                                     <rect key="frame" x="15" y="15" width="13.333333333333336" height="24"/>
@@ -12464,6 +12467,226 @@ It plays an important role in preparing for final examinations.</string>
             </objects>
             <point key="canvasLocation" x="237.59999999999999" y="1036.6995073891626"/>
         </scene>
+        <!--Time TableVC-->
+        <scene sceneID="cMj-7e-09K">
+            <objects>
+                <viewController storyboardIdentifier="TimeTableVC" id="rJW-ne-3RI" customClass="TimeTableVC" customModule="KliqEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3L6-lD-7X6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgi" translatesAutoresizingMaskIntoConstraints="NO" id="Cpx-PZ-S0v">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NQ-rP-QsZ">
+                                <rect key="frame" x="132.33333333333334" y="65" width="110.33333333333334" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="6FB-oD-bD2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Urbanist-SemiBold" family="Urbanist" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="udk-4X-bgD">
+                                <rect key="frame" x="0.0" y="182.66666666666669" width="375" height="629.33333333333326"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="rJW-ne-3RI" id="wGB-LQ-9qO"/>
+                                    <outlet property="delegate" destination="rJW-ne-3RI" id="y5X-9q-01y"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mui-mx-O24">
+                                <rect key="frame" x="12" y="122.66666666666669" width="351" height="50"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Px2-mI-Ol7">
+                                        <rect key="frame" x="5" y="5" width="341" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H49-0p-8xB">
+                                                <rect key="frame" x="0.0" y="0.0" width="52.666666666666664" height="40"/>
+                                                <color key="backgroundColor" name="ThemeColor"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Mon">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="rJW-ne-3RI" eventType="touchUpInside" id="3QF-VY-NN3"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmJ-Ai-t65">
+                                                <rect key="frame" x="57.666666666666671" y="0.0" width="52.666666666666671" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Tue">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="rJW-ne-3RI" eventType="touchUpInside" id="cNb-cp-YLP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-uT-xHD">
+                                                <rect key="frame" x="115.33333333333336" y="0.0" width="52.666666666666671" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Wed">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="rJW-ne-3RI" eventType="touchUpInside" id="vet-Z5-o2E"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uso-zm-U1Q">
+                                                <rect key="frame" x="173" y="0.0" width="52.666666666666657" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Thu">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="rJW-ne-3RI" eventType="touchUpInside" id="kjW-nN-Yef"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeC-iP-7Zl">
+                                                <rect key="frame" x="230.66666666666666" y="0.0" width="52.666666666666657" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Fri">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="rJW-ne-3RI" eventType="touchUpInside" id="o6d-1T-cV7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ia-hx-jXq">
+                                                <rect key="frame" x="288.33333333333331" y="0.0" width="52.666666666666686" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Urbanist-Bold" family="Urbanist" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Sat">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonTapped:" destination="rJW-ne-3RI" eventType="touchUpInside" id="s78-bU-6G3"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Px2-mI-Ol7" secondAttribute="bottom" constant="5" id="6Ac-Sm-1gp"/>
+                                    <constraint firstItem="Px2-mI-Ol7" firstAttribute="leading" secondItem="mui-mx-O24" secondAttribute="leading" constant="5" id="6sQ-Ui-y1Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="Px2-mI-Ol7" secondAttribute="trailing" constant="5" id="V95-du-474"/>
+                                    <constraint firstAttribute="height" constant="50" id="X3N-CJ-hLH"/>
+                                    <constraint firstItem="Px2-mI-Ol7" firstAttribute="top" secondItem="mui-mx-O24" secondAttribute="top" constant="5" id="keZ-yC-fMC"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6v-vp-MoI">
+                                <rect key="frame" x="16" y="62" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="edm-GQ-6Ma"/>
+                                    <constraint firstAttribute="height" constant="40" id="iH4-O3-UZV"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrow.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22"/>
+                                </state>
+                                <connections>
+                                    <action selector="backBtnTapped:" destination="rJW-ne-3RI" eventType="touchUpInside" id="Dqv-vS-hpz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xGp-Yc-ZMz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="udk-4X-bgD" secondAttribute="bottom" id="7fk-Ny-Scv"/>
+                            <constraint firstItem="mui-mx-O24" firstAttribute="leading" secondItem="xGp-Yc-ZMz" secondAttribute="leading" constant="12" id="8WN-Ur-dBx"/>
+                            <constraint firstItem="d6v-vp-MoI" firstAttribute="leading" secondItem="3L6-lD-7X6" secondAttribute="leading" constant="16" id="BsH-8S-B4p"/>
+                            <constraint firstItem="Cpx-PZ-S0v" firstAttribute="leading" secondItem="xGp-Yc-ZMz" secondAttribute="leading" id="Fgs-Bz-csE"/>
+                            <constraint firstItem="Cpx-PZ-S0v" firstAttribute="top" secondItem="3L6-lD-7X6" secondAttribute="top" id="Nab-nf-cha"/>
+                            <constraint firstItem="4NQ-rP-QsZ" firstAttribute="top" secondItem="3L6-lD-7X6" secondAttribute="top" constant="65" id="XWg-Lu-hza"/>
+                            <constraint firstAttribute="bottom" secondItem="Cpx-PZ-S0v" secondAttribute="bottom" id="Xit-Kb-Wqk"/>
+                            <constraint firstItem="d6v-vp-MoI" firstAttribute="top" secondItem="3L6-lD-7X6" secondAttribute="top" constant="62" id="YE8-ko-pxe"/>
+                            <constraint firstItem="udk-4X-bgD" firstAttribute="top" secondItem="mui-mx-O24" secondAttribute="bottom" constant="10" id="YZo-vI-XYR"/>
+                            <constraint firstItem="xGp-Yc-ZMz" firstAttribute="trailing" secondItem="mui-mx-O24" secondAttribute="trailing" constant="12" id="ae8-jg-SU9"/>
+                            <constraint firstAttribute="trailing" secondItem="Cpx-PZ-S0v" secondAttribute="trailing" id="gWz-28-bnd"/>
+                            <constraint firstItem="4NQ-rP-QsZ" firstAttribute="centerX" secondItem="xGp-Yc-ZMz" secondAttribute="centerX" id="mPu-Hf-vxJ"/>
+                            <constraint firstItem="udk-4X-bgD" firstAttribute="leading" secondItem="xGp-Yc-ZMz" secondAttribute="leading" id="rRB-9k-iiu"/>
+                            <constraint firstItem="mui-mx-O24" firstAttribute="top" secondItem="4NQ-rP-QsZ" secondAttribute="bottom" constant="22.670000000000002" id="vW3-fr-Gc4"/>
+                            <constraint firstItem="udk-4X-bgD" firstAttribute="trailing" secondItem="xGp-Yc-ZMz" secondAttribute="trailing" id="xec-sz-to9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fri" destination="XeC-iP-7Zl" id="EoC-Wx-W7F"/>
+                        <outlet property="monday" destination="H49-0p-8xB" id="aMD-Lv-6Wc"/>
+                        <outlet property="sat" destination="0Ia-hx-jXq" id="DcC-0p-rdh"/>
+                        <outlet property="tableView" destination="udk-4X-bgD" id="LGQ-oZ-DMn"/>
+                        <outlet property="thu" destination="Uso-zm-U1Q" id="unJ-kJ-BRB"/>
+                        <outlet property="tue" destination="KmJ-Ai-t65" id="VEr-nj-4rK"/>
+                        <outlet property="wed" destination="xP2-uT-xHD" id="0yv-Ne-wX9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zLT-BH-sL0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1279" y="1037"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1.circle.fill" catalog="system" width="128" height="123"/>
@@ -12563,28 +12786,28 @@ It plays an important role in preparing for final examinations.</string>
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.55294117649999996" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.21960784310000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

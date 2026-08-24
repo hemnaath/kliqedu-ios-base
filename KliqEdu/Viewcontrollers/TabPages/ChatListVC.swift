@@ -361,8 +361,26 @@ class ChatListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
                 let data = roomChatMessages[indexPath.row]
 
-                cell.nameLbl.text = data.senderName?.isEmpty == false ? data.senderName : (data.sender_id ?? "")
-                cell.subjectLbl.text = data.room_id
+                let fullName = "\(data.firstname ?? "") \(data.lastname ?? "")"
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if !fullName.isEmpty {
+                    cell.nameLbl.text = fullName
+                } else if let senderName = data.sender_name,
+                          !senderName.isEmpty {
+                    cell.nameLbl.text = senderName
+                } else {
+                    cell.nameLbl.text = data.sender_id ?? ""
+                }
+
+                if roleKey == "teacher" {
+                    
+                    cell.subjectLbl.text = "Grade \(data.grade ?? "") - \(data.section ?? "")"
+                    
+                } else {
+                    
+                    cell.subjectLbl.text = "\(data.subject ?? "") Teacher"
+                }
                 cell.msgLbl.text = data.message
                 
                 if let timestamp = data.timestamp {

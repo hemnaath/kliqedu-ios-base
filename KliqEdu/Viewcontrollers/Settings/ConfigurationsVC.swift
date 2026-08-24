@@ -101,7 +101,7 @@ class ConfigurationsVC: UIViewController {
                             self.emailSwitch.isOn = emailNotificationsAllowed == 1
                         }
                     }else if key == "updateConfigurationsUrl"{
-                        self.showAnimatedToast(message: responseDict.value(forKey: "message") as? String ?? "Updated successfully", type: .success)
+                        self.showAnimatedToast(message: "Updated successfully", type: .success)
                     }
                 } else {
                     self.showAnimatedToast(message: StringConstants.somethingWentWrong,type: .error)

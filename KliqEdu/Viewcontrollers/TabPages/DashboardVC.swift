@@ -73,12 +73,12 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
             self.studentsCard.isHidden = true
             self.feesCard.isHidden = false
             self.teachersCard.isHidden = false
-            self.bottomStackView.unhide()
+          //  self.bottomStackView.unhide()
         }else{
             self.studentsCard.isHidden = false
             self.feesCard.isHidden = true
             self.teachersCard.isHidden = true
-            self.bottomStackView.hide()
+          //  self.bottomStackView.hide()
             
             self.teacherProfileApi()
         }
@@ -225,10 +225,10 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
             self.showAnimatedToast(message: "You don't have permission to access this page",type: .warning)
         }
     }
-    @IBAction func studentInfoBtnTapped(_ sender: Any) {
+    @IBAction func timeTableBtnTapped(_ sender: Any) {
         let sb = UIStoryboard.init(name: Constants.StoryboardIds.mainSb, bundle: nil)
-        if let vc = sb.instantiateViewController(withIdentifier: "StudentInfoVC") as? StudentInfoVC {
-            vc.comingFrom = "home"
+        if let vc = sb.instantiateViewController(withIdentifier: "TimeTableVC") as? TimeTableVC {
+            
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -275,7 +275,7 @@ class DashboardVC: UIViewController , UITableViewDelegate, UITableViewDataSource
                             if !imageUrl.isEmpty {
                                 self.placeHolderNameLbl.isHidden = true
                                 self.profilePic.isHidden = false
-                                self.profilePic.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "loader.png"), options: .refreshCached, completed: nil)
+                                self.profilePic.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "male.png"), options: .refreshCached, completed: nil)
                             } else {
                                 self.profilePic.image = nil
                                 self.profilePic.isHidden = true

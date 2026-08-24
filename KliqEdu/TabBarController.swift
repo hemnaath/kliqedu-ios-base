@@ -32,6 +32,7 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
         userID = defaults.value(forKey: Constants.Keys.userIdKey) as? Int ?? 0
         token = defaults.value(forKey: Constants.Keys.accessTokenKey) as? String ?? ""
         self.navigationController?.isNavigationBarHidden = true
+
 //        tabBar.isTranslucent = false
 //        tabBar.backgroundColor = .clear
 //        tabBar.barTintColor = .clear
@@ -49,13 +50,38 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
 //                item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)
 //            }
 //        }
-        tabBar.tintColor = .theme
-        tabBar.unselectedItemTintColor = .gray
-        if #available(iOS 19.0, *){
-            tabBar.backgroundColor = .clear
-        }else{
-            tabBar.backgroundColor = .white
+        tabBar.isTranslucent = true
+        // Create a top border view
+        let topLine = UIView(frame: CGRect(x: 0, y: -15, width: tabBar.frame.width, height: 1))
+        
+        // Add it to the tabBar
+        tabBar.addSubview(topLine)
+        
+        if let items = tabBarController?.tabBar.items {
+            for item in items {
+                item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)
+            }
         }
+        
+        // Set selected tab title color to black
+        tabBar.tintColor = UIColor.theme
+        
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+       // appearance.configureWithTransparentBackground()
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 10) ?? UIFont.systemFont(ofSize: 11, weight: .semibold)
+        ]
+        appearance.stackedLayoutAppearance.selected.iconColor = UIColor.theme
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.gray,
+            .font: UIFont(name: GLOBAL.FontsIdentifier.FontMedium, size: 10) ?? UIFont.systemFont(ofSize: 11)
+        ]
+        appearance.stackedLayoutAppearance.normal.iconColor = UIColor.gray
+        
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

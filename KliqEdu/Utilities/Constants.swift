@@ -342,6 +342,10 @@ struct Constants {
         
         static let studentMsgDeleteUrl = "parent/message"
         static let teacherMsgDeleteUrl = "teacher/message"
+        
+        static let studentTimetableUrl = "parent/timetable/get"
+        static let teacherTimetableUrl = "teacher/timetable/get"
+        
     }
 }
 struct CurrencyConstants {

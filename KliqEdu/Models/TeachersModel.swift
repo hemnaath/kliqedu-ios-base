@@ -9,6 +9,8 @@ import Foundation
 
 public class TeachersModel {
     public var full_name: String?
+    public var first_name: String?
+    public var last_name: String?
     public var subject: String?
     public var mobile: String?
     public var teacher_picture: String?
@@ -20,6 +22,8 @@ public class TeachersModel {
     required public init?(dictionary: NSDictionary) {
        
         full_name = dictionary["full_name"] as? String
+        first_name = dictionary["first_name"] as? String
+        last_name = dictionary["last_name"] as? String
         subject = dictionary["subject"] as? String
         mobile = dictionary["mobile"] as? String
         teacher_picture = dictionary["teacher_picture"] as? String
@@ -33,6 +37,8 @@ public class TeachersModel {
         let dictionary = NSMutableDictionary()
         
         dictionary.setValue(self.full_name, forKey: "full_name")
+        dictionary.setValue(self.first_name, forKey: "first_name")
+        dictionary.setValue(self.last_name, forKey: "last_name")
         dictionary.setValue(self.subject, forKey: "subject")
         dictionary.setValue(self.mobile, forKey: "mobile")
         dictionary.setValue(self.teacher_picture, forKey: "teacher_picture")

@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24901" systemVersion="25F84" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES" codeGenerationType="class">
+        <attribute name="firstname" optional="YES" attributeType="String"/>
+        <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lastname" optional="YES" attributeType="String"/>
         <attribute name="message" optional="YES" attributeType="String"/>
+        <attribute name="message_id" optional="YES" attributeType="String"/>
+        <attribute name="mobile_number" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="String"/>
         <attribute name="receiver_id" optional="YES" attributeType="String"/>
+        <attribute name="receiver_model" optional="YES" attributeType="String"/>
+        <attribute name="receiver_name" optional="YES" attributeType="String"/>
         <attribute name="room_id" optional="YES" attributeType="String"/>
+        <attribute name="section" optional="YES" attributeType="String"/>
         <attribute name="sender_id" optional="YES" attributeType="String"/>
+        <attribute name="sender_name" optional="YES" attributeType="String"/>
         <attribute name="senderName" optional="YES" attributeType="String"/>
+        <attribute name="subject" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>

@@ -19,7 +19,7 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
     @IBOutlet weak var collectionView: UICollectionView!
     
     var titleArray = ["Communication Made Easy","Smart Fee & Finance Management","Classroom & Learning Simplified"]
-
+    
     var descArray = ["Connect with teachers and parents instantly.Get real-time updates and messages., and notifications in one place.","Manage fees and payments.Track transactions in one place.","Manage classes and student activities.Track progress and performance easily."]
     
     var imageArray = ["11","22","33"]
@@ -29,7 +29,7 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSliders()
-
+        
         defaults.set(false, forKey: "isLaunched")
         defaults.synchronize()
         
@@ -38,7 +38,7 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
         self.collectionView.collectionViewLayout = layout
         collectionView.isPagingEnabled = true
         // Disable paging
-      //  setupCollectionView()
+        //  setupCollectionView()
         
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
@@ -68,9 +68,9 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
         updateSlider(index: 0)
     }
     func updateSlider(index: Int) {
-
+        
         for (i, slider) in sliders.enumerated() {
-
+            
             UIView.animate(
                 withDuration: 0.3,
                 delay: 0,
@@ -152,10 +152,10 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
         updateBottomButtons()
     }
     func updateBottomButtons() {
-
+        
         let page = Int(collectionView.contentOffset.x / collectionView.frame.width)
         currentIndex = page
-
+        
         if page == titleArray.count - 1 {
             nextBtnView.isHidden = true
             swipeOuterView.isHidden = false
@@ -188,19 +188,19 @@ class WelcomeVC: UIViewController,UICollectionViewDataSource,UICollectionViewDel
             print("Reached the last index")
             // You can now load more data, paginate, or perform any other action
         }else{
-        
+            
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WelcomeCCell", for: indexPath) as! WelcomeCCell
         let titleData = titleArray[indexPath.row]
         let descData = descArray[indexPath.row]
-
+        
         cell.titleLbl.text = titleData
         cell.descriptionLbl.text = descData
         cell.descriptionLbl.addInterlineSpacing(spacingValue: 5, alignment: .center)
         cell.picture.image = UIImage(named: imageArray[indexPath.row])
-
+        
         return cell
     }
 }

@@ -140,6 +140,10 @@
 		AEB484FF2F72EBA900BD0896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F52F72EBA900BD0896 /* SceneDelegate.swift */; };
 		AEB485002F72EBA900BD0896 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB484F62F72EBA900BD0896 /* ViewController.swift */; };
 		AEBAA56A2F857420007D18E0 /* LeaveViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */; };
+		AEBC90D33026557400A5C550 /* TimeTableTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEBC90D23026557400A5C550 /* TimeTableTCell.xib */; };
+		AEBC90D43026557400A5C550 /* TimeTableTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBC90D13026557400A5C550 /* TimeTableTCell.swift */; };
+		AEBC90D63026558300A5C550 /* TimeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBC90D53026558300A5C550 /* TimeTableVC.swift */; };
+		AEBC90D8302659BC00A5C550 /* TimeTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBC90D7302659BC00A5C550 /* TimeTableModel.swift */; };
 		AEC060AF2FE9B63700F53D13 /* notification.wav in Resources */ = {isa = PBXBuildFile; fileRef = AEC060AE2FE9B63700F53D13 /* notification.wav */; };
 		AED97E532F95074F0092C5D5 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */; };
 		AED97E552F95075D0092C5D5 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */; };
@@ -297,6 +301,10 @@
 		AEB484F62F72EBA900BD0896 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AEB484F82F72EBA900BD0896 /* KliqEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KliqEdu.xcdatamodel; sourceTree = "<group>"; };
 		AEBAA5692F857420007D18E0 /* LeaveViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveViewVC.swift; sourceTree = "<group>"; };
+		AEBC90D13026557400A5C550 /* TimeTableTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTCell.swift; sourceTree = "<group>"; };
+		AEBC90D23026557400A5C550 /* TimeTableTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTCell.xib; sourceTree = "<group>"; };
+		AEBC90D53026558300A5C550 /* TimeTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableVC.swift; sourceTree = "<group>"; };
+		AEBC90D7302659BC00A5C550 /* TimeTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableModel.swift; sourceTree = "<group>"; };
 		AEC060AE2FE9B63700F53D13 /* notification.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notification.wav; sourceTree = "<group>"; };
 		AED97E522F95074F0092C5D5 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		AED97E542F95075D0092C5D5 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
@@ -371,6 +379,7 @@
 				AE892A572F75B29A00A6ECEC /* DashboardVC.swift */,
 				AEE39EBA30054B1300DB40DA /* ChatListVC.swift */,
 				AEF5AD043003AA6B00A229AF /* ChatVC.swift */,
+				AEBC90D53026558300A5C550 /* TimeTableVC.swift */,
 			);
 			path = TabPages;
 			sourceTree = "<group>";
@@ -422,6 +431,7 @@
 				AE63B86E2FBCBDD300FEC1E8 /* ChildrensModel.swift */,
 				AE4A88312FC2C3C8007F9404 /* StaticPagesModel.swift */,
 				AEF5AD063003B19200A229AF /* SingleChatModel.swift */,
+				AEBC90D7302659BC00A5C550 /* TimeTableModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -469,6 +479,8 @@
 				AEE39EBD30054F0700DB40DA /* ChatListTCell.xib */,
 				AEE39EC03005628A00DB40DA /* SelectTeacherTCell.swift */,
 				AEE39EC13005628A00DB40DA /* SelectTeacherTCell.xib */,
+				AEBC90D13026557400A5C550 /* TimeTableTCell.swift */,
+				AEBC90D23026557400A5C550 /* TimeTableTCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -722,6 +734,7 @@
 				AE74111C2FCB1BB90023891F /* GoogleService-Info.plist in Resources */,
 				AE443AE22F74429900D97CA7 /* Urbanist-ExtraLight.ttf in Resources */,
 				AE5C0F822FA12AF0004DEA81 /* TeachersTCell.xib in Resources */,
+				AEBC90D33026557400A5C550 /* TimeTableTCell.xib in Resources */,
 				AE443AE32F74429900D97CA7 /* Urbanist-Thin.ttf in Resources */,
 				AE443AE42F74429900D97CA7 /* Urbanist-Medium.ttf in Resources */,
 				AE443AE52F74429900D97CA7 /* Urbanist-Black.ttf in Resources */,
@@ -826,6 +839,7 @@
 				AE892A672F75B39500A6ECEC /* BubbleTabBarController.swift in Sources */,
 				AE25AABC2FAD083000790494 /* FeesModel.swift in Sources */,
 				AE7B088B2FBF781700E9C9A1 /* PaymentVC.swift in Sources */,
+				AEBC90D8302659BC00A5C550 /* TimeTableModel.swift in Sources */,
 				AE400B7F2F89701200FB357F /* HolidaysCell.swift in Sources */,
 				AEF5AD0A3003B21C00A229AF /* ChatSenderTCell.swift in Sources */,
 				AEDFC055300C0E260036124E /* CoreDataManager.swift in Sources */,
@@ -903,8 +917,10 @@
 				AE443A8A2F7440BB00D97CA7 /* NetworkManager.swift in Sources */,
 				AE443A8B2F7440BB00D97CA7 /* ValidationClass.swift in Sources */,
 				AEEE57DD2FBA155700BC5490 /* DateCCell.swift in Sources */,
+				AEBC90D63026558300A5C550 /* TimeTableVC.swift in Sources */,
 				AE443A8C2F7440BB00D97CA7 /* APILogger.swift in Sources */,
 				AE08A7F82F914C8000B82380 /* LogoutVC.swift in Sources */,
+				AEBC90D43026557400A5C550 /* TimeTableTCell.swift in Sources */,
 				AE74111A2FCADA700023891F /* WebviewVC.swift in Sources */,
 				AE86A9CD2F842CEA007A6A31 /* LeaveTCell.swift in Sources */,
 				AE443A8D2F7440BB00D97CA7 /* ProfileSession.swift in Sources */,
@@ -945,7 +961,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KliqEdu/KliqEdu.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = TY4JJZQVWC;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -966,7 +982,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kliqedu.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -991,7 +1007,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KliqEdu/KliqEdu.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = TY4JJZQVWC;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1012,7 +1028,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kliqedu.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
