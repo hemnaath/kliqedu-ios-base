@@ -1,6 +1,6 @@
 //
 //  UIViewController+Activity.swift
-//  herald-exchange
+//  KliqEdu
 //
 //  Created by codegama on 13/11/25.
 //

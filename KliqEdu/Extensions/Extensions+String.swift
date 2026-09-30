@@ -1,6 +1,6 @@
 //
 //  Extensions+String.swift
-//  rentcar
+//  KliqEdu
 //
 //  Created by Karthick RJ on 10/11/20.
 //  Copyright © 2020 Karthick RJ. All rights reserved.
@@ -225,7 +225,7 @@ extension String {
          // Iterate through all available locales
          for localeIdentifier in Locale.availableIdentifiers {
              let locale = Locale(identifier: localeIdentifier)
-             if locale.currencyCode == self {
+             if locale.currency?.identifier == self {
                  return locale.currencySymbol
              }
          }

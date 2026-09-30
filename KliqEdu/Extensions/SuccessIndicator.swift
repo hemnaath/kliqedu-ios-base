@@ -1,6 +1,6 @@
 //
 //  SuccessIndicator.swift
-//  EFIExchange
+//  KliqEdu
 //
 //  Created by Karthick RJ on 22/01/24.
 //
@@ -27,7 +27,7 @@ class SuccessIndicator:NSObject{
     }()
     
     static func frameSetup(){
-        let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+        let window = UIApplication.shared.keyWindowInConnectedScenes
         contentView.widthAnchor.constraint(equalTo: window!.widthAnchor, multiplier: 0.4).isActive = true
         contentView.heightAnchor.constraint(greaterThanOrEqualTo: window!.widthAnchor, multiplier: 0.4).isActive = true
         contentView.centerYAnchor.constraint(equalTo: window!.centerYAnchor).isActive = true
@@ -36,7 +36,7 @@ class SuccessIndicator:NSObject{
     
     static func show() {
         DispatchQueue.main.async {
-            let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+            let window = UIApplication.shared.keyWindowInConnectedScenes
             contentView.play()
             backgroundView.frame = window!.bounds
             backgroundView.addSubview(contentView)

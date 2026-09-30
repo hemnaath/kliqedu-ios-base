@@ -1,6 +1,6 @@
 //
 //  StaticPagesVC.swift
-//  EFIBank
+//  KliqEdu
 //
 //  Created by Karthick RJ on 14/06/24.
 //

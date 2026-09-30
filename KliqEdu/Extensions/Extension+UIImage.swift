@@ -1,6 +1,6 @@
 //
 //  Extension+UIImage.swift
-//  Gambol
+//  KliqEdu
 //
 //  Created by Krishnendu Biswas on 22/05/20.
 //  Copyright © 2019 Krishnendu Biswas. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  PaddedLabel.swift
-//  CityPlots-App
+//  KliqEdu
 //
 //  Created by Karthick RJ on 24/02/25.
 //

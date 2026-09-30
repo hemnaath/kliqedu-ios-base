@@ -1,6 +1,6 @@
 //
 //  ChatRecieverTCell.swift
-//  OurClub
+//  KliqEdu
 //
 //  Created by Karthick RJ on 27/05/21.
 //

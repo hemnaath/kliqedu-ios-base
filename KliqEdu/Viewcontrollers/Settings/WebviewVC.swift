@@ -1,6 +1,6 @@
 //
 //  WebviewVC.swift
-//  EFIBank
+//  KliqEdu
 //
 //  Created by Karthick RJ on 11/12/24.
 //

@@ -1,6 +1,6 @@
 //
 //  GoneVisible.swift
-//  herald-exchange
+//  KliqEdu
 //
 //  Created by codegama on 12/01/26.
 //

@@ -1,6 +1,6 @@
 //
 //  LaunchVC.swift
-//  TodoApp
+//  KliqEdu
 //
 //  Created by Karthick RJ on 06/11/23.
 //

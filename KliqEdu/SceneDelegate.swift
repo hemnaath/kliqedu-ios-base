@@ -48,8 +48,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             vc.token = token
             vc.comingFrom = "resetlink"
             let nav = UINavigationController(rootViewController: vc)
-            UIApplication.shared.windows.first?.rootViewController = nav
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
+            (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController = nav
+            (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.makeKeyAndVisible()
         }
     }
     func sceneDidDisconnect(_ scene: UIScene) {

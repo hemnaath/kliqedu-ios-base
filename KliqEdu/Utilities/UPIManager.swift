@@ -1,6 +1,6 @@
 //
 //  UPIManager.swift
-//  Indcrypt
+//  KliqEdu
 //
 //  Created by codegama on 19/12/25.
 //

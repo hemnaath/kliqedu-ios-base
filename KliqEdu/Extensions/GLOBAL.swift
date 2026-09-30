@@ -1,6 +1,6 @@
 //
 //  GLOBAL.swift
-//  StepLive
+//  KliqEdu
 //
 //  Created by Karthick RJ on 11/03/21.
 //

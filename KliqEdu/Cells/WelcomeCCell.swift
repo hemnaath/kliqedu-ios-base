@@ -1,6 +1,6 @@
 //
 //  WelcomeCCell.swift
-//  CityPlots-App
+//  KliqEdu
 //
 //  Created by Karthick RJ on 28/10/24.
 //

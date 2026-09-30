@@ -1,6 +1,6 @@
 //
 //  ActivityIndicator.swift
-//  ICH
+//  KliqEdu
 //
 //  Created by DOBLE N J on 18/12/17.
 //  Copyright © 2017 BTeem. All rights reserved.

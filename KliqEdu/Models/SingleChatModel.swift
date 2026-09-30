@@ -1,6 +1,6 @@
 //
 //  SingleChatModel.swift
-//  OnlyAlly
+//  KliqEdu
 //
 //  Created by Karthick RJ on 17/08/21.
 //

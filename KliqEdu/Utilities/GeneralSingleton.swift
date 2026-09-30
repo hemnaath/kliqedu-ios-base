@@ -1,6 +1,6 @@
 //
 //  GeneralSingleton.swift
-//  OnlyAlly
+//  KliqEdu
 //
 //  Created by Karthick RJ on 19/05/21.
 //

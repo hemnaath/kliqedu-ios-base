@@ -1,6 +1,6 @@
 //
 //  TabBarController.swift
-//  TodoApp
+//  KliqEdu
 //
 //  Created by Karthick RJ on 06/11/23.
 //
@@ -13,7 +13,8 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
     private let sendButton = UIButton()
     private let sendButtonBackground = UIView()
     private var currentTourIndex = 0
-    
+    private let topLine = UIView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
@@ -52,11 +53,13 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate{
 //        }
         tabBar.isTranslucent = true
         // Create a top border view
-        let topLine = UIView(frame: CGRect(x: 0, y: -15, width: tabBar.frame.width, height: 1))
-        
-        // Add it to the tabBar
-        tabBar.addSubview(topLine)
-        
+        topLine.frame = CGRect(x: 0, y: -15, width: tabBar.frame.width, height: 1)
+
+        // Add it to the tabBar only once to avoid duplicate subviews
+        if topLine.superview !== tabBar {
+            tabBar.addSubview(topLine)
+        }
+
         if let items = tabBarController?.tabBar.items {
             for item in items {
                 item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 4)

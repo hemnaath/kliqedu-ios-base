@@ -1,6 +1,6 @@
 //
 //  UIButtton+Extension.swift
-//  OurClub
+//  KliqEdu
 //
 //  Created by Aravinth Ramesh on 26/03/21.
 //

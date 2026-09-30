@@ -1,11 +1,24 @@
 //
 //  APILogger.swift
-//  Indcrypt
+//  KliqEdu
 //
 //  Created by codegama on 15/12/25.
 //
 
 import Foundation
+
+// MARK: - Release log silencing
+// Console logging is for development only. In Release builds these module-level
+// overrides shadow Swift's `print`/`debugPrint`, so no request/response data,
+// tokens or keys are written to the device log.
+#if DEBUG
+let isDebugLoggingEnabled = true
+#else
+let isDebugLoggingEnabled = false
+
+func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {}
+func debugPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {}
+#endif
 
 enum APILogType {
     case request
@@ -26,6 +39,7 @@ final class APILogger {
         error: Error? = nil,
         startTime: Date? = nil
     ) {
+        guard isDebugLoggingEnabled else { return }
 
         let timestamp = Self.formattedDate(Date())
         

@@ -14,7 +14,7 @@ import os
 
 //static let alamofireService = AlamofireHC()
 // Create a logger for your app
-let apiLogger = Logger(subsystem: "com.efi.herald-exchange", category: "API")
+let apiLogger = Logger(subsystem: "com.kliqedu.app", category: "API")
 let requestStartTime = Date()
 
 class AlamofireHC: NSObject {
@@ -77,7 +77,7 @@ class AlamofireHC: NSObject {
         )
         // ✅ Use long timeout session here
 
-        longTimeoutSession.request(urlRequest).validate(statusCode: 200..<600).responseJSON { response in
+        longTimeoutSession.request(urlRequest).validate(statusCode: 200..<600).responseJSONObject { response in
                         
             if shouldShowHUD {
                 LoadingIndicator.hide()
@@ -152,7 +152,7 @@ class AlamofireHC: NSObject {
         // Alamofire 5 request
         longTimeoutSession.request(url, method: .get)
             .validate() // Automatically validates response status codes 200-299
-            .responseJSON { response in
+            .responseJSONObject { response in
                 
                 print(response)
                 
@@ -213,7 +213,7 @@ class AlamofireHC: NSObject {
         // Alamofire 5 request
         longTimeoutSession.request(url, method: .get, parameters: params, headers: afHeaders)
             .validate() // Automatically validates status codes 200-299
-            .responseJSON { response in
+            .responseJSONObject { response in
                 
                 if shouldShowHUD {
                     LoadingIndicator.hide()
@@ -297,7 +297,7 @@ class AlamofireHC: NSObject {
         
         debugPrint("********************************************")
         
-        longTimeoutSession.request(urlRequest).validate(statusCode: 200..<600).responseJSON { response in
+        longTimeoutSession.request(urlRequest).validate(statusCode: 200..<600).responseJSONObject { response in
             debugPrint("🔥 Reached inside response block for method: \(strMethod)")
             
             if shouldShowHUD {
@@ -399,7 +399,7 @@ class AlamofireHC: NSObject {
 
         debugPrint("********************************************")
 
-        longTimeoutSession.request(urlRequest).validate(statusCode: 200..<600).responseJSON { response in
+        longTimeoutSession.request(urlRequest).validate(statusCode: 200..<600).responseJSONObject { response in
 
                 if shouldShowHUD {
                     LoadingIndicator.hide()
@@ -489,7 +489,7 @@ class AlamofireHC: NSObject {
             
         }, to: url, method: .post, headers: afHeaders)
         .validate()
-        .responseJSON { response in
+        .responseJSONObject { response in
             
             if shouldShowHUD {
                 LoadingIndicator.hide()
@@ -593,7 +593,7 @@ class AlamofireHC: NSObject {
             headers: afHeaders
         )
         .validate()
-        .responseJSON { response in
+        .responseJSONObject { response in
             if shouldShowHUD {
                 LoadingIndicator.hide()
             }
@@ -680,7 +680,7 @@ class AlamofireHC: NSObject {
             headers: afHeaders
         )
         .validate()
-        .responseJSON { response in
+        .responseJSONObject { response in
 
             if shouldShowHUD {
                 LoadingIndicator.hide()
@@ -820,4 +820,37 @@ class AlamofireHC: NSObject {
 //            }
 //        })
 //    }
+}
+
+// MARK: - JSON object response serializer
+// Replacement for Alamofire's deprecated `responseJSON`. Mirrors `JSONResponseSerializer`
+// (same defaults, `.allowFragments`, `NSNull` for allowed empty responses) so handlers keep receiving `Any`.
+struct JSONObjectResponseSerializer: ResponseSerializer {
+    func serialize(request: URLRequest?, response: HTTPURLResponse?, data: Data?, error: (any Error)?) throws -> Any {
+        guard error == nil else { throw error! }
+
+        guard var data, !data.isEmpty else {
+            guard emptyResponseAllowed(forRequest: request, response: response) else {
+                throw AFError.responseSerializationFailed(reason: .inputDataNilOrZeroLength)
+            }
+
+            return NSNull()
+        }
+
+        data = try dataPreprocessor.preprocess(data)
+
+        do {
+            return try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        } catch {
+            throw AFError.responseSerializationFailed(reason: .jsonSerializationFailed(error: error))
+        }
+    }
+}
+
+extension DataRequest {
+    @discardableResult
+    func responseJSONObject(queue: DispatchQueue = .main,
+                            completionHandler: @escaping @Sendable (AFDataResponse<Any>) -> Void) -> Self {
+        response(queue: queue, responseSerializer: JSONObjectResponseSerializer(), completionHandler: completionHandler)
+    }
 }

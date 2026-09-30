@@ -1,6 +1,6 @@
 //
 //  Extension+UIViewController.swift
-//  Gambol
+//  KliqEdu
 //
 //  Created by Krishnendu Biswas on 22/05/20.
 //  Copyright © 2019 Krishnendu Biswas. All rights reserved.
@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 extension UIViewController{
     enum ToastType {
@@ -404,6 +405,8 @@ extension UIViewController{
                     actionMethod()
                 case .destructive:
                     actionMethod()
+                @unknown default:
+                    break
                 }
             }))
             if let presentedVC = self.presentedViewController, presentedVC is UIAlertController {
@@ -428,6 +431,8 @@ extension UIViewController{
                     firstActionMethod()
                 case .destructive:
                     firstActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -439,6 +444,8 @@ extension UIViewController{
                     secondActionMethod()
                 case .destructive:
                     secondActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -464,6 +471,8 @@ extension UIViewController{
                     firstActionMethod()
                 case .destructive:
                     firstActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -475,6 +484,8 @@ extension UIViewController{
                     secondActionMethod()
                 case .destructive:
                     secondActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -486,6 +497,8 @@ extension UIViewController{
                     thirdActionMethod()
                 case .destructive:
                     thirdActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -516,6 +529,8 @@ extension UIViewController{
                     firstActionMethod()
                 case .destructive:
                     firstActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -527,6 +542,8 @@ extension UIViewController{
                     secondActionMethod()
                 case .destructive:
                     secondActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -538,6 +555,8 @@ extension UIViewController{
                     thirdActionMethod()
                 case .destructive:
                     thirdActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -549,6 +568,8 @@ extension UIViewController{
                     thirdActionMethod()
                 case .destructive:
                     thirdActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -560,6 +581,8 @@ extension UIViewController{
                     thirdActionMethod()
                 case .destructive:
                     thirdActionMethod()
+                @unknown default:
+                    break
                 }
             }))
             
@@ -671,7 +694,7 @@ extension UIViewController: UIImagePickerControllerDelegate,
         if UIImagePickerController.availableCaptureModes(for: .front) != nil {
             imagePicker.allowsEditing = false
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            imagePicker.mediaTypes = [kUTTypeImage as String]
+            imagePicker.mediaTypes = [UTType.image.identifier]
             imagePicker.cameraDevice = .front
             imagePicker.cameraCaptureMode = .photo
             imagePicker.modalPresentationStyle = .fullScreen
@@ -679,7 +702,7 @@ extension UIViewController: UIImagePickerControllerDelegate,
         }else if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
             imagePicker.allowsEditing = false
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            imagePicker.mediaTypes = [kUTTypeImage as String]
+            imagePicker.mediaTypes = [UTType.image.identifier]
             imagePicker.cameraDevice = .rear
             imagePicker.cameraCaptureMode = .photo
             imagePicker.modalPresentationStyle = .fullScreen
@@ -692,7 +715,7 @@ extension UIViewController: UIImagePickerControllerDelegate,
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
             imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary;
             imagePicker.allowsEditing = true
-            imagePicker.mediaTypes = [kUTTypeImage as String]
+            imagePicker.mediaTypes = [UTType.image.identifier]
             self.present(imagePicker,animated: true, completion: nil)
         }
     }
@@ -720,7 +743,7 @@ extension UIAlertController {
         //        }
         
         DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.present(self, animated: animated, completion: completion)
+            UIApplication.shared.keyWindowInConnectedScenes?.rootViewController?.present(self, animated: animated, completion: completion)
             //            if vibrate {
             //                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             //            }

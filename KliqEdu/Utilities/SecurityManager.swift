@@ -1,6 +1,6 @@
 //
 //  SecurityManager.swift
-//  herald-exchange
+//  KliqEdu
 //
 //  Created by codegama on 18/02/26.
 //

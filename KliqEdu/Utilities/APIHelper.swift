@@ -1,6 +1,6 @@
 //
 //  APIHelper.swift
-//  herald-exchange
+//  KliqEdu
 //
 //  Created by codegama on 08/10/25.
 //
@@ -21,7 +21,6 @@ class APIHelper {
             encryptionKey: Constants.encryptionKey
         ) {
             
-            print("Decrypted Salt Key:", decryptedSalt)
             encryptedSaltKey = decryptedSalt
         }
         
@@ -43,18 +42,18 @@ class APIHelper {
         let requestType = httpMethod.uppercased()
 
         // Step 1: kDate = HMAC(saltKey, timestamp)
-        let kDate = try? HMAC(key: encryptedSaltKey, variant: .sha256)
+        let kDate = try? HMAC(key: encryptedSaltKey, variant: .sha2(.sha256))
             .authenticate(Array(timeStampString.utf8))
       //  print("kDate Hex:", kDate?.toHexString() ?? "")
         // Step 2: kService = HMAC(kDate, endpoint)
         let kService = kDate.flatMap {
-            try? HMAC(key: $0, variant: .sha256)
+            try? HMAC(key: $0, variant: .sha2(.sha256))
                 .authenticate(Array(endpointForSign.utf8))
         }
       //  print("kService Hex:", kService?.toHexString() ?? "")
         // Step 3: kSigning = HMAC(kService, requestType)
         let kSigning = kService.flatMap {
-            try? HMAC(key: $0, variant: .sha256)
+            try? HMAC(key: $0, variant: .sha2(.sha256))
                 .authenticate(Array(requestType.utf8))
         }
       //  print("kSigning Hex:", kSigning?.toHexString() ?? "")
@@ -169,7 +168,7 @@ class APIHelper {
 
             let expectedMac = try HMAC(
                 key: Array(keyData),
-                variant: .sha256
+                variant: .sha2(.sha256)
             )
             .authenticate(Array(macSource.utf8))
             .toHexString()
@@ -238,7 +237,7 @@ class APIHelper {
             let macSource = ivBase64 + encryptedBase64
             let mac = try HMAC(
                 key: Array(keyData),
-                variant: .sha256
+                variant: .sha2(.sha256)
             )
             .authenticate(Array(macSource.utf8))
             .toHexString()

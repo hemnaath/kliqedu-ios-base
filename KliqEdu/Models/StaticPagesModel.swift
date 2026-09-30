@@ -1,6 +1,6 @@
 //
 //  StaticPagesModel.swift
-//  ECommerce
+//  KliqEdu
 //
 //  Created by Karthick RJ on 19/10/22.
 //

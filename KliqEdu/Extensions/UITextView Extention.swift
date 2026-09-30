@@ -1,6 +1,6 @@
 //
 //  UITextView Extention.swift
-//  ECommerce
+//  KliqEdu
 //
 //  Created by Karthick RJ on 05/09/22.
 //

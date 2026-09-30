@@ -1,6 +1,6 @@
 //
 //  OTPVC.swift
-//  Indcrypt
+//  KliqEdu
 //
 //  Created by codegama on 28/11/25.
 //

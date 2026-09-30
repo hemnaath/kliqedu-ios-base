@@ -357,7 +357,7 @@ class ChatVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableVi
         self.manager = SocketManager(
             socketURL: URL(string: "https://api.kliqedu.com")!,
             config: [
-                .log(true),
+                .log(isDebugLoggingEnabled),
                 .compress,
                 .forceWebsockets(true),
                 .connectParams([
@@ -508,7 +508,7 @@ class ChatVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,UITableVi
         self.manager = SocketManager(
             socketURL: URL(string: "https://api.kliqedu.com")!,
             config: [
-                .log(true),
+                .log(isDebugLoggingEnabled),
                 .compress,
                 .forceWebsockets(true),
                 .connectParams([

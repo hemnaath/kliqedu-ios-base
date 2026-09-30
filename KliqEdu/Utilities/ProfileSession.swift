@@ -1,6 +1,6 @@
 //
 //  ProfileSession.swift
-//  herald-exchange
+//  KliqEdu
 //
 //  Created by codegama on 05/10/25.
 //

@@ -1,6 +1,6 @@
 //
 //  WelcomeVC.swift
-//  herald-exchange
+//  KliqEdu
 //
 //  Created by Karthick RJ on 24/04/25.
 //

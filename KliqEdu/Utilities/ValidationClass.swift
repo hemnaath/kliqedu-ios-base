@@ -1,6 +1,6 @@
 //
 //  ValidationClass.swift
-//  OnlyAlly
+//  KliqEdu
 //
 //  Created by Karthick RJ on 20/05/21.
 //
