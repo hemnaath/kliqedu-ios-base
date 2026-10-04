@@ -200,6 +200,8 @@ struct Constants {
         static let updateCartBadge = "update_cart_badge"
         static let shortcutAction = "quick_action_notification"
         static let openQuickOrder = "quick_order_action"
+        /// Posted after a visitor pass is created, edited or cancelled.
+        static let visitorPassChanged = "visitor_pass_changed"
         
     }
     
@@ -345,6 +347,13 @@ struct Constants {
         
         static let studentTimetableUrl = "parent/timetable/get"
         static let teacherTimetableUrl = "teacher/timetable/get"
+
+        // Visitor pass (parent)
+        static let parentVisitorPassListUrl = "parent/visitor-pass/list"
+        static let parentVisitorPassAddUrl = "parent/visitor-pass/add"
+        static let parentVisitorPassViewUrl = "parent/visitor-pass/view"
+        static let parentVisitorPassUpdateUrl = "parent/visitor-pass/update"
+        static let parentVisitorPassCancelUrl = "parent/visitor-pass/cancel"
         
     }
 }

@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12BD54645CB7E0DD59E069CD /* VisitorPassTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E2D828F4D742C8177BCC96 /* VisitorPassTCell.xib */; };
 		1F4A6905983D47CF5345E340 /* Pods_KliqEdu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9A8A38608BB3BBD7E31ED /* Pods_KliqEdu.framework */; };
+		33A30DE7877703BACB7DD7B9 /* VisitorPassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E4BEB9FD7C248FC094A495 /* VisitorPassModel.swift */; };
+		7578C3812D256C829004C8BB /* VisitorPassTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E25516498537A1BBED3A72 /* VisitorPassTCell.swift */; };
+		77BAAF74CB25A5ED89BFF538 /* VisitorPassListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB25292DFD7BF4351994AD6 /* VisitorPassListVC.swift */; };
+		7DA35745889F2A9E7B698DA7 /* WorkloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B0615197C355960BC5DE3 /* WorkloadModel.swift */; };
+		9F4A9525EB56D78E464028BE /* SubjectAllocationCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC96B92A9E84ED3775C6473 /* SubjectAllocationCCell.swift */; };
 		AE08A7F42F914C6700B82380 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE08A7F32F914C6700B82380 /* ChangePasswordVC.swift */; };
 		AE08A7F62F914C7600B82380 /* DeleteAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE08A7F52F914C7600B82380 /* DeleteAccountVC.swift */; };
 		AE08A7F82F914C8000B82380 /* LogoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE08A7F72F914C8000B82380 /* LogoutVC.swift */; };
@@ -160,12 +166,21 @@
 		AEF5AD073003B19200A229AF /* SingleChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5AD063003B19200A229AF /* SingleChatModel.swift */; };
 		AEF5AD0A3003B21C00A229AF /* ChatSenderTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5AD093003B21B00A229AF /* ChatSenderTCell.swift */; };
 		AEF5AD0B3003B21C00A229AF /* ChatRecieverTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5AD083003B21B00A229AF /* ChatRecieverTCell.swift */; };
+		CD2694354211A864891D6F8D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2A874AF1C0899B3EB466B /* ChatService.swift */; };
+		CF1C60D53B3C9111BB8C7707 /* CreateVisitorPassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D67214FA3B1D119B14F755 /* CreateVisitorPassVC.swift */; };
+		DD8B5A59A54A00DE60FFA635 /* VisitorPassDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E686A7F9D1F3F112AEFB6A8 /* VisitorPassDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		09E9A8A38608BB3BBD7E31ED /* Pods_KliqEdu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KliqEdu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13E2D828F4D742C8177BCC96 /* VisitorPassTCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = VisitorPassTCell.xib; sourceTree = "<group>"; };
+		3E686A7F9D1F3F112AEFB6A8 /* VisitorPassDetailVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisitorPassDetailVC.swift; sourceTree = "<group>"; };
 		4A93FA74320985826532BF54 /* Pods-KliqEdu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KliqEdu.release.xcconfig"; path = "Target Support Files/Pods-KliqEdu/Pods-KliqEdu.release.xcconfig"; sourceTree = "<group>"; };
 		5F3F9ABBA9104F86FD4A15D5 /* Pods-KliqEdu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KliqEdu.debug.xcconfig"; path = "Target Support Files/Pods-KliqEdu/Pods-KliqEdu.debug.xcconfig"; sourceTree = "<group>"; };
+		7ED2A874AF1C0899B3EB466B /* ChatService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		7FB25292DFD7BF4351994AD6 /* VisitorPassListVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisitorPassListVC.swift; sourceTree = "<group>"; };
+		8E3B0615197C355960BC5DE3 /* WorkloadModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WorkloadModel.swift; sourceTree = "<group>"; };
+		A3E25516498537A1BBED3A72 /* VisitorPassTCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisitorPassTCell.swift; sourceTree = "<group>"; };
 		AE08A7F32F914C6700B82380 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		AE08A7F52F914C7600B82380 /* DeleteAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountVC.swift; sourceTree = "<group>"; };
 		AE08A7F72F914C8000B82380 /* LogoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutVC.swift; sourceTree = "<group>"; };
@@ -321,6 +336,9 @@
 		AEF5AD063003B19200A229AF /* SingleChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleChatModel.swift; sourceTree = "<group>"; };
 		AEF5AD083003B21B00A229AF /* ChatRecieverTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRecieverTCell.swift; sourceTree = "<group>"; };
 		AEF5AD093003B21B00A229AF /* ChatSenderTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSenderTCell.swift; sourceTree = "<group>"; };
+		CBC96B92A9E84ED3775C6473 /* SubjectAllocationCCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubjectAllocationCCell.swift; sourceTree = "<group>"; };
+		E1D67214FA3B1D119B14F755 /* CreateVisitorPassVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateVisitorPassVC.swift; sourceTree = "<group>"; };
+		F4E4BEB9FD7C248FC094A495 /* VisitorPassModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VisitorPassModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +428,7 @@
 				AE563F482F8C8B26006B8B33 /* Homework */,
 				AE584D0C2F9546320034C4D0 /* Fees */,
 				AE08A7F92F914CF200B82380 /* Settings */,
+				DBC58EA086D0231B26084923 /* VisitorPass */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -432,6 +451,8 @@
 				AE4A88312FC2C3C8007F9404 /* StaticPagesModel.swift */,
 				AEF5AD063003B19200A229AF /* SingleChatModel.swift */,
 				AEBC90D7302659BC00A5C550 /* TimeTableModel.swift */,
+				8E3B0615197C355960BC5DE3 /* WorkloadModel.swift */,
+				F4E4BEB9FD7C248FC094A495 /* VisitorPassModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -481,6 +502,9 @@
 				AEE39EC13005628A00DB40DA /* SelectTeacherTCell.xib */,
 				AEBC90D13026557400A5C550 /* TimeTableTCell.swift */,
 				AEBC90D23026557400A5C550 /* TimeTableTCell.xib */,
+				CBC96B92A9E84ED3775C6473 /* SubjectAllocationCCell.swift */,
+				A3E25516498537A1BBED3A72 /* VisitorPassTCell.swift */,
+				13E2D828F4D742C8177BCC96 /* VisitorPassTCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -501,6 +525,7 @@
 				AE443A802F7440BB00D97CA7 /* APILogger.swift */,
 				AE7B088C2FBF814E00E9C9A1 /* UPIManager.swift */,
 				AE443A812F7440BB00D97CA7 /* SecurityManager.swift */,
+				7ED2A874AF1C0899B3EB466B /* ChatService.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -659,6 +684,17 @@
 			path = KliqEdu;
 			sourceTree = "<group>";
 		};
+		DBC58EA086D0231B26084923 /* VisitorPass */ = {
+			isa = PBXGroup;
+			children = (
+				7FB25292DFD7BF4351994AD6 /* VisitorPassListVC.swift */,
+				E1D67214FA3B1D119B14F755 /* CreateVisitorPassVC.swift */,
+				3E686A7F9D1F3F112AEFB6A8 /* VisitorPassDetailVC.swift */,
+			);
+			name = VisitorPass;
+			path = VisitorPass;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -752,6 +788,7 @@
 				AE892A692F75B39500A6ECEC /* .gitkeep in Resources */,
 				AEE7F1CF2F91530300844AB6 /* Settings.storyboard in Resources */,
 				AE63B8732FBCBEBB00FEC1E8 /* ChildrensTCell.xib in Resources */,
+				12BD54645CB7E0DD59E069CD /* VisitorPassTCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,6 +965,14 @@
 				AE2F0B892FA27C5A00AF616F /* CreateAnnouncementVC.swift in Sources */,
 				AE443A8E2F7440BB00D97CA7 /* StringConstants.swift in Sources */,
 				AEB485002F72EBA900BD0896 /* ViewController.swift in Sources */,
+				7DA35745889F2A9E7B698DA7 /* WorkloadModel.swift in Sources */,
+				9F4A9525EB56D78E464028BE /* SubjectAllocationCCell.swift in Sources */,
+				CD2694354211A864891D6F8D /* ChatService.swift in Sources */,
+				33A30DE7877703BACB7DD7B9 /* VisitorPassModel.swift in Sources */,
+				7578C3812D256C829004C8BB /* VisitorPassTCell.swift in Sources */,
+				77BAAF74CB25A5ED89BFF538 /* VisitorPassListVC.swift in Sources */,
+				CF1C60D53B3C9111BB8C7707 /* CreateVisitorPassVC.swift in Sources */,
+				DD8B5A59A54A00DE60FFA635 /* VisitorPassDetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,6 +50,7 @@ class FilterVC: UIViewController {
     
     let statusArray = ["All","Pending", "Approved", "Rejected"]
     let feesStatusArray = ["All","Pending","Processing","Paid","Partial","Overdue","Failed"]
+    let visitorPassStatusArray = ["All", "Active", "Expired", "Cancelled"]
 
     var selectedGrade = ""
     var selectedSection = ""
@@ -267,7 +268,7 @@ var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
             gradeView.isHidden = false
             selectedType = "Grade"
             
-        case "Fees", "Leaves":
+        case "Fees", "Leaves", "VisitorPass":
             statusView.isHidden = false
             selectedType = "Status"
             
@@ -299,6 +300,11 @@ var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
             selectedGroupId = groupId
         }
         
+        // Visitor pass status is filtered by name ("Active", "Expired", "Cancelled").
+        if comingFor == "VisitorPass", let status = appliedFilters["status"] as? String {
+            selectedStatus = status
+        }
+
         if let status = appliedFilters["status"] as? Int {
 
             if comingFor == "Fees" {
@@ -410,7 +416,9 @@ var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
             return groupListArray
 
         case "Status":
-            let statusList = (comingFor == "Fees") ? feesStatusArray : statusArray
+            let statusList = (comingFor == "Fees") ? feesStatusArray
+                : (comingFor == "VisitorPass") ? visitorPassStatusArray
+                : statusArray
 
             return statusList.map {
                 let dict: NSDictionary = ["name": $0, "unique_id": $0]
@@ -501,7 +509,13 @@ var onApplyFilter: ((_ filters: [String: Any]) -> Void)?
         
         if !selectedStatus.isEmpty {
 
-            if comingFor == "Fees" {
+            if comingFor == "VisitorPass" {
+
+                if selectedStatus.lowercased() != "all" {
+                    filters["status"] = selectedStatus
+                }
+
+            } else if comingFor == "Fees" {
 
                 switch selectedStatus.lowercased() {
 
